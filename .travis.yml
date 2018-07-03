@@ -4,14 +4,8 @@ node_js:
 
 cache: yarn
 
-before_script:
-  - npm install -g @angular/cli
-
 script:
   - ng build --prod
-
-before_deploy:
-  - yarn build
 
 deploy:
   provider: heroku

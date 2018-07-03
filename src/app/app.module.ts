@@ -26,7 +26,6 @@ import {DemoService} from "./services/demo.service";
         AppComponent
     ],
     imports: [
-        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         HttpClientModule,
         BrowserAnimationsModule,
         AppRoutingModule,
