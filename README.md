@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.com/marc101101/PS_SS18_vhsLangquaid.svg?token=q4ZzuewzZrMnM6gfyh2w&branch=master)](https://travis-ci.com/marc101101/PS_SS18_vhsLangquaid)
 ## PS_SS18_vhsLangquaid Mobile Application
 
 # Installation pre-requisites
