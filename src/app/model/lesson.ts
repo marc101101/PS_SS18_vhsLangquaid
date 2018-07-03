@@ -1,4 +1,4 @@
-
+/*This is a demo model*/
 
 export interface Lesson {
     id:number;

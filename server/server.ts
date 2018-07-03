@@ -13,21 +13,15 @@ const vapidKeys = {
     "privateKey":"mp5xYHWtRTyCA63nZMvmJ_qmYO6A1klSotcoppSx-MI"
 };
 
-
 webpush.setVapidDetails(
     'mailto:example@yourdomain.org',
     vapidKeys.publicKey,
     vapidKeys.privateKey
 );
 
-
-
-
 const app: Application = express();
 
-
 app.use(bodyParser.json());
-
 
 // REST API
 app.route('/api/lessons')
@@ -38,8 +32,6 @@ app.route('/api/notifications')
 
 app.route('/api/newsletter')
     .post(sendNewsletter);
-
-
 
 // launch an HTTP Server
 const httpServer = app.listen(9000, () => {
