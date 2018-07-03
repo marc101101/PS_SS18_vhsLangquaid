@@ -4,7 +4,7 @@ node_js:
 
 cache: npm
 
-before_deploy:
+scripts:
   - npm run build
 
 deploy:
