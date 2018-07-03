@@ -5,7 +5,7 @@ node_js:
 cache: npm
 
 before_deploy:
-  - npm build
+  - npm run build
 
 deploy:
   provider: heroku
