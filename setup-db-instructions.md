@@ -29,3 +29,10 @@ mysql -uroot
 create database usr_p100480_1
 mysql -u root -p usr_p100480_1 < PATH_TO_SQL_FILE
 ```
+
+
+fill with local db with dummy data
+```
+cd server
+sh fill_with_dummy_data.sh
+```
