@@ -1,0 +1,390 @@
+swagger: "2.0"
+info:
+  description: "The project involves the conception and implementation of an online presence of the Adult Education Center Langquaid eV (VHS LQ), which has been specially optimized for mobile devices. This is referred to below as an app. The app should enable the user to view, book and unsubscribe from courses. In addition, he should be shown a map for the individual seminar rooms."
+  version: "1.0.0"
+  title: "VHS Langquaid Mobile App"
+  contact:
+    email: "markus.guder@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.vhslq.de"
+basePath: "/v1"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /user:
+    get:
+      security: 
+      - JWT: []
+      tags: [User]
+      summary: "get me"
+      description: "Get authorized User (me)"
+      responses:
+        '200':
+          description: "get user"
+          schema:
+            $ref: '#/definitions/User'
+    post:
+      security: 
+      - JWT: []
+      tags: [User]  
+      summary: "register a new user"
+      description: register new user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        201:
+          description: user created
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/User'
+        400:
+          description: bad request
+      parameters: 
+      - name: data
+        required: true
+        description: user data
+        in: body
+        schema:
+          type: object
+          items:
+            $ref: '#/definitions/User'
+  /user/{user_id}:
+    put:
+      security: 
+      - JWT: []
+      tags: [User]
+      summary: edit user details
+      parameters: 
+      - name: user_id
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: user has been edited
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/User'
+            
+  /categories:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Categories]
+      summary: get all categories
+      description: get all categories
+      responses:
+        200:
+          description: request successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+  /categories/{category_id}:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Categories]
+      summary: get category by id
+      description: get category by id
+      parameters: 
+      - name: category_id
+        in: path
+        type: integer
+        required: true
+      responses:
+        200:
+          description: request successful
+          schema:
+            $ref: '#/definitions/Category'
+  /categories/{category_id}/courses:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Categories]
+      summary: get all courses of a category
+      description: get all courses of a category
+      parameters: 
+      - name: category_id
+        in: path
+        type: integer
+        required: true
+      responses:
+        200:
+          description: request successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+  /courses:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Courses]
+      summary: get all courses
+      description: get all courses
+      responses:
+        200:
+          description: request successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+  /courses/{course_id}:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Courses]
+      summary: get course by id
+      description: get course by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Course'
+      parameters: 
+      - name: course_id
+        type: integer
+        in: path
+        required: true
+  /courses/highlights:
+    get:
+      security: 
+        - PublicKey: []
+      tags: [Courses]
+      summary: get currated highlights
+      description: get currated highlights
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+  /courses/{course_id}/apply:
+    post:
+      security: 
+      - JWT: []
+      tags: [Courses]
+      summary: apply to participate in specific course
+      description: apply to participate in specific course
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Course'
+      parameters: 
+      - name: course_id
+        type: integer
+        in: path
+        required: true    
+  /courses/{course_id}/signoff:
+    post:
+      security: 
+      - JWT: []
+      tags: [Courses]
+      summary: signoff to participate in specific course
+      description: signoff to participate in specific course
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Course'
+      parameters: 
+      - name: course_id
+        type: integer
+        in: path
+        required: true   
+  /courses/{course_id}/feedback:
+    post:
+      security: 
+      - JWT: []
+      tags: [Courses]
+      summary: give feedback to a course
+      description: give feedback to a course
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CourseFeedback'
+      parameters: 
+      - name: data
+        in: body
+        schema:
+          $ref: '#/definitions/CourseFeedback'
+      - name: course_id
+        in: path
+        type: string
+        required: true
+  /contact:
+    post:
+      security: 
+        - PublicKey: []
+      tags: [Contact]
+      summary: give general feedback to the team
+      description: give general feedback to the team
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GeneralFeedback'
+      parameters:
+      - name: data
+        in: body
+        schema:
+          $ref: '#/definitions/GeneralFeedback'
+        required: true
+  /auth:
+    post:
+      security: 
+        - PublicKey: []
+      tags: [Auth]
+      summary: get authtoken from server  
+      description: get authtoken from server  
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuthData'
+      parameters: 
+      - name: data
+        in: body
+        schema:
+          $ref: '#/definitions/UserData'
+        required: true
+    
+          
+securityDefinitions:
+  PublicKey:
+    type: apiKey
+    in: header
+    name: Authorization
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+definitions:
+  Category:
+    type: object
+    required: 
+     - id
+    properties:
+      id:
+        type: integer
+        description: the category ID
+        example: 1
+      name: 
+        type: string
+        description: the category name
+        example: "Kunst"
+      text:
+        type: string
+        description: the category description
+        example: "Kunst ist toll"
+  Course:
+    type: object
+    required: 
+      - id
+    properties:
+      id:
+        type: integer
+        description: the course id
+        example: 1
+      name: 
+        type: string
+        description: the course name
+        example: "Kunst-Grundkurs"
+      text:
+        type: string
+        description: the course description
+        example: "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden"
+      min_age:
+        type: integer
+        description: minimum required age to participate
+        example: 1
+      max_age:
+        type: integer
+        description: maximum required age to participate
+        example: 99
+  User:
+    type: object
+    required: 
+      - id
+    properties:
+      id:
+        type: integer
+        description: the user ID
+        example: 1
+      firstname: 
+        type: string
+        description: the users firstname
+        example: "Hans"
+      lastname: 
+        type: string
+        description: the users firstname  
+        example: "Schuller"
+      email: 
+        type: string
+        description: the users email adress  
+        example: "email@internet.com"
+      password: 
+        type: string
+        description: the users password  
+        example: "hunter22"
+  GeneralFeedback:
+    type: object
+    required: 
+    - "text"
+    properties:
+      text:
+        type: string
+        description: the content of the message
+        example: This app is great!
+      email:
+        type: string
+        description: the optional email adress
+        example: this@me.com
+  CourseFeedback:
+    type: object
+    required: 
+    - "text"
+    properties:
+      text:
+        type: string
+        description: the content of the message
+        example: This app is great!
+      email:
+        type: string
+        description: the optional email adress
+        example: this@me.com
+  UserData:
+    type: "object"
+    required: 
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+        example: "user123@email.com"
+      password:
+        type: "string"
+        example: "hunter22"
+    xml:
+      name: "UserData"
+  AuthData:
+    type: object
+    required: 
+    - "token"
+    properties:
+      token:
+        type: string
+        example: abc.123321.cba

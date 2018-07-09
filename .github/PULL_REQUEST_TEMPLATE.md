@@ -1,12 +1,12 @@
 **Issue:** N/A
-**Typ:** N/A
+**Type:** N/A
 
-**Verhalten auf Development:**
+**Behaviour on Development branch:**
 N/A
 
-**Verhalten auf diesem Branch:**
+**Behaviour on this branch:**
 N/A
 
-**Weitere Informationen:**
+**Further Information:**
 N/A
 
