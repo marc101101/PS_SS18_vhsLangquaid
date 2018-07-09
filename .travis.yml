@@ -6,6 +6,3 @@ cache: yarn
 
 script:
   - ng build --prod
-
-before_deploy:
-  - yarn build --prod
