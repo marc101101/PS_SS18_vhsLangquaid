@@ -1,0 +1,20 @@
+{
+  "name": "vhs-langquaid-mobile-app",
+  "version": "1.0.0",
+  "description": "The project involves the conception and implementation of an online presence of the Adult Education Center Langquaid eV (VHS LQ), which has been specially optimized for mobile devices. This is referred to below as an app. The app should enable the user to view, book and unsubscribe from courses. In addition, he should be shown a map for the individual seminar rooms.",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1"
+  }
+}
