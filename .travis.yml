@@ -9,11 +9,3 @@ script:
 
 before_deploy:
   - yarn build --prod
-
-deploy:
-  provider: heroku
-  api_key: 
-    - secure: "k0MoSL7epuCKfaLtzoO6ZZAy+42tUuyfSB6VbDt1ilrRtSlarHfDJHtkLG05W8VmpqWdyp8ZN/bIT7hHMmz/R949uzJ25xsGpsJwSylLceq3X8Ituwuh7B/Y1il1TY3LAwpSFDkbYAJUSFmNwBdWaEvWaohLo7NEHg7r1GL6bDr1MzyqBYHqzp8MvSVC89xsfKj8uLWgjuB+FY+Ft//pwcXK2tGrlfmunaRvZNGr3pN1Z4KaGuJIUzyuekci2DnPb1E8lttALJV2htnm4PcEktCHOGLtQCZNdlYtkgyuSH8AVs68KgQNBhNZwH0uveTi1xc4rPBvD5peKvOA+lzElOfU5+8870QwO14i/wEce0NZSbtIbhVXVpcUO6A8qTK/Npo4f2Vgol7sHDt1iPbg2cnThr2u8aARxOL4Z9+wP2NILiCA0p5ZwYsve1kOcOj8kp1eFEOdi0WR81d/+3qRwYQqk2BT5JEb0ypFa4RyK78IZxq7yZ29M8E4VMwFAhlecXIU3LsxULplkLN1cOOQQWW/+4buA+cgpVwxPUGapptGe1I2jwRPxA/8SxsXYrbLcXGeHPtDiIrtr7chmyfGn1slbE+6GCNnl/28DiWdjR4aptKF5MBrsT5yOHUKhO0i+cDw7sZ7lAN0RkN/ALTXFQIpUU1/VYPEFUnke5GgzgA="
-  app: ps-ss18-vhslangquaid
-  on:
-    tags: true
