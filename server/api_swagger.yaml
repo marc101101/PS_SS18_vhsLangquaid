@@ -17,6 +17,8 @@ schemes:
 paths:
   /user:
     get:
+      security: 
+      - JWT: []
       tags: [User]
       summary: "get me"
       description: "Get authorized User (me)"
@@ -26,6 +28,8 @@ paths:
           schema:
             $ref: '#/definitions/User'
     post:
+      security: 
+      - JWT: []
       tags: [User]  
       summary: "register a new user"
       description: register new user
@@ -54,6 +58,8 @@ paths:
             $ref: '#/definitions/User'
   /user/{user_id}:
     put:
+      security: 
+      - JWT: []
       tags: [User]
       summary: edit user details
       parameters: 
@@ -71,6 +77,8 @@ paths:
             
   /categories:
     get:
+      security: 
+        - PublicKey: []
       tags: [Categories]
       summary: get all categories
       description: get all categories
@@ -83,6 +91,8 @@ paths:
               $ref: '#/definitions/Category'
   /categories/{category_id}:
     get:
+      security: 
+        - PublicKey: []
       tags: [Categories]
       summary: get category by id
       description: get category by id
@@ -98,6 +108,8 @@ paths:
             $ref: '#/definitions/Category'
   /categories/{category_id}/courses:
     get:
+      security: 
+        - PublicKey: []
       tags: [Categories]
       summary: get all courses of a category
       description: get all courses of a category
@@ -115,6 +127,8 @@ paths:
               $ref: '#/definitions/Course'
   /courses:
     get:
+      security: 
+        - PublicKey: []
       tags: [Courses]
       summary: get all courses
       description: get all courses
@@ -127,6 +141,8 @@ paths:
               $ref: '#/definitions/Course'
   /courses/{course_id}:
     get:
+      security: 
+        - PublicKey: []
       tags: [Courses]
       summary: get course by id
       description: get course by id
@@ -142,6 +158,8 @@ paths:
         required: true
   /courses/highlights:
     get:
+      security: 
+        - PublicKey: []
       tags: [Courses]
       summary: get currated highlights
       description: get currated highlights
@@ -154,6 +172,8 @@ paths:
               $ref: '#/definitions/Course'
   /courses/{course_id}/apply:
     post:
+      security: 
+      - JWT: []
       tags: [Courses]
       summary: apply to participate in specific course
       description: apply to participate in specific course
@@ -169,6 +189,8 @@ paths:
         required: true    
   /courses/{course_id}/signoff:
     post:
+      security: 
+      - JWT: []
       tags: [Courses]
       summary: signoff to participate in specific course
       description: signoff to participate in specific course
@@ -184,6 +206,8 @@ paths:
         required: true   
   /courses/{course_id}/feedback:
     post:
+      security: 
+      - JWT: []
       tags: [Courses]
       summary: give feedback to a course
       description: give feedback to a course
@@ -203,6 +227,8 @@ paths:
         required: true
   /contact:
     post:
+      security: 
+        - PublicKey: []
       tags: [Contact]
       summary: give general feedback to the team
       description: give general feedback to the team
@@ -219,6 +245,8 @@ paths:
         required: true
   /auth:
     post:
+      security: 
+        - PublicKey: []
       tags: [Auth]
       summary: get authtoken from server  
       description: get authtoken from server  
@@ -236,17 +264,14 @@ paths:
     
           
 securityDefinitions:
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "http://api.vhslq.de/oauth/dialog"
-    flow: "implicit"
-    scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
+  PublicKey:
+    type: apiKey
+    in: header
+    name: Authorization
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
 definitions:
   Category:
     type: object
