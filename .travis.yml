@@ -6,3 +6,13 @@ cache: yarn
 
 script:
   - ng build --prod
+
+jobs:
+  include:
+    - stage: GitHub Release
+      script: echo "Deploying to GitHub releases ..."
+      deploy:
+        provider: releases
+        skip_cleanup: true
+        on:
+          tags: true
