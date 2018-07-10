@@ -4,14 +4,12 @@ node_js:
 
 cache: yarn
 
-script:
-  - ng build --prod
-  - npm test
-
 jobs:
   include:
     - stage: GitHub Release
-      script: echo "Deploying to GitHub releases ..."
+      script:
+        - npm test
+        - ng build --prod
       deploy:
         provider: releases
         skip_cleanup: true
