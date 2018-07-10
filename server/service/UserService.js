@@ -1,6 +1,7 @@
 'use strict';
 
-
+var User = require('../utils/database').User;
+var knex = require('../utils/database').knex;
 /**
  * get me
  * Get authorized User (me)
@@ -8,20 +9,17 @@
  * returns User
  **/
 exports.userGET = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "firstname" : "Hans",
-  "password" : "hunter22",
-  "id" : 1,
-  "email" : "email@internet.com",
-  "lastname" : "Schuller"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return new Promise((resolve, reject) => {
+
+    // TODO: For testing only, needs to be changed to get id from authtoken or similar
+    User.where({teil_vorname: "John"})
+      .fetch()
+      .then((user) => {
+        resolve(user);
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -35,13 +33,14 @@ exports.userGET = function() {
  **/
 exports.userPOST = function(data) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    new User(data)
+      .save()
+      .then((user) => {
+        resolve(user);
+      })
+      .catch((error) => {
+        reject(error);
+      })
   });
 }
 
