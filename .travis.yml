@@ -6,6 +6,7 @@ cache: yarn
 
 script:
   - ng build --prod
+  - npm test
 
 jobs:
   include:
