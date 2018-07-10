@@ -64,3 +64,19 @@ exports.userUser_idPUT = function(user_id) {
   });
 }
 
+if (process.env.NODE_ENV === 'test') {
+  console.log("Clearing all Content in Table vhslq_teilnehmer");
+  exports.clearDataBase = () => {
+    return new Promise((resolve, reject) => {
+      knex("vhslq_teilnehmer")
+        .del()
+        .then(() => {
+          console.log("Finished clearing all Content in Table vhslq_teilnehmer");
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
+}
