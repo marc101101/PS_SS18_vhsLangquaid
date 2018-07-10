@@ -26,7 +26,10 @@ setup empty local vhs lq database
 ```
 mysql.server start
 mysql -uroot
-create database usr_p100480_1
+create database usr_p100480_1;
+
+Leave mysql CLI by pressing CTRL-C!
+
 mysql -u root -p usr_p100480_1 < PATH_TO_SQL_FILE
 ```
 
