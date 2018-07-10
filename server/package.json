@@ -4,8 +4,9 @@
   "description": "The project involves the conception and implementation of an online presence of the Adult Education Center Langquaid eV (VHS LQ), which has been specially optimized for mobile devices. This is referred to below as an app. The app should enable the user to view, book and unsubscribe from courses. In addition, he should be shown a map for the individual seminar rooms.",
   "main": "index.js",
   "scripts": {
-	"prestart": "npm install",
-	"start": "node index.js"
+    "prestart": "npm install",
+    "start": "node index.js",
+    "test": "mysql.server start && NODE_ENV=test mocha --exit && mysql.server stop"
   },
   "keywords": [
     "swagger"
@@ -19,5 +20,10 @@
     "knex": "^0.13.0",
     "mariasql": "^0.2.6",
     "swagger-tools": "0.10.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
   }
 }
