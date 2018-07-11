@@ -7,7 +7,7 @@ var VerifyToken = require('../utils/VerifyToken');
  */
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
-//var config = require('../config'); // get config file
+var config = require('../config'); // get config file
 
 /**
  * get authtoken from server
@@ -16,10 +16,9 @@ var bcrypt = require('bcryptjs');
  * returns AuthData
  **/
 exports.authPOST = function (data) {
-  console.log(data);
-  
+ 
   return new Promise(function (resolve, reject) {
-
+    
     User.findOne({ email: data.email }, function (err, user) {
       if (err) return res.status(500).send('Error on the server.');
       if (!user) return res.status(404).send('No user found.');
