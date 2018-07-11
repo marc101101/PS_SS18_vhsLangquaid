@@ -4,13 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config ./proxy.json --live-reload false",
-    "server": "./node_modules/.bin/ts-node ./server/server.ts",
-    "build": "ng build",
-    "start:prod": "ng build --prod && cd dist && http-server -c-1 -P http://localhost:9000 .",
-    "test": "ng test",
+    "start:client": "ng serve --proxy-config ./proxy.json --live-reload false",
+    "start:server": "node index.js",
+    "build:client": "ng build",
+    "start:prod": "ng build --prod && cd server && node index.js",
+    "test:client": "ng test",
+    "test:server": "mysql.server start && NODE_ENV=test mocha --exit && mysql.server stop",
+    "test": "npm run test:client && npm run test:server",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prestart": "npm install"
   },
   "private": true,
   "dependencies": {
@@ -37,7 +40,10 @@
     "rxjs": "^6.1.0",
     "web-push": "^3.2.5",
     "zone.js": "^0.8.26",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "rxjs-compat": "^6.0.0-rc.0",
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1"
   },
   "devDependencies": {
     "@angular/cli": "^6.0.1",
