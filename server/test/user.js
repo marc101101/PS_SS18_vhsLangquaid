@@ -1,4 +1,3 @@
-process.env.NODE_ENV = 'test';
 let userService = require('../service/UserService');
 
 let chai = require('chai');
