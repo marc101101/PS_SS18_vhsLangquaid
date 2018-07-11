@@ -1,24 +1,42 @@
 'use strict';
 
+var VerifyToken = require('../utils/VerifyToken');
 
 /**
- * get authtoken from server
+ * Configure JWT
+ */
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var bcrypt = require('bcryptjs');
+//var config = require('../config'); // get config file
+
+/**
  * get authtoken from server
  *
  * data UserData 
  * returns AuthData
  **/
-exports.authPOST = function(data) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "token" : "abc.123321.cba"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+exports.authPOST = function (data) {
+  console.log(data);
+  
+  return new Promise(function (resolve, reject) {
+
+    User.findOne({ email: data.email }, function (err, user) {
+      if (err) return res.status(500).send('Error on the server.');
+      if (!user) return res.status(404).send('No user found.');
+      
+      // check if the password is valid
+      var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+      if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+  
+      // if user is found and password is valid
+      // create a token
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+  
+      // return the information including token as JSON
+      res.status(200).send({ auth: true, token: token });
+    });
+
   });
 }
-
