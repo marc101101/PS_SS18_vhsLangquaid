@@ -16,3 +16,12 @@ exports.User = bookshelf.Model.extend({
 });
 
 exports.knex = knex;
+
+let category  = bookshelf.Model.extend({
+  tableName: 'vhslq_rubriken',
+})
+exports.Category = category
+
+exports.Categories = bookshelf.Collection.extend({
+  model: category
+})
