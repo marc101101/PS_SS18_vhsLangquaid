@@ -45,14 +45,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
+});
 
-  // Start the server
-  http.createServer(app).listen(serverPort, function () {
-    console.log('[REST] '.green + 'Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
-    console.log('[REST] '.green + 'Swagger-ui is available on http://localhost:%d/docs', serverPort);
-    console.log('[FRONTEND] '.green + 'UI is available on http://localhost:%d/', serverPort);
-  });
-
+module.exports = http.createServer(app).listen(serverPort, function () {
+  console.log('[REST] '.green + 'Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+  console.log('[REST] '.green + 'Swagger-ui is available on http://localhost:%d/docs', serverPort);
+  console.log('[FRONTEND] '.green + 'UI is available on http://localhost:%d/', serverPort);
 });
 
 function getCorsOptions() {

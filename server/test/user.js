@@ -2,7 +2,7 @@ let userService = require('../service/UserService');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../index');
+let server = require('../../index');
 
 let should = chai.should();
 
