@@ -2,12 +2,16 @@ language: node_js
 node_js:
   - "9"
 
+addons:
+  mariadb: "10.3"
+
 cache: yarn
 
 jobs:
   include:
     - stage: GitHub Release
       script:
+        - sh ./server/setup_db_travis.sh
         - npm test
         - ng build --prod
       deploy:
