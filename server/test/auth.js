@@ -2,6 +2,8 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
 
+let authService = require('../service/AuthService');
+
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -10,10 +12,10 @@ let validUser = {email: 'johndoe@vhslq.de', password: 'hunter22'};
 let invalidUser = {email: 'franzXYZ@vhslq.de', password: 'hunter22'}
 
 describe('Authentication', () => {
-    /*before(() => {
-      return userService
-        .clearDataBase()
-    });*/
+    before(() => {
+      return authService.clearDataBaseInsertUser();
+    });
+
   
   it("it should return an valid jwt token", (done) => {
     chai.request(server)

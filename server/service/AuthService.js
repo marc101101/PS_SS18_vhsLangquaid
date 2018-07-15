@@ -37,3 +37,40 @@ exports.authPOST = function (data) {
     });
   
 }
+
+if (process.env.NODE_ENV === 'test') {
+  console.log("Clearing all Content in Table vhslq_teilnehmer and Insert valid user");
+  exports.clearDataBaseInsertUser = () => {
+    return new Promise((resolve, reject) => {
+      let user =  {
+        teil_vorname: "John",
+        teil_nachname: "Doe",
+        teil_email: "johndoe@vhslq.de",
+        teil_notizen: "john's notes",
+        eingegeben_von_user: 0,
+        eingegeben_am_datum: "2018-01-01",
+        eingegeben_am_zeit: "00:00:00",
+        datenhistory: "John's data history"
+      };
+      
+      knex("vhslq_teilnehmer")
+        .del()
+        .then(() => {
+          console.log("Finished clearing all Content in Table vhslq_teilnehmer");
+          new User(user)
+            .save()
+            .then((user) => {
+              console.log("Insert valid user.");
+              resolve(user);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+}
