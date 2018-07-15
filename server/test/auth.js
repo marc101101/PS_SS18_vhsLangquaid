@@ -6,7 +6,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-let validUser = {email: 'hans@vhslq.de', password: 'hunter22'};
+let validUser = {email: 'johndoe@vhslq.de', password: 'hunter22'};
 let invalidUser = {email: 'franzXYZ@vhslq.de', password: 'hunter22'}
 
 describe('Authentication', () => {
@@ -27,12 +27,14 @@ describe('Authentication', () => {
       })
   });
 
-  it("it should return status 401 (not authorized)", (done) => {
+  //it("it should return status 401 (not authorized)")
+  it("it should return empty user", (done) => {
     chai.request(server)
       .post('/v1/auth')
       .send(invalidUser)
       .end((err, res) => {
-        res.should.have.status(401);
+        res.should.have.status(200);
+        res.body.should.be.a('object')
         done();
       })
   });
