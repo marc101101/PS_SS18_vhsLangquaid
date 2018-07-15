@@ -43,27 +43,16 @@ exports.authPOST = function (data) {
     return new Promise((resolve, reject) => {
 
       User.where({ TEIL_EMAIL: data.email })
-        .fetch().then((user) => {
-          /*if (err) reject(res.status(500).send('Error on the server.'));
-          if (!user) reject(res.status(404).send('No user found.'));
-          
-          // check if the password is valid
-          /*var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-          if (!passwordIsValid) reject(res.status(401).send({ auth: false, token: null }));*/
-      
-          // if user is found and password is valid
-          // create a token
-          var token = jwt.sign({ id: user.attributes.TEIL_ID }, config.secret, {
+        .fetch()
+        .then((user) => {
+          let token = jwt.sign({ id: user.attributes.TEIL_ID }, config.secret, {
             expiresIn: 86400 // expires in 24 hours
           });
-      
-          // return the information including token as JSON
-          reject(res.status(200).send({ auth: true, token: token }));
+        resolve({token: token});
         })
         .catch((error) => {
           reject(error);
         });
     });
-
   
 }
