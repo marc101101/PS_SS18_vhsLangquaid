@@ -1,6 +1,7 @@
 'use strict';
 
-
+var Categories = require('../utils/database').Categories;
+var knex = require('../utils/database').knex;
 /**
  * get all courses of a category
  * get all courses of a category
@@ -65,21 +66,48 @@ exports.categoriesCategory_idGET = function(category_id) {
  **/
 exports.categoriesGET = function() {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "name" : "Kunst",
-  "id" : 1,
-  "text" : "Kunst ist toll"
-}, {
-  "name" : "Kunst",
-  "id" : 1,
-  "text" : "Kunst ist toll"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Categories
+      .fetchAll()
+      .then((categories) => {
+        resolve(categories);
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
+if (process.env.NODE_ENV === 'test') {
+  exports.clearDataBase = () => {
+    console.log("Clearing all Content in Table vhslq_rubriken");
+    return new Promise((resolve, reject) => {
+      knex("vhslq_rubriken")
+        .del()
+        .then(() => {
+          console.log("Finished clearing all Content in Table vhslq_rubriken");
+          resolve("clean");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
+
+  exports.setupDataBase = () => {
+    console.log("Setting up Content in Table vhslq_rubriken")
+    return new Promise((resolve, reject) => {
+      let sample = require('../utils/sampleData').categories();
+      let categories = Categories
+        .forge(sample)
+        
+      Promise.all(categories.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Content in Table vhslq_rubriken")
+          resolve("done");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+}

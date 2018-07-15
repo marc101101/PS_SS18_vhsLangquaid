@@ -2,15 +2,21 @@ language: node_js
 node_js:
   - "9"
 
-cache: yarn
+addons:
+  mariadb: "10.3"
 
-script:
-  - ng build --prod
+before_install:
+  - mysql -e "CREATE DATABASE usr_p100480_1;"
+  - mysql usr_p100480_1 < ./server/usr_p100480_1.sql
+
+cache: yarn
 
 jobs:
   include:
     - stage: GitHub Release
-      script: echo "Deploying to GitHub releases ..."
+      script:
+        - npm test
+        - ng build --prod
       deploy:
         provider: releases
         skip_cleanup: true
