@@ -69,7 +69,7 @@ exports.categoriesGET = function() {
     Categories
       .fetchAll()
       .then((categories) => {
-        resolve(categories);
+        resolve(categories.map(item => item.attributes));
       })
       .catch((error) => {
         reject(error);
@@ -97,7 +97,8 @@ if (process.env.NODE_ENV === 'test') {
     console.log("Setting up Content in Table vhslq_rubriken")
     return new Promise((resolve, reject) => {
       let sample = require('../utils/sampleData').categories();
-      let categories = Categories
+      let _Categories = require('../utils/database').Categories;
+      let categories = _Categories
         .forge(sample)
         
       Promise.all(categories.invokeMap('save'))
