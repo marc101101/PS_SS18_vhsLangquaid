@@ -1,0 +1,96 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PS_SS18_vhsLangquaid",
+		"_postman_id": "42714f41-e2e0-72f8-6feb-a77fdd075ea4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth",
+			"description": "",
+			"item": [
+				{
+					"name": "post /auth",
+					"request": {
+						"url": "{{host}}/v1/auth",
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "johndoe@vhslq.de",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "hunter22",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/user",
+			"description": "",
+			"item": [
+				{
+					"name": "get /user",
+					"request": {
+						"url": "{{host}}/v1/user",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get /user/id",
+					"request": {
+						"url": "{{host}}/v1/user/4704",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/categories",
+			"description": "",
+			"item": [
+				{
+					"name": "{{host}}/v1/categories",
+					"request": {
+						"url": "{{host}}/v1/categories",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
