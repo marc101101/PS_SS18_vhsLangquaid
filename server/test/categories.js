@@ -10,9 +10,8 @@ chai.use(chaiHttp);
 
 describe('Categories', () => {
   before(() => {
-    return Promise.all([
-      categoriesService.clearDataBase(),
-      categoriesService.setupDataBase()]);
+    return categoriesService.clearDataBase()
+      .then(categoriesService.setupDataBase);
   });
   
   it("it should get all categories", (done) => {
