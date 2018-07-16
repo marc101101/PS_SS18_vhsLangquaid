@@ -1,6 +1,6 @@
 'use strict';
 
-var Categories = require('../utils/database').Categories;
+var Categories = require('../utils/database').Category;
 var knex = require('../utils/database').knex;
 /**
  * get all courses of a category
