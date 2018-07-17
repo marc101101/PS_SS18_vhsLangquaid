@@ -2,17 +2,19 @@
 
 var User = require('../utils/database').User;
 var knex = require('../utils/database').knex;
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var bcrypt = require('bcryptjs');
+var config = require('../config'); // get config file
+
 /**
  * get me
  * Get authorized User (me)
  *
  * returns User
  **/
-exports.userGET = function() {
+exports.userGET = function(id) {
   return new Promise((resolve, reject) => {
-
-    // TODO: For testing only, needs to be changed to get id from authtoken or similar
-    User.where({teil_vorname: "John"})
+    User.where({teil_id: id})
       .fetch()
       .then((user) => {
         resolve(user);
@@ -20,7 +22,7 @@ exports.userGET = function() {
       .catch((error) => {
         reject(error);
       });
-  });
+     });
 }
 
 
@@ -36,7 +38,10 @@ exports.userPOST = function(data) {
     new User(data)
       .save()
       .then((user) => {
-        resolve(user);
+        let token = jwt.sign({ id: user.attributes.id }, config.secret, {
+          expiresIn: 86400 // expires in 24 hours
+        });
+        resolve({user: user, token: token});
       })
       .catch((error) => {
         reject(error);
