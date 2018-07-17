@@ -9,7 +9,9 @@ before_install:
   - mysql -e "CREATE DATABASE usr_p100480_1;"
   - mysql usr_p100480_1 < ./server/usr_p100480_1.sql
 
-cache: yarn
+cache:
+  directories:
+    - $HOME/.npm
 
 jobs:
   include:
