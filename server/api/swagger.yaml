@@ -1,3 +1,4 @@
+---
 swagger: "2.0"
 info:
   description: "The project involves the conception and implementation of an online\
@@ -12,7 +13,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "prod-ps-ss18-vhslanquaid.herokuapp.com"
+host: "localhost:8080"
 basePath: "/v1"
 paths:
   /user:
@@ -22,6 +23,7 @@ paths:
       summary: "get me"
       description: "Get authorized User (me)"
       operationId: "userGET"
+      parameters: []
       responses:
         200:
           description: "get user"
@@ -30,9 +32,9 @@ paths:
         401:
           description: Invalid authentication credentials.
         403:
-          description: Permission 'xxx' denied on file 'yyy'. 
+          description: Permission 'xxx' denied on file 'yyy'.  
         404:
-          description: The specified resource was not found
+          description: Permission 'xxx' denied on file 'yyy'.
         409:
           description: Resource 'xxx' already exists.
         500:
@@ -77,17 +79,18 @@ paths:
       security:
       - JWT: []
       x-swagger-router-controller: "User"
-  /user/{user_id}:
     put:
       tags:
       - "User"
       summary: "edit user details"
-      operationId: "userUser_idPUT"
+      operationId: "userPUT"
       parameters:
-      - name: "user_id"
-        in: "path"
+      - in: "body"
+        name: "data"
+        description: "user data"
         required: true
-        type: "integer"
+        schema:
+          type: "object"
       responses:
         200:
           description: "user has been edited"
@@ -242,16 +245,6 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/Course"
-        401:
-          description: Invalid authentication credentials.
-        403:
-          description: Permission 'xxx' denied on file 'yyy'.  
-        404:
-          description: Permission 'xxx' denied on file 'yyy'.
-        409:
-          description: Resource 'xxx' already exists.
-        500:
-          description: Internal Server Error.
       security:
       - PublicKey: []
       x-swagger-router-controller: "Courses"
@@ -427,6 +420,16 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/AuthData"
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
       security:
       - PublicKey: []
       x-swagger-router-controller: "Auth"
@@ -583,15 +586,3 @@ definitions:
         example: "abc.123321.cba"
     example:
       token: "abc.123321.cba"
-  
-      # Schema for error response body
-      Error:
-        type: object
-        properties:
-          code:
-            type: string
-          message:
-            type: string
-        required:
-          - code
-          - message  

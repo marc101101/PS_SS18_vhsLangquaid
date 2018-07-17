@@ -32,6 +32,11 @@ markus.guder@gmail.com
 
 **Description:** Get authorized User (me)
 
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+
 **Responses**
 
 | Code | Description | Schema |
@@ -39,7 +44,7 @@ markus.guder@gmail.com
 | 200 | get user | [User](#user) |
 | 401 | Invalid authentication credentials. |  |
 | 403 | Permission 'xxx' denied on file 'yyy'. |  |
-| 404 | The specified resource was not found |  |
+| 404 | Permission 'xxx' denied on file 'yyy'. |  |
 | 409 | Resource 'xxx' already exists. |  |
 | 500 | Internal Server Error. |  |
 
@@ -77,8 +82,6 @@ markus.guder@gmail.com
 | --- | --- |
 | JWT | |
 
-### /user/{user_id}
----
 ##### ***PUT***
 **Summary:** edit user details
 
@@ -86,7 +89,7 @@ markus.guder@gmail.com
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| user_id | path |  | Yes | integer |
+| data | body | user data | Yes | object |
 
 **Responses**
 
@@ -241,11 +244,6 @@ markus.guder@gmail.com
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
 | 200 | OK | [Course](#course) |
-| 401 | Invalid authentication credentials. |  |
-| 403 | Permission 'xxx' denied on file 'yyy'. |  |
-| 404 | Permission 'xxx' denied on file 'yyy'. |  |
-| 409 | Resource 'xxx' already exists. |  |
-| 500 | Internal Server Error. |  |
 
 **Security**
 
@@ -421,6 +419,11 @@ markus.guder@gmail.com
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
 | 200 | OK | [AuthData](#authdata) |
+| 401 | Invalid authentication credentials. |  |
+| 403 | Permission 'xxx' denied on file 'yyy'. |  |
+| 404 | Permission 'xxx' denied on file 'yyy'. |  |
+| 409 | Resource 'xxx' already exists. |  |
+| 500 | Internal Server Error. |  |
 
 **Security**
 
