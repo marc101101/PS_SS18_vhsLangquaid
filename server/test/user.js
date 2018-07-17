@@ -27,7 +27,7 @@ describe('User', () => {
       .get('/v1/user')
       .set('authorization', 'Bearer ' + "obviously.incorrect.token")
       .end((err, res) => {
-        res.should.have.status(500);
+        res.should.have.status(401);
         done();
       });
   })
