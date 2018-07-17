@@ -9,10 +9,28 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 describe('User', () => {
+  let authToken = "";
   before(() => {
     return userService
       .clearDataBase()
   });
+  it("it should fail with 401 because auth token is missing", (done) => {
+    chai.request(server)
+      .get('/v1/user')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      })
+  })
+  it("it should fail with 500 because auth token is incorrect", (done) => {
+    chai.request(server)
+      .get('/v1/user')
+      .set('authorization', 'Bearer ' + "obviously.incorrect.token")
+      .end((err, res) => {
+        res.should.have.status(500);
+        done();
+      });
+  })
   it("it should create user John Doe", (done) => {
     let user =  {
       teil_vorname: "John",
@@ -31,15 +49,17 @@ describe('User', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.teil_vorname.should.equal(user.teil_vorname);
-        res.body.teil_nachname.should.equal(user.teil_nachname);
-        res.body.teil_email.should.equal(user.teil_email);
+        res.body.user.teil_vorname.should.equal(user.teil_vorname);
+        res.body.user.teil_nachname.should.equal(user.teil_nachname);
+        res.body.user.teil_email.should.equal(user.teil_email);
+        authToken = res.body.token;
         done();
       })
   });
   it("it should get user John Doe", (done) => {
     chai.request(server)
       .get('/v1/user')
+      .set('authorization', 'Bearer ' + authToken)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -47,5 +67,18 @@ describe('User', () => {
         res.body.TEIL_NACHNAME.should.equal("Doe");
         done();
       })
+  });
+  it("it should update John Doe's Name to John Although", (done) => {
+    chai.request(server)
+      .put('/v1/user')
+      .set('authorization', 'Bearer ' + authToken)
+      .send({teil_nachname: "Although"})
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.TEIL_VORNAME.should.equal("John");
+        res.body.TEIL_NACHNAMEshould.equal("Although");
+        done();
+      });
   });
 });
