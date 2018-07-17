@@ -61,17 +61,18 @@ paths:
       security:
       - JWT: []
       x-swagger-router-controller: "User"
-  /user/{user_id}:
     put:
       tags:
       - "User"
       summary: "edit user details"
-      operationId: "userUser_idPUT"
+      operationId: "userPUT"
       parameters:
-      - name: "user_id"
-        in: "path"
+      - in: "body"
+        name: "data"
+        description: "user data"
         required: true
-        type: "integer"
+        schema:
+          type: "object"
       responses:
         200:
           description: "user has been edited"

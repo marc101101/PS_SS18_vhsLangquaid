@@ -30,9 +30,9 @@ module.exports.userPOST = function userPOST (req, res, next) {
     });
 };
 
-module.exports.userUser_idPUT = function userUser_idPUT (req, res, next) {
   var user_id = req.swagger.params['user_id'].value;
-  User.userUser_idPUT(user_id)
+module.exports.userPUT = function userPUT (req, res, next) {
+    User.userPUT(decoded.id, data)
     .then(function (response) {
       utils.writeJson(res, response);
     })

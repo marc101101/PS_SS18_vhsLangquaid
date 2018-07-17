@@ -56,7 +56,7 @@ exports.userPOST = function(data) {
  * user_id Integer 
  * returns Object
  **/
-exports.userUser_idPUT = function(user_id) {
+exports.userPUT = function(id, data) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = "{}";
