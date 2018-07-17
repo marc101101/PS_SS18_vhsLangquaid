@@ -76,9 +76,17 @@ describe('User', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.TEIL_VORNAME.should.equal("John");
-        res.body.TEIL_NACHNAMEshould.equal("Although");
-        done();
+        res.body.teil_nachname.should.equal("Although");
+        chai.request(server)
+          .get('/v1/user')
+          .set('authorization', 'Bearer ' + authToken)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.TEIL_VORNAME.should.equal("John");
+            res.body.TEIL_NACHNAME.should.equal("Although");
+            done();
+          });
       });
   });
 });

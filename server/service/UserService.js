@@ -2,6 +2,7 @@
 
 var User = require('../utils/database').User;
 var knex = require('../utils/database').knex;
+
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config'); // get config file
@@ -58,13 +59,14 @@ exports.userPOST = function(data) {
  **/
 exports.userPUT = function(id, data) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    User.where({teil_id: id})
+        .save(data, {patch: true})
+        .then(userModel => {
+          resolve(userModel);
+        })
+        .catch(err => {
+          reject(err);
+        });
   });
 }
 

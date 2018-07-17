@@ -30,13 +30,16 @@ module.exports.userPOST = function userPOST (req, res, next) {
     });
 };
 
-  var user_id = req.swagger.params['user_id'].value;
 module.exports.userPUT = function userPUT (req, res, next) {
+  var data = req.swagger.params['data'].value;
+  verifyToken(req, res, (decoded) => {
     User.userPUT(decoded.id, data)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
+      console.log("fail", response);
       utils.writeJson(res, response);
     });
+  });
 };
