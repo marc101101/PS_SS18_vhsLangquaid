@@ -22,7 +22,7 @@ describe('User', () => {
         done();
       })
   })
-  it("it should fail with 500 because auth token is incorrect", (done) => {
+  it("it should fail with 401 because auth token is incorrect", (done) => {
     chai.request(server)
       .get('/v1/user')
       .set('authorization', 'Bearer ' + "obviously.incorrect.token")
