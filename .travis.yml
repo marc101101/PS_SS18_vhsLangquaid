@@ -10,15 +10,17 @@ before_install:
   - mysql usr_p100480_1 < ./server/usr_p100480_1.sql
 
 cache:
+  yarn: true
   directories:
     - $HOME/.npm
+    - $HOME/.yarn-cache
 
 jobs:
   include:
     - stage: GitHub Release
       script:
-        - npm test
-        - ng build --prod
+        - yarn test
+        #- ng build --prod
       deploy:
         provider: releases
         skip_cleanup: true

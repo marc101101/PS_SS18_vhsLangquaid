@@ -11,7 +11,8 @@ const swaggerTools = require('swagger-tools');
 const jsyaml = require('js-yaml');
 const colors = require('colors');
 
-const serverPort = 8080;
+// process.env.PORT lets the port be set by Heroku
+const serverPort = process.env.PORT || 8080;
 const app = express();
 
 // swaggerRouter configuration
