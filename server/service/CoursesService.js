@@ -62,20 +62,15 @@ exports.coursesCourse_idFeedbackPOST = function(course_id,data) {
  **/
 exports.coursesCourse_idGET = function(course_id) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+    Courses.where({kurs_id: course_id})
+      .fetch()
+      .then((course) => {
+        resolve(course);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+     });
 }
 
 
