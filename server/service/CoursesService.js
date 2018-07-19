@@ -176,8 +176,7 @@ if (process.env.NODE_ENV === 'test') {
     return new Promise((resolve, reject) => {
       let sample = require('../utils/sampleData').courses();
       let _Courses = require('../utils/database').Courses;
-      let courses = _Courses
-        .forge(sample)
+      let courses = _Courses.forge(sample);
         
       Promise.all(courses.invokeMap('save'))
         .then((data) => {

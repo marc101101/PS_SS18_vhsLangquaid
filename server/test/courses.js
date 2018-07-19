@@ -10,18 +10,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 describe('Courses', () => {
-  it("it should get no course", (done) => {
-    coursesService.clearDataBase().then(() => {
-      chai.request(server)
-      .get('/v1/courses')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('array');
-        res.body.should.be.empty;
-        done();
-      });
-    })
-  });
+
   
   it("it should course by ID", (done) => {
     coursesService.setupDataBase().then(() => {
