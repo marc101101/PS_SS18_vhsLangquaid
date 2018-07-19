@@ -65,6 +65,9 @@ exports.coursesCourse_idGET = function(course_id) {
     Courses.where({kurs_id: course_id})
       .fetch()
       .then((course) => {
+        if(course == ''){
+          reject(404);
+        }
         resolve(course);
       })
       .catch((error) => {

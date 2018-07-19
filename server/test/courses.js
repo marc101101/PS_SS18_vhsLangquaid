@@ -24,7 +24,7 @@ describe('Courses', () => {
     })
   });
 
-  it("it should course by ID", (done) => {
+  it("it should get all courses", (done) => {
     coursesService.setupDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses')
@@ -39,6 +39,38 @@ describe('Courses', () => {
             });
           done();
         })
+    })
+  });
+
+  it("it should get single course by ID", (done) => {
+    chai.request(server)
+      .get('/v1/courses' + '/2018175')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.KURS_NAME.should.equal('Test course for testing purposes');
+        done();
+      });
+  });
+
+  it("it should get no course and 404 status", (done) => {
+    coursesService.clearDataBase().then(() => {
+      chai.request(server)
+        .get('/v1/courses/' + '/2018175')
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    })
+  });
+
+  it("it should get no course for an not existing course ", (done) => {
+    coursesService.clearDataBase().then(() => {
+      chai.request(server)
+        .get('/v1/courses/' + '/NOT_EXISTING_COURSE_ID')
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
     })
   });
 });

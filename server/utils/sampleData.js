@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === 'test') {
   ]
 
   exports.courses = () => [{
+    KURS_ID: "2018175",
     KURS_TESTKURS: 0,
     KURS_POS: 0,
     KURS_NAME: "Test course for testing purposes",
@@ -167,6 +168,7 @@ if (process.env.NODE_ENV === 'test') {
     ARCHIV_AM_ZEIT: 0
     },
     {
+      KURS_ID: "2018174",
       KURS_TESTKURS: 0,
       KURS_POS: 0,
       KURS_NAME: "This is the last test",
