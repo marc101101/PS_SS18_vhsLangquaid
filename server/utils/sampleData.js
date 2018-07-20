@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'test') {
     eingegeben_am_zeit: "00:00:00"
   }
 ]
-}
 
 exports.coursesForCategory = (category_id) => [
   {
