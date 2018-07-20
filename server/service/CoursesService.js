@@ -1,5 +1,6 @@
 'use strict';
 
+var knex = require('../utils/database').knex;
 
 /**
  * apply to participate in specific course
@@ -164,3 +165,39 @@ exports.coursesHighlightsGET = function() {
   });
 }
 
+if (process.env.NODE_ENV === 'test') {
+  
+  exports.clearDataBase = () => {
+    return new Promise((resolve, reject) => {
+      console.log("Clearing all Content in Table vhslq_kurse");
+      knex("vhslq_kurse")
+        .del()
+        .then(() => {
+          console.log("Finished clearing all Content in Table vhslq_kurse");
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
+
+  exports.setupDataBase = (category_id) => {
+    return new Promise((resolve, reject) => {
+      console.log("Setting up Content for Category with ID " + category_id);
+      let sample = require('../utils/sampleData').coursesForCategory(category_id);
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses
+        .forge(sample)
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Content in Table vhslq_rubriken");
+          resolve("done");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+}

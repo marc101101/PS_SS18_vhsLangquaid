@@ -11,25 +11,16 @@ var knex = require('../utils/database').knex;
  **/
 exports.categoriesCategory_idCoursesGET = function(category_id) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-}, {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Categories
+      .where({rub_id: category_id})
+      .fetch({withRelated: ["courses"]})
+      .then((category => {
+        let courses = category.related("courses").toJSON();
+        resolve(courses);
+      }))
+      .catch((error) => {
+        reject(error);
+      })
   });
 }
 
