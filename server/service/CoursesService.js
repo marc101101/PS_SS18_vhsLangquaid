@@ -1,4 +1,5 @@
 'use strict';
+var Courses = require('../utils/database').Course;
 
 var knex = require('../utils/database').knex;
 
@@ -13,12 +14,12 @@ exports.coursesCourse_idApplyPOST = function(course_id) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-};
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -40,9 +41,9 @@ exports.coursesCourse_idFeedbackPOST = function(course_id,data) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "text" : "This app is great!",
-  "email" : "this@me.com"
-};
+      "text" : "This app is great!",
+      "email" : "this@me.com"
+    };  
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -61,20 +62,18 @@ exports.coursesCourse_idFeedbackPOST = function(course_id,data) {
  **/
 exports.coursesCourse_idGET = function(course_id) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+    Courses.where({kurs_id: course_id})
+      .fetch()
+      .then((course) => {
+        if(course == ''){
+          reject(404);
+        }
+        resolve(course);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+     });
 }
 
 
@@ -89,12 +88,12 @@ exports.coursesCourse_idSignoffPOST = function(course_id) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-};
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -112,25 +111,14 @@ exports.coursesCourse_idSignoffPOST = function(course_id) {
  **/
 exports.coursesGET = function() {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-}, {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Courses
+      .fetchAll()
+      .then((course) => {
+        resolve(course.map(item => item.attributes));
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -145,18 +133,18 @@ exports.coursesHighlightsGET = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-}, {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-} ];
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    }, {
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -166,15 +154,14 @@ exports.coursesHighlightsGET = function() {
 }
 
 if (process.env.NODE_ENV === 'test') {
-  
   exports.clearDataBase = () => {
+    console.log("Clearing all Content in Table vhslq_kurse");
     return new Promise((resolve, reject) => {
-      console.log("Clearing all Content in Table vhslq_kurse");
       knex("vhslq_kurse")
         .del()
         .then(() => {
           console.log("Finished clearing all Content in Table vhslq_kurse");
-          resolve();
+          resolve("clean");
         })
         .catch((error) => {
           reject(error);
@@ -182,7 +169,25 @@ if (process.env.NODE_ENV === 'test') {
     })
   }
 
-  exports.setupDataBase = (category_id) => {
+  exports.setupDataBase = () => {
+    console.log("Setting up Content in Table vhslq_kurse")
+    return new Promise((resolve, reject) => {
+      let sample = require('../utils/sampleData').courses();
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses.forge(sample);
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Content in Table vhslq_kurse")
+          resolve("done");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+
+  exports.setupCoursesOfCategory = (category_id) => {
     return new Promise((resolve, reject) => {
       console.log("Setting up Content for Category with ID " + category_id);
       let sample = require('../utils/sampleData').coursesForCategory(category_id);
@@ -201,3 +206,4 @@ if (process.env.NODE_ENV === 'test') {
     });
   }
 }
+

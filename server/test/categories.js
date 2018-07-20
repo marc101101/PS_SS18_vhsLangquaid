@@ -52,7 +52,7 @@ describe('Categories', () => {
     describe("Courses For Category", () => {
     ids.forEach((id) => {
       it("should get all courses from category "+id, (done) => {
-        coursesService.setupDataBase(id).then(() => {
+        coursesService.setupCoursesOfCategory(id).then(() => {
           chai.request(server)
             .get('/v1/categories/'+id+'/courses')
             .end((err, res) => {

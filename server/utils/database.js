@@ -9,10 +9,11 @@ var knex = require('knex')({
     charset: 'utf8'
   }
 });
+
 var bookshelf = require('bookshelf')(knex);
 exports.knex = knex;
 
-
+// -- COURSES
 let course = bookshelf.Model.extend({
   tableName: "vhslq_kurse",
   // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
@@ -21,6 +22,12 @@ let course = bookshelf.Model.extend({
   }
 })
 
+exports.Course = course
+exports.Courses = bookshelf.Collection.extend({
+  model: course
+})
+
+// -- CATEGORIES
 let category  = bookshelf.Model.extend({
   tableName: 'vhslq_rubriken',
   // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
@@ -29,16 +36,17 @@ let category  = bookshelf.Model.extend({
   }
 })
 
-exports.User = bookshelf.Model.extend({
-  tableName: 'vhslq_teilnehmer',
-});
 
 exports.Category = category
+
 exports.Categories = bookshelf.Collection.extend({
   model: category
 })
 
-exports.Course = course
-exports.Courses = bookshelf.Collection.extend({
-  model: course
-})
+
+// -- USER
+exports.User = bookshelf.Model.extend({
+  tableName: 'vhslq_teilnehmer',
+});
+
+
