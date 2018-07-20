@@ -15,6 +15,9 @@ exports.categoriesCategory_idCoursesGET = function(category_id) {
       .where({rub_id: category_id})
       .fetch({withRelated: ["courses"]})
       .then((category => {
+        if (category == '') {
+          reject(404);
+        }
         let courses = category.related("courses").toJSON();
         resolve(courses);
       }))
