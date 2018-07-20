@@ -79,8 +79,8 @@ exports.categoriesGET = function() {
 
 if (process.env.NODE_ENV === 'test') {
   exports.clearDataBase = () => {
-    console.log("Clearing all Content in Table vhslq_rubriken");
     return new Promise((resolve, reject) => {
+      console.log("Clearing all Content in Table vhslq_rubriken");
       knex("vhslq_rubriken")
         .del()
         .then(() => {
@@ -94,8 +94,8 @@ if (process.env.NODE_ENV === 'test') {
   }
 
   exports.setupDataBase = () => {
-    console.log("Setting up Content in Table vhslq_rubriken")
     return new Promise((resolve, reject) => {
+      console.log("Setting up Content in Table vhslq_rubriken")
       let sample = require('../utils/sampleData').categories();
       let _Categories = require('../utils/database').Categories;
       let categories = _Categories
