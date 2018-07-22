@@ -8,7 +8,7 @@ var verifyToken = require('../utils/VerifyToken');
 module.exports.coursesCourse_idApplyPOST = function coursesCourse_idApplyPOST (req, res, next) {
   verifyToken(req, res, (decoded) => {
     var course_id = req.swagger.params['course_id'].value;
-    Courses.coursesCourse_idApplyPOST(course_id)
+    Courses.coursesCourse_idApplyPOST(course_id, req)
       .then(function (response) {
         utils.writeJson(res, response);
       })

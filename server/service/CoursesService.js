@@ -1,7 +1,13 @@
 'use strict';
 var Courses = require('../utils/database').Course;
+var Applications = require('../utils/database').Application;
+
 
 var knex = require('../utils/database').knex;
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+
+var dateFormat = require('dateformat');
+
 
 /**
  * apply to participate in specific course
@@ -10,21 +16,56 @@ var knex = require('../utils/database').knex;
  * course_id Integer 
  * returns Course
  **/
-exports.coursesCourse_idApplyPOST = function(course_id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+exports.coursesCourse_idApplyPOST = function (course_id, req) {
+  let token = req.headers['authorization'];
+  token = token.replace("Bearer ", "");
+  let user_id = jwt.decode(token).id;
+  let date = dateFormat(Date.now(), "yyyy-mm-dd");
+  var data = {
+    ANM_DATUM: date,
+    ANM_TEIL_ID: user_id,
+    ANM_KURS_ID: course_id,
+    ANM_BEARBEITER: 0,
+    ANM_STAT_ID: 0,
+    ANM_ABR_DATUM: 0,
+    ANM_ABR_RUECKLAST_DATUM: 0,
+    ANM_TNB_GEM_DRUCKEN: 0,
+    ANM_TEIL_ID_ZAHLER: 0,
+    ANM_WARTEL_INFORMIEREN: 0,
+    ANM_ABR_ABRECHNEN: 0,
+    ANM_ABR_ABGERECHNET: 0,
+    EINGEGEBEN_VON_USER: 0,
+    EINGEGEBEN_AM_DATUM: 0,
+    EINGEGEBEN_AM_ZEIT: 0,
+    DATENHISTORY: ""
+  };
+  //first we have to check if the user is already applied or not
+  return new Promise(function (resolve, reject) {
+      Applications.where({
+        anm_teil_id: user_id
+      })
+      .fetch()
+      .then((applications) => {
+        /*if(applications.length != 0){
+          return new Promise(function (resolve, reject) {
+            new Application(data)
+              .save()
+              .then((application) => {
+                resolve(application);
+              })
+              .catch((error) => {
+                reject(error);
+              })
+          });
+        }
+        else{
+          //Resource 'appliaction with course_id and user_id' already exists.
+          reject(409);
+        }*/
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -37,13 +78,13 @@ exports.coursesCourse_idApplyPOST = function(course_id) {
  * data CourseFeedback  (optional)
  * returns CourseFeedback
  **/
-exports.coursesCourse_idFeedbackPOST = function(course_id,data) {
-  return new Promise(function(resolve, reject) {
+exports.coursesCourse_idFeedbackPOST = function (course_id, data) {
+  return new Promise(function (resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-      "text" : "This app is great!",
-      "email" : "this@me.com"
-    };  
+      "text": "This app is great!",
+      "email": "this@me.com"
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -60,12 +101,14 @@ exports.coursesCourse_idFeedbackPOST = function(course_id,data) {
  * course_id Integer 
  * returns Course
  **/
-exports.coursesCourse_idGET = function(course_id) {
-  return new Promise(function(resolve, reject) {
-    Courses.where({kurs_id: course_id})
+exports.coursesCourse_idGET = function (course_id) {
+  return new Promise(function (resolve, reject) {
+    Courses.where({
+        kurs_id: course_id
+      })
       .fetch()
       .then((course) => {
-        if(course == ''){
+        if (course == '') {
           reject(404);
         }
         resolve(course);
@@ -73,7 +116,7 @@ exports.coursesCourse_idGET = function(course_id) {
       .catch((error) => {
         reject(error);
       });
-     });
+  });
 }
 
 
@@ -84,15 +127,15 @@ exports.coursesCourse_idGET = function(course_id) {
  * course_id Integer 
  * returns Course
  **/
-exports.coursesCourse_idSignoffPOST = function(course_id) {
-  return new Promise(function(resolve, reject) {
+exports.coursesCourse_idSignoffPOST = function (course_id) {
+  return new Promise(function (resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
+      "max_age": 99,
+      "name": "Kunst-Grundkurs",
+      "id": 1,
+      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age": 1
     };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -109,8 +152,8 @@ exports.coursesCourse_idSignoffPOST = function(course_id) {
  *
  * returns List
  **/
-exports.coursesGET = function() {
-  return new Promise(function(resolve, reject) {
+exports.coursesGET = function () {
+  return new Promise(function (resolve, reject) {
     Courses
       .fetchAll()
       .then((course) => {
@@ -129,22 +172,22 @@ exports.coursesGET = function() {
  *
  * returns List
  **/
-exports.coursesHighlightsGET = function() {
-  return new Promise(function(resolve, reject) {
+exports.coursesHighlightsGET = function () {
+  return new Promise(function (resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
+    examples['application/json'] = [{
+      "max_age": 99,
+      "name": "Kunst-Grundkurs",
+      "id": 1,
+      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age": 1
     }, {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
-    } ];
+      "max_age": 99,
+      "name": "Kunst-Grundkurs",
+      "id": 1,
+      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age": 1
+    }];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -175,7 +218,7 @@ if (process.env.NODE_ENV === 'test') {
       let sample = require('../utils/sampleData').courses();
       let _Courses = require('../utils/database').Courses;
       let courses = _Courses.forge(sample);
-        
+
       Promise.all(courses.invokeMap('save'))
         .then((data) => {
           console.log("Finished Setting up Content in Table vhslq_kurse")
@@ -194,7 +237,7 @@ if (process.env.NODE_ENV === 'test') {
       let _Courses = require('../utils/database').Courses;
       let courses = _Courses
         .forge(sample)
-        
+
       Promise.all(courses.invokeMap('save'))
         .then((data) => {
           console.log("Finished Setting up Content in Table vhslq_rubriken");
@@ -206,4 +249,3 @@ if (process.env.NODE_ENV === 'test') {
     });
   }
 }
-
