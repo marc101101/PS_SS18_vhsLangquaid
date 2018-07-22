@@ -11,17 +11,31 @@ var knex = require('knex')({
 });
 
 var bookshelf = require('bookshelf')(knex);
-
-exports.User = bookshelf.Model.extend({
-  tableName: 'vhslq_teilnehmer',
-});
-
 exports.knex = knex;
+
+// -- COURSES
+let course = bookshelf.Model.extend({
+  tableName: "vhslq_kurse",
+  // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
+  category: function() {
+    return this.belongsTo(category, "RUB_ID")
+  }
+})
+
+exports.Course = course
+exports.Courses = bookshelf.Collection.extend({
+  model: course
+})
 
 // -- CATEGORIES
 let category  = bookshelf.Model.extend({
   tableName: 'vhslq_rubriken',
+  // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
+  courses: function() {
+    return this.hasMany(course, "KURS_RUB_ID", "RUB_ID")
+  }
 })
+
 
 exports.Category = category
 
@@ -29,14 +43,10 @@ exports.Categories = bookshelf.Collection.extend({
   model: category
 })
 
-// -- COURSES
-let course  = bookshelf.Model.extend({
-  tableName: 'vhslq_kurse',
-})
 
-exports.Course = course
+// -- USER
+exports.User = bookshelf.Model.extend({
+  tableName: 'vhslq_teilnehmer',
+});
 
-exports.Courses = bookshelf.Collection.extend({
-  model: course
-})
 

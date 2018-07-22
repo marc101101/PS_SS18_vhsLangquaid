@@ -71,9 +71,9 @@ exports.userPUT = function(id, data) {
 }
 
 if (process.env.NODE_ENV === 'test') {
-  console.log("Clearing all Content in Table vhslq_teilnehmer");
   exports.clearDataBase = () => {
     return new Promise((resolve, reject) => {
+      console.log("Clearing all Content in Table vhslq_teilnehmer");
       knex("vhslq_teilnehmer")
         .del()
         .then(() => {

@@ -11,25 +11,19 @@ var knex = require('../utils/database').knex;
  **/
 exports.categoriesCategory_idCoursesGET = function(category_id) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-}, {
-  "max_age" : 99,
-  "name" : "Kunst-Grundkurs",
-  "id" : 1,
-  "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-  "min_age" : 1
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Categories
+      .where({rub_id: category_id})
+      .fetch({withRelated: ["courses"]})
+      .then((category => {
+        if (category == '') {
+          reject(404);
+        }
+        let courses = category.related("courses").toJSON();
+        resolve(courses);
+      }))
+      .catch((error) => {
+        reject(error);
+      })
   });
 }
 
@@ -79,8 +73,8 @@ exports.categoriesGET = function() {
 
 if (process.env.NODE_ENV === 'test') {
   exports.clearDataBase = () => {
-    console.log("Clearing all Content in Table vhslq_rubriken");
     return new Promise((resolve, reject) => {
+      console.log("Clearing all Content in Table vhslq_rubriken");
       knex("vhslq_rubriken")
         .del()
         .then(() => {
@@ -94,8 +88,8 @@ if (process.env.NODE_ENV === 'test') {
   }
 
   exports.setupDataBase = () => {
-    console.log("Setting up Content in Table vhslq_rubriken")
     return new Promise((resolve, reject) => {
+      console.log("Setting up Content in Table vhslq_rubriken")
       let sample = require('../utils/sampleData').categories();
       let _Categories = require('../utils/database').Categories;
       let categories = _Categories

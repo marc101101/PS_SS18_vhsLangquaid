@@ -39,9 +39,9 @@ exports.authPOST = function (data) {
 }
 
 if (process.env.NODE_ENV === 'test') {
-  console.log("Clearing all Content in Table vhslq_teilnehmer and Insert valid user");
   exports.clearDataBaseInsertUser = () => {
     return new Promise((resolve, reject) => {
+      console.log("Clearing all Content in Table vhslq_teilnehmer and Insert valid user");
       let user =  {
         teil_vorname: "John",
         teil_nachname: "Doe",
@@ -60,7 +60,6 @@ if (process.env.NODE_ENV === 'test') {
           new User(user)
             .save()
             .then((user) => {
-              console.log("Insert valid user.");
               resolve(user);
             })
             .catch((error) => {

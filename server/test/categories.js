@@ -1,4 +1,5 @@
 let categoriesService = require('../service/CategoriesService');
+let coursesService = require('../service/CoursesService');
 let sampleCategories = require('../utils/sampleData').categories();
 
 let chai = require('chai');
@@ -22,24 +23,46 @@ describe('Categories', () => {
       });
     })
   });
-  
-  it("it should get all categories", (done) => {
-    categoriesService.setupDataBase().then(() => {
-      chai.request(server)
-      .get('/v1/categories')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('array');
-        res.body.length.should.equal(sampleCategories.length);
-        res.body
-          .forEach((item) => {
-            let index = sampleCategories.map(item => item.rub_name).indexOf(item.RUB_NAME);
-            item.RUB_TITEL.should.equal(sampleCategories[index].rub_titel);
-            item.RUB_NAME.should.equal(sampleCategories[index].rub_name);
-            item.RUB_TEXT.should.equal(sampleCategories[index].rub_text);
+  let categoryIDs = new Promise((resolve, reject) => {
+    it("it should get all categories", (done) => {
+      categoriesService.setupDataBase().then(() => {
+        coursesService.clearDataBase().then(() => {
+          chai.request(server)
+          .get('/v1/categories')
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+            res.body.length.should.equal(sampleCategories.length);
+            res.body
+              .forEach((item) => {
+                let index = sampleCategories.map(item => item.rub_name).indexOf(item.RUB_NAME);
+                item.RUB_TITEL.should.equal(sampleCategories[index].rub_titel);
+                item.RUB_NAME.should.equal(sampleCategories[index].rub_name);
+                item.RUB_TEXT.should.equal(sampleCategories[index].rub_text);
+              });
+
+            resolve(res.body.map(item => item.RUB_ID));
+            done();
           });
-        done();
+        });
+      })
+    });
+  });
+  categoryIDs.then(ids => {
+    describe("Courses For Category", () => {
+    ids.forEach((id) => {
+      it("should get all courses from category "+id, (done) => {
+        coursesService.setupCoursesOfCategory(id).then(() => {
+          chai.request(server)
+            .get('/v1/categories/'+id+'/courses')
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.length.should.equal(3);
+              done();
+            })
+          })
+        })
       })
     })
-  });
+  })
 });

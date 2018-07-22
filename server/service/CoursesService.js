@@ -186,5 +186,24 @@ if (process.env.NODE_ENV === 'test') {
         })
     });
   }
+
+  exports.setupCoursesOfCategory = (category_id) => {
+    return new Promise((resolve, reject) => {
+      console.log("Setting up Content for Category with ID " + category_id);
+      let sample = require('../utils/sampleData').coursesForCategory(category_id);
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses
+        .forge(sample)
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Content in Table vhslq_rubriken");
+          resolve("done");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
 }
 
