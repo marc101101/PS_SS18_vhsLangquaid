@@ -1,5 +1,6 @@
 let coursesService = require('../service/CoursesService');
 let sampleCourses = require('../utils/sampleData').courses();
+let sampleAppliactions = require('../utils/sampleData').applications();
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -73,4 +74,14 @@ describe('Courses', () => {
         });
     })
   });
+
+  it("it should return the course when applying to it", (done) => {
+      chai.request(server)
+        .post('/v1/courses/' + '2018175' + '/apply')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.length.should.equal(1);
+          done();
+        });
+    });
 });
