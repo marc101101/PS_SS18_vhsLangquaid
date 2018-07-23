@@ -20,48 +20,56 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
   let token = req.headers['authorization'];
   token = token.replace("Bearer ", "");
   let user_id = jwt.decode(token).id;
-  let date = dateFormat(Date.now(), "yyyy-mm-dd");
-  var data = {
-    ANM_DATUM: date,
-    ANM_TEIL_ID: user_id,
-    ANM_KURS_ID: course_id,
-    ANM_BEARBEITER: 0,
-    ANM_STAT_ID: 0,
-    ANM_ABR_DATUM: 0,
-    ANM_ABR_RUECKLAST_DATUM: 0,
-    ANM_TNB_GEM_DRUCKEN: 0,
-    ANM_TEIL_ID_ZAHLER: 0,
-    ANM_WARTEL_INFORMIEREN: 0,
-    ANM_ABR_ABRECHNEN: 0,
-    ANM_ABR_ABGERECHNET: 0,
-    EINGEGEBEN_VON_USER: 0,
-    EINGEGEBEN_AM_DATUM: 0,
-    EINGEGEBEN_AM_ZEIT: 0,
-    DATENHISTORY: ""
-  };
   //first we have to check if the user is already applied or not
   return new Promise(function (resolve, reject) {
-      Applications.where({
-        anm_teil_id: user_id
+    Courses.where({
+        kurs_id: course_id
       })
       .fetch()
-      .then((applications) => {
-        /*if(applications.length != 0){
-          return new Promise(function (resolve, reject) {
-            new Application(data)
-              .save()
-              .then((application) => {
-                resolve(application);
-              })
-              .catch((error) => {
-                reject(error);
-              })
-          });
+      .then((course) => {
+        if(course != null){
+          Applications
+            .fetchAll()
+            .then((applications) => {
+              if (applicationFound(applications, user_id, course_id)) {
+                var data = {
+                  ANM_DATUM: dateFormat(Date.now(), "yyyy-mm-dd"),
+                  ANM_TEIL_ID: user_id,
+                  ANM_KURS_ID: course_id,
+                  ANM_BEARBEITER: 0,
+                  ANM_STAT_ID: 0,
+                  ANM_ABR_DATUM: 0,
+                  ANM_ABR_RUECKLAST_DATUM: 0,
+                  ANM_TNB_GEM_DRUCKEN: 0,
+                  ANM_TEIL_ID_ZAHLER: 0,
+                  ANM_WARTEL_INFORMIEREN: 0,
+                  ANM_ABR_ABRECHNEN: 0,
+                  ANM_ABR_ABGERECHNET: 0,
+                  EINGEGEBEN_VON_USER: 0,
+                  EINGEGEBEN_AM_DATUM: 0,
+                  EINGEGEBEN_AM_ZEIT: 0,
+                  DATENHISTORY: ""
+                };
+                new Applications(data)
+                  .save()
+                  .then((application) => {
+                    resolve(application);
+                  })
+                  .catch((error) => {
+                    reject(error);
+                  });
+              } else {
+                //Resource 'appliaction with course_id and user_id' already exists.
+                reject(409);
+              }
+            })
+            .catch((error) => {
+              reject(error);
+            });
         }
         else{
-          //Resource 'appliaction with course_id and user_id' already exists.
-          reject(409);
-        }*/
+          reject(error);
+        }
       })
       .catch((error) => {
         reject(error);
@@ -69,6 +77,16 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
   });
 }
 
+function applicationFound(applications, user_id, course_id) {
+  let applicationFound = true;
+  applications.forEach(application => {
+    if ((application.attributes.ANM_TEIL_ID == user_id) &&
+      (application.attributes.ANM_KURS_ID == course_id)) {
+      applicationFound = false;
+    }
+  });
+  return applicationFound;
+}
 
 /**
  * give feedback to a course
