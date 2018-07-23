@@ -56,7 +56,13 @@
 					"request": {
 						"url": "{{host}}/v1/user",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": ""
 					},
@@ -69,6 +75,56 @@
 						"method": "GET",
 						"header": [],
 						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update /user",
+					"request": {
+						"url": "{{host}}/v1/user",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM",
+								"description": ""
+							},
+							{
+								"key": "teil_nachname",
+								"value": "Doe",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "create /user",
+					"request": {
+						"url": "{{host}}/v1/user",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"teil_vorname\": \"John\",\n      \"teil_nachname\": \"Doe\",\n      \"teil_email\": \"johndoe@vhslq.de\",\n      \"teil_notizen\": \"john's notes\",\n      \"eingegeben_von_user\": 0,\n      \"eingegeben_am_datum\": \"2018-01-01\",\n      \"eingegeben_am_zeit\": \"00:00:00\",\n      \"datenhistory\": \"John's data history\"\n    }"
+						},
 						"description": ""
 					},
 					"response": []
@@ -85,6 +141,68 @@
 						"url": "{{host}}/v1/categories",
 						"method": "GET",
 						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{host}}/v1/categories/id",
+					"request": {
+						"url": "{{host}}/v1/categories/779/courses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/courses",
+			"description": "",
+			"item": [
+				{
+					"name": "get /courses/id",
+					"request": {
+						"url": "{{host}}/v1/courses/2018284",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get /courses/id/apply",
+					"request": {
+						"url": "{{host}}/v1/courses/20182399/apply",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get /courses/id/signoff",
+					"request": {
+						"url": "{{host}}/v1/courses/2018202/signoff",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": ""
 					},
