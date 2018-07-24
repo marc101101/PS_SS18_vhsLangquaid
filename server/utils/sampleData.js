@@ -1,4 +1,7 @@
 if (process.env.NODE_ENV === 'test') {
+
+  var moment = require('moment');
+
  exports.categories = () => [
   {
     rub_name: "Allgemeines",
@@ -97,6 +100,97 @@ exports.coursesForCategory = (category_id) => [
     eingegeben_am_zeit: "00:00:00",
     datenhistory: "Daten History",
     kurs_rub_id: category_id,
+  }
+]
+
+exports.coursesForLastMinute = () => [
+  {
+    kurs_name: "Allgemeinder Kurs",
+    kurs_beschreibung: "Ein Kurs wie jeder andere",
+    kurs_mitzubringen: "",
+    kurs_zeit: 0,
+    kurs_referent_sondervereinb_tx: 0,
+    kurs_notizen: "Notizen zu diesem Kurs",
+    kurs_abendkasse: 0,
+    kurs_referent_sonderhonorar_tx: 0,
+    kurs_status_min: 0,
+    kurs_status_statt: 0,
+    kurs_status_abgesagt: 0,
+    kurs_honorar_final: 0.42,
+    kurs_fertig_ueberw: 0,
+    kurs_datum_ueberw: "2018-01-01",
+    eingegeben_von_user: 1,
+    eingegeben_am_datum: "2018-01-01",
+    eingegeben_am_zeit: "00:00:00",
+    datenhistory: "Daten History",
+    kurs_beginn: "2018-01-01",
+    kurs_beginn_uhrzeit: "20:15:00"
+  },
+  {
+    kurs_name: "Datenbank Kurs",
+    kurs_beschreibung: "Datenbank können auch Freunde sein",
+    kurs_mitzubringen: "",
+    kurs_zeit: 0,
+    kurs_referent_sondervereinb_tx: 0,
+    kurs_notizen: "Notizen zu diesem Kurs",
+    kurs_abendkasse: 0,
+    kurs_referent_sonderhonorar_tx: 0,
+    kurs_status_min: 0,
+    kurs_status_statt: 0,
+    kurs_status_abgesagt: 0,
+    kurs_honorar_final: 0.42,
+    kurs_fertig_ueberw: 0,
+    kurs_datum_ueberw: "2018-01-01",
+    eingegeben_von_user: 1,
+    eingegeben_am_datum: "2018-01-01",
+    eingegeben_am_zeit: "00:00:00",
+    datenhistory: "Daten History",
+    kurs_beginn: "2018-01-01",
+    kurs_beginn_uhrzeit: "20:15:00"
+  },
+  {
+    kurs_name: "Schuhebinden Kurs",
+    kurs_beschreibung: "Schuhebinden leicht gemacht",
+    kurs_mitzubringen: "",
+    kurs_zeit: 0,
+    kurs_referent_sondervereinb_tx: 0,
+    kurs_notizen: "Notizen zu diesem Kurs",
+    kurs_abendkasse: 0,
+    kurs_referent_sonderhonorar_tx: 0,
+    kurs_status_min: 0,
+    kurs_status_statt: 0,
+    kurs_status_abgesagt: 0,
+    kurs_honorar_final: 0.42,
+    kurs_fertig_ueberw: 0,
+    kurs_datum_ueberw: "2018-01-01",
+    eingegeben_von_user: 1,
+    eingegeben_am_datum: "2018-01-01",
+    eingegeben_am_zeit: "00:00:00",
+    datenhistory: "Daten History",
+    kurs_beginn: moment().add(5, 'weeks').format("YYYY-MM-DD"),
+    kurs_beginn_uhrzeit: "20:15:00"
+  },
+  {
+    kurs_name: "Stricken für Kamele",
+    kurs_beschreibung: "Jeder kann es, auch Paarhufer.",
+    kurs_mitzubringen: "",
+    kurs_zeit: 0,
+    kurs_referent_sondervereinb_tx: 0,
+    kurs_notizen: "Notizen zu diesem Kurs",
+    kurs_abendkasse: 0,
+    kurs_referent_sonderhonorar_tx: 0,
+    kurs_status_min: 0,
+    kurs_status_statt: 0,
+    kurs_status_abgesagt: 0,
+    kurs_honorar_final: 0.42,
+    kurs_fertig_ueberw: 0,
+    kurs_datum_ueberw: "2018-01-01",
+    eingegeben_von_user: 1,
+    eingegeben_am_datum: "2018-01-01",
+    eingegeben_am_zeit: "00:00:00",
+    datenhistory: "Daten History",
+    kurs_beginn: moment().add(5, 'weeks').format("YYYY-MM-DD"),
+    kurs_beginn_uhrzeit: "20:15:00"
   }
 ]
 
