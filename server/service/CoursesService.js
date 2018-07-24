@@ -154,6 +154,30 @@ exports.coursesHighlightsGET = function() {
   });
 }
 
+exports.coursesLastminuteGET = function() {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    }, {
+      "max_age" : 99,
+      "name" : "Kunst-Grundkurs",
+      "id" : 1,
+      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
+      "min_age" : 1
+    } ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
 if (process.env.NODE_ENV === 'test') {
   exports.clearDataBase = () => {
     console.log("Clearing all Content in Table vhslq_kurse");

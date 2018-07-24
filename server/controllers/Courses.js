@@ -67,3 +67,13 @@ module.exports.coursesHighlightsGET = function coursesHighlightsGET (req, res, n
       utils.writeJson(res, response);
     });
 };
+
+module.exports.coursesLastminuteGET = function coursesLastminuteGET (req, res, next) {
+  Courses.coursesLastminuteGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
