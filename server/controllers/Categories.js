@@ -10,7 +10,7 @@ module.exports.categoriesCategory_idCoursesGET = function categoriesCategory_idC
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, response.code);
     });
 };
 

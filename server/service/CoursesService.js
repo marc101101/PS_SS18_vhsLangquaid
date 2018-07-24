@@ -2,6 +2,7 @@
 var Courses = require('../utils/database').Course;
 
 var knex = require('../utils/database').knex;
+var Errors = require('../utils/errors');
 
 /**
  * apply to participate in specific course
@@ -65,8 +66,8 @@ exports.coursesCourse_idGET = function(course_id) {
     Courses.where({kurs_id: course_id})
       .fetch()
       .then((course) => {
-        if(course == ''){
-          reject(404);
+        if(!course){
+          reject(Errors.notFound("GET ID "+course_id, "COURSE"));
         }
         resolve(course);
       })

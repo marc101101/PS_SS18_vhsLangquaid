@@ -3,6 +3,7 @@ let userService = require('../service/UserService');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
+let Errors = require('../utils/errors');
 
 let should = chai.should();
 
@@ -18,7 +19,9 @@ describe('User', () => {
     chai.request(server)
       .get('/v1/user')
       .end((err, res) => {
-        res.should.have.status(401);
+        let compareError = Errors.missingAuth();
+        res.should.have.status(compareError.code);
+        res.body.message.should.equal(compareError.message);
         done();
       })
   })
@@ -27,7 +30,9 @@ describe('User', () => {
       .get('/v1/user')
       .set('authorization', 'Bearer ' + "obviously.incorrect.token")
       .end((err, res) => {
-        res.should.have.status(401);
+        let compareError = Errors.invalidAuth();
+        res.should.have.status(compareError.code);
+        res.body.message.should.equal(compareError.message);
         done();
       });
   })

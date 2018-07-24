@@ -6,6 +6,7 @@ var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config'); // get config file
+var Errors = require('../utils/errors');
 
 /**
  * get me
@@ -18,6 +19,9 @@ exports.userGET = function(id) {
     User.where({teil_id: id})
       .fetch()
       .then((user) => {
+        if (!user) {
+          reject(Errors.notFound("GET ID "+id, "USER"))
+        }
         resolve(user);
       })
       .catch((error) => {
@@ -62,6 +66,9 @@ exports.userPUT = function(id, data) {
     User.where({teil_id: id})
         .save(data, {patch: true})
         .then(userModel => {
+          if (!userModel) {
+            reject(Errors.notFound("PUT ID " + id, "USER"));
+          }
           resolve(userModel);
         })
         .catch(err => {
