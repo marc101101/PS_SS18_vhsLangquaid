@@ -23,6 +23,15 @@ describe('Categories', () => {
       });
     })
   });
+  it("should fail for category id 42", (done) => {
+    chai.request(server)
+      .get('/v1/categories/42/courses')
+      .end((err, res) => {
+        console.log(err)
+        res.should.have.status(404);
+        done();
+    })
+  })
   let categoryIDs = new Promise((resolve, reject) => {
     it("it should get all categories", (done) => {
       categoriesService.setupDataBase().then(() => {

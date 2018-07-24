@@ -3,17 +3,21 @@
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config'); // get our config file
 
+var Errors = require('./errors');
+
 function verifyToken(req, res, next) {
     // check header or url parameters or post parameters for token
     var token = req.headers['authorization'];
     // verifies secret and checks exp
     if (!token) { 
-      return res.status(401).send({ auth: false, message: 'No token provided.' });
+      let err = Errors.missingAuth();
+      return res.status(err.code).send(err);
     }
     token = token.replace("Bearer ", "");
     jwt.verify(token, config.secret, function(err, decoded) {
     if (err) { 
-      return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
+      let error = Errors.invalidAuth()
+      return res.status(error.code).json(error);
     }
     // if everything is good, save to request for use in other routes
     req.userId = decoded.id;

@@ -14,7 +14,7 @@ module.exports.userGET = function userGET (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.message, response.code);
+      utils.writeJson(res, response, response.code);
     });
   });
 };
@@ -38,8 +38,7 @@ module.exports.userPUT = function userPUT (req, res, next) {
       utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      console.log("fail", response);
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, response.code);
     });
   });
 };
