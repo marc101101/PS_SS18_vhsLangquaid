@@ -120,7 +120,7 @@ exports.coursesForLastMinute = () => [
     kurs_fertig_ueberw: 0,
     kurs_datum_ueberw: "2018-01-01",
     eingegeben_von_user: 1,
-    eingegeben_am_datum: "2018-01-01",
+    eingegeben_am_datum: "2022-01-01",
     eingegeben_am_zeit: "00:00:00",
     datenhistory: "Daten History",
     kurs_beginn: "2018-01-01",
