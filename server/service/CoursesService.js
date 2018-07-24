@@ -3,6 +3,7 @@ var Courses = require('../utils/database').Course;
 
 var knex = require('../utils/database').knex;
 var Errors = require('../utils/errors');
+var moment = require('moment');
 
 /**
  * apply to participate in specific course
@@ -156,25 +157,18 @@ exports.coursesHighlightsGET = function() {
 
 exports.coursesLastminuteGET = function() {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
-    }, {
-      "max_age" : 99,
-      "name" : "Kunst-Grundkurs",
-      "id" : 1,
-      "text" : "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age" : 1
-    } ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Courses
+      .forge()
+      .query(function(qb) {
+        qb.whereBetween('KURS_BEGINN', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')])
+      })
+      .fetchAll()
+      .then((course) => {
+        resolve(course.map(item => item.attributes));
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -211,6 +205,25 @@ if (process.env.NODE_ENV === 'test') {
         })
     });
   }
+
+  exports.setupLastMinute = () => {
+    console.log("Setting up Last Minute Content in Table vhslq_kurse")
+    return new Promise((resolve, reject) => {
+      let sample = require('../utils/sampleData').coursesForLastMinute();
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses.forge(sample);
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
+          resolve("done");
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+
 
   exports.setupCoursesOfCategory = (category_id) => {
     return new Promise((resolve, reject) => {

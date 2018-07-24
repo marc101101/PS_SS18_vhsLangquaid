@@ -10,6 +10,7 @@ var knex = require('knex')({
   }
 });
 
+var moment = require('moment');
 var bookshelf = require('bookshelf')(knex);
 exports.knex = knex;
 
