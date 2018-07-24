@@ -74,3 +74,30 @@ describe('Courses', () => {
     })
   });
 });
+
+describe("Courses Last Minute", () => {
+  it("it should get an empty array of courses", (done) => {
+    coursesService.clearDataBase().then(() => {
+      chai.request(server)
+        .get('/v1/courses/lastminute')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.should.be.empty;
+          done();
+        })
+    })
+  });
+
+  it("it should create 4 courses but only return 1 course as valid last minute course", (done) => {
+    coursesService.setupLastMinute().then(() => {
+      chai.request(server)
+        .get('/v1/courses/lastminute')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.equal(1);
+        })
+    })
+  });
+}); 
