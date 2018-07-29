@@ -2,6 +2,7 @@
 
 var Categories = require('../utils/database').Category;
 var knex = require('../utils/database').knex;
+var Errors = require('../utils/errors');
 /**
  * get all courses of a category
  * get all courses of a category
@@ -15,8 +16,8 @@ exports.categoriesCategory_idCoursesGET = function(category_id) {
       .where({rub_id: category_id})
       .fetch({withRelated: ["courses"]})
       .then((category => {
-        if (category == '') {
-          reject(404);
+        if (!category) {
+          reject(Errors.notFound("GET ID " +category_id, "Category"));
         }
         let courses = category.related("courses").toJSON();
         resolve(courses);

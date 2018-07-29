@@ -5,9 +5,8 @@ var Applications = require('../utils/database').Application;
 
 var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-
 var dateFormat = require('dateformat');
-
+var Errors = require('../utils/errors');
 
 /**
  * apply to participate in specific course
@@ -126,8 +125,13 @@ exports.coursesCourse_idGET = function (course_id) {
       })
       .fetch()
       .then((course) => {
+<<<<<<< HEAD
         if (course == '') {
           reject(404);
+=======
+        if(!course){
+          reject(Errors.notFound("GET ID "+course_id, "COURSE"));
+>>>>>>> master
         }
         resolve(course);
       })
