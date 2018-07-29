@@ -59,7 +59,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
                   });
               } else {
                 //Resource 'appliaction with course_id and user_id' already exists.
-                reject(409);
+                reject(Errors.conflict("Application for course " + course_id + " and user " + user_id));
               }
             })
             .catch((error) => {
@@ -67,7 +67,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
             });
         }
         else{
-          reject(error);
+          reject(Errors.notFound("course with ID " , course_id));
         }
       })
       .catch((error) => {
@@ -125,13 +125,8 @@ exports.coursesCourse_idGET = function (course_id) {
       })
       .fetch()
       .then((course) => {
-<<<<<<< HEAD
-        if (course == '') {
-          reject(404);
-=======
         if(!course){
           reject(Errors.notFound("GET ID "+course_id, "COURSE"));
->>>>>>> master
         }
         resolve(course);
       })

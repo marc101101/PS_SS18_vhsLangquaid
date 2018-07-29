@@ -78,46 +78,50 @@ describe('Courses', () => {
     })
   });
 
-  it("it should return the course when applying to it", (done) => {
+  it("it should return the application entry after successfull apply", (done) => {
     chai.request(server)
       .post('/v1/auth')
       .set("Content-Type", "application/json")
       .send(user)
       .end((err, res) => {
         authToken = res.body.token;
-        done();
-      })
+      });
       
-      coursesService.setupCoursesOfCategory().then(() => {
-        chai.request(server)
-          .post('/v1/courses/' + '2018236' + '/apply')
-          .set('authorization', 'Bearer ' + authToken)
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.length.should.equal(0);
-            done();
+      coursesService.setupDataBase().then(() => {
+        coursesService.setupCoursesOfCategory(818).then(() => {
+          chai.request(server)
+            .post('/v1/courses/' + '2018175' + '/apply')
+            .set('authorization', 'Bearer ' + authToken)
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.ANM_KURS_ID.should.equal(2018175);
+              done();
+            });
           });
         });
     });
 
     it("it should return that the application by this user for this course already exists", (done) => {
       chai.request(server)
-        .post('/v1/courses/' + '2018236' + '/apply')
+        .post('/v1/courses/' + '2018175' + '/apply')
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.length.should.equal(1);
+          console.log(res.body);
+          res.should.have.status(409);          
+          res.body.length.should.equal(2);
+          res.body.message.should.equal("Resource Application for course 2018175 and user 5055 already exists.")
           done();
         });
     });
 
     it("it should return that the course ID is not existing for the appliaction", (done) => {
       chai.request(server)
-        .post('/v1/courses/' + 'NOT_EXISTING_COURSE_ID' + '/apply')
+        .post('/v1/courses/' + '11111111' + '/apply')
         .set('authorization', 'Bearer ' + authToken)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.length.should.equal(1);
+        .end((err, res) => {          
+          res.should.have.status(404);
+          res.body.length.should.equal(2);
+          res.body.message.should.equal("Resource course with ID 11111111 not found.")
           done();
         });
     });
