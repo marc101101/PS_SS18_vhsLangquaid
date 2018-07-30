@@ -5,6 +5,7 @@ let sampleAppliactions = require('../utils/sampleData').applications();
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
+let dateFormat = require('dateformat');
 
 let should = chai.should();
 
@@ -106,7 +107,6 @@ describe('Courses', () => {
         .post('/v1/courses/' + '2018175' + '/apply')
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
-          console.log(res.body);
           res.should.have.status(409);          
           res.body.message.should.include("Resource Application for course 2018175");
           done();
@@ -124,5 +124,27 @@ describe('Courses', () => {
         });
     });
 
+    it("it should return that the user successfully signed off the course appliaction", (done) => {
+      chai.request(server)
+        .post('/v1/courses/' + '2018175' + '/signoff')
+        .set('authorization', 'Bearer ' + authToken)
+        .end((err, res) => {
+          res.should.have.status(200);          
+          res.body.ANM_ABR_ABRECHNEN.should.equal(1);
+          res.body.ANM_ABR_DATUM.should.equal(dateFormat(Date.now(), "yyyy-mm-dd"));
+          done();
+        });
+    });
 
+    it("it should return that no rows where updated", (done) => {
+      chai.request(server)
+        .post('/v1/courses/' + '11111111' + '/signoff')
+        .set('authorization', 'Bearer ' + authToken)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.equal("Resource course with ID 11111111 not found.");
+          done();
+        });
+    });
+    
 });

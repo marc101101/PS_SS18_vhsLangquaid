@@ -44,7 +44,7 @@ module.exports.coursesCourse_idGET = function coursesCourse_idGET (req, res, nex
 module.exports.coursesCourse_idSignoffPOST = function coursesCourse_idSignoffPOST (req, res, next) {
   verifyToken(req, res, (decoded) => {
     var course_id = req.swagger.params['course_id'].value;
-    Courses.coursesCourse_idSignoffPOST(course_id)
+    Courses.coursesCourse_idSignoffPOST(course_id, req)
       .then(function (response) {
         utils.writeJson(res, response);
       })
