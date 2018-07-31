@@ -53,6 +53,12 @@ exports.User = bookshelf.Model.extend({
 // -- APPLICATIONS
 let application  = bookshelf.Model.extend({
   tableName: 'vhslq_anmeldungen',
+  course: function() {
+    return this.belongsTo(course, "KURS_ID", "ANM_KURS_ID")
+  },
+  user: function() {
+    return this.belongsTo(user, "TEIL_ID", "ANM_TEIL_ID")
+  }
 })
 
 exports.Application = application;
