@@ -30,25 +30,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
             .fetchAll()
             .then((applications) => {
               if (applicationFound(applications, user_id, course_id)) {
-                let data = {
-                  ANM_DATUM: moment().format('YYYY-MM-DD'),
-                  ANM_TEIL_ID: user_id,
-                  ANM_KURS_ID: course_id,
-                  ANM_BEARBEITER: 0,
-                  ANM_STAT_ID: 0,
-                  ANM_ABR_DATUM: 0,
-                  ANM_ABR_RUECKLAST_DATUM: 0,
-                  ANM_TNB_GEM_DRUCKEN: 0,
-                  ANM_TEIL_ID_ZAHLER: 0,
-                  ANM_WARTEL_INFORMIEREN: 0,
-                  ANM_ABR_ABRECHNEN: 0,
-                  ANM_ABR_ABGERECHNET: 0,
-                  EINGEGEBEN_VON_USER: user_id,
-                  EINGEGEBEN_AM_DATUM: 0,
-                  EINGEGEBEN_AM_ZEIT: 0,
-                  DATENHISTORY: ""
-                };
-                new Applications(data)
+                new Applications(generateApplicationFor(user_id, course_id))
                   .save()
                   .then((application) => {
                     resolve(application);
@@ -89,6 +71,27 @@ function applicationFound(applications, user_id, course_id) {
     }
   });
   return applicationFound;
+}
+
+function generateApplicationFor(user_id, course_id) {
+    return {
+      ANM_DATUM: moment().format('YYYY-MM-DD'),
+      ANM_TEIL_ID: user_id,
+      ANM_KURS_ID: course_id,
+      ANM_BEARBEITER: 0,
+      ANM_STAT_ID: 0,
+      ANM_ABR_DATUM: 0,
+      ANM_ABR_RUECKLAST_DATUM: 0,
+      ANM_TNB_GEM_DRUCKEN: 0,
+      ANM_TEIL_ID_ZAHLER: 0,
+      ANM_WARTEL_INFORMIEREN: 0,
+      ANM_ABR_ABRECHNEN: 0,
+      ANM_ABR_ABGERECHNET: 0,
+      EINGEGEBEN_VON_USER: user_id,
+      EINGEGEBEN_AM_DATUM: 0,
+      EINGEGEBEN_AM_ZEIT: 0,
+      DATENHISTORY: ""
+    };
 }
 
 /**
