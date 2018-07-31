@@ -5,8 +5,8 @@ var Applications = require('../utils/database').Application;
 
 var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var dateFormat = require('dateformat');
 var Errors = require('../utils/errors');
+var moment = require('moment');
 
 /**
  * apply to participate in specific course
@@ -30,25 +30,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
             .fetchAll()
             .then((applications) => {
               if (applicationFound(applications, user_id, course_id)) {
-                let data = {
-                  ANM_DATUM: dateFormat(Date.now(), "yyyy-mm-dd"),
-                  ANM_TEIL_ID: user_id,
-                  ANM_KURS_ID: course_id,
-                  ANM_BEARBEITER: 0,
-                  ANM_STAT_ID: 0,
-                  ANM_ABR_DATUM: 0,
-                  ANM_ABR_RUECKLAST_DATUM: 0,
-                  ANM_TNB_GEM_DRUCKEN: 0,
-                  ANM_TEIL_ID_ZAHLER: 0,
-                  ANM_WARTEL_INFORMIEREN: 0,
-                  ANM_ABR_ABRECHNEN: 0,
-                  ANM_ABR_ABGERECHNET: 0,
-                  EINGEGEBEN_VON_USER: user_id,
-                  EINGEGEBEN_AM_DATUM: 0,
-                  EINGEGEBEN_AM_ZEIT: 0,
-                  DATENHISTORY: ""
-                };
-                new Applications(data)
+                new Applications(generateApplicationFor(user_id, course_id))
                   .save()
                   .then((application) => {
                     resolve(application);
@@ -89,6 +71,27 @@ function applicationFound(applications, user_id, course_id) {
     }
   });
   return applicationFound;
+}
+
+function generateApplicationFor(user_id, course_id) {
+    return {
+      ANM_DATUM: moment().format('YYYY-MM-DD'),
+      ANM_TEIL_ID: user_id,
+      ANM_KURS_ID: course_id,
+      ANM_BEARBEITER: 0,
+      ANM_STAT_ID: 0,
+      ANM_ABR_DATUM: 0,
+      ANM_ABR_RUECKLAST_DATUM: 0,
+      ANM_TNB_GEM_DRUCKEN: 0,
+      ANM_TEIL_ID_ZAHLER: 0,
+      ANM_WARTEL_INFORMIEREN: 0,
+      ANM_ABR_ABRECHNEN: 0,
+      ANM_ABR_ABGERECHNET: 0,
+      EINGEGEBEN_VON_USER: user_id,
+      EINGEGEBEN_AM_DATUM: 0,
+      EINGEGEBEN_AM_ZEIT: 0,
+      DATENHISTORY: ""
+    };
 }
 
 /**
@@ -156,7 +159,7 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
         ANM_TEIL_ID: user_id,
         ANM_KURS_ID: course_id
       })
-      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: dateFormat(Date.now(), "yyyy-mm-dd")}, {
+      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: moment().format('YYYY-MM-DD')}, {
         patch: true
       })
       .then(applicationModel => {
@@ -222,6 +225,27 @@ exports.coursesHighlightsGET = function () {
   });
 }
 
+exports.coursesLastminuteGET = function() {
+  return new Promise(function(resolve, reject) {
+    Courses
+      .forge()
+      .query(function(qb) {
+        qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
+      })
+      .fetchAll({withRelated: ["applications"]})
+      .then((courses) => {
+        resolve(courses
+          .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+          .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
+          .map(item => item.attributes)
+        )
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
 if (process.env.NODE_ENV === 'test') {
   exports.clearDataBase = () => {
     console.log("Clearing all Content in Table vhslq_kurse");
@@ -255,6 +279,37 @@ if (process.env.NODE_ENV === 'test') {
         })
     });
   }
+
+  exports.setupLastMinute = () => {
+    console.log("Setting up Last Minute Content in Table vhslq_kurse")
+    return new Promise((resolve, reject) => {
+      let sample = require('../utils/sampleData').coursesForLastMinute();
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses.forge(sample);
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          let courseIDs = data.map(item => item.attributes.id);
+          let fullCourse = courseIDs[2];
+          let _Applications = require('../utils/database').Applications
+          let applications = _Applications.forge([
+            generateApplicationFor(1222313, fullCourse),
+            generateApplicationFor(1222312, fullCourse)
+          ])
+          Promise.all(applications.invokeMap('save')).then(() => {
+            console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
+            resolve("done");
+          }).catch((error) => {
+            console.log(error)
+            reject(error);
+          })
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+
 
   exports.setupCoursesOfCategory = (category_id) => {
     return new Promise((resolve, reject) => {

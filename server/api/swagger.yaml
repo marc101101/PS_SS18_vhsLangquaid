@@ -276,6 +276,34 @@ paths:
       security:
       - PublicKey: []
       x-swagger-router-controller: "Courses"
+  /courses/lastminute:
+    get:
+      tags:
+      - "Courses"
+      summary: "get last minute courses"
+      description: "get last minute courses"
+      operationId: "coursesLastminuteGET"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Course"
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
+      security:
+      - PublicKey: []
+      x-swagger-router-controller: "Courses"
   /courses/{course_id}/apply:
     post:
       tags:

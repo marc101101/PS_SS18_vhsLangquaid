@@ -10,6 +10,7 @@ var knex = require('knex')({
   }
 });
 
+var moment = require('moment');
 var bookshelf = require('bookshelf')(knex);
 exports.knex = knex;
 
@@ -19,7 +20,10 @@ let course = bookshelf.Model.extend({
   // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
   category: function() {
     return this.belongsTo(category, "RUB_ID")
-  }
+  },
+  applications: function() {
+    return this.hasMany(application, "ANM_KURS_ID", "KURS_ID")
+  },
 })
 
 exports.Course = course
@@ -49,10 +53,6 @@ exports.User = bookshelf.Model.extend({
 // -- APPLICATIONS
 let application  = bookshelf.Model.extend({
   tableName: 'vhslq_anmeldungen',
-  // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
-  applications: function() {
-    return this.hasMany(application, "ANM_ID")
-  }
 })
 
 exports.Application = application;

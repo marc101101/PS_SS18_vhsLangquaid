@@ -5,7 +5,7 @@ let sampleAppliactions = require('../utils/sampleData').applications();
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
-let dateFormat = require('dateformat');
+let moment = require('moment');
 
 let should = chai.should();
 
@@ -131,7 +131,7 @@ describe('Courses', () => {
         .end((err, res) => {
           res.should.have.status(200);          
           res.body.ANM_ABR_ABRECHNEN.should.equal(1);
-          res.body.ANM_ABR_DATUM.should.equal(dateFormat(Date.now(), "yyyy-mm-dd"));
+          res.body.ANM_ABR_DATUM.should.equal(moment().format('YYYY-MM-DD'));
           done();
         });
     });
@@ -148,3 +148,31 @@ describe('Courses', () => {
     });
     
 });
+
+describe("Courses Last Minute", () => {
+  it("it should get an empty array of courses", (done) => {
+    coursesService.clearDataBase().then(() => {
+      chai.request(server)
+        .get('/v1/courses/lastminute')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.should.be.empty;
+          done();
+        })
+    })
+  });
+
+  it("it should create 4 courses but only return 1 course as valid last minute course", (done) => {
+    coursesService.setupLastMinute().then(() => {
+      chai.request(server)
+        .get('/v1/courses/lastminute')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.equal(1);
+          done();
+        })
+    })
+  });
+}); 
