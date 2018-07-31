@@ -230,12 +230,13 @@ exports.coursesLastminuteGET = function() {
     Courses
       .forge()
       .query(function(qb) {
-        qb.whereBetween('KURS_BEGINN', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
+        qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
       .fetchAll({withRelated: ["applications"]})
       .then((courses) => {
         resolve(courses
           .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+          .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
           .map(item => item.attributes)
         )
       })

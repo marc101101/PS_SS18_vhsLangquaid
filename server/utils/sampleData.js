@@ -165,7 +165,8 @@ exports.coursesForLastMinute = () => [
     eingegeben_am_datum: "2018-01-01",
     eingegeben_am_zeit: "00:00:00",
     datenhistory: "Daten History",
-    kurs_beginn: moment().add(5, 'weeks').format("YYYY-MM-DD"),
+    kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
+    kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
     kurs_beginn_uhrzeit: "20:15:00",
     kurs_teil_min: 1,
     kurs_teil_max: 2
@@ -189,8 +190,10 @@ exports.coursesForLastMinute = () => [
     eingegeben_am_datum: "2018-01-01",
     eingegeben_am_zeit: "00:00:00",
     datenhistory: "Daten History",
-    kurs_beginn: moment().add(5, 'weeks').format("YYYY-MM-DD"),
+    kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
+    kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
     kurs_beginn_uhrzeit: "20:15:00",
+    kurs_kursstat_id: 3,
     kurs_teil_min: 6,
     kurs_teil_max: 10,
   }
