@@ -20,13 +20,13 @@ const errors = Object.freeze({
   notFound: (permission, file) => {
     return {
     code: 404,
-    message: "Permission "+permission+"denied on file "+file+"."
+    message: "Resource " + permission + file + " not found."
     }
   },
   conflict: (ressource) => {
     return {
     code: 409,
-    message: "Resource "+ressource+"already exists."
+    message: "Resource " + ressource + " already exists."
     }
   },
   forbidden: () => {

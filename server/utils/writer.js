@@ -20,8 +20,8 @@ var writeJson = exports.writeJson = function(response, arg1, arg2) {
     code = arg2;
   }
   else {
-    if(arg1 && Number.isInteger(arg1)) {
-      code = arg1;
+    if(arg1 && Number.isInteger(arg1.code)) {
+      code = arg1.code;
     }
   }
   if(code && arg1) {

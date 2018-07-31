@@ -37,17 +37,26 @@ let category  = bookshelf.Model.extend({
   }
 })
 
-
 exports.Category = category
-
 exports.Categories = bookshelf.Collection.extend({
   model: category
 })
-
 
 // -- USER
 exports.User = bookshelf.Model.extend({
   tableName: 'vhslq_teilnehmer',
 });
 
+// -- APPLICATIONS
+let application  = bookshelf.Model.extend({
+  tableName: 'vhslq_anmeldungen',
+  // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
+  applications: function() {
+    return this.hasMany(application, "ANM_ID")
+  }
+})
 
+exports.Application = application;
+exports.Applications = bookshelf.Collection.extend({
+  model: application
+})
