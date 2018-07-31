@@ -230,11 +230,14 @@ exports.coursesLastminuteGET = function() {
     Courses
       .forge()
       .query(function(qb) {
-        qb.whereBetween('KURS_BEGINN', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')])
+        qb.whereBetween('KURS_BEGINN', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
-      .fetchAll()
-      .then((course) => {
-        resolve(course.map(item => item.attributes));
+      .fetchAll({withRelated: ["applications"]})
+      .then((courses) => {
+        resolve(courses
+          .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+          .map(item => item.attributes)
+        )
       })
       .catch((error) => {
         reject(error);
@@ -285,8 +288,20 @@ if (process.env.NODE_ENV === 'test') {
         
       Promise.all(courses.invokeMap('save'))
         .then((data) => {
-          console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
-          resolve("done");
+          let courseIDs = data.map(item => item.attributes.id);
+          let fullCourse = courseIDs[2];
+          let _Applications = require('../utils/database').Applications
+          let applications = _Applications.forge([
+            generateApplicationFor(1222313, fullCourse),
+            generateApplicationFor(1222312, fullCourse)
+          ])
+          Promise.all(applications.invokeMap('save')).then(() => {
+            console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
+            resolve("done");
+          }).catch((error) => {
+            console.log(error)
+            reject(error);
+          })
         })
         .catch((error) => {
           reject(error);
