@@ -17,7 +17,7 @@ describe('User', () => {
   });
   it("it should fail with 401 because auth token is missing", (done) => {
     chai.request(server)
-      .get('/v1/user')
+      .get('/v1/user/me')
       .end((err, res) => {
         let compareError = Errors.missingAuth();
         res.should.have.status(compareError.code);
@@ -27,7 +27,7 @@ describe('User', () => {
   })
   it("it should fail with 401 because auth token is incorrect", (done) => {
     chai.request(server)
-      .get('/v1/user')
+      .get('/v1/user/me')
       .set('authorization', 'Bearer ' + "obviously.incorrect.token")
       .end((err, res) => {
         let compareError = Errors.invalidAuth();
@@ -63,7 +63,7 @@ describe('User', () => {
   });
   it("it should get user John Doe", (done) => {
     chai.request(server)
-      .get('/v1/user')
+      .get('/v1/user/me')
       .set('authorization', 'Bearer ' + authToken)
       .end((err, res) => {
         res.should.have.status(200);
@@ -83,7 +83,7 @@ describe('User', () => {
         res.body.should.be.a('object');
         res.body.teil_nachname.should.equal("Although");
         chai.request(server)
-          .get('/v1/user')
+          .get('/v1/user/me')
           .set('authorization', 'Bearer ' + authToken)
           .end((err, res) => {
             res.should.have.status(200);

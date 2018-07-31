@@ -14,7 +14,7 @@ var Errors = require('../utils/errors');
  *
  * returns User
  **/
-exports.userGET = function(id) {
+exports.userMeGET = function(id) {
   return new Promise((resolve, reject) => {
     User.where({teil_id: id})
       .fetch()
