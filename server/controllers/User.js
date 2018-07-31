@@ -7,9 +7,21 @@ var verifyToken = require('../utils/VerifyToken');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config'); // get config file
 
-module.exports.userGET = function userGET (req, res, next) {  
+module.exports.userMeGET = function userMeGET (req, res, next) {  
   verifyToken(req, res, (decoded) => {
-    User.userGET(decoded.id)
+    User.userMeGET(decoded.id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response, response.code);
+    });
+  });
+};
+
+module.exports.userMeCoursesGET = function userMeCoursesGET (req, res, next) {
+  verifyToken(req, res, (decoded) => {
+    User.userMeCoursesGET(decoded.id)
     .then(function (response) {
       utils.writeJson(res, response);
     })

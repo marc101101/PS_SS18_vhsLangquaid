@@ -16,56 +16,19 @@ info:
 host: "localhost:8080"
 basePath: "/v1"
 paths:
-  /user:
+  /user/me:
     get:
       tags:
       - "User"
       summary: "get me"
       description: "Get authorized User (me)"
-      operationId: "userGET"
+      operationId: "userMeGET"
       parameters: []
       responses:
         200:
           description: "get user"
           schema:
             $ref: "#/definitions/User"
-        401:
-          description: Invalid authentication credentials.
-        403:
-          description: Permission 'xxx' denied on file 'yyy'.  
-        404:
-          description: Permission 'xxx' denied on file 'yyy'.
-        409:
-          description: Resource 'xxx' already exists.
-        500:
-          description: Internal Server Error.
-      security:
-      - JWT: []
-      x-swagger-router-controller: "User"
-    post:
-      tags:
-      - "User"
-      summary: "register a new user"
-      description: "register new user"
-      operationId: "userPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "data"
-        description: "user data"
-        required: true
-        schema:
-          type: "object"
-      responses:
-        201:
-          description: "user created"
-          schema:
-            type: "object"
-            properties: {}
         401:
           description: Invalid authentication credentials.
         403:
@@ -94,6 +57,72 @@ paths:
       responses:
         200:
           description: "user has been edited"
+          schema:
+            type: "object"
+            properties: {}
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
+      security:
+      - JWT: []
+      x-swagger-router-controller: "User"
+  /user/me/courses:
+    get:
+      tags:
+      - "User"
+      summary: "get my courses"
+      description: "Get Users (me) courses"
+      operationId: "userMeCoursesGET"
+      parameters: []
+      responses:
+        200:
+          description: "request successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Category"
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
+      security:
+      - JWT: []
+      x-swagger-router-controller: "User"
+  /user:
+    post:
+      tags:
+      - "User"
+      summary: "register a new user"
+      description: "register new user"
+      operationId: "userPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "data"
+        description: "user data"
+        required: true
+        schema:
+          type: "object"
+      responses:
+        201:
+          description: "user created"
           schema:
             type: "object"
             properties: {}
