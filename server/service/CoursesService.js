@@ -272,7 +272,7 @@ if (process.env.NODE_ENV === 'test') {
       Promise.all(courses.invokeMap('save'))
         .then((data) => {
           console.log("Finished Setting up Content in Table vhslq_kurse")
-          resolve("done");
+          resolve(data);
         })
         .catch((error) => {
           reject(error);
