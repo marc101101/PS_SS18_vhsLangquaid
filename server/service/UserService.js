@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('../utils/database').User;
+var Applications = require('../utils/database').Application
 var knex = require('../utils/database').knex;
 
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -28,6 +29,20 @@ exports.userMeGET = function(id) {
         reject(error);
       });
      });
+}
+
+exports.userMeCoursesGET = function(user_id) {
+  return new Promise(function (resolve, reject) {
+    Applications
+      .where({ANM_TEIL_ID: user_id})
+      .fetchAll({withRelated: ["course"]})
+      .then((applications) => {
+        resolve(applications.map(item => item.related('course').toJSON()))
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 }
 
 
@@ -91,5 +106,26 @@ if (process.env.NODE_ENV === 'test') {
           reject(error);
         })
     })
+  }
+
+  exports.addCoursesToSampleUser = (user_id) => {
+    return new Promise((resolve, reject) => {
+      console.log("Adding Sample Courses To User ID " + user_id);
+        let setupCourses = require('../service/CoursesService').setupDataBase;
+        setupCourses().then((courses) => {
+          let _Applications = require('../utils/database').Applications
+          let generateApplicationFor = require('../service/CoursesService').generateApplicationFor;
+          let applications = courses
+            .map(item => item.attributes.id)
+            .map(course_id => generateApplicationFor(user_id, course_id))
+          Promise.all(_Applications.forge(applications).invokeMap('save')).then(() => {
+            console.log("Finished Adding Courses to User ID " + user_id);
+            resolve("done");
+          }).catch((error) => {
+            console.log(error)
+            reject(error);
+          })
+        })
+    });
   }
 }

@@ -19,6 +19,18 @@ module.exports.userMeGET = function userMeGET (req, res, next) {
   });
 };
 
+module.exports.userMeCoursesGET = function userMeCoursesGET (req, res, next) {
+  verifyToken(req, res, (decoded) => {
+    User.userMeCoursesGET(decoded.id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response, response.code);
+    });
+  });
+};
+
 module.exports.userPOST = function userPOST (req, res, next) {
   var data = req.swagger.params['data'].value;
   User.userPOST(data)
