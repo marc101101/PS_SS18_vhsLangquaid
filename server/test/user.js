@@ -11,6 +11,7 @@ chai.use(chaiHttp);
 
 describe('User', () => {
   let authToken = "";
+  let userID = "";
   before(() => {
     return userService
       .clearDataBase()
@@ -57,6 +58,7 @@ describe('User', () => {
         res.body.user.teil_vorname.should.equal(user.teil_vorname);
         res.body.user.teil_nachname.should.equal(user.teil_nachname);
         res.body.user.teil_email.should.equal(user.teil_email);
+        userID = res.body.user.id;
         authToken = res.body.token;
         done();
       })
@@ -94,4 +96,17 @@ describe('User', () => {
           });
       });
   });
+  it("it should get John Doe's Courses", (done) => {
+    userService.addCoursesToSampleUser(userID).then(() => {
+      chai.request(server)
+      .get('/v1/user/me/courses')
+      .set('authorization', 'Bearer ' + authToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        res.body.length.should.equal(2);
+        done();
+      })
+    })
+  })
 });
