@@ -42,6 +42,35 @@ paths:
       security:
       - JWT: []
       x-swagger-router-controller: "User"
+  /user/me/courses:
+    get:
+      tags:
+      - "User"
+      summary: "get my courses"
+      description: "Get Users (me) courses"
+      operationId: "userMeCoursesGET"
+      parameters: []
+      responses:
+        200:
+          description: "request successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Category"
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
+      security:
+      - JWT: []
+      x-swagger-router-controller: "User"
+  /user:
     post:
       tags:
       - "User"
