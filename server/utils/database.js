@@ -20,7 +20,10 @@ let course = bookshelf.Model.extend({
   // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
   category: function() {
     return this.belongsTo(category, "RUB_ID")
-  }
+  },
+  applications: function() {
+    return this.hasMany(application, "ANM_KURS_ID", "KURS_ID")
+  },
 })
 
 exports.Course = course
