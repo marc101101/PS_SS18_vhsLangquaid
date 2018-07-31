@@ -5,7 +5,6 @@ var Applications = require('../utils/database').Application;
 
 var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var dateFormat = require('dateformat');
 var Errors = require('../utils/errors');
 var moment = require('moment');
 
@@ -32,7 +31,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
             .then((applications) => {
               if (applicationFound(applications, user_id, course_id)) {
                 let data = {
-                  ANM_DATUM: dateFormat(Date.now(), "yyyy-mm-dd"),
+                  ANM_DATUM: moment().format('YYYY-MM-DD'),
                   ANM_TEIL_ID: user_id,
                   ANM_KURS_ID: course_id,
                   ANM_BEARBEITER: 0,
@@ -157,7 +156,7 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
         ANM_TEIL_ID: user_id,
         ANM_KURS_ID: course_id
       })
-      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: dateFormat(Date.now(), "yyyy-mm-dd")}, {
+      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: moment().format('YYYY-MM-DD')}, {
         patch: true
       })
       .then(applicationModel => {

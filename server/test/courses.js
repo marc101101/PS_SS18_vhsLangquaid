@@ -5,7 +5,7 @@ let sampleAppliactions = require('../utils/sampleData').applications();
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
-let dateFormat = require('dateformat');
+let moment = require('moment');
 
 let should = chai.should();
 
@@ -131,7 +131,7 @@ describe('Courses', () => {
         .end((err, res) => {
           res.should.have.status(200);          
           res.body.ANM_ABR_ABRECHNEN.should.equal(1);
-          res.body.ANM_ABR_DATUM.should.equal(dateFormat(Date.now(), "yyyy-mm-dd"));
+          res.body.ANM_ABR_DATUM.should.equal(moment().format('YYYY-MM-DD'));
           done();
         });
     });
