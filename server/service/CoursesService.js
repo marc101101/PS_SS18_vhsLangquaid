@@ -16,9 +16,8 @@ var Errors = require('../utils/errors');
  * returns Course
  **/
 exports.coursesCourse_idApplyPOST = function (course_id, req) {
-  let token = req.headers['authorization'];
-  token = token.replace("Bearer ", "");
-  let user_id = jwt.decode(token).id;
+  let user_id = getUserFromToken(req);
+
   //first we have to check if the user is already applied or not
   return new Promise(function (resolve, reject) {
     Courses.where({
@@ -26,12 +25,12 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
       })
       .fetch()
       .then((course) => {
-        if(course != null){
+        if (course != null) {
           Applications
             .fetchAll()
             .then((applications) => {
               if (applicationFound(applications, user_id, course_id)) {
-                var data = {
+                let data = {
                   ANM_DATUM: dateFormat(Date.now(), "yyyy-mm-dd"),
                   ANM_TEIL_ID: user_id,
                   ANM_KURS_ID: course_id,
@@ -44,7 +43,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
                   ANM_WARTEL_INFORMIEREN: 0,
                   ANM_ABR_ABRECHNEN: 0,
                   ANM_ABR_ABGERECHNET: 0,
-                  EINGEGEBEN_VON_USER: 0,
+                  EINGEGEBEN_VON_USER: user_id,
                   EINGEGEBEN_AM_DATUM: 0,
                   EINGEGEBEN_AM_ZEIT: 0,
                   DATENHISTORY: ""
@@ -65,15 +64,20 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
             .catch((error) => {
               reject(error);
             });
-        }
-        else{
-          reject(Errors.notFound("course with ID " , course_id));
+        } else {
+          reject(Errors.notFound("course with ID ", course_id));
         }
       })
       .catch((error) => {
         reject(error);
       });
   });
+}
+
+function getUserFromToken(req) {
+  let token = req.headers['authorization'];
+  token = token.replace("Bearer ", "");
+  return jwt.decode(token).id;
 }
 
 function applicationFound(applications, user_id, course_id) {
@@ -125,8 +129,8 @@ exports.coursesCourse_idGET = function (course_id) {
       })
       .fetch()
       .then((course) => {
-        if(!course){
-          reject(Errors.notFound("GET ID "+course_id, "COURSE"));
+        if (!course) {
+          reject(Errors.notFound("GET ID " + course_id, "COURSE"));
         }
         resolve(course);
       })
@@ -144,21 +148,26 @@ exports.coursesCourse_idGET = function (course_id) {
  * course_id Integer 
  * returns Course
  **/
-exports.coursesCourse_idSignoffPOST = function (course_id) {
+exports.coursesCourse_idSignoffPOST = function (course_id, req) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-      "max_age": 99,
-      "name": "Kunst-Grundkurs",
-      "id": 1,
-      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age": 1
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    let user_id = getUserFromToken(req);
+
+    Applications.where({
+        ANM_TEIL_ID: user_id,
+        ANM_KURS_ID: course_id
+      })
+      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: dateFormat(Date.now(), "yyyy-mm-dd")}, {
+        patch: true
+      })
+      .then(applicationModel => {
+        if (!applicationModel) {
+          reject(Errors.notFound("course with ID ", course_id));
+        }
+        resolve(applicationModel);
+      })
+      .catch(err => {
+        reject(Errors.notFound("course with ID ", course_id));
+      });
   });
 }
 
