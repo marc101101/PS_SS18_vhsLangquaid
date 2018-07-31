@@ -77,7 +77,7 @@ describe('User', () => {
   });
   it("it should update John Doe's Name to John Although", (done) => {
     chai.request(server)
-      .put('/v1/user')
+      .put('/v1/user/me')
       .set('authorization', 'Bearer ' + authToken)
       .send({teil_nachname: "Although"})
       .end((err, res) => {

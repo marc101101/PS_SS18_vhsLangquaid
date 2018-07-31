@@ -42,6 +42,37 @@ paths:
       security:
       - JWT: []
       x-swagger-router-controller: "User"
+    put:
+      tags:
+      - "User"
+      summary: "edit user details"
+      operationId: "userPUT"
+      parameters:
+      - in: "body"
+        name: "data"
+        description: "user data"
+        required: true
+        schema:
+          type: "object"
+      responses:
+        200:
+          description: "user has been edited"
+          schema:
+            type: "object"
+            properties: {}
+        401:
+          description: Invalid authentication credentials.
+        403:
+          description: Permission 'xxx' denied on file 'yyy'.  
+        404:
+          description: Permission 'xxx' denied on file 'yyy'.
+        409:
+          description: Resource 'xxx' already exists.
+        500:
+          description: Internal Server Error.
+      security:
+      - JWT: []
+      x-swagger-router-controller: "User"
   /user/me/courses:
     get:
       tags:
@@ -92,37 +123,6 @@ paths:
       responses:
         201:
           description: "user created"
-          schema:
-            type: "object"
-            properties: {}
-        401:
-          description: Invalid authentication credentials.
-        403:
-          description: Permission 'xxx' denied on file 'yyy'.  
-        404:
-          description: Permission 'xxx' denied on file 'yyy'.
-        409:
-          description: Resource 'xxx' already exists.
-        500:
-          description: Internal Server Error.
-      security:
-      - JWT: []
-      x-swagger-router-controller: "User"
-    put:
-      tags:
-      - "User"
-      summary: "edit user details"
-      operationId: "userPUT"
-      parameters:
-      - in: "body"
-        name: "data"
-        description: "user data"
-        required: true
-        schema:
-          type: "object"
-      responses:
-        200:
-          description: "user has been edited"
           schema:
             type: "object"
             properties: {}
