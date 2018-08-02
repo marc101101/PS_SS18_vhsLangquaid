@@ -22,6 +22,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {DemoService} from "./services/demo.service";
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
@@ -34,6 +36,8 @@ import { RegistrationComponent } from './components/registration/registration.co
         BrowserAnimationsModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        AuthGuard,
+        AuthService,
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
