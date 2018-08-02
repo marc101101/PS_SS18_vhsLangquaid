@@ -22,7 +22,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {DemoService} from "./services/demo.service";
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth-guard';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
