@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
     {
         path: '',
         component: AppComponent
+    },
+    {
+        path: '/login',
+        component: AppComponent
     }
 ];
 
