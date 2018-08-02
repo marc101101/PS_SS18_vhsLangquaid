@@ -20,10 +20,14 @@ import 'rxjs/add/observable/of';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
 import {DemoService} from "./services/demo.service";
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent,
+        RegistrationComponent
     ],
     imports: [
         HttpClientModule,
