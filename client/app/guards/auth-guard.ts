@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard {
@@ -12,4 +12,5 @@ export class AuthGuard {
     if(this.authService.isLoggedIn()) return true;
     // else navigate to login
   }
+
 }

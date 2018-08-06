@@ -4,23 +4,24 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { AuthGuard } from './services/auth-guard';
+import { AuthGuard } from './guards/auth-guard';
 
  const routes: Routes = [
     {
         path: '',
-        component: AppComponent
+        redirectTo: '/login',
+        pathMatch: 'full'
     },
     {
-        path: '/login',
+        path: 'login',
         component: LoginComponent
     },
     {
-        path: '/registration',
+        path: 'registration',
         component: RegistrationComponent
     },
     {
-        path: '/categories',
+        path: 'categories',
         component: CategoriesComponent,
         canActivate: [AuthGuard]
     }
