@@ -10,7 +10,7 @@
     "build:client": "ng build",
     "start:prod": "ng build --prod && npm run start:server",
     "test:server": "NODE_ENV=test mocha --exit ./server/test/*.js",
-    "test:client": "echo 'frontend tests missing'",
+    "test:client": "ng test",
     "test:server_local": "mysql.server start && NODE_ENV=test mocha --exit ./server/test/*.js && mysql.server stop",
     "test": "npm run test:server && npm run test:client",
     "lint": "ng lint",
