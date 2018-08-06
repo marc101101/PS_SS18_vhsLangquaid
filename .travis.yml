@@ -2,8 +2,11 @@ language: node_js
 node_js:
   - "9"
 
+sudo: required
+
 addons:
   mariadb: "10.3"
+  chrome: stable
 
 before_install:
   - mysql -e "CREATE DATABASE usr_p100480_1;"
