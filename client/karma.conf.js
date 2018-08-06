@@ -14,12 +14,23 @@ module.exports = function (config) {
       require('karma-scss-preprocessor')
     ],
     client: {
-      clearContext: false// leave Jasmine Spec Runner output visible in browser
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    files: [
-      {pattern: '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css', included: true, watched: true},
-      {pattern: './test.ts', watched: false},
-      {pattern: './styles/**/*.*', watched: true, included: true, served: true}
+    files: [{
+        pattern: '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css',
+        included: true,
+        watched: true
+      },
+      {
+        pattern: './test.ts',
+        watched: false
+      },
+      {
+        pattern: './styles/**/*.*',
+        watched: true,
+        included: true,
+        served: true
+      }
     ],
     preprocessors: {
       './styles/**/*.*': ['scss']
@@ -35,6 +46,16 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
   });
+
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
+  }
 };
