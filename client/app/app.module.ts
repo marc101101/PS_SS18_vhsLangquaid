@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.dev';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
@@ -12,13 +12,15 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { AuthGuard } from './guards/auth-guard';
 import { AuthService } from './services/auth.service';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { PageNotFoundComponent } from './components/not-found';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         RegistrationComponent,
-        CategoriesComponent 
+        CategoriesComponent,
+        PageNotFoundComponent
     ],
     imports: [
         HttpClientModule,
