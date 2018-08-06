@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
+import { environment } from '../../environments/environement';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable } from '../../../node_modules/rxjs';
 export class AuthService {
 
   private authStatus: boolean = false;
-  private url: string;
+  private url: string = environment.apiUrl;
 
   constructor(public http: HttpClient) { }
 
