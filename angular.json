@@ -92,14 +92,6 @@
             ],
             "exclude": []
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist-server/",
-            "main": "main.server.ts",
-            "tsConfig": "tsconfig.server.json"
-          }
         }
       }
     },
@@ -131,7 +123,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": ""

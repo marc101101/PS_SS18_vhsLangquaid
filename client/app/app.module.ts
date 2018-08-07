@@ -1,39 +1,37 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AppComponent} from './app.component';
-
 import {ReactiveFormsModule} from "@angular/forms";
-
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.dev';
 import {ServiceWorkerModule} from '@angular/service-worker';
-
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/shareReplay';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/observable/of';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {AppRoutingModule} from "./app-routing.module";
-import {DemoService} from "./services/demo.service";
+import { AppRoutingModule } from "./app-routing.module";
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { AuthGuard } from './guards/auth-guard';
+import { AuthService } from './services/auth.service';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { PageNotFoundComponent } from './components/not-found';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent,
+        RegistrationComponent,
+        CategoriesComponent,
+        PageNotFoundComponent
     ],
     imports: [
         HttpClientModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule,        
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
-        DemoService
+        AuthGuard,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })
