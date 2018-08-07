@@ -26,14 +26,14 @@ module.exports = function (config) {
         watched: false
       },
       {
-        pattern: './styles/**/*.*',
+        pattern: './app/styles/**/*.*',
         watched: true,
         included: true,
         served: true
       }
     ],
     preprocessors: {
-      './styles/**/*.*': ['scss']
+      './app/styles/**/*.*': ['scss']
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),

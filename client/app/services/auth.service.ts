@@ -7,6 +7,7 @@ import { environment } from '../../environments/environement';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   private authStatus: boolean = false;
