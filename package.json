@@ -10,7 +10,7 @@
     "build:client": "ng build",
     "start:prod": "ng build --prod && npm run start:server",
     "test:server": "NODE_ENV=test mocha --exit ./server/test/*.js",
-    "test:client": "echo 'frontend tests missing'",
+    "test:client": "ng test",
     "test:server_local": "mysql.server start && NODE_ENV=test mocha --exit ./server/test/*.js && mysql.server stop",
     "test": "npm run test:server && npm run test:client",
     "lint": "ng lint",
@@ -79,6 +79,16 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "jasmine-core": "3.1.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "karma": "2.0.2",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-cli": "1.0.1",
+    "karma-coverage-istanbul-reporter": "1.4.2",
+    "karma-jasmine": "1.1.2",
+    "karma-jasmine-html-reporter": "1.0.0",
+    "karma-remap-istanbul": "0.6.0",
+    "karma-scss-preprocessor": "3.0.0"
   }
 }
