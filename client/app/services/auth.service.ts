@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environement';
 import { UserData } from '../model/UserData';
-import { AlertSerivce } from './services/alert.service';
+import { AlertService } from './alert.service';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,9 @@ export class AuthService {
 
   login(user:UserData): Observable<any>{
     return this.http.post(this.url + "/auth", {email: user.email, password: user.password}).pipe(
-      map((res: Response) => res.json()),
+      map((res: Response) => {
+        return res;
+      }),
       catchError((err: HttpErrorResponse) => {
         return this.alertService.push(err);
       })

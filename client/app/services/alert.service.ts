@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
-import set = Reflect.set;
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AlertService {
