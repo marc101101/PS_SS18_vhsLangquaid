@@ -1,3 +1,19 @@
-<div class="tile is-primary">
-  <p class="title">Login</p>
+<div class="container">
+  <div class="columns is-mobile">
+    <div class="column is-6 box">
+      <b>Einloggen</b>
+    </div>
+    <div class="column is-6 box" [routerLink]="['/registration']">
+      Registieren
+    </div>
+  </div>
+  <section class="login" style="padding: 1rem; padding-top: 3rem">
+    <input class="input is-medium" type="email" placeholder="Email">
+    <br><br>
+    <input class="input is-medium" type="password" placeholder="Passwort">
+    <div style="text-align: center; padding: 2rem; font-size: 0.8rem;">
+      Password vergessen
+    </div>
+    <a class="button is-info is-medium is-fullwidth">Einloggen</a>
+  </section>
 </div>
