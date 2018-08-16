@@ -10,6 +10,7 @@ var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config'); // get config file
+var Errors = require('../utils/errors');
 
 /**
  * get authtoken from server
@@ -32,7 +33,7 @@ exports.authPOST = function (data) {
         resolve({token: token});
         })
         .catch((error) => {
-          reject(error);
+          reject(Errors.invalidAuth());
         });
     });
   
