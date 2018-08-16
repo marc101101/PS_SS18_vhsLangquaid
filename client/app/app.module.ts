@@ -9,7 +9,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AuthGuard } from './guards/auth-guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PageNotFoundComponent } from './components/not-found';

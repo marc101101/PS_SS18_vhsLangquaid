@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { AuthGuard } from './guards/auth-guard';
+import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/not-found';
 
  const routes: Routes = [
