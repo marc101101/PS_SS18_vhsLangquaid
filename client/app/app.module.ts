@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
+import { AlertSerivce } from './services/alert.service';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { FormsModule }   from '@angular/forms';
     ],
     providers: [
         AuthGuard,
-        AuthService
+        AuthService,
+        AlertSerivce
     ],
     bootstrap: [AppComponent]
 })
