@@ -12,11 +12,11 @@
       <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="model.mail" name="mail" #mail="ngModel">
       <br>
       <br>
-      <input class="input is-medium" type="password" placeholder="Passwort" id="password" required [(ngModel)]="model.password" name="password" #mail="ngModel">>
+      <input class="input is-medium" type="password" placeholder="Passwort" id="password" required [(ngModel)]="model.password" name="password" #mail="ngModel">
       <div style="text-align: center; padding: 2rem; font-size: 0.8rem;">
         Password vergessen
       </div>
-      <a class="button is-info is-medium is-fullwidth">Einloggen</a>
+      <button class="button is-info is-medium is-fullwidth" [disabled]="!heroForm.form.valid" type="submit" >Einloggen</button>
     </form>
   </section>
 </div>

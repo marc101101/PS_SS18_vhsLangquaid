@@ -1,6 +1,13 @@
-/*This is a demo model*/
+export class UserData {
+    constructor(
+        email: string,
+        password: string) {
 
-export interface UserData {
-    email:string;
-    password:string;
+        this.email = email;
+        this.password = password;
+    }
+
+    email: string;
+    password: string;
+
 }

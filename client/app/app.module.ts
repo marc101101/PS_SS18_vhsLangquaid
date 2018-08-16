@@ -13,6 +13,7 @@ import { AuthGuard } from './guards/auth-guard';
 import { AuthService } from './services/auth.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PageNotFoundComponent } from './components/not-found';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './components/not-found';
         HttpClientModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        ReactiveFormsModule,        
+        ReactiveFormsModule,
+        FormsModule,        
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
