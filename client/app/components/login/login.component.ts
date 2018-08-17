@@ -32,21 +32,11 @@ export class LoginComponent implements OnInit {
       // login successful if there's a jwt token in the response
       if (data.token && !this.jwtHelper.isTokenExpired(data.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('token', data.token);
-        console.log(this.returnUrl);
-        
+        localStorage.setItem('token', data.token);       
         this.router.navigate(['/categories']).catch(error => {
           console.log(error);
         });
-      } else {       
-        //this.alertService.validateResponse({'status': 401}, true);
       }
-    },
-    error => {
-      console.log(error);
-      
-      //this.alertService.validateResponse(error, true);
-      //this.loading = false;
     });
   }
 

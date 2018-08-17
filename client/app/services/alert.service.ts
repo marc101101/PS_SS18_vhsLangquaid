@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
+import { log } from 'util';
 
 @Injectable()
 export class AlertService {
@@ -74,10 +75,7 @@ export class AlertService {
         return response.json().message;
       }
     } else if (response.status === 401) {
-      this.keepAfterNavigationChange = true;
-      this.status_message = 'You must login to access this page.';
-      this.router.navigate(['/login']);
-      return;
+      return 'Email oder Password falsch.';
     } else if (response.status === 403) {
       return 'User not allowed!';
     } else if (response.status === 405) {
@@ -108,7 +106,6 @@ export class AlertService {
   }
 
   push(err, login_page = false) {
-    console.error(err);
     if (err instanceof Error) {
       // display error message for dev
       if (err.message) {

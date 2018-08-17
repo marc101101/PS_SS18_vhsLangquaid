@@ -15,6 +15,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
 import { AlertService } from './services/alert.service';
+import { AlertComponent } from './directives';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { AlertService } from './services/alert.service';
         LoginComponent,
         RegistrationComponent,
         CategoriesComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AlertComponent
     ],
     imports: [
         HttpClientModule,

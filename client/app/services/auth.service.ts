@@ -28,7 +28,8 @@ export class AuthService {
         return res;
       }),
       catchError((err: HttpErrorResponse) => {
-        return this.alertService.push(err);
+        this.alertService.push(err);
+        return Observable.of(err);
       })
     )
   }

@@ -1,12 +1,13 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import { AlertService } from '../services/alert.service';
+import { log } from 'util';
 
 @Component({
   moduleId: module.id,
   selector: 'alert',
   templateUrl: 'alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styleUrls: ['./alert.component.scss']
 })
 
 export class AlertComponent implements OnInit, OnDestroy {
@@ -20,7 +21,9 @@ export class AlertComponent implements OnInit, OnDestroy {
     if (this.alertService.getStatusText()) {
       this.message = {text: this.alertService.getStatusText()};
     }
-    this.subscription = this.alertService.getMessage().subscribe(message => {this.message = message; });   
+    this.subscription = this.alertService.getMessage().subscribe(message => {
+      this.message = message; 
+    });   
   }
 
   ngOnDestroy() {
