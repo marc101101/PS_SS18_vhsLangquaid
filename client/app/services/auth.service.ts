@@ -6,7 +6,6 @@ import { UserData } from '../model/UserData';
 import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +17,14 @@ export class AuthService {
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
 
-  isLoggedIn(): boolean{
+  isLoggedIn(): boolean{   
     return this.authStatus;
   }
 
   login(user:UserData): Observable<any>{
     return this.http.post(this.url + "/auth", {email: user.email, password: user.password}).pipe(
       map((res: Response) => {
+        this.authStatus = true;
         return res;
       }),
       catchError((err: HttpErrorResponse) => {

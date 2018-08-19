@@ -27,10 +27,7 @@
       <input class="input is-medium" type="password" placeholder="Passwort" id="password" required [(ngModel)]="model.password"
         name="password" #mail="ngModel">
         <alert></alert>
-      <div style="text-align: center; padding: 2rem; font-size: 0.8rem; color: white">
-        Password vergessen
-      </div>
-      <button class="button is-primary is-medium is-fullwidth" [disabled]="!heroForm.form.valid" type="submit">Einloggen</button>
+      <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">Einloggen</button>
     </form>
   </section>
 </div>

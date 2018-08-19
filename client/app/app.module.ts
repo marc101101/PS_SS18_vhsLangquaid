@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { AlertComponent } from './directives';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -31,13 +32,15 @@ import { AlertComponent } from './directives';
         BrowserAnimationsModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        FormsModule,        
-        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+        FormsModule,     
+        RouterModule,   
+        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [
         AuthGuard,
         AuthService,
-        AlertService
+        AlertService,
+        RouterModule
     ],
     bootstrap: [AppComponent]
 })
