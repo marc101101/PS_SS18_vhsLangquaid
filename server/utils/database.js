@@ -1,13 +1,26 @@
-var knex = require('knex')({
-  client: 'mariasql',
-  debug: false,
-  connection: {
+let connection = {}
+if (process.env.NODE_ENV === 'test') {
+  connection = {
     host: '127.0.0.1',
     user: 'root',
     password: '',
     db: 'usr_p100480_1',
     charset: 'utf8'
   }
+} else {
+  connection = {
+    host: 'nivk0hz7m5elq4ql.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+    user: 'va2ahq8gtxkt5ary',
+    password: 'pzco6x0m6cuzs2r2',
+    db: 'tm2irn2isbk6f1fx',
+    charset: 'utf8'
+  }
+}
+
+var knex = require('knex')({
+  client: 'mariasql',
+  debug: false,
+  connection: connection
 });
 
 var moment = require('moment');
