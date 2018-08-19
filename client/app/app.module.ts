@@ -42,6 +42,7 @@ import { RouterModule } from '@angular/router';
         AlertService,
         RouterModule
     ],
+    exports: [AlertComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
