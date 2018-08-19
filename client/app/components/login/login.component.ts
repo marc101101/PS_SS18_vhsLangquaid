@@ -7,8 +7,6 @@ import { AuthService } from '../../services/auth.service';
 import { UserData } from '../../model/UserData';
 import { JwtHelper } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService } from '../../services/alert.service';
-import { log } from 'util';
 
 @Component({
   selector: 'login',
@@ -21,7 +19,7 @@ export class LoginComponent implements OnInit {
   private jwtHelper: JwtHelper = new JwtHelper();
   private returnUrl: string;
 
-  constructor(private authSerive: AuthService, private router:Router, private alertService: AlertService, private route: ActivatedRoute) {}
+  constructor(private authSerive: AuthService, private router:Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/categories';

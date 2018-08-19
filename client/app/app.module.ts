@@ -33,14 +33,15 @@ import { RouterModule } from '@angular/router';
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,     
-        RouterModule,   
-        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+        RouterModule
+        //ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [
         AuthGuard,
         AuthService,
         AlertService,
-        RouterModule
+        RouterModule,
+        HttpClientModule
     ],
     exports: [AlertComponent],
     bootstrap: [AppComponent]

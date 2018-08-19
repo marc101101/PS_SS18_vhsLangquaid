@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(user:UserData): Observable<any>{
-    return this.http.post(this.url + "/auth", {email: user.email, password: user.password}).pipe(
+    return this.http.post(this.url + "/auth", {email: user.mail, password: user.password}).pipe(
       map((res: Response) => {
         this.authStatus = true;
         return res;

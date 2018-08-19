@@ -1,13 +1,13 @@
 export class UserData {
     constructor(
-        email: string,
+        mail: string,
         password: string) {
 
-        this.email = email;
+        this.mail = mail;
         this.password = password;
     }
 
-    email: string;
+    mail: string;
     password: string;
 
 }
