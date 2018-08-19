@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
+  public state: number = 0;
+
   constructor() { }
 
   ngOnInit() {

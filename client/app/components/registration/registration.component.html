@@ -1,3 +1,65 @@
-<div class="tile is-primary">
-  <p class="title">Registration</p>
+<div class="container">
+  <div class="columns is-mobile">
+    <div class="column is-6 box" [routerLink]="['/login']">
+      Einloggen
+    </div>
+    <div class="column is-6 box">
+      <b>Registieren</b>
+    </div>
+  </div>
+  <section class="registrieren-0" *ngIf="state == 0" style="padding: 1rem; padding-top: 3rem">
+    <div class="select is-medium is-fullwidth">
+      <select>
+        <option>Herr</option>
+        <option>Frau</option>
+        <option>Sonstiges</option>
+      </select>
+    </div>
+    <input class="input is-medium" type="text" placeholder="Vorname" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="Nachname" style="margin-top: 1.5rem">
+
+    <div class="has-text-centered" style="padding: 2rem">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <a class="button is-info is-medium is-fullwidth" (click)="state = state + 1">Weiter</a>
+  </section>
+
+  <section class="registrieren-1" *ngIf="state == 1" style="padding: 1rem; padding-top: 3rem">
+    <input class="input is-medium" type="text" placeholder="Straße, Hausnummer" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="PLZ" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="Wohnort" style="margin-top: 1.5rem">
+    <div class="has-text-centered" style="padding: 2rem">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    <a class="button is-info is-medium is-fullwidth" (click)="state= state + 1">Weiter</a>
+  </section>
+
+  <section class="registrieren-2" *ngIf="state == 2" style="padding: 1rem; padding-top: 3rem">
+    <input class="input is-medium" type="text" placeholder="Telefon-Nummer" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="Geburtsdatum" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="Email" style="margin-top: 1.5rem">
+    <div class="has-text-centered" style="padding: 2rem">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+    <a class="button is-info is-medium is-fullwidth" (click)="state = state + 1">Weiter</a>
+  </section>
+
+  <section class="registrieren-3" *ngIf="state == 3" style="padding: 1rem; padding-top: 3rem">
+      <div class="has-text-centered" style="padding: 2rem">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot active"></span>
+        </div>
+    <a class="button is-info is-medium is-fullwidth">Registieren</a>
+  </section>
 </div>
