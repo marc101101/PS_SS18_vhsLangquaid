@@ -27,9 +27,8 @@ export class UserService {
   getUserMe(): Observable<any>{
     return this.http.get(this.url + "/user/me", this.httpOptions).pipe(
       map((res: Response) => {
-        console.log(res);
-        
-        return Object.assign(User, res.json());
+        return res;
+        //return Object.assign(User, res);
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
@@ -37,5 +36,17 @@ export class UserService {
       })
     )
   } 
+
+  updateUserMe(user:User): Observable<any>{
+    return this.http.put(this.url + "/user/me", user, this.httpOptions).pipe(
+      map((res: Response) => {
+        return Object.assign(User, res);
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    )
+  }
 
 }

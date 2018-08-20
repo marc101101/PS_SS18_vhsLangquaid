@@ -1,34 +1,58 @@
 <div class="container fullscreenBackground">
   <div class="circleBackground"></div>
-  <div class="columns is-mobile" style="padding: 2rem;  padding-bottom: 0rem;">
+    <div style="padding:2rem">
+      <h1 style="color:white; font-size: 2.5rem">Nutzerprofil</h1>
+    </div>
+  <div class="columns is-mobile" style="padding: 2rem; padding-top:0rem; padding-bottom: 0rem;">
     <div class="column is-2">
       <div style="margin-bottom: 1rem;">
         <span class="icon">
-          <i class="fas fa-user"></i>
+          <i class="fa fa-user"></i>
         </span>
-      </div>      
+      </div>
     </div>
-    <div class="column is-10" routerLink="/registration">
+    <div class="column is-10">
       <div style="font-size: 1.3rem; color:white; margin-top: -0.1rem">
-        Gisela Roberto
-      </div> 
+        {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
+      </div>
     </div>
   </div>
 
-  <section class="login" style="padding: 1rem; padding-top: 3rem">
+  <section class="login" style="padding: 1rem; padding-top: 0rem;">
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
-      <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.email" name="mail"
+      <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
         #mail="ngModel">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="Adresse" id="password" required [(ngModel)]="model.password"
-        name="password" #mail="ngModel">
-        <br>
-        <br>
-      <input class="input is-medium" type="text" placeholder="Telefonnummer" id="password" required [(ngModel)]="model.password"
-        name="password" #mail="ngModel">
-       <alert></alert> 
-      <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">Speichern</button>
+      <input class="input is-medium" type="text" placeholder="Telefon / Handy" id="mobile" [(ngModel)]="user.TEIL_HANDY" name="mobile" #mail="ngModel">
+      <br>
+      <br>
+      <input class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address"
+        #mail="ngModel">
+      <br>
+      <br>
+      <input class="input is-medium" type="text" placeholder="BIC" id="bic" [(ngModel)]="user.TEIL_BIC" name="bic" #mail="ngModel">
+      <br>
+      <br>
+      <input class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #mail="ngModel">
+      <br>
+      <br>
+      <alert></alert>
+      <div class="columns is-mobile">
+        <div class="column is-2">
+          <div style="margin-top: 0.5rem;" (click)="backClicked()">
+            <span class="icon" style="color: #00d1b2; padding: 1.5rem; padding-left: 1rem">
+              <i class="fa fa-chevron-left"></i>              
+            </span>
+          </div>
+        </div>
+        <div class="column is-10" style="padding: 0rem;">
+          <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">
+            <div>Speichern</div>
+            <i class="fa fa-circle-o-notch fa-spin iconCircle" *ngIf="circleSpinning"></i>
+          </button>
+        </div>
+      </div>
     </form>
   </section>
 </div>
