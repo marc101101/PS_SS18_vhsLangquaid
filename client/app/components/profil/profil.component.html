@@ -1,0 +1,34 @@
+<div class="container fullscreenBackground">
+  <div class="circleBackground"></div>
+  <div class="columns is-mobile" style="padding: 2rem;  padding-bottom: 0rem;">
+    <div class="column is-2">
+      <div style="margin-bottom: 1rem;">
+        <span class="icon">
+          <i class="fas fa-user"></i>
+        </span>
+      </div>      
+    </div>
+    <div class="column is-10" routerLink="/registration">
+      <div style="font-size: 1.3rem; color:white; margin-top: -0.1rem">
+        Gisela Roberto
+      </div> 
+    </div>
+  </div>
+
+  <section class="login" style="padding: 1rem; padding-top: 3rem">
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="model.mail" name="mail"
+        #mail="ngModel">
+      <br>
+      <br>
+      <input class="input is-medium" type="text" placeholder="Adresse" id="password" required [(ngModel)]="model.password"
+        name="password" #mail="ngModel">
+        <br>
+        <br>
+      <input class="input is-medium" type="text" placeholder="Telefonnummer" id="password" required [(ngModel)]="model.password"
+        name="password" #mail="ngModel">
+       <alert></alert> 
+      <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">Speichern</button>
+    </form>
+  </section>
+</div>
