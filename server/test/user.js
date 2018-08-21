@@ -70,8 +70,8 @@ describe('User', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.firstname.should.equal("John");
-        res.body.lastname.should.equal("Doe");
+        res.body.user.teil_vorname.should.equal("John");
+        res.body.user.teil_nachname.should.equal("Although");
         done();
       })
   });
@@ -90,8 +90,8 @@ describe('User', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
-            res.body.firstname.should.equal("John");
-            res.body.lastname.should.equal("Although");
+            res.body.user.teil_vorname.should.equal("John");
+            res.body.user.teil_nachname.should.equal("Although");
             done();
           });
       });
