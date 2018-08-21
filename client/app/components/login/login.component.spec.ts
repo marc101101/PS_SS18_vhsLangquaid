@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AlertComponent } from '../../directives';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../../services/alert.service';
-import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
