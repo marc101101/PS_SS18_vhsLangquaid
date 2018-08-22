@@ -14,12 +14,12 @@
       </div>
     </div>
   </div>
-  <div class="column" style="margin-top: -2rem;">
+  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
     <alert></alert>
   </div>
  
   <section class="login" style="padding: 1rem; padding-top: 0rem;">
-    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()">
       <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
         #mail="ngModel">
       <br>
@@ -46,8 +46,8 @@
           </div>
         </div>
         <div class="column is-10" style="padding: 0rem;">
-          <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">
-            <div>Speichern</div>
+          <button #save class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">
+            <div>{{button_text}}</div>
             <i class="fa fa-circle-o-notch fa-spin iconCircle" *ngIf="circleSpinning"></i>
           </button>
         </div>

@@ -24,3 +24,15 @@
     margin-left: 7rem;
     font-size: 1.5rem;
 }
+
+.is-primary{   
+    -webkit-transition: background-color 500ms linear;
+    -moz-transition: background-color 500ms linear;
+    -o-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+}
+
+.is-primary-save {
+    background-color: #209cee !important;
+}

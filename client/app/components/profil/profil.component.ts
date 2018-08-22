@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../model/User';
 import {Location} from '@angular/common';
+import { log } from 'util';
 
 
 @Component({
@@ -11,11 +12,16 @@ import {Location} from '@angular/common';
 })
 export class ProfilComponent implements OnInit {
 
+  @ViewChild('save') saveButton: ElementRef;
+
   public user: any;
   public dataIsAvailable: boolean = false;
-  public circleSpinning: boolean = false;
+  public button_text: string = 'Speichern';
 
-  constructor(private userService:UserService, private _location: Location) { }
+  constructor(
+    private userService:UserService, 
+    private _location: Location,
+    private renderer: Renderer2,) { }
 
   ngOnInit() {
     this.userService.getUserMe().subscribe(response => {    
@@ -25,10 +31,17 @@ export class ProfilComponent implements OnInit {
   }
 
   onSubmit() {
-    this.circleSpinning = true;
     this.userService.updateUserMe(this.user).subscribe(response => {
-      this.circleSpinning = false;
+      if(response.name != "HttpResponseError"){
+        this.renderer.addClass(this.saveButton.nativeElement, 'is-primary-save');
+        this.button_text = 'Speichern erfolgreich';
+      }  
     });
+  }
+
+  resetButton() {
+    this.renderer.removeClass(this.saveButton.nativeElement, 'is-primary-save');
+      this.button_text = 'Speichern';
   }
 
   backClicked() {
