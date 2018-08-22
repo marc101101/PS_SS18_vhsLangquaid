@@ -30,4 +30,10 @@ describe('ProfilComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should fill form correctly', () => {
+    component.ngOnInit();    
+    expect(component.user.TEIL_VORNAME).toEqual('JON');
+    expect(component).toBeTruthy();
+  });
 });

@@ -11,14 +11,15 @@ import {Location} from '@angular/common';
 })
 export class ProfilComponent implements OnInit {
 
-  public user: User;
+  public user: any;
   public dataIsAvailable: boolean = false;
   public circleSpinning: boolean = false;
 
   constructor(private userService:UserService, private _location: Location) { }
 
   ngOnInit() {
-    this.userService.getUserMe().subscribe(response => {
+    this.userService.getUserMe().subscribe(response => {    
+      this.dataIsAvailable = true; 
       this.user = response;
     });
   }
@@ -26,7 +27,6 @@ export class ProfilComponent implements OnInit {
   onSubmit() {
     this.circleSpinning = true;
     this.userService.updateUserMe(this.user).subscribe(response => {
-      this.dataIsAvailable = true;
       this.circleSpinning = false;
     });
   }

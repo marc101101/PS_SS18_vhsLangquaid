@@ -1,23 +1,23 @@
 <div class="container fullscreenBackground">
-  <div class="circleBackground"></div>
-    <div style="padding:2rem">
-      <h1 style="color:white; font-size: 2.5rem">Nutzerprofil</h1>
-    </div>
-  <div class="columns is-mobile" style="padding: 2rem; padding-top:0rem; padding-bottom: 0rem;">
-    <div class="column is-2">
-      <div style="margin-bottom: 1rem;">
+  <div class="circleBackground"></div>   
+  <div class="columns is-mobile" style="padding: 2rem; padding-bottom: 0rem;">
+    <div class="column is-2" style="padding: 1.4rem; padding-left: 0rem;">
+      <div>
         <span class="icon">
           <i class="fa fa-user"></i>
         </span>
       </div>
     </div>
     <div class="column is-10">
-      <div style="font-size: 1.3rem; color:white; margin-top: -0.1rem">
+      <div style="font-size: 1.5rem; color:white; margin-top: 0.2rem;">
         {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
       </div>
     </div>
   </div>
-
+  <div class="column" style="margin-top: -2rem;">
+    <alert></alert>
+  </div>
+ 
   <section class="login" style="padding: 1rem; padding-top: 0rem;">
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
       <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
@@ -31,16 +31,15 @@
         #mail="ngModel">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="BIC" id="bic" [(ngModel)]="user.TEIL_BIC" name="bic" #mail="ngModel">
+      <input class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ" name="blz" #mail="ngModel" maxlength="8">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #mail="ngModel">
+      <input class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #mail="ngModel" maxlength="22">
       <br>
       <br>
-      <alert></alert>
       <div class="columns is-mobile">
         <div class="column is-2">
-          <div style="margin-top: 0.5rem;" (click)="backClicked()">
+          <div style="margin-top: 0.65rem;" (click)="backClicked()">
             <span class="icon" style="color: #00d1b2; padding: 1.5rem; padding-left: 1rem">
               <i class="fa fa-chevron-left"></i>              
             </span>
