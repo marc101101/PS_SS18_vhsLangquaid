@@ -17,6 +17,7 @@ import { FormsModule }   from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { AlertComponent } from './directives';
 import { RouterModule } from '@angular/router';
+import { ProfilComponent } from './components/profil/profil.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
         RegistrationComponent,
         CategoriesComponent,
         PageNotFoundComponent,
-        AlertComponent
+        AlertComponent,
+        ProfilComponent
     ],
     imports: [
         HttpClientModule,
