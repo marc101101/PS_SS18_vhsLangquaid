@@ -1,4 +1,5 @@
-<div class="container" style="overflow: hidden;">
+<div class="container fullscreenBackground" style="overflow: hidden;">
+  <div class="circleBackground"></div>
   <div class="columns is-mobile">
     <div class="column is-6 box" [routerLink]="['/login']">
       Einloggen
@@ -25,12 +26,21 @@
     </div>
     <input class="input is-medium" type="text" placeholder="Vorname" style="margin-top: 1.5rem">
     <input class="input is-medium" type="text" placeholder="Nachname" style="margin-top: 1.5rem">
-    <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
-        <i class="fa fa-chevron-left"></i>              
-      </span>
-    <a class="button is-info is-medium is-fullwidth" (click)="state = state + 1" style="margin-top: 1.5rem">Weiter</a>
+   
+    <div class="columns is-mobile" style="padding:1rem">        
+        <div class="column is-12" style="padding: 0rem;">
+          <button class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem" (click)="state = state + 1">
+            <div>Weiter</div>           
+          </button>
+        </div>
+      </div>
+  </section>
 
-    <div class="columns is-mobile">
+  <section class="registrieren-1" *ngIf="state == 1" style="padding: 1rem; padding-top: 2rem">
+    <input class="input is-medium" type="text" placeholder="Straße, Hausnummer" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="PLZ" style="margin-top: 1.5rem">
+    <input class="input is-medium" type="text" placeholder="Wohnort" style="margin-top: 1.5rem">
+    <div class="columns is-mobile" style="padding:1rem">
         <div class="column is-2">
           <div style="margin-top: 0.65rem;" (click)="state = state - 1">
             <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
@@ -39,25 +49,31 @@
           </div>
         </div>
         <div class="column is-10" style="padding: 0rem;">
-          <button class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem">
+          <button class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem" (click)="state = state + 1">
             <div>Weiter</div>           
           </button>
         </div>
       </div>
   </section>
 
-  <section class="registrieren-1" *ngIf="state == 1" style="padding: 1rem; padding-top: 3rem">
-    <input class="input is-medium" type="text" placeholder="Straße, Hausnummer" style="margin-top: 1.5rem">
-    <input class="input is-medium" type="text" placeholder="PLZ" style="margin-top: 1.5rem">
-    <input class="input is-medium" type="text" placeholder="Wohnort" style="margin-top: 1.5rem">
-    <a class="button is-info is-medium is-fullwidth" (click)="state= state + 1" style="margin-top: 1.5rem">Weiter</a>
-  </section>
-
-  <section class="registrieren-2" *ngIf="state == 2" style="padding: 1rem; padding-top: 3rem">
+  <section class="registrieren-2" *ngIf="state == 2" style="padding: 1rem; padding-top: 2rem">
     <input class="input is-medium" type="text" placeholder="Telefon-Nummer" style="margin-top: 1.5rem">
     <input class="input is-medium" type="text" placeholder="Geburtsdatum" style="margin-top: 1.5rem">
     <input class="input is-medium" type="text" placeholder="Email" style="margin-top: 1.5rem">
-    <a class="button is-info is-medium is-fullwidth" (click)="state = state + 1" style="margin-top: 1.5rem">Weiter</a>
+    <div class="columns is-mobile" style="padding:1rem">
+        <div class="column is-2">
+          <div style="margin-top: 0.65rem;" (click)="state = state - 1">
+            <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
+              <i class="fa fa-chevron-left"></i>              
+            </span>
+          </div>
+        </div>
+        <div class="column is-10" style="padding: 0rem;">
+          <button class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem" (click)="state = state + 1">
+            <div>Weiter</div>           
+          </button>
+        </div>
+      </div>
   </section>
 
   <section class="registrieren-3" *ngIf="state == 3" style="padding: 1rem; padding-top: 3rem">
