@@ -23,10 +23,8 @@ exports.authPOST = function (data) {
       User.where({ TEIL_EMAIL: data.email })
         .fetch()
         .then((user) => {
-          /* check if the password is valid
-          var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+          var passwordIsValid = req.body.password.localeCompare(user.TEIL_PASSWORT);
           if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-          */
           let token = jwt.sign({ id: user.attributes.TEIL_ID }, config.secret, {
             expiresIn: 86400 // expires in 24 hours
           });
