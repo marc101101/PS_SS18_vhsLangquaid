@@ -8,13 +8,18 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent  implements OnInit {
 
+    mobile: boolean = false;
 
     constructor() {
 
     }
 
-    ngOnInit() {
-
+    ngOnInit(){
+      var ua = navigator.userAgent;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua))
+        this.mobile = true;
+      else
+        this.mobile = false;
     }
 
 }
