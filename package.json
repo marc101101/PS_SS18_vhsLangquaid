@@ -8,7 +8,7 @@
     "start:client": "ng serve",
     "start:server": "node index.js",
     "build:client": "ng build",
-    "start:prod": "ng build --prod && npm run start:server",
+    "start:prod": "npm run start:server",
     "test:server": "NODE_ENV=test mocha --exit ./server/test/*.js",
     "test:client": "ng test",
     "test:server_local": "mysql.server start && NODE_ENV=test mocha --exit ./server/test/*.js && mysql.server stop",
