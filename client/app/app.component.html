@@ -2,7 +2,7 @@
   <router-outlet></router-outlet>
 </div>
 
-<div class="container" *ngIf="!mobile" style="padding: 5%;">
+<div class="container" *ngIf="!mobile" style="padding: 5%; padding-top: 1%; padding-bottom: 1%;">
   <div class="columns is-desktop">
     <div class="column" style="margin-top: auto; margin-bottom: auto">
       <h1 class="title is-1">VHS Lanquaid
@@ -24,8 +24,8 @@
     </div>
 
     <div class="column">
-      <div class="device-wrapper">
-        <div class="device">
+      <div class="device-wrapper" [style.height.px]="calcHeight">
+        <div class="device" [style.height.px]="frameHeight" [style.width.px]="frameWidth">
           <div class="screen">
             <router-outlet></router-outlet>
           </div>

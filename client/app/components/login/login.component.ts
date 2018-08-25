@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserData } from '../../model/UserData';
 import { JwtHelper } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
+import { log } from 'util';
 
 @Component({
   selector: 'login',
