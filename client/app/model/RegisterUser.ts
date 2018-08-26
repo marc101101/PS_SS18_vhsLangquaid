@@ -5,10 +5,10 @@ export class RegisterUser {
         teil_nachname: string,
         teil_email: string,
         teil_notizen: string,
-        teil_geburtsdatum: Date,
+        teil_geburtsdatum: string,
         eingegeben_von_user: number,
-        eingegeben_am_datum: Date,
-        eingegeben_am_zeit: Date,
+        eingegeben_am_datum: string,
+        eingegeben_am_zeit: string,
         datenhistory: string,
         teil_strasse1: string,
         teil_ort: string,
@@ -38,10 +38,10 @@ export class RegisterUser {
     teil_nachname: string;
     teil_email: string;
     teil_notizen: string;
-    teil_geburtsdatum: Date;
+    teil_geburtsdatum: string;
     eingegeben_von_user: number;
-    eingegeben_am_datum: Date;
-    eingegeben_am_zeit: Date;
+    eingegeben_am_datum: string;
+    eingegeben_am_zeit: string;
     datenhistory: string;
     teil_strasse1: string;
     teil_ort: string;

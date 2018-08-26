@@ -51,7 +51,7 @@ export class UserService {
   }
 
   registerUser(user:RegisterUser): Observable<any>{
-    return this.http.post(this.url + "/user/me", user, this.httpOptions).pipe(
+    return this.http.post(this.url + "/user", user, this.httpOptions).pipe(
       map((res: Response) => {
         return Object.assign(User, res);
       }),
