@@ -5,24 +5,28 @@ export class RegisterUser {
         teil_nachname: string,
         teil_email: string,
         teil_notizen: string,
+        teil_geburtsdatum: Date,
         eingegeben_von_user: number,
-        eingegeben_am_datum: string,
-        eingegeben_am_zeit: string,
+        eingegeben_am_datum: Date,
+        eingegeben_am_zeit: Date,
         datenhistory: string,
+        teil_strasse1: string,
         teil_ort: string,
         teil_plz: string,
         teil_blz: string,
         teil_iban: string,
-        teil_anrede: string,
+        teil_anrede: number,
     ) {
         this.teil_vorname = teil_vorname;
         this.teil_nachname = teil_nachname;
         this.teil_email = teil_email;
         this.teil_notizen = teil_notizen;
+        this.teil_geburtsdatum = teil_geburtsdatum;
         this.eingegeben_von_user = eingegeben_von_user;
         this.eingegeben_am_datum = eingegeben_am_datum;
         this.eingegeben_am_zeit = eingegeben_am_zeit;
         this.datenhistory = datenhistory;
+        this.teil_strasse1 = teil_strasse1;
         this.teil_ort = teil_ort;
         this.teil_plz = teil_plz;
         this.teil_blz = teil_blz;
@@ -34,13 +38,15 @@ export class RegisterUser {
     teil_nachname: string;
     teil_email: string;
     teil_notizen: string;
+    teil_geburtsdatum: Date;
     eingegeben_von_user: number;
-    eingegeben_am_datum: string;
-    eingegeben_am_zeit: string;
+    eingegeben_am_datum: Date;
+    eingegeben_am_zeit: Date;
     datenhistory: string;
+    teil_strasse1: string;
     teil_ort: string;
     teil_plz: string;
     teil_blz: string;
     teil_iban: string;
-    teil_anrede: string;
+    teil_anrede: number;
 }
