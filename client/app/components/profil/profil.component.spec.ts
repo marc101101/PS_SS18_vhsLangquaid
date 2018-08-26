@@ -1,29 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
-import { AlertComponent } from '../../directives';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ProfilComponent } from './profil.component';
+import { UserService } from '../../services/user.service';
+import { AlertComponent } from '../../directives';
 
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('ProfilComponent', () => {
+  let component: ProfilComponent;
+  let fixture: ComponentFixture<ProfilComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent, AlertComponent],
+      declarations: [ ProfilComponent, AlertComponent ],
       imports: [ FormsModule, HttpClientModule, RouterTestingModule ],
-      providers: [ AuthService, AlertService ],
+      providers: [ UserService, AlertService ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(ProfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -31,4 +30,5 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

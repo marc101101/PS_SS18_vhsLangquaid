@@ -6,6 +6,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { CategoriesComponent } from './components/categories/categories.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/not-found';
+import { ProfilComponent } from './components/profil/profil.component';
 
  const routes: Routes = [
     {
@@ -23,7 +24,11 @@ import { PageNotFoundComponent } from './components/not-found';
     },
     {
         path: 'categories',
-        component: CategoriesComponent,
+        component: CategoriesComponent
+    },
+    {
+        path: 'profil',
+        component: ProfilComponent,
         canActivate: [AuthGuard]
     },
     {

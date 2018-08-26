@@ -93,6 +93,9 @@ export class AlertService {
       this.router.navigate(['/error']);
       return;
     } else {
+      if(response.name = "HttpResponseError"){
+        return 'Verbindung unterbrochen.'
+      }
       if (response === undefined || response === 0 || response.statusText === '') {
         return 'Connection Error!';
       }

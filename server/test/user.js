@@ -91,7 +91,7 @@ describe('User', () => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.TEIL_VORNAME.should.equal("John");
-            res.body.TEIL_NACHNAME.should.equal("Although");
+            res.body.TEIL_NACHNAME.should.equal("Although");           
             done();
           });
       });

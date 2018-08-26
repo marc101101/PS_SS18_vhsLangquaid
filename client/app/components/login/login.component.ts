@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private authSerive: AuthService, private router:Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/categories';
-    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/profil';
   }
 
   onSubmit() {
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
       if (data.token && !this.jwtHelper.isTokenExpired(data.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', data.token);       
-        this.router.navigate(['/categories']).catch(error => {
+        this.router.navigate(['/profil']).catch(error => {
           console.log(error);
         });
       }
