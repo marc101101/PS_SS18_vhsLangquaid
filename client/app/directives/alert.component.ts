@@ -22,12 +22,16 @@ export class AlertComponent implements OnInit, OnDestroy {
       this.message = {text: this.alertService.getStatusText()};
     }
     this.subscription = this.alertService.getMessage().subscribe(message => {      
-      if(message.text == "clear"){
-        this.message = null;       
-      }      
-      else{
-        this.message = message; 
-      }      
+      try {
+        if(message.text == "clear"){
+          this.message = null;       
+        }      
+        else{
+          this.message = message; 
+        }       
+      } catch (error) {
+        
+      }
     });   
   }
 

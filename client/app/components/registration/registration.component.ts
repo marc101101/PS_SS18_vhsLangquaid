@@ -32,7 +32,9 @@ export class RegistrationComponent implements OnInit {
     if(this.validateUser()){
       this.alertService.setErrorMessage("clear");
         this.userService.registerUser(this.user).subscribe(response => {
-          this.login = true; 
+          if(response.name != "HttpResponseError"){
+            this.login = true; 
+          }
         });
     }    
   }
@@ -87,11 +89,10 @@ export class RegistrationComponent implements OnInit {
 
   generate(start: number, end: number){
     let returnValue = [];
-
     for (let index = start; index < end +1; index++) {
       returnValue.push(index);      
     }
-
+    
     return returnValue;
   }
 
