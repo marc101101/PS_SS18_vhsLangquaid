@@ -1,52 +1,48 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.16  Distrib 10.3.8-MariaDB, for osx10.12 (x86_64)
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 16. Mai 2018 um 10:09
--- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.0.15
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: usr_p100480_1
+-- ------------------------------------------------------
+-- Server version	10.3.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Datenbank: `usr_p100480_1`
+-- Table structure for table `cms_bilder`
 --
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cms_bilder`
---
-
+DROP TABLE IF EXISTS `cms_bilder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_bilder` (
-  `BILD_ID` int(11) NOT NULL,
+  `BILD_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BILD_PFAD` varchar(255) DEFAULT NULL,
-  `BILD_BIO_ID` int(11) DEFAULT '1',
+  `BILD_BIO_ID` int(11) DEFAULT 1,
   `BILD_UNTERORDNER` varchar(200) DEFAULT NULL,
   `BILD_TITEL` varchar(200) DEFAULT NULL,
   `BILD_URHEBER` varchar(255) DEFAULT NULL,
   `BILD_URL` varchar(255) DEFAULT NULL,
-  `BILD_LIZENZART` int(4) DEFAULT '0',
+  `BILD_LIZENZART` int(4) DEFAULT 0,
   `BILD_COPY` varchar(255) DEFAULT NULL,
-  `BILD_COPY_TEMP` int(4) DEFAULT '0',
-  `BILD_EIGENES` tinyint(1) DEFAULT '0',
-  `BILD_FREIGABE` tinyint(1) DEFAULT '0',
+  `BILD_COPY_TEMP` int(4) DEFAULT 0,
+  `BILD_EIGENES` tinyint(1) DEFAULT 0,
+  `BILD_FREIGABE` tinyint(1) DEFAULT 0,
   `BILD_FREIGABEAM` date DEFAULT NULL,
   `BILD_FREIGABEVON` varchar(100) DEFAULT NULL,
   `BILD_FREIGABEAN` varchar(100) DEFAULT NULL,
-  `BILD_FREIGABEWIE` int(4) DEFAULT '0',
+  `BILD_FREIGABEWIE` int(4) DEFAULT 0,
   `BILD_GEPRUEFTVON` varchar(200) DEFAULT NULL,
-  `BILD_NOSPEICHERN` tinyint(1) DEFAULT '0',
-  `BILD_WASSERZEICHEN` int(4) DEFAULT '0',
-  `BILD_FREIGABE_ANZEIGE` tinyint(1) DEFAULT '0',
+  `BILD_NOSPEICHERN` tinyint(1) DEFAULT 0,
+  `BILD_WASSERZEICHEN` int(4) DEFAULT 0,
+  `BILD_FREIGABE_ANZEIGE` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -62,20 +58,32 @@ CREATE TABLE `cms_bilder` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`BILD_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2021 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_bilder_ordner`
+-- Dumping data for table `cms_bilder`
 --
 
+LOCK TABLES `cms_bilder` WRITE;
+/*!40000 ALTER TABLE `cms_bilder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_bilder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_bilder_ordner`
+--
+
+DROP TABLE IF EXISTS `cms_bilder_ordner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_bilder_ordner` (
-  `BIO_ID` int(11) NOT NULL,
+  `BIO_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BIO_ORDNER` varchar(255) DEFAULT NULL,
   `BIO_IMAGE` varchar(30) DEFAULT 'images',
   `CHECKSUM` varchar(50) DEFAULT NULL,
@@ -93,20 +101,32 @@ CREATE TABLE `cms_bilder_ordner` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`BIO_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_bilder_web`
+-- Dumping data for table `cms_bilder_ordner`
 --
 
+LOCK TABLES `cms_bilder_ordner` WRITE;
+/*!40000 ALTER TABLE `cms_bilder_ordner` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_bilder_ordner` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_bilder_web`
+--
+
+DROP TABLE IF EXISTS `cms_bilder_web`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_bilder_web` (
-  `BIW_ID` int(11) NOT NULL,
+  `BIW_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BIW_TITEL` varchar(100) DEFAULT NULL,
   `BIW_URL_SITE` varchar(255) DEFAULT NULL,
   `BIW_URL_BILD` varchar(255) DEFAULT NULL,
@@ -130,20 +150,32 @@ CREATE TABLE `cms_bilder_web` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`BIW_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_buttonstile`
+-- Dumping data for table `cms_bilder_web`
 --
 
+LOCK TABLES `cms_bilder_web` WRITE;
+/*!40000 ALTER TABLE `cms_bilder_web` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_bilder_web` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_buttonstile`
+--
+
+DROP TABLE IF EXISTS `cms_buttonstile`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_buttonstile` (
-  `BUTT_ID` int(11) NOT NULL,
+  `BUTT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BUTT_NAME` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `BUTT_DATEI` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `BUTT_UEBERGEBENID` tinyint(1) DEFAULT NULL,
@@ -155,7 +187,7 @@ CREATE TABLE `cms_buttonstile` (
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
@@ -163,31 +195,43 @@ CREATE TABLE `cms_buttonstile` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`BUTT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_config`
+-- Dumping data for table `cms_buttonstile`
 --
 
+LOCK TABLES `cms_buttonstile` WRITE;
+/*!40000 ALTER TABLE `cms_buttonstile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_buttonstile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_config`
+--
+
+DROP TABLE IF EXISTS `cms_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_config` (
-  `CONF_ID` int(11) NOT NULL,
+  `CONF_ID` int(11) NOT NULL AUTO_INCREMENT,
   `CONF_NAME` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CONF_STARTTEXT` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DEFAULT_MOD` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DEFAULT_MOD_REG` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEMP_ID` int(11) NOT NULL DEFAULT '0',
+  `TEMP_ID` int(11) NOT NULL DEFAULT 0,
   `CONF_CSS_NAVIGATION` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
-  `DEFAULT_LANGUAGE` int(11) NOT NULL DEFAULT '0',
-  `CONF_NAV_CSS` tinyint(1) DEFAULT '0',
-  `CONF_STRUKTUR_ID` int(10) DEFAULT '20',
+  `DEFAULT_LANGUAGE` int(11) NOT NULL DEFAULT 0,
+  `CONF_NAV_CSS` tinyint(1) DEFAULT 0,
+  `CONF_STRUKTUR_ID` int(10) DEFAULT 20,
   `CONF_STYLE` varchar(20) DEFAULT 'blue1',
   `CHECKSUM` varchar(22) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
@@ -201,20 +245,32 @@ CREATE TABLE `cms_config` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`CONF_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_datenbanken`
+-- Dumping data for table `cms_config`
 --
 
+LOCK TABLES `cms_config` WRITE;
+/*!40000 ALTER TABLE `cms_config` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_config` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_datenbanken`
+--
+
+DROP TABLE IF EXISTS `cms_datenbanken`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_datenbanken` (
-  `DB_ID` int(11) NOT NULL,
+  `DB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DB_REFER_ID` varchar(60) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DB_BEZEICHNUNG` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DB_SERVER` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -222,7 +278,7 @@ CREATE TABLE `cms_datenbanken` (
   `DB_USERNAME` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DB_PASSWORD` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `DB_PORT` varchar(5) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `DB_SYSDB_ID` int(11) NOT NULL DEFAULT '0',
+  `DB_SYSDB_ID` int(11) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -238,21 +294,33 @@ CREATE TABLE `cms_datenbanken` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`DB_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_dsgvo`
+-- Dumping data for table `cms_datenbanken`
 --
 
+LOCK TABLES `cms_datenbanken` WRITE;
+/*!40000 ALTER TABLE `cms_datenbanken` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_datenbanken` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_dsgvo`
+--
+
+DROP TABLE IF EXISTS `cms_dsgvo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_dsgvo` (
-  `DS_ID` int(11) NOT NULL,
-  `DS_USER_ID` int(10) DEFAULT '0',
+  `DS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DS_USER_ID` int(10) DEFAULT 0,
   `DS_MODUL` varchar(50) DEFAULT NULL,
   `DS_DATENSATZ_ID` varchar(11) DEFAULT NULL,
   `DS_FELD` varchar(50) DEFAULT NULL,
@@ -272,37 +340,61 @@ CREATE TABLE `cms_dsgvo` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `PID` int(4) DEFAULT '0',
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `PID` int(4) DEFAULT 0,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`DS_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_error`
+-- Dumping data for table `cms_dsgvo`
 --
 
+LOCK TABLES `cms_dsgvo` WRITE;
+/*!40000 ALTER TABLE `cms_dsgvo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_dsgvo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_error`
+--
+
+DROP TABLE IF EXISTS `cms_error`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_error` (
-  `ERROR_ID` int(11) NOT NULL,
-  `ERROR_POST` tinyint(2) NOT NULL DEFAULT '0',
+  `ERROR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ERROR_POST` tinyint(2) NOT NULL DEFAULT 0,
   `ERROR_TEXT` varchar(250) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ERROR_IP` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ERROR_ADRESSE` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ERROR_DATE` date NOT NULL DEFAULT '0000-00-00',
-  `ERROR_TIME` time NOT NULL DEFAULT '00:00:00'
+  `ERROR_TIME` time NOT NULL DEFAULT '00:00:00',
+  PRIMARY KEY (`ERROR_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Fehlereinträge';
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_error_log`
+-- Dumping data for table `cms_error`
 --
 
+LOCK TABLES `cms_error` WRITE;
+/*!40000 ALTER TABLE `cms_error` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_error` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_error_log`
+--
+
+DROP TABLE IF EXISTS `cms_error_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_error_log` (
-  `ERROR_ID` int(11) NOT NULL,
+  `ERROR_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ERROR_SESSIONID` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `ERROR_USER_ID` int(11) DEFAULT NULL,
   `ERROR_MODUL_NAV_ID` int(11) DEFAULT NULL,
@@ -310,12 +402,12 @@ CREATE TABLE `cms_error_log` (
   `ERROR_FORMULAR` tinyint(1) DEFAULT NULL,
   `ERROR_DATEI` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `ERROR_ZEILE` int(7) DEFAULT NULL,
-  `ERROR_FEHLERTEXT` text COLLATE latin1_german2_ci,
-  `ERROR_SYSTEM_FEHLERTEXT` text COLLATE latin1_german2_ci,
+  `ERROR_FEHLERTEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `ERROR_SYSTEM_FEHLERTEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
   `ERROR_SYSDB_ID` int(11) DEFAULT NULL,
   `ERROR_DATUM` date DEFAULT NULL,
   `ERROR_ZEIT` time DEFAULT NULL,
-  `ERROR_BESCHREIBUNG` text COLLATE latin1_german2_ci,
+  `ERROR_BESCHREIBUNG` text COLLATE latin1_german2_ci DEFAULT NULL,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -332,19 +424,31 @@ CREATE TABLE `cms_error_log` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ERROR_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=8156 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_files`
+-- Dumping data for table `cms_error_log`
 --
 
+LOCK TABLES `cms_error_log` WRITE;
+/*!40000 ALTER TABLE `cms_error_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_error_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_files`
+--
+
+DROP TABLE IF EXISTS `cms_files`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_files` (
-  `FILE_ID` int(11) NOT NULL,
+  `FILE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FILE_DATE` date DEFAULT NULL,
   `FILE_MODUL` varchar(50) DEFAULT NULL,
   `FILE_CODE` varchar(30) DEFAULT NULL,
@@ -355,8 +459,8 @@ CREATE TABLE `cms_files` (
   `FILE_DS_ID` int(11) DEFAULT NULL,
   `FILE_TYPE` varchar(10) DEFAULT NULL,
   `FILE_DOCUMENT` varchar(50) DEFAULT NULL,
-  `FILE_DV_ID` int(11) NOT NULL DEFAULT '0',
-  `FILE_SPEICHERDAUERT` int(10) DEFAULT '360',
+  `FILE_DV_ID` int(11) NOT NULL DEFAULT 0,
+  `FILE_SPEICHERDAUERT` int(10) DEFAULT 360,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -372,106 +476,147 @@ CREATE TABLE `cms_files` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`FILE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_groups`
+-- Dumping data for table `cms_files`
 --
 
+LOCK TABLES `cms_files` WRITE;
+/*!40000 ALTER TABLE `cms_files` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_files` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_groups`
+--
+
+DROP TABLE IF EXISTS `cms_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_groups` (
-  `GROUP_ID` int(11) NOT NULL,
+  `GROUP_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GROUP_NAME` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GROUP_ADMIN` tinyint(2) NOT NULL DEFAULT '0',
-  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT '0',
-  `GROUP_CONF_ID` int(11) NOT NULL DEFAULT '0',
-  `GROUP_LEVEL` int(2) DEFAULT '0',
+  `GROUP_ADMIN` tinyint(2) NOT NULL DEFAULT 0,
+  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT 0,
+  `GROUP_CONF_ID` int(11) NOT NULL DEFAULT 0,
+  `GROUP_LEVEL` int(2) DEFAULT 0,
   `CHECKSUM` varchar(22) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
-  `GROUP_GESPERRT` tinyint(1) NOT NULL DEFAULT '0',
-  `GROUP_BUTTONFEST` tinyint(1) NOT NULL DEFAULT '0',
+  `GROUP_GESPERRT` tinyint(1) NOT NULL DEFAULT 0,
+  `GROUP_BUTTONFEST` tinyint(1) NOT NULL DEFAULT 0,
   `GROUP_BUTTON_ID` int(11) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Benutzergruppen';
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`GROUP_ID`),
+  KEY `GROUP_NAME` (`GROUP_NAME`),
+  KEY `GROUP_ADMIN` (`GROUP_ADMIN`),
+  KEY `GROUP_CONF_ID` (`GROUP_CONF_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Benutzergruppen';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_groups_rights`
+-- Dumping data for table `cms_groups`
 --
 
+LOCK TABLES `cms_groups` WRITE;
+/*!40000 ALTER TABLE `cms_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_groups_rights`
+--
+
+DROP TABLE IF EXISTS `cms_groups_rights`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_groups_rights` (
-  `GROUP_RIGHT_ID` int(11) NOT NULL,
-  `GROUP_ID` int(11) NOT NULL DEFAULT '0',
-  `NAV_ID` int(11) NOT NULL DEFAULT '0',
-  `RIGHT_READ` tinyint(2) NOT NULL DEFAULT '0',
-  `RIGHT_INSERT` tinyint(2) NOT NULL DEFAULT '0',
-  `RIGHT_WRITE` tinyint(2) NOT NULL DEFAULT '0',
-  `RIGHT_DELETE` tinyint(2) NOT NULL DEFAULT '0',
+  `GROUP_RIGHT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GROUP_ID` int(11) NOT NULL DEFAULT 0,
+  `NAV_ID` int(11) NOT NULL DEFAULT 0,
+  `RIGHT_READ` tinyint(2) NOT NULL DEFAULT 0,
+  `RIGHT_INSERT` tinyint(2) NOT NULL DEFAULT 0,
+  `RIGHT_WRITE` tinyint(2) NOT NULL DEFAULT 0,
+  `RIGHT_DELETE` tinyint(2) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(22) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
-  `SHOW_EXPORT` tinyint(1) NOT NULL DEFAULT '0',
-  `SHOW_IMPORT` tinyint(1) DEFAULT '0',
-  `SHOW_SAVE` tinyint(1) NOT NULL DEFAULT '0',
-  `SHOW_FILTER` tinyint(1) NOT NULL DEFAULT '0',
-  `EDIT_LIST` tinyint(1) DEFAULT '0',
-  `SHOW_PRINT` tinyint(1) NOT NULL DEFAULT '0',
+  `SHOW_EXPORT` tinyint(1) NOT NULL DEFAULT 0,
+  `SHOW_IMPORT` tinyint(1) DEFAULT 0,
+  `SHOW_SAVE` tinyint(1) NOT NULL DEFAULT 0,
+  `SHOW_FILTER` tinyint(1) NOT NULL DEFAULT 0,
+  `EDIT_LIST` tinyint(1) DEFAULT 0,
+  `SHOW_PRINT` tinyint(1) NOT NULL DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `RIGHT_LOCK` tinyint(1) DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`GROUP_RIGHT_ID`),
+  KEY `GROUP_ID` (`GROUP_ID`),
+  KEY `NAV_ID` (`NAV_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3150 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_hacking_log`
+-- Dumping data for table `cms_groups_rights`
 --
 
+LOCK TABLES `cms_groups_rights` WRITE;
+/*!40000 ALTER TABLE `cms_groups_rights` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_groups_rights` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_hacking_log`
+--
+
+DROP TABLE IF EXISTS `cms_hacking_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_hacking_log` (
-  `HACK_ID` int(11) NOT NULL,
+  `HACK_ID` int(11) NOT NULL AUTO_INCREMENT,
   `HACK_SESSIONID` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `HACK_USER_ID` int(11) DEFAULT NULL,
   `HACK_DATUM` date DEFAULT NULL,
   `HACK_ZEIT` time DEFAULT NULL,
   `HACK_IP` varchar(25) COLLATE latin1_german2_ci DEFAULT NULL,
-  `HACK_POST_TEXT` text COLLATE latin1_german2_ci,
-  `HACK_GET_TEXT` text COLLATE latin1_german2_ci,
+  `HACK_POST_TEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `HACK_GET_TEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
   `HACK_MODUL_NAV_ID` int(11) DEFAULT NULL,
   `HACK_SUBMODUL_NAV_ID` int(11) DEFAULT NULL,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
@@ -490,24 +635,36 @@ CREATE TABLE `cms_hacking_log` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`HACK_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=9104 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_languages`
+-- Dumping data for table `cms_hacking_log`
 --
 
+LOCK TABLES `cms_hacking_log` WRITE;
+/*!40000 ALTER TABLE `cms_hacking_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_hacking_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_languages`
+--
+
+DROP TABLE IF EXISTS `cms_languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_languages` (
-  `LANG_ID` int(11) NOT NULL,
+  `LANG_ID` int(11) NOT NULL AUTO_INCREMENT,
   `LANGUAGE` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `LANG_ICON` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL,
   `LANG_KURZ` varchar(5) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `CHECKSUM` varchar(22) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
@@ -521,31 +678,43 @@ CREATE TABLE `cms_languages` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`LANG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_nachrichten`
+-- Dumping data for table `cms_languages`
 --
 
+LOCK TABLES `cms_languages` WRITE;
+/*!40000 ALTER TABLE `cms_languages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_languages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_nachrichten`
+--
+
+DROP TABLE IF EXISTS `cms_nachrichten`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_nachrichten` (
-  `NEWS_ID` int(11) NOT NULL,
+  `NEWS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NEWS_TITEL` varchar(255) DEFAULT NULL,
-  `NEWS_TEXT` text,
+  `NEWS_TEXT` text DEFAULT NULL,
   `NEWS_VON` varchar(255) DEFAULT NULL,
   `NEWS_GROUP_ID` int(11) DEFAULT NULL,
-  `NEWS_NAV_ID` int(11) DEFAULT '0',
+  `NEWS_NAV_ID` int(11) DEFAULT 0,
   `NEWS_DATUM_VON` date DEFAULT NULL,
   `NEWS_DATUM_BIS` date DEFAULT NULL,
-  `NEWS_BILD_ID` int(10) DEFAULT '0',
+  `NEWS_BILD_ID` int(10) DEFAULT 0,
   `NEWS_BILD` varchar(255) DEFAULT NULL,
   `NEWS_EMAIL` varchar(255) DEFAULT NULL,
-  `NEWS_ANZEIGEN` tinyint(1) DEFAULT '0',
+  `NEWS_ANZEIGEN` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -557,27 +726,39 @@ CREATE TABLE `cms_nachrichten` (
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
+  `DATENHISTORY` text DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
   `NEWS_BILDT` varchar(255) DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`NEWS_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_nachrichten_groups`
+-- Dumping data for table `cms_nachrichten`
 --
 
+LOCK TABLES `cms_nachrichten` WRITE;
+/*!40000 ALTER TABLE `cms_nachrichten` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_nachrichten` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_nachrichten_groups`
+--
+
+DROP TABLE IF EXISTS `cms_nachrichten_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_nachrichten_groups` (
-  `NG_ID` int(11) NOT NULL,
-  `NG_NACH_ID` int(11) DEFAULT '0',
-  `NG_GROUP_ID` int(11) DEFAULT '0',
+  `NG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NG_NACH_ID` int(11) DEFAULT 0,
+  `NG_GROUP_ID` int(11) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -593,22 +774,34 @@ CREATE TABLE `cms_nachrichten_groups` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`NG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_nachrichten_module`
+-- Dumping data for table `cms_nachrichten_groups`
 --
 
+LOCK TABLES `cms_nachrichten_groups` WRITE;
+/*!40000 ALTER TABLE `cms_nachrichten_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_nachrichten_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_nachrichten_module`
+--
+
+DROP TABLE IF EXISTS `cms_nachrichten_module`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_nachrichten_module` (
-  `NM_ID` int(11) NOT NULL,
-  `NM_NACH_ID` int(11) DEFAULT '0',
-  `NM_NAV_ID` int(11) DEFAULT '0',
+  `NM_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NM_NACH_ID` int(11) DEFAULT 0,
+  `NM_NAV_ID` int(11) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -624,24 +817,36 @@ CREATE TABLE `cms_nachrichten_module` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`NM_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_nachrichten_user`
+-- Dumping data for table `cms_nachrichten_module`
 --
 
+LOCK TABLES `cms_nachrichten_module` WRITE;
+/*!40000 ALTER TABLE `cms_nachrichten_module` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_nachrichten_module` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_nachrichten_user`
+--
+
+DROP TABLE IF EXISTS `cms_nachrichten_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_nachrichten_user` (
-  `NU_ID` int(11) NOT NULL,
-  `NU_NACH_ID` int(11) DEFAULT '0',
-  `NU_USER_ID` int(11) DEFAULT '0',
-  `NU_GELESEN` tinyint(1) DEFAULT '1',
-  `NU_AUSBLENDEN` tinyint(1) DEFAULT '0',
+  `NU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NU_NACH_ID` int(11) DEFAULT 0,
+  `NU_USER_ID` int(11) DEFAULT 0,
+  `NU_GELESEN` tinyint(1) DEFAULT 1,
+  `NU_AUSBLENDEN` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -657,59 +862,71 @@ CREATE TABLE `cms_nachrichten_user` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`NU_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=449 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_navigation`
+-- Dumping data for table `cms_nachrichten_user`
 --
 
+LOCK TABLES `cms_nachrichten_user` WRITE;
+/*!40000 ALTER TABLE `cms_nachrichten_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_nachrichten_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_navigation`
+--
+
+DROP TABLE IF EXISTS `cms_navigation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_navigation` (
-  `NAV_ID` int(11) NOT NULL,
+  `NAV_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAV_REFER_ID` varchar(60) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_TEXT` varchar(150) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_TEXT_FORMULAR` varchar(150) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_BESCHREIBUNG` text COLLATE latin1_german2_ci NOT NULL,
-  `NAV_LANG_ID` int(11) DEFAULT '0',
-  `NAV_SSL` tinyint(1) DEFAULT '0',
-  `NAV_LANG_TEXTE` text COLLATE latin1_german2_ci,
+  `NAV_LANG_ID` int(11) DEFAULT 0,
+  `NAV_SSL` tinyint(1) DEFAULT 0,
+  `NAV_LANG_TEXTE` text COLLATE latin1_german2_ci DEFAULT NULL,
   `NAV_DATEI` varchar(200) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_DATEI_FORMULAR` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_ORDNER` varchar(200) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_KLASSENNAME` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `NAV_LINK` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `NAV_LINK_FRAME` tinyint(1) DEFAULT '1',
-  `NAV_PARENT` int(11) NOT NULL DEFAULT '0',
+  `NAV_LINK_FRAME` tinyint(1) DEFAULT 1,
+  `NAV_PARENT` int(11) NOT NULL DEFAULT 0,
   `NAV_CHILD_FORM` varchar(200) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `NAV_ALL_USERS` tinyint(1) DEFAULT '0',
-  `NAV_TOPNAV_SUBMENU_SELECT` int(11) NOT NULL DEFAULT '0',
-  `NAV_GRUPPIERUNG` tinyint(1) NOT NULL DEFAULT '0',
-  `NAV_OPEN` tinyint(1) NOT NULL DEFAULT '0',
-  `NAV_POSITION` tinyint(4) NOT NULL DEFAULT '0',
-  `NAV_LEERZEILE` tinyint(2) NOT NULL DEFAULT '0',
-  `NAV_FETT` tinyint(2) NOT NULL DEFAULT '0',
+  `NAV_ALL_USERS` tinyint(1) DEFAULT 0,
+  `NAV_TOPNAV_SUBMENU_SELECT` int(11) NOT NULL DEFAULT 0,
+  `NAV_GRUPPIERUNG` tinyint(1) NOT NULL DEFAULT 0,
+  `NAV_OPEN` tinyint(1) NOT NULL DEFAULT 0,
+  `NAV_POSITION` tinyint(4) NOT NULL DEFAULT 0,
+  `NAV_LEERZEILE` tinyint(2) NOT NULL DEFAULT 0,
+  `NAV_FETT` tinyint(2) NOT NULL DEFAULT 0,
   `NAV_ACCESSKEY` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
-  `NAV_VORLESEN` text COLLATE latin1_german2_ci,
-  `NAV_NUR_FORMULAR` tinyint(1) NOT NULL DEFAULT '0',
-  `NAV_NORESET` tinyint(1) DEFAULT '0',
-  `NAV_WARTUNG_SPERREN` tinyint(1) DEFAULT '1',
-  `NAV_TLAY_ID` int(11) NOT NULL DEFAULT '0',
-  `NAV_SUBMODUL` tinyint(2) NOT NULL DEFAULT '0',
-  `NAV_BUTT_ID` int(11) NOT NULL DEFAULT '0',
+  `NAV_VORLESEN` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `NAV_NUR_FORMULAR` tinyint(1) NOT NULL DEFAULT 0,
+  `NAV_NORESET` tinyint(1) DEFAULT 0,
+  `NAV_WARTUNG_SPERREN` tinyint(1) DEFAULT 1,
+  `NAV_TLAY_ID` int(11) NOT NULL DEFAULT 0,
+  `NAV_SUBMODUL` tinyint(2) NOT NULL DEFAULT 0,
+  `NAV_BUTT_ID` int(11) NOT NULL DEFAULT 0,
   `NAV_CSS` varchar(100) COLLATE latin1_german2_ci NOT NULL,
-  `NAV_DEAKTIV` tinyint(1) NOT NULL DEFAULT '0',
+  `NAV_DEAKTIV` tinyint(1) NOT NULL DEFAULT 0,
   `NAV_BILDT` varchar(250) COLLATE latin1_german2_ci DEFAULT NULL,
   `NAV_BILD` varchar(250) COLLATE latin1_german2_ci DEFAULT NULL,
-  `NAV_BILD_RECHTS` tinyint(1) NOT NULL DEFAULT '0',
-  `NAV_BILD_SUBNAV` tinyint(1) DEFAULT '1',
-  `NAV_BILDDB_ADDON` tinyint(1) DEFAULT '0',
-  `NAV_SCH_ID` int(11) NOT NULL DEFAULT '0',
-  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT '0',
-  `NAV_UEBERSCHRIFT` tinyint(1) NOT NULL DEFAULT '0',
+  `NAV_BILD_RECHTS` tinyint(1) NOT NULL DEFAULT 0,
+  `NAV_BILD_SUBNAV` tinyint(1) DEFAULT 1,
+  `NAV_BILDDB_ADDON` tinyint(1) DEFAULT 0,
+  `NAV_SCH_ID` int(11) NOT NULL DEFAULT 0,
+  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT 0,
+  `NAV_UEBERSCHRIFT` tinyint(1) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(22) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
@@ -723,83 +940,127 @@ CREATE TABLE `cms_navigation` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
-  `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Alle Module mit Rechten';
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cms_notice`
---
-
-CREATE TABLE `cms_notice` (
-  `NOT_ID` int(11) NOT NULL,
-  `CHECKSUM` varchar(50) DEFAULT NULL,
-  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
-  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
-  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cms_numbers`
---
-
-CREATE TABLE `cms_numbers` (
-  `NUMB_ID` int(11) NOT NULL,
-  `NUMB_NAME` varchar(150) DEFAULT NULL,
-  `NUMB_SHORT` varchar(15) DEFAULT NULL,
-  `NUMB_NUMBER` int(10) DEFAULT '0',
-  `NUMB_INCREMENT` int(10) DEFAULT '1',
-  `CHECKSUM` varchar(50) DEFAULT NULL,
-  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
-  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
-  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  PRIMARY KEY (`NAV_ID`),
+  KEY `NAV_REFER_ID` (`NAV_REFER_ID`),
+  KEY `NAV_TEXT` (`NAV_TEXT`),
+  KEY `NAV_TEXT_FORMULAR` (`NAV_TEXT_FORMULAR`),
+  KEY `NAV_DATEI` (`NAV_DATEI`),
+  KEY `NAV_DATEI_FORMULAR` (`NAV_DATEI_FORMULAR`),
+  KEY `NAV_ORDNER` (`NAV_ORDNER`),
+  KEY `NAV_KLASSENNAME` (`NAV_KLASSENNAME`),
+  KEY `NAV_PARENT` (`NAV_PARENT`)
+) ENGINE=MyISAM AUTO_INCREMENT=704 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Alle Module mit Rechten';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cms_navigation`
+--
+
+LOCK TABLES `cms_navigation` WRITE;
+/*!40000 ALTER TABLE `cms_navigation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_navigation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_notice`
+--
+
+DROP TABLE IF EXISTS `cms_notice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cms_notice` (
+  `NOT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CHECKSUM` varchar(50) DEFAULT NULL,
+  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
+  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
+  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`NOT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cms_notice`
+--
+
+LOCK TABLES `cms_notice` WRITE;
+/*!40000 ALTER TABLE `cms_notice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_notice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_numbers`
+--
+
+DROP TABLE IF EXISTS `cms_numbers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cms_numbers` (
+  `NUMB_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NUMB_NAME` varchar(150) DEFAULT NULL,
+  `NUMB_SHORT` varchar(15) DEFAULT NULL,
+  `NUMB_NUMBER` int(10) DEFAULT 0,
+  `NUMB_INCREMENT` int(10) DEFAULT 1,
+  `CHECKSUM` varchar(50) DEFAULT NULL,
+  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
+  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
+  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
+  `ARCHIV_AM_DATUM` date DEFAULT NULL,
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`NUMB_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_quellen`
+-- Dumping data for table `cms_numbers`
 --
 
+LOCK TABLES `cms_numbers` WRITE;
+/*!40000 ALTER TABLE `cms_numbers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_numbers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_quellen`
+--
+
+DROP TABLE IF EXISTS `cms_quellen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_quellen` (
-  `QUEL_ID` int(11) NOT NULL,
+  `QUEL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `QUEL_ORDNER` varchar(255) DEFAULT NULL,
   `QUEL_MODUL` varchar(80) DEFAULT NULL,
   `QUEL_DATENSATZ` varchar(20) DEFAULT NULL,
-  `QUEL_QUELLE` text,
+  `QUEL_QUELLE` text DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -815,25 +1076,88 @@ CREATE TABLE `cms_quellen` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`QUEL_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_sessions`
+-- Dumping data for table `cms_quellen`
 --
 
+LOCK TABLES `cms_quellen` WRITE;
+/*!40000 ALTER TABLE `cms_quellen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_quellen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_session_log`
+--
+
+DROP TABLE IF EXISTS `cms_session_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cms_session_log` (
+  `SESSLOG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SESSLOG_USER_ID` int(11) DEFAULT NULL,
+  `SESSLOG_SESSIONID` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESSLOG_LOGIN_DATE` date DEFAULT NULL,
+  `SESSLOG_LOGIN_TIME` time DEFAULT NULL,
+  `SESSLOG_LOGOUT_DATE` date DEFAULT NULL,
+  `SESSLOG_LOGOUT_TIME` time DEFAULT NULL,
+  `SESSLOG_IP` varchar(25) COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESSLOG_BROWSER` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESSLOG_HOST` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESSLOG_ANGRIFF` tinyint(1) DEFAULT NULL,
+  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
+  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
+  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
+  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
+  `ARCHIV_AM_DATUM` date DEFAULT NULL,
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`SESSLOG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=25716 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cms_session_log`
+--
+
+LOCK TABLES `cms_session_log` WRITE;
+/*!40000 ALTER TABLE `cms_session_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_session_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_sessions`
+--
+
+DROP TABLE IF EXISTS `cms_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_sessions` (
-  `SESS_ID` int(11) NOT NULL,
+  `SESS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SESS_SESSIONID` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `SESS_OK` tinyint(1) NOT NULL DEFAULT '0',
+  `SESS_OK` tinyint(1) NOT NULL DEFAULT 0,
   `SESS_IP` varchar(25) COLLATE latin1_german2_ci NOT NULL DEFAULT '0',
   `SESS_BROWSER` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `SESS_KEY` varchar(60) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `SESS_ZEIT` time NOT NULL DEFAULT '00:00:00',
-  `SESS_USER_ID` int(11) NOT NULL DEFAULT '0',
+  `SESS_USER_ID` int(11) NOT NULL DEFAULT 0,
   `SESS_BEENDET` tinyint(1) NOT NULL,
   `SESS_BLAETTERN_SEITE` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_BLAETTERN_SEITE_SICHERUNG` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -869,13 +1193,13 @@ CREATE TABLE `cms_sessions` (
   `SESS_GROUPBY` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
   `SESS_WORKFLOW` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_SQLQUERY` text COLLATE latin1_german2_ci NOT NULL,
-  `SESS_SQLFUNKTIONEN` text COLLATE latin1_german2_ci,
-  `SESS_SQLFIELDS` text COLLATE latin1_german2_ci,
-  `SESS_REPLICATION` tinyint(1) DEFAULT '0',
-  `SESS_VERKN_MODULE` text COLLATE latin1_german2_ci,
-  `SESS_COPY` tinyint(1) DEFAULT '0',
-  `SESS_DOKUMENTE` text COLLATE latin1_german2_ci,
-  `SESS_FORMULARE` text COLLATE latin1_german2_ci,
+  `SESS_SQLFUNKTIONEN` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESS_SQLFIELDS` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESS_REPLICATION` tinyint(1) DEFAULT 0,
+  `SESS_VERKN_MODULE` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESS_COPY` tinyint(1) DEFAULT 0,
+  `SESS_DOKUMENTE` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `SESS_FORMULARE` text COLLATE latin1_german2_ci DEFAULT NULL,
   `SESS_FORMCODE` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
@@ -884,34 +1208,49 @@ CREATE TABLE `cms_sessions` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`SESS_ID`),
+  KEY `SESS_SESSIONID` (`SESS_SESSIONID`),
+  KEY `SESS_KEY` (`SESS_KEY`),
+  KEY `SESS_USER_ID` (`SESS_USER_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1300186 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_sessions_history`
+-- Dumping data for table `cms_sessions`
 --
 
+LOCK TABLES `cms_sessions` WRITE;
+/*!40000 ALTER TABLE `cms_sessions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_sessions_history`
+--
+
+DROP TABLE IF EXISTS `cms_sessions_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_sessions_history` (
-  `SESS_ID` int(11) NOT NULL,
+  `SESS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SESS_HISTORY_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `SESS_HISTORY_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `SESS_SESSIONID` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `SESS_ZEIT` time NOT NULL DEFAULT '00:00:00',
-  `SESS_USER_ID` int(11) NOT NULL DEFAULT '0',
+  `SESS_USER_ID` int(11) NOT NULL DEFAULT 0,
   `SESS_BLAETTERN_SEITE` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_BLAETTERN_SEITE_SICHERUNG` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_DATENSATZID` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -944,7 +1283,7 @@ CREATE TABLE `cms_sessions_history` (
   `SESS_SUCHEN_WERT` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `SESS_GROUPBY` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
   `SESS_WORKFLOW` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `SESS_SQLQUERY` text COLLATE latin1_german2_ci,
+  `SESS_SQLQUERY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -952,74 +1291,47 @@ CREATE TABLE `cms_sessions_history` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cms_session_log`
---
-
-CREATE TABLE `cms_session_log` (
-  `SESSLOG_ID` int(11) NOT NULL,
-  `SESSLOG_USER_ID` int(11) DEFAULT NULL,
-  `SESSLOG_SESSIONID` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `SESSLOG_LOGIN_DATE` date DEFAULT NULL,
-  `SESSLOG_LOGIN_TIME` time DEFAULT NULL,
-  `SESSLOG_LOGOUT_DATE` date DEFAULT NULL,
-  `SESSLOG_LOGOUT_TIME` time DEFAULT NULL,
-  `SESSLOG_IP` varchar(25) COLLATE latin1_german2_ci DEFAULT NULL,
-  `SESSLOG_BROWSER` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `SESSLOG_HOST` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `SESSLOG_ANGRIFF` tinyint(1) DEFAULT NULL,
-  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
-  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
-  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
-  `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`SESS_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2640302 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_tabellenfelder`
+-- Dumping data for table `cms_sessions_history`
 --
 
+LOCK TABLES `cms_sessions_history` WRITE;
+/*!40000 ALTER TABLE `cms_sessions_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_sessions_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_tabellenfelder`
+--
+
+DROP TABLE IF EXISTS `cms_tabellenfelder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_tabellenfelder` (
-  `TF_ID` int(11) NOT NULL,
+  `TF_ID` int(11) NOT NULL AUTO_INCREMENT,
   `TF_TABELLE` varchar(200) DEFAULT NULL,
   `TF_FELDNAME` varchar(200) DEFAULT NULL,
   `TF_DATENTYP` varchar(30) DEFAULT NULL,
-  `TF_LAENGE` int(11) DEFAULT '0',
-  `TF_PRIMAER` tinyint(1) DEFAULT '0',
-  `TF_AUTO` tinyint(1) DEFAULT '0',
-  `TF_BEMERKUNG` text,
+  `TF_LAENGE` int(11) DEFAULT 0,
+  `TF_PRIMAER` tinyint(1) DEFAULT 0,
+  `TF_AUTO` tinyint(1) DEFAULT 0,
+  `TF_BEMERKUNG` text DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1035,26 +1347,38 @@ CREATE TABLE `cms_tabellenfelder` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`TF_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_templates`
+-- Dumping data for table `cms_tabellenfelder`
 --
 
+LOCK TABLES `cms_tabellenfelder` WRITE;
+/*!40000 ALTER TABLE `cms_tabellenfelder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_tabellenfelder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_templates`
+--
+
+DROP TABLE IF EXISTS `cms_templates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_templates` (
-  `TEMP_ID` int(11) NOT NULL,
+  `TEMP_ID` int(11) NOT NULL AUTO_INCREMENT,
   `TEMP_NAME` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEMP_USER_ID` int(11) NOT NULL DEFAULT '0',
+  `TEMP_USER_ID` int(11) NOT NULL DEFAULT 0,
   `TEMP_INDEX` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEMP_PATH` varchar(250) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEMP_BUTT_ID` int(11) NOT NULL,
-  `TEMP_OPEN` int(1) NOT NULL DEFAULT '0',
+  `TEMP_OPEN` int(1) NOT NULL DEFAULT 0,
   `TEMP_COLOR_HELL` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEMP_COLOR_DUNKEL` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEMP_FARBENTAUSCHEN` tinyint(1) NOT NULL DEFAULT '0',
+  `TEMP_FARBENTAUSCHEN` tinyint(1) NOT NULL DEFAULT 0,
   `TEMP_COLOR_GRAU` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEMP_COLOR_RAHMEN` varchar(10) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT '142142142',
   `TEMP_COLOR_MARKIERUNG` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -1064,10 +1388,10 @@ CREATE TABLE `cms_templates` (
   `TEMP_COLOR_TEXT_DESELECT` varchar(20) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `TEMP_COLOR_ABMELDEN` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEMP_COLOR_ABMELDEN2` varchar(9) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEMP_SCHRIFTART_ID` int(11) NOT NULL DEFAULT '1',
-  `TEMP_SCHRIFTGROESSE` tinyint(2) NOT NULL DEFAULT '12',
+  `TEMP_SCHRIFTART_ID` int(11) NOT NULL DEFAULT 1,
+  `TEMP_SCHRIFTGROESSE` tinyint(2) NOT NULL DEFAULT 12,
   `CHECKSUM` varchar(22) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
@@ -1081,23 +1405,37 @@ CREATE TABLE `cms_templates` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`TEMP_ID`),
+  KEY `TEMP_NAME` (`TEMP_NAME`),
+  KEY `TEMP_PATH` (`TEMP_PATH`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_templates_layout`
+-- Dumping data for table `cms_templates`
 --
 
+LOCK TABLES `cms_templates` WRITE;
+/*!40000 ALTER TABLE `cms_templates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_templates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_templates_layout`
+--
+
+DROP TABLE IF EXISTS `cms_templates_layout`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_templates_layout` (
-  `TLAY_ID` int(11) NOT NULL,
+  `TLAY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `TLAY_NAME` varchar(50) DEFAULT NULL,
   `TLAY_FILE` varchar(100) DEFAULT NULL,
-  `TLAY_DESCRIPTION` text,
+  `TLAY_DESCRIPTION` text DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1113,25 +1451,37 @@ CREATE TABLE `cms_templates_layout` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`TLAY_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_times`
+-- Dumping data for table `cms_templates_layout`
 --
 
+LOCK TABLES `cms_templates_layout` WRITE;
+/*!40000 ALTER TABLE `cms_templates_layout` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_templates_layout` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_times`
+--
+
+DROP TABLE IF EXISTS `cms_times`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_times` (
-  `T_ID` int(11) NOT NULL,
-  `T_NAV_ID` int(11) DEFAULT '0',
-  `T_TIME_TABLE` double DEFAULT '0',
-  `T_COUNT_TABLE` int(10) DEFAULT '0',
-  `T_TIME_FORM` double DEFAULT '0',
-  `T_COUNT_FORM` int(10) DEFAULT '0',
+  `T_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `T_NAV_ID` int(11) DEFAULT 0,
+  `T_TIME_TABLE` double DEFAULT 0,
+  `T_COUNT_TABLE` int(10) DEFAULT 0,
+  `T_TIME_FORM` double DEFAULT 0,
+  `T_COUNT_FORM` int(10) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1147,20 +1497,32 @@ CREATE TABLE `cms_times` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`T_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=221 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_user`
+-- Dumping data for table `cms_times`
 --
 
+LOCK TABLES `cms_times` WRITE;
+/*!40000 ALTER TABLE `cms_times` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_times` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_user`
+--
+
+DROP TABLE IF EXISTS `cms_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_user` (
-  `USER_ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_VORNAME` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `USER_NACHNAME` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `USER_USERNAME` varchar(20) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -1168,7 +1530,7 @@ CREATE TABLE `cms_user` (
   `USER_PASSWORD` varchar(20) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `USER_PASSWORD_CHANGE` tinyint(1) DEFAULT NULL,
   `USER_PASSWORD_CHANGED_DATE` date DEFAULT NULL,
-  `USER_PASSWORD_CHAGE_DAYS` int(4) NOT NULL DEFAULT '0',
+  `USER_PASSWORD_CHAGE_DAYS` int(4) NOT NULL DEFAULT 0,
   `USER_AKTIV_CODE` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
   `USER_AKTIV_BIS_DATUM` date DEFAULT NULL,
   `USER_AKTIV_BIS_ZEIT` time DEFAULT NULL,
@@ -1176,23 +1538,23 @@ CREATE TABLE `cms_user` (
   `SESSION_ID` varchar(50) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `LOGINDATE` date NOT NULL DEFAULT '0000-00-00',
   `LOGINTIME` time NOT NULL DEFAULT '00:00:00',
-  `ONLINETIME` int(4) NOT NULL DEFAULT '0',
-  `USER_WARTUNGFREI` tinyint(1) DEFAULT '0',
-  `USER_SQL_ANZEIGEN` tinyint(1) DEFAULT '0',
-  `USER_SPEICHERNDIREKT` tinyint(1) DEFAULT '0',
-  `USER_LOG_SQL` tinyint(1) DEFAULT '0',
-  `USER_LOG_FUNCTION` tinyint(1) DEFAULT '0',
-  `USER_LOG_PDF` tinyint(1) DEFAULT '0',
-  `USER_LOG_SESSION` tinyint(1) DEFAULT '0',
-  `USER_LOG_STATIC` tinyint(1) DEFAULT '0',
-  `USER_LOGINFILE` tinyint(1) DEFAULT '0',
-  `USER_TABS` tinyint(1) DEFAULT '1',
-  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT '0',
+  `ONLINETIME` int(4) NOT NULL DEFAULT 0,
+  `USER_WARTUNGFREI` tinyint(1) DEFAULT 0,
+  `USER_SQL_ANZEIGEN` tinyint(1) DEFAULT 0,
+  `USER_SPEICHERNDIREKT` tinyint(1) DEFAULT 0,
+  `USER_LOG_SQL` tinyint(1) DEFAULT 0,
+  `USER_LOG_FUNCTION` tinyint(1) DEFAULT 0,
+  `USER_LOG_PDF` tinyint(1) DEFAULT 0,
+  `USER_LOG_SESSION` tinyint(1) DEFAULT 0,
+  `USER_LOG_STATIC` tinyint(1) DEFAULT 0,
+  `USER_LOGINFILE` tinyint(1) DEFAULT 0,
+  `USER_TABS` tinyint(1) DEFAULT 1,
+  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT 0,
   `USER_FIRMA1` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `USER_MALE` int(2) DEFAULT '1',
+  `USER_MALE` int(2) DEFAULT 1,
   `USER_FIRMA2` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(22) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `USER_STRASSE1` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -1204,20 +1566,20 @@ CREATE TABLE `cms_user` (
   `USER_FAX` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `USER_EMAIL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `USER_GEBURTSDATUM` date DEFAULT NULL,
-  `USER_TEMPLATE` int(11) NOT NULL DEFAULT '0',
-  `USER_LANG_ID` int(11) NOT NULL DEFAULT '1',
+  `USER_TEMPLATE` int(11) NOT NULL DEFAULT 0,
+  `USER_LANG_ID` int(11) NOT NULL DEFAULT 1,
   `USER_STANDARD_MODUL_ANZEIGEN` tinyint(1) DEFAULT NULL,
   `USER_STANDARD_MODUL` int(11) DEFAULT NULL,
-  `USER_NAVIGATION` tinyint(2) DEFAULT '1',
-  `USER_GESPERRT` tinyint(1) NOT NULL DEFAULT '0',
+  `USER_NAVIGATION` tinyint(2) DEFAULT 1,
+  `USER_GESPERRT` tinyint(1) NOT NULL DEFAULT 0,
   `USER_PASSWORD_FEHLEREINGABEN` int(10) DEFAULT NULL,
-  `USER_FEHLER` tinyint(1) NOT NULL DEFAULT '0',
-  `USER_AGB_ID` int(11) DEFAULT '0',
+  `USER_FEHLER` tinyint(1) NOT NULL DEFAULT 0,
+  `USER_AGB_ID` int(11) DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
@@ -1227,80 +1589,111 @@ CREATE TABLE `cms_user` (
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
   `USER_PASSWORD_CRYPT` varchar(250) COLLATE latin1_german2_ci DEFAULT NULL,
   `USER_PASSWORD_SALT` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `PID` int(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Benutzer';
-
--- --------------------------------------------------------
+  `PID` int(4) DEFAULT 0,
+  PRIMARY KEY (`USER_ID`),
+  KEY `USER_VORNAME` (`USER_VORNAME`),
+  KEY `USER_NACHNAME` (`USER_NACHNAME`),
+  KEY `USER_USERNAME` (`USER_USERNAME`),
+  KEY `SESSION_ID` (`SESSION_ID`),
+  KEY `USER_EMAIL` (`USER_EMAIL`)
+) ENGINE=MyISAM AUTO_INCREMENT=2631 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Benutzer';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_user_group`
+-- Dumping data for table `cms_user`
 --
 
+LOCK TABLES `cms_user` WRITE;
+/*!40000 ALTER TABLE `cms_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_user_group`
+--
+
+DROP TABLE IF EXISTS `cms_user_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_user_group` (
-  `USER_GROUP_ID` int(11) NOT NULL,
-  `USER_ID` int(11) NOT NULL DEFAULT '0',
-  `GROUP_ID` int(11) NOT NULL DEFAULT '0',
-  `GROUP_ADMIN` tinyint(2) NOT NULL DEFAULT '0',
-  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT '0',
+  `USER_GROUP_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL DEFAULT 0,
+  `GROUP_ID` int(11) NOT NULL DEFAULT 0,
+  `GROUP_ADMIN` tinyint(2) NOT NULL DEFAULT 0,
+  `NOT_DELETE` tinyint(2) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(22) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT '0',
+  `GEAENDERT_VON_USER` int(11) NOT NULL DEFAULT 0,
   `GEAENDERT_AM_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `GEAENDERT_AM_ZEIT` time NOT NULL DEFAULT '00:00:00',
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Zuordnung der Benutzer zu einer Gruppe';
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`USER_GROUP_ID`),
+  KEY `USER_ID` (`USER_ID`),
+  KEY `GROUP_ID` (`GROUP_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2850 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Zuordnung der Benutzer zu einer Gruppe';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `cms_viewoptions`
+-- Dumping data for table `cms_user_group`
 --
 
+LOCK TABLES `cms_user_group` WRITE;
+/*!40000 ALTER TABLE `cms_user_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_user_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cms_viewoptions`
+--
+
+DROP TABLE IF EXISTS `cms_viewoptions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_viewoptions` (
-  `VIEW_ID` int(11) NOT NULL,
+  `VIEW_ID` int(11) NOT NULL AUTO_INCREMENT,
   `VIEW_KEY` varchar(30) COLLATE latin1_german2_ci DEFAULT NULL,
-  `VIEW_USER_ID` int(11) NOT NULL DEFAULT '0',
-  `VIEW_NAV_ID` int(11) NOT NULL DEFAULT '0',
-  `VIEW_NAV_ID_INDEX` int(10) DEFAULT '0',
-  `VIEW_FILTER` int(3) DEFAULT '0',
-  `VIEW_FILTERAUS` int(11) NOT NULL DEFAULT '0',
-  `VIEW_SCHNELLAUSWAHL` tinyint(1) NOT NULL DEFAULT '0',
-  `VIEW_SUCHEN` tinyint(1) NOT NULL DEFAULT '0',
+  `VIEW_USER_ID` int(11) NOT NULL DEFAULT 0,
+  `VIEW_NAV_ID` int(11) NOT NULL DEFAULT 0,
+  `VIEW_NAV_ID_INDEX` int(10) DEFAULT 0,
+  `VIEW_FILTER` int(3) DEFAULT 0,
+  `VIEW_FILTERAUS` int(11) NOT NULL DEFAULT 0,
+  `VIEW_SCHNELLAUSWAHL` tinyint(1) NOT NULL DEFAULT 0,
+  `VIEW_SUCHEN` tinyint(1) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `VIEW_SORTIERUNG` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `VIEW_SORTIERUNG_ASC` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `VIEW_SORTIEREN` text COLLATE latin1_german2_ci,
-  `VIEW_SUCHE` text COLLATE latin1_german2_ci,
-  `VIEW_SUCHE_KURZ` text COLLATE latin1_german2_ci,
+  `VIEW_SORTIEREN` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `VIEW_SUCHE` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `VIEW_SUCHE_KURZ` text COLLATE latin1_german2_ci DEFAULT NULL,
   `VIEW_ZEILENANZEIGEN` varchar(4) COLLATE latin1_german2_ci NOT NULL,
-  `VIEW_SPEICHERANZ_AUS` tinyint(1) DEFAULT '0',
-  `VIEW_FORM_REGISTER` tinyint(1) DEFAULT '0',
-  `VIEW_PAGE` int(4) DEFAULT '0',
-  `VIEW_FORMULAR` tinyint(1) DEFAULT '0',
+  `VIEW_SPEICHERANZ_AUS` tinyint(1) DEFAULT 0,
+  `VIEW_FORM_REGISTER` tinyint(1) DEFAULT 0,
+  `VIEW_PAGE` int(4) DEFAULT 0,
+  `VIEW_FORMULAR` tinyint(1) DEFAULT 0,
   `VIEW_DATENSATZID` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
   `VIEW_INDEX_SPALTE` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
   `VIEW_INDEX_WERT` varchar(20) COLLATE latin1_german2_ci DEFAULT NULL,
   `VIEW_INDEX_TABELLE` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `VIEW_INDEX_SUB_VIEW_ID` int(10) DEFAULT '0',
+  `VIEW_INDEX_SUB_VIEW_ID` int(10) DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
@@ -1312,20 +1705,34 @@ CREATE TABLE `cms_viewoptions` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`VIEW_ID`),
+  KEY `VIEW_USER_ID` (`VIEW_USER_ID`),
+  KEY `VIEW_NAV_ID` (`VIEW_NAV_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=10050 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `com_status`
+-- Dumping data for table `cms_viewoptions`
 --
 
+LOCK TABLES `cms_viewoptions` WRITE;
+/*!40000 ALTER TABLE `cms_viewoptions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cms_viewoptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `com_status`
+--
+
+DROP TABLE IF EXISTS `com_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `com_status` (
-  `STATUS_ID` int(11) NOT NULL,
+  `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `STATUS_STATUS` varchar(200) DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
@@ -1342,20 +1749,32 @@ CREATE TABLE `com_status` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`STATUS_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `global_gl_status`
+-- Dumping data for table `com_status`
 --
 
+LOCK TABLES `com_status` WRITE;
+/*!40000 ALTER TABLE `com_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `com_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `global_gl_status`
+--
+
+DROP TABLE IF EXISTS `global_gl_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `global_gl_status` (
-  `STATUS_ID` int(11) NOT NULL,
+  `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `STATUS_STATUS` varchar(200) DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
@@ -1372,68 +1791,60 @@ CREATE TABLE `global_gl_status` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`STATUS_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `pma_table_info`
+-- Dumping data for table `global_gl_status`
 --
 
+LOCK TABLES `global_gl_status` WRITE;
+/*!40000 ALTER TABLE `global_gl_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `global_gl_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pma_table_info`
+--
+
+DROP TABLE IF EXISTS `pma_table_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pma_table_info` (
   `db_name` varchar(64) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `display_field` varchar(64) COLLATE latin1_german2_ci NOT NULL DEFAULT ''
+  `display_field` varchar(64) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`db_name`,`table_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci COMMENT='Table    information    for\n            phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `prot_protokolle`
---
-
-CREATE TABLE `prot_protokolle` (
-  `PROT_ID` int(11) NOT NULL,
-  `PROT_DATUM` date DEFAULT NULL,
-  `PROT_BEMERKUNGEN` text,
-  `PROT_ANWESEND` text,
-  `CHECKSUM` varchar(50) DEFAULT NULL,
-  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
-  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
-  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
-  `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `prot_protokoll_dateien`
+-- Dumping data for table `pma_table_info`
 --
 
+LOCK TABLES `pma_table_info` WRITE;
+/*!40000 ALTER TABLE `pma_table_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pma_table_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prot_protokoll_dateien`
+--
+
+DROP TABLE IF EXISTS `prot_protokoll_dateien`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prot_protokoll_dateien` (
-  `DAT_ID` int(11) NOT NULL,
-  `DAT_PRO_ID` int(10) DEFAULT '0',
+  `DAT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DAT_PRO_ID` int(10) DEFAULT 0,
   `DAT_DATEI` varchar(255) DEFAULT NULL,
   `DAT_DATEIT` varchar(250) DEFAULT NULL,
-  `DAT_BEMERKUNG` text,
+  `DAT_BEMERKUNG` text DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1449,28 +1860,40 @@ CREATE TABLE `prot_protokoll_dateien` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`DAT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `prot_protokoll_eintrag`
+-- Dumping data for table `prot_protokoll_dateien`
 --
 
+LOCK TABLES `prot_protokoll_dateien` WRITE;
+/*!40000 ALTER TABLE `prot_protokoll_dateien` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prot_protokoll_dateien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prot_protokoll_eintrag`
+--
+
+DROP TABLE IF EXISTS `prot_protokoll_eintrag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prot_protokoll_eintrag` (
-  `PRE_ID` int(11) NOT NULL,
-  `PRE_PROT_ID` int(10) DEFAULT '0',
-  `PRE_NR` int(4) DEFAULT '0',
+  `PRE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PRE_PROT_ID` int(10) DEFAULT 0,
+  `PRE_NR` int(4) DEFAULT 0,
   `PRE_TITEL` varchar(250) DEFAULT NULL,
-  `PRE_TEXT` text,
-  `PRE_TEIL_ID_1` int(10) DEFAULT '0',
-  `PRE_TEIL_ID_2` int(10) DEFAULT '0',
-  `PRE_STAT_ID` int(2) DEFAULT '0',
-  `PRE_BEMERKUNG` text,
+  `PRE_TEXT` text DEFAULT NULL,
+  `PRE_TEIL_ID_1` int(10) DEFAULT 0,
+  `PRE_TEIL_ID_2` int(10) DEFAULT 0,
+  `PRE_STAT_ID` int(2) DEFAULT 0,
+  `PRE_BEMERKUNG` text DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1486,20 +1909,76 @@ CREATE TABLE `prot_protokoll_eintrag` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`PRE_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=220 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_agb_dsr`
+-- Dumping data for table `prot_protokoll_eintrag`
 --
 
+LOCK TABLES `prot_protokoll_eintrag` WRITE;
+/*!40000 ALTER TABLE `prot_protokoll_eintrag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prot_protokoll_eintrag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prot_protokolle`
+--
+
+DROP TABLE IF EXISTS `prot_protokolle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prot_protokolle` (
+  `PROT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PROT_DATUM` date DEFAULT NULL,
+  `PROT_BEMERKUNGEN` text DEFAULT NULL,
+  `PROT_ANWESEND` text DEFAULT NULL,
+  `CHECKSUM` varchar(50) DEFAULT NULL,
+  `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
+  `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
+  `EINGEGEBEN_AM_ZEIT` time DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT NULL,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
+  `ARCHIV_AM_DATUM` date DEFAULT NULL,
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`PROT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prot_protokolle`
+--
+
+LOCK TABLES `prot_protokolle` WRITE;
+/*!40000 ALTER TABLE `prot_protokolle` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prot_protokolle` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_agb_dsr`
+--
+
+DROP TABLE IF EXISTS `vhslq_agb_dsr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_agb_dsr` (
-  `GB_ID` int(11) NOT NULL,
+  `GB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GB_DATUM` date DEFAULT NULL,
   `GB_DSR` date DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
@@ -1517,28 +1996,40 @@ CREATE TABLE `vhslq_agb_dsr` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`GB_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_aktuelles`
+-- Dumping data for table `vhslq_agb_dsr`
 --
 
+LOCK TABLES `vhslq_agb_dsr` WRITE;
+/*!40000 ALTER TABLE `vhslq_agb_dsr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_agb_dsr` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_aktuelles`
+--
+
+DROP TABLE IF EXISTS `vhslq_aktuelles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_aktuelles` (
-  `AKT_ID` int(11) NOT NULL,
+  `AKT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `AKT_DATUM` date DEFAULT NULL,
   `AKT_TITEL` varchar(250) DEFAULT NULL,
-  `AKT_TEXT` text,
+  `AKT_TEXT` text DEFAULT NULL,
   `AKT_BILDT` varchar(250) DEFAULT NULL,
   `AKT_BILD` varchar(250) DEFAULT NULL,
-  `AKT_BILD_ID` int(10) DEFAULT '0',
-  `AKT_ANZEIGEN` tinyint(1) DEFAULT '0',
-  `AKT_ARCHIV` tinyint(1) DEFAULT '0',
+  `AKT_BILD_ID` int(10) DEFAULT 0,
+  `AKT_ANZEIGEN` tinyint(1) DEFAULT 0,
+  `AKT_ARCHIV` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1554,31 +2045,43 @@ CREATE TABLE `vhslq_aktuelles` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`AKT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_aktuelles_texte`
+-- Dumping data for table `vhslq_aktuelles`
 --
 
+LOCK TABLES `vhslq_aktuelles` WRITE;
+/*!40000 ALTER TABLE `vhslq_aktuelles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_aktuelles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_aktuelles_texte`
+--
+
+DROP TABLE IF EXISTS `vhslq_aktuelles_texte`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_aktuelles_texte` (
-  `AKTT_ID` int(11) NOT NULL,
+  `AKTT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `AKTT_AKT_ID` int(11) NOT NULL,
   `AKTT_UEBERSCHRIFT` varchar(100) DEFAULT NULL,
   `AKTT_TITEL` varchar(250) DEFAULT NULL,
-  `AKTT_TEXT` text,
+  `AKTT_TEXT` text DEFAULT NULL,
   `AKTT_BILDT` varchar(255) DEFAULT NULL,
   `AKTT_BILD` varchar(255) DEFAULT NULL,
-  `AKTT_BILD_ID` int(10) DEFAULT '0',
-  `AKTT_BILD_RECHTS` tinyint(1) DEFAULT '0',
-  `AKTT_BILD_BREITE` int(5) DEFAULT '200',
-  `AKTT_BILD_BORDER` tinyint(2) DEFAULT '0',
-  `AKTT_POSITION` tinyint(4) DEFAULT '0',
+  `AKTT_BILD_ID` int(10) DEFAULT 0,
+  `AKTT_BILD_RECHTS` tinyint(1) DEFAULT 0,
+  `AKTT_BILD_BREITE` int(5) DEFAULT 200,
+  `AKTT_BILD_BORDER` tinyint(2) DEFAULT 0,
+  `AKTT_POSITION` tinyint(4) DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -1594,23 +2097,35 @@ CREATE TABLE `vhslq_aktuelles_texte` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`AKTT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=272 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_anmeldeart`
+-- Dumping data for table `vhslq_aktuelles_texte`
 --
 
+LOCK TABLES `vhslq_aktuelles_texte` WRITE;
+/*!40000 ALTER TABLE `vhslq_aktuelles_texte` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_aktuelles_texte` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_anmeldeart`
+--
+
+DROP TABLE IF EXISTS `vhslq_anmeldeart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_anmeldeart` (
-  `ANMA_ID` int(11) NOT NULL,
+  `ANMA_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ANMA_TEXT` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `ANMA_UNTERSCHR` tinyint(1) NOT NULL DEFAULT '0',
-  `ANMA_ADMIN` tinyint(1) DEFAULT '0',
+  `ANMA_UNTERSCHR` tinyint(1) NOT NULL DEFAULT 0,
+  `ANMA_ADMIN` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -1618,32 +2133,44 @@ CREATE TABLE `vhslq_anmeldeart` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ANMA_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_anmeldestellen`
+-- Dumping data for table `vhslq_anmeldeart`
 --
 
+LOCK TABLES `vhslq_anmeldeart` WRITE;
+/*!40000 ALTER TABLE `vhslq_anmeldeart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_anmeldeart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_anmeldestellen`
+--
+
+DROP TABLE IF EXISTS `vhslq_anmeldestellen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_anmeldestellen` (
-  `ANMST_ID` int(11) NOT NULL,
+  `ANMST_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ANMST_ORGANISATION` varchar(150) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ANMST_VORNAME` varchar(150) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ANMST_NACHNAME` varchar(150) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `ANMST_USER_ID` int(11) NOT NULL DEFAULT '0',
+  `ANMST_USER_ID` int(11) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -1651,54 +2178,66 @@ CREATE TABLE `vhslq_anmeldestellen` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ANMST_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_anmeldungen`
+-- Dumping data for table `vhslq_anmeldestellen`
 --
 
+LOCK TABLES `vhslq_anmeldestellen` WRITE;
+/*!40000 ALTER TABLE `vhslq_anmeldestellen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_anmeldestellen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_anmeldungen`
+--
+
+DROP TABLE IF EXISTS `vhslq_anmeldungen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_anmeldungen` (
-  `ANM_ID` int(11) NOT NULL,
+  `ANM_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ANM_DATUM` date NOT NULL DEFAULT '0000-00-00',
-  `ANM_TEIL_ID` int(11) NOT NULL DEFAULT '0',
-  `ANM_KURS_ID` int(11) NOT NULL DEFAULT '0',
-  `ANM_BEARBEITER` int(11) NOT NULL DEFAULT '0',
-  `ANM_STAT_ID` int(11) NOT NULL DEFAULT '1',
-  `ANM_ANMA_ID` int(11) DEFAULT '6',
+  `ANM_TEIL_ID` int(11) NOT NULL DEFAULT 0,
+  `ANM_KURS_ID` int(11) NOT NULL DEFAULT 0,
+  `ANM_BEARBEITER` int(11) NOT NULL DEFAULT 0,
+  `ANM_STAT_ID` int(11) NOT NULL DEFAULT 1,
+  `ANM_ANMA_ID` int(11) DEFAULT 6,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `ANM_ABR_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `ANM_ABR_RUECKLAST_DATUM` date NOT NULL DEFAULT '0000-00-00',
-  `ANM_AGB` tinyint(1) DEFAULT '0',
-  `ANM_DRUCKEN` tinyint(1) DEFAULT '0',
-  `ANM_TNB_GEM_DRUCKEN` tinyint(1) NOT NULL DEFAULT '0',
-  `ANM_TEIL_ID_ZAHLER` int(11) NOT NULL DEFAULT '0',
-  `ANM_WARTEL_INFORMIEREN` tinyint(1) NOT NULL DEFAULT '0',
-  `ANM_INFO_WER` text COLLATE latin1_german2_ci,
-  `ANM_INFO_WEN` text COLLATE latin1_german2_ci,
+  `ANM_AGB` tinyint(1) DEFAULT 0,
+  `ANM_DRUCKEN` tinyint(1) DEFAULT 0,
+  `ANM_TNB_GEM_DRUCKEN` tinyint(1) NOT NULL DEFAULT 0,
+  `ANM_TEIL_ID_ZAHLER` int(11) NOT NULL DEFAULT 0,
+  `ANM_WARTEL_INFORMIEREN` tinyint(1) NOT NULL DEFAULT 0,
+  `ANM_INFO_WER` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `ANM_INFO_WEN` text COLLATE latin1_german2_ci DEFAULT NULL,
   `ANM_INFO_DATUM` date DEFAULT NULL,
   `ANM_EMAIL_INFO` tinyint(1) DEFAULT NULL,
   `ANM_TNB` tinyint(1) DEFAULT NULL,
-  `ANM_ABR_ABRECHNEN` tinyint(1) NOT NULL DEFAULT '0',
-  `ANM_ABR_ABGERECHNET` tinyint(1) NOT NULL DEFAULT '0',
+  `ANM_ABR_ABRECHNEN` tinyint(1) NOT NULL DEFAULT 0,
+  `ANM_ABR_ABGERECHNET` tinyint(1) NOT NULL DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
@@ -1706,52 +2245,80 @@ CREATE TABLE `vhslq_anmeldungen` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ANM_ID`),
+  KEY `ANM_TEIL_ID` (`ANM_TEIL_ID`),
+  KEY `ANM_KURS_ID` (`ANM_KURS_ID`),
+  KEY `ANM_STAT_ID` (`ANM_STAT_ID`),
+  KEY `ANM_ANMA_ID` (`ANM_ANMA_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=20344 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_anrede`
+-- Dumping data for table `vhslq_anmeldungen`
 --
 
+LOCK TABLES `vhslq_anmeldungen` WRITE;
+/*!40000 ALTER TABLE `vhslq_anmeldungen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_anmeldungen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_anrede`
+--
+
+DROP TABLE IF EXISTS `vhslq_anrede`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_anrede` (
-  `ANR_ID` int(11) NOT NULL,
+  `ANR_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ANR_BEZEICHNUNG` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ANR_BRIEFTEXT` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `ANR_ALLGEMEIN` tinyint(1) NOT NULL DEFAULT '0',
-  `ANR_GESCH_ID` int(2) DEFAULT '0',
+  `ANR_ALLGEMEIN` tinyint(1) NOT NULL DEFAULT 0,
+  `ANR_GESCH_ID` int(2) DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ANR_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_ausgaben`
+-- Dumping data for table `vhslq_anrede`
 --
 
+LOCK TABLES `vhslq_anrede` WRITE;
+/*!40000 ALTER TABLE `vhslq_anrede` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_anrede` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_ausgaben`
+--
+
+DROP TABLE IF EXISTS `vhslq_ausgaben`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_ausgaben` (
-  `AUSG_ID` int(11) NOT NULL,
+  `AUSG_ID` int(11) NOT NULL AUTO_INCREMENT,
   `AUSG_DATUM` date DEFAULT NULL,
   `AUSG_GJ_ID` int(11) DEFAULT NULL,
   `AUSG_BEZEICHNUNG` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
@@ -1767,24 +2334,36 @@ CREATE TABLE `vhslq_ausgaben` (
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`AUSG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3041 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_buchungsvorlagen`
+-- Dumping data for table `vhslq_ausgaben`
 --
 
+LOCK TABLES `vhslq_ausgaben` WRITE;
+/*!40000 ALTER TABLE `vhslq_ausgaben` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_ausgaben` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_buchungsvorlagen`
+--
+
+DROP TABLE IF EXISTS `vhslq_buchungsvorlagen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_buchungsvorlagen` (
-  `BV_ID` int(11) NOT NULL,
+  `BV_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BV_TEXT` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `BV_BETRAG` double DEFAULT NULL,
   `BV_KG_ID` int(11) DEFAULT NULL,
@@ -1796,24 +2375,36 @@ CREATE TABLE `vhslq_buchungsvorlagen` (
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`BV_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_einnahmen`
+-- Dumping data for table `vhslq_buchungsvorlagen`
 --
 
+LOCK TABLES `vhslq_buchungsvorlagen` WRITE;
+/*!40000 ALTER TABLE `vhslq_buchungsvorlagen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_buchungsvorlagen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_einnahmen`
+--
+
+DROP TABLE IF EXISTS `vhslq_einnahmen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_einnahmen` (
-  `EINN_ID` int(11) NOT NULL,
+  `EINN_ID` int(11) NOT NULL AUTO_INCREMENT,
   `EINN_DATUM` date DEFAULT NULL,
   `EINN_GJ_ID` int(11) DEFAULT NULL,
   `EINN_BEZEICHNUNG` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
@@ -1829,24 +2420,36 @@ CREATE TABLE `vhslq_einnahmen` (
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`EINN_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=406 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_fb_template`
+-- Dumping data for table `vhslq_einnahmen`
 --
 
+LOCK TABLES `vhslq_einnahmen` WRITE;
+/*!40000 ALTER TABLE `vhslq_einnahmen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_einnahmen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_fb_template`
+--
+
+DROP TABLE IF EXISTS `vhslq_fb_template`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_fb_template` (
-  `FBT_ID` int(11) NOT NULL,
+  `FBT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FBT_NAME` varchar(50) DEFAULT NULL,
   `FBT_DATEI` varchar(200) DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
@@ -1864,17 +2467,29 @@ CREATE TABLE `vhslq_fb_template` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`FBT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_geschaeftsbedingungen`
+-- Dumping data for table `vhslq_fb_template`
 --
 
+LOCK TABLES `vhslq_fb_template` WRITE;
+/*!40000 ALTER TABLE `vhslq_fb_template` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_fb_template` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_geschaeftsbedingungen`
+--
+
+DROP TABLE IF EXISTS `vhslq_geschaeftsbedingungen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_geschaeftsbedingungen` (
-  `GB_ID` int(11) NOT NULL,
+  `GB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GB_DATUM` date DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
@@ -1891,28 +2506,40 @@ CREATE TABLE `vhslq_geschaeftsbedingungen` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`GB_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_geschaeftsjahr`
+-- Dumping data for table `vhslq_geschaeftsbedingungen`
 --
 
+LOCK TABLES `vhslq_geschaeftsbedingungen` WRITE;
+/*!40000 ALTER TABLE `vhslq_geschaeftsbedingungen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_geschaeftsbedingungen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_geschaeftsjahr`
+--
+
+DROP TABLE IF EXISTS `vhslq_geschaeftsjahr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_geschaeftsjahr` (
-  `GJ_ID` int(11) NOT NULL,
+  `GJ_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GJ_JAHR` varchar(15) COLLATE latin1_german2_ci NOT NULL,
   `GJ_JAHR_ANZEIGEN` varchar(4) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `GJ_ANMELDUNG_VON` date DEFAULT NULL,
   `GJ_ANMELDUNG_VON_ZEIT` time DEFAULT NULL,
   `GJ_ANMELDUNG_BIS` date DEFAULT NULL,
-  `GJ_ZUSCHLAG` double DEFAULT '0',
-  `GJ_AKTUELL` tinyint(1) NOT NULL DEFAULT '0',
-  `GJ_ANMELDBAR` tinyint(1) NOT NULL DEFAULT '0',
-  `GJ_INPLANUNG` tinyint(1) NOT NULL DEFAULT '0',
-  `GJ_ANM_ANZEIGEN` tinyint(1) DEFAULT '0',
-  `GJ_ARCHIV` tinyint(1) DEFAULT '0',
+  `GJ_ZUSCHLAG` double DEFAULT 0,
+  `GJ_AKTUELL` tinyint(1) NOT NULL DEFAULT 0,
+  `GJ_ANMELDBAR` tinyint(1) NOT NULL DEFAULT 0,
+  `GJ_INPLANUNG` tinyint(1) NOT NULL DEFAULT 0,
+  `GJ_ANM_ANZEIGEN` tinyint(1) DEFAULT 0,
+  `GJ_ARCHIV` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -1920,28 +2547,46 @@ CREATE TABLE `vhslq_geschaeftsjahr` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`GJ_ID`),
+  KEY `GJ_JAHR` (`GJ_JAHR`),
+  KEY `GJ_JAHR_ANZEIGEN` (`GJ_JAHR_ANZEIGEN`),
+  KEY `GJ_AKTUELL` (`GJ_AKTUELL`),
+  KEY `GJ_ANMELDBAR` (`GJ_ANMELDBAR`),
+  KEY `GJ_INPLANUNG` (`GJ_INPLANUNG`),
+  KEY `GJ_ANM_ANZEIGEN` (`GJ_ANM_ANZEIGEN`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_geschlecht`
+-- Dumping data for table `vhslq_geschaeftsjahr`
 --
 
+LOCK TABLES `vhslq_geschaeftsjahr` WRITE;
+/*!40000 ALTER TABLE `vhslq_geschaeftsjahr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_geschaeftsjahr` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_geschlecht`
+--
+
+DROP TABLE IF EXISTS `vhslq_geschlecht`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_geschlecht` (
-  `GESCHL_ID` int(11) NOT NULL,
+  `GESCHL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GESCHL_GESCHLECHT` char(1) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
@@ -1950,25 +2595,37 @@ CREATE TABLE `vhslq_geschlecht` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`GESCHL_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_infoart`
+-- Dumping data for table `vhslq_geschlecht`
 --
 
+LOCK TABLES `vhslq_geschlecht` WRITE;
+/*!40000 ALTER TABLE `vhslq_geschlecht` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_geschlecht` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_infoart`
+--
+
+DROP TABLE IF EXISTS `vhslq_infoart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_infoart` (
-  `INFO_ID` int(11) NOT NULL,
+  `INFO_ID` int(11) NOT NULL AUTO_INCREMENT,
   `INFO_TEXT` varchar(100) DEFAULT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
@@ -1985,23 +2642,35 @@ CREATE TABLE `vhslq_infoart` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
   `ARCHIV_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`INFO_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kostengruppen`
+-- Dumping data for table `vhslq_infoart`
 --
 
+LOCK TABLES `vhslq_infoart` WRITE;
+/*!40000 ALTER TABLE `vhslq_infoart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_infoart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kostengruppen`
+--
+
+DROP TABLE IF EXISTS `vhslq_kostengruppen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_kostengruppen` (
-  `KG_ID` int(11) NOT NULL,
+  `KG_ID` int(11) NOT NULL AUTO_INCREMENT,
   `KG_NR` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `KG_BEZEICHNUNG` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KG_BESCHREIBUNG` text COLLATE latin1_german2_ci,
+  `KG_BESCHREIBUNG` text COLLATE latin1_german2_ci DEFAULT NULL,
   `KG_EINNAHMEN` tinyint(1) DEFAULT NULL,
   `KG_AUSGABEN` tinyint(1) DEFAULT NULL,
   `KG_GRUPPE` tinyint(1) DEFAULT NULL,
@@ -2016,146 +2685,7 @@ CREATE TABLE `vhslq_kostengruppen` (
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `vhslq_kurse`
---
-
-CREATE TABLE `vhslq_kurse` (
-  `KURS_ID` int(11) NOT NULL,
-  `KURS_KURS_ID` int(11) DEFAULT '0',
-  `KURS_TESTKURS` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_POS` int(3) DEFAULT NULL,
-  `KURS_NAME` text COLLATE latin1_german2_ci NOT NULL,
-  `KURS_SUBNAME` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_BESCHREIBUNG` text COLLATE latin1_german2_ci NOT NULL,
-  `KURS_INHALT_VORTEXT` text COLLATE latin1_german2_ci,
-  `KURS_INHALT_DETAILS` text COLLATE latin1_german2_ci,
-  `KURS_SONDERINFO` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_TEXTE_NOTIZEN` text COLLATE latin1_german2_ci,
-  `KURS_TEXTE_OKFBL` tinyint(1) DEFAULT '0',
-  `KURS_TEXTE_OKTEXTER` tinyint(1) DEFAULT '0',
-  `KURS_TEXTE_OKCO` tinyint(1) DEFAULT '0',
-  `KURS_DATEN_OKFBL` tinyint(1) DEFAULT '0',
-  `KURS_DATEN_OKDATEN` tinyint(1) DEFAULT '0',
-  `KURS_DATEN_OKKALK` tinyint(1) DEFAULT '0',
-  `KURS_FOTO_ALT` tinyint(1) DEFAULT '0',
-  `KURS_FOTO_REFERENT` tinyint(1) DEFAULT '0',
-  `KURS_FOTO_WEB` tinyint(1) DEFAULT '0',
-  `KURS_FOTO_WOHER` int(1) DEFAULT '0',
-  `KURS_FOTO_OK` tinyint(1) DEFAULT '0',
-  `KURS_TEXTE_OK` tinyint(1) DEFAULT '0',
-  `KURS_BILDT` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_BILD` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_BILD_ID` int(10) DEFAULT '0',
-  `KURS_BILD_BREITE` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_BILD_OK` tinyint(1) DEFAULT '0',
-  `KURS_BILD_DATUM` date DEFAULT NULL,
-  `KURS_MITZUBRINGEN` text COLLATE latin1_german2_ci NOT NULL,
-  `KURS_PREIS` double NOT NULL DEFAULT '0',
-  `KURS_KALK_FERTIG` tinyint(1) DEFAULT '0',
-  `KURS_MATERIALKOSTEN` double NOT NULL DEFAULT '0',
-  `KURS_ORT_ID` int(11) NOT NULL DEFAULT '0',
-  `KURS_TREFFPUNKT` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_RUB_ID` int(11) NOT NULL DEFAULT '0',
-  `KURS_KINDERVHS` tinyint(1) DEFAULT NULL,
-  `KURS_FRAUENVHS` tinyint(1) DEFAULT NULL,
-  `KURS_SENIORENVHS` tinyint(1) DEFAULT NULL,
-  `KURS_GESUNDHEITVHS` tinyint(1) DEFAULT NULL,
-  `KURS_BEGINN` date NOT NULL DEFAULT '0000-00-00',
-  `KURS_BEGINN_UHRZEIT` time NOT NULL DEFAULT '00:00:00',
-  `KURS_ENDE` date NOT NULL DEFAULT '0000-00-00',
-  `KURS_ENDE_UHRZEIT` time NOT NULL DEFAULT '00:00:00',
-  `KURS_ZEIT` int(10) NOT NULL,
-  `KURZ_ZEIT` int(10) NOT NULL DEFAULT '0',
-  `KURS_TEIL_MIN` int(5) NOT NULL DEFAULT '0',
-  `KURS_TEIL_MAX` int(5) NOT NULL DEFAULT '0',
-  `KURS_ALTER_VON` int(10) DEFAULT '0',
-  `KURS_ALTER_BIS` int(10) DEFAULT '0',
-  `KURS_ANZAHLTERMINE` int(5) NOT NULL DEFAULT '0',
-  `KURS_REFERENT_ID` int(11) NOT NULL DEFAULT '0',
-  `KURS_REFERENT_HONORAR` double NOT NULL DEFAULT '0',
-  `KURS_PRO_KILOMETER` double NOT NULL DEFAULT '0',
-  `KURS_KILOMETER` double NOT NULL DEFAULT '0',
-  `KURS_REFERENT_SONDERHONORAR` double NOT NULL DEFAULT '0',
-  `KURS_REFERENT_SONDERVEREINB_TX` varchar(250) COLLATE latin1_german2_ci NOT NULL,
-  `KURS_REFERENT_SONDERVEREINB` double NOT NULL DEFAULT '0',
-  `KURS_SONDERKOSTENART` varchar(150) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_REFERENT_FAHRKOSTEN` double NOT NULL DEFAULT '0',
-  `KURS_BEARBEITER` int(11) NOT NULL DEFAULT '0',
-  `KURS_BEARBEITER_ERSTER` int(11) NOT NULL DEFAULT '0',
-  `KURS_AUFSCHLIESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `KURS_BEGRUESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `KURS_ABSCHLIESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `KURS_NOTIZEN` text COLLATE latin1_german2_ci NOT NULL,
-  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `KURS_GJ_ID` int(11) NOT NULL DEFAULT '0',
-  `KURS_DATUM_NICHT_ANZEIGEN` tinyint(1) DEFAULT '0',
-  `KURS_MATERIALKOSTEN_TEXT` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `KURS_ABENDKASSE` double NOT NULL,
-  `KURS_SONDERKOSTEN_KOSTEN` double NOT NULL DEFAULT '0',
-  `KURS_BETREUER_TEIL_ID` int(10) NOT NULL DEFAULT '0',
-  `KURS_ABGERECHNET` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_ABGERECHNET_DATUM` date DEFAULT NULL,
-  `KURS_REFHON_UEBERW` tinyint(1) DEFAULT NULL,
-  `KURS_REFHON_DATUM` date DEFAULT NULL,
-  `KURS_INFO` text COLLATE latin1_german2_ci,
-  `KURS_GES_ZPP` varchar(20) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_ZPP_TITEL` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_GES_ZPP_DATUM` date DEFAULT NULL,
-  `KURS_BONUSFAEHIG` tinyint(1) DEFAULT '0',
-  `KURS_ZPP_Q` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_ZPP_ZQ` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_GES_SPORT` tinyint(1) DEFAULT '0',
-  `KURS_GES_ERNAEHRUNG` tinyint(1) DEFAULT '0',
-  `KURS_GES_STRESS` tinyint(1) DEFAULT '0',
-  `KURS_GES_RAUCHEN` tinyint(1) DEFAULT '0',
-  `KURS_GES_BEWEGUNG` tinyint(1) DEFAULT '0',
-  `KURS_UEBERGEWICHT` tinyint(1) DEFAULT '0',
-  `KURS_ENTSPANNUNG` tinyint(1) DEFAULT '0',
-  `KURS_ALKOHOL` tinyint(1) DEFAULT '0',
-  `KURS_SICHTBAR` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_NICHTIMHEFT` tinyint(1) DEFAULT NULL,
-  `KURS_FERTIG` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_EMAIL_INFO` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_SCHLUESSEL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `KURS_ANMFRIST` date NOT NULL DEFAULT '0000-00-00',
-  `KURS_ABMELDESCHLUSS` date DEFAULT NULL,
-  `KURS_VERANSTALTUNG` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_VERANST_TEXT` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
-  `KURS_NICHT_BUCHBAR` tinyint(1) DEFAULT '0',
-  `KURS_BUCHBAR_GEMEINDE` tinyint(1) DEFAULT '0',
-  `KURS_SONDERSTATUS` tinyint(1) NOT NULL DEFAULT '0',
-  `KURS_REFERENT_SONDERHONORAR_TX` varchar(250) COLLATE latin1_german2_ci NOT NULL,
-  `KURS_STATUS_MIN` tinyint(1) NOT NULL,
-  `KURS_UNTERSCHRIFT` tinyint(1) DEFAULT '0',
-  `KURS_UNTERSCHRIFT_DATUM` date DEFAULT NULL,
-  `KURS_STATUS_STATT` tinyint(1) NOT NULL,
-  `KURS_STATUS_ABGESAGT` tinyint(1) NOT NULL,
-  `KURS_HONORAR_FINAL` double NOT NULL,
-  `KURS_EINZUG_DATUM` date DEFAULT NULL,
-  `KURS_FERTIG_UEBERW` tinyint(1) NOT NULL,
-  `KURS_DATUM_UEBERW` date NOT NULL,
-  `KURS_KURSSTAT_ID` int(4) NOT NULL DEFAULT '0',
-  `EINGEGEBEN_VON_USER` int(11) NOT NULL,
-  `EINGEGEBEN_AM_DATUM` date NOT NULL,
-  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
@@ -2163,48 +2693,30 @@ CREATE TABLE `vhslq_kurse` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
-  `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci PACK_KEYS=1;
-
--- --------------------------------------------------------
+  PRIMARY KEY (`KG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kursstatus`
+-- Dumping data for table `vhslq_kostengruppen`
 --
 
-CREATE TABLE `vhslq_kursstatus` (
-  `KURSSTAT_ID` int(11) NOT NULL,
-  `KURSSTAT_TEXT` varchar(200) COLLATE latin1_german2_ci NOT NULL,
-  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
-  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
-  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `EINGEGEBEN_VON_USER` int(11) NOT NULL,
-  `EINGEGEBEN_AM_DATUM` date NOT NULL,
-  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
-  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
-  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
-  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text COLLATE latin1_german2_ci,
-  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
-  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
-  `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+LOCK TABLES `vhslq_kostengruppen` WRITE;
+/*!40000 ALTER TABLE `vhslq_kostengruppen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kostengruppen` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kurs_termine`
+-- Table structure for table `vhslq_kurs_termine`
 --
 
+DROP TABLE IF EXISTS `vhslq_kurs_termine`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_kurs_termine` (
-  `KT_ID` int(11) NOT NULL,
-  `KT_KURS_ID` int(11) DEFAULT '0',
-  `KT_ORT_ID` int(10) DEFAULT '0',
+  `KT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `KT_KURS_ID` int(11) DEFAULT 0,
+  `KT_ORT_ID` int(10) DEFAULT 0,
   `KT_DATUM` date DEFAULT NULL,
   `KT_ZEIT_VON` time DEFAULT NULL,
   `KT_ZEIT_BIS` time DEFAULT NULL,
@@ -2223,17 +2735,235 @@ CREATE TABLE `vhslq_kurs_termine` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`KT_ID`),
+  KEY `KT_KURS_ID` (`KT_KURS_ID`),
+  KEY `KT_ORT_ID` (`KT_ORT_ID`),
+  KEY `KT_DATUM` (`KT_DATUM`),
+  KEY `KT_ZEIT_VON` (`KT_ZEIT_VON`),
+  KEY `KT_ZEIT_BIS` (`KT_ZEIT_BIS`)
+) ENGINE=MyISAM AUTO_INCREMENT=11998 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kv_aufgaben`
+-- Dumping data for table `vhslq_kurs_termine`
 --
 
+LOCK TABLES `vhslq_kurs_termine` WRITE;
+/*!40000 ALTER TABLE `vhslq_kurs_termine` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kurs_termine` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kurse`
+--
+
+DROP TABLE IF EXISTS `vhslq_kurse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vhslq_kurse` (
+  `KURS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `KURS_KURS_ID` int(11) DEFAULT 0,
+  `KURS_TESTKURS` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_POS` int(3) DEFAULT NULL,
+  `KURS_NAME` text COLLATE latin1_german2_ci NOT NULL,
+  `KURS_SUBNAME` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_BESCHREIBUNG` text COLLATE latin1_german2_ci NOT NULL,
+  `KURS_INHALT_VORTEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_INHALT_DETAILS` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_SONDERINFO` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_TEXTE_NOTIZEN` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_TEXTE_OKFBL` tinyint(1) DEFAULT 0,
+  `KURS_TEXTE_OKTEXTER` tinyint(1) DEFAULT 0,
+  `KURS_TEXTE_OKCO` tinyint(1) DEFAULT 0,
+  `KURS_DATEN_OKFBL` tinyint(1) DEFAULT 0,
+  `KURS_DATEN_OKDATEN` tinyint(1) DEFAULT 0,
+  `KURS_DATEN_OKKALK` tinyint(1) DEFAULT 0,
+  `KURS_FOTO_ALT` tinyint(1) DEFAULT 0,
+  `KURS_FOTO_REFERENT` tinyint(1) DEFAULT 0,
+  `KURS_FOTO_WEB` tinyint(1) DEFAULT 0,
+  `KURS_FOTO_WOHER` int(1) DEFAULT 0,
+  `KURS_FOTO_OK` tinyint(1) DEFAULT 0,
+  `KURS_TEXTE_OK` tinyint(1) DEFAULT 0,
+  `KURS_BILDT` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_BILD` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_BILD_ID` int(10) DEFAULT 0,
+  `KURS_BILD_BREITE` varchar(10) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_BILD_OK` tinyint(1) DEFAULT 0,
+  `KURS_BILD_DATUM` date DEFAULT NULL,
+  `KURS_MITZUBRINGEN` text COLLATE latin1_german2_ci NOT NULL,
+  `KURS_PREIS` double NOT NULL DEFAULT 0,
+  `KURS_KALK_FERTIG` tinyint(1) DEFAULT 0,
+  `KURS_MATERIALKOSTEN` double NOT NULL DEFAULT 0,
+  `KURS_ORT_ID` int(11) NOT NULL DEFAULT 0,
+  `KURS_TREFFPUNKT` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_RUB_ID` int(11) NOT NULL DEFAULT 0,
+  `KURS_KINDERVHS` tinyint(1) DEFAULT NULL,
+  `KURS_FRAUENVHS` tinyint(1) DEFAULT NULL,
+  `KURS_SENIORENVHS` tinyint(1) DEFAULT NULL,
+  `KURS_GESUNDHEITVHS` tinyint(1) DEFAULT NULL,
+  `KURS_BEGINN` date NOT NULL DEFAULT '0000-00-00',
+  `KURS_BEGINN_UHRZEIT` time NOT NULL DEFAULT '00:00:00',
+  `KURS_ENDE` date NOT NULL DEFAULT '0000-00-00',
+  `KURS_ENDE_UHRZEIT` time NOT NULL DEFAULT '00:00:00',
+  `KURS_ZEIT` int(10) NOT NULL,
+  `KURZ_ZEIT` int(10) NOT NULL DEFAULT 0,
+  `KURS_TEIL_MIN` int(5) NOT NULL DEFAULT 0,
+  `KURS_TEIL_MAX` int(5) NOT NULL DEFAULT 0,
+  `KURS_ALTER_VON` int(10) DEFAULT 0,
+  `KURS_ALTER_BIS` int(10) DEFAULT 0,
+  `KURS_ANZAHLTERMINE` int(5) NOT NULL DEFAULT 0,
+  `KURS_REFERENT_ID` int(11) NOT NULL DEFAULT 0,
+  `KURS_REFERENT_HONORAR` double NOT NULL DEFAULT 0,
+  `KURS_PRO_KILOMETER` double NOT NULL DEFAULT 0,
+  `KURS_KILOMETER` double NOT NULL DEFAULT 0,
+  `KURS_REFERENT_SONDERHONORAR` double NOT NULL DEFAULT 0,
+  `KURS_REFERENT_SONDERVEREINB_TX` varchar(250) COLLATE latin1_german2_ci NOT NULL,
+  `KURS_REFERENT_SONDERVEREINB` double NOT NULL DEFAULT 0,
+  `KURS_SONDERKOSTENART` varchar(150) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_REFERENT_FAHRKOSTEN` double NOT NULL DEFAULT 0,
+  `KURS_BEARBEITER` int(11) NOT NULL DEFAULT 0,
+  `KURS_BEARBEITER_ERSTER` int(11) NOT NULL DEFAULT 0,
+  `KURS_AUFSCHLIESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  `KURS_BEGRUESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  `KURS_ABSCHLIESSER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  `KURS_NOTIZEN` text COLLATE latin1_german2_ci NOT NULL,
+  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `KURS_GJ_ID` int(11) NOT NULL DEFAULT 0,
+  `KURS_DATUM_NICHT_ANZEIGEN` tinyint(1) DEFAULT 0,
+  `KURS_MATERIALKOSTEN_TEXT` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  `KURS_ABENDKASSE` double NOT NULL,
+  `KURS_SONDERKOSTEN_KOSTEN` double NOT NULL DEFAULT 0,
+  `KURS_BETREUER_TEIL_ID` int(10) NOT NULL DEFAULT 0,
+  `KURS_ABGERECHNET` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_ABGERECHNET_DATUM` date DEFAULT NULL,
+  `KURS_REFHON_UEBERW` tinyint(1) DEFAULT NULL,
+  `KURS_REFHON_DATUM` date DEFAULT NULL,
+  `KURS_INFO` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_GES_ZPP` varchar(20) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_ZPP_TITEL` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_GES_ZPP_DATUM` date DEFAULT NULL,
+  `KURS_BONUSFAEHIG` tinyint(1) DEFAULT 0,
+  `KURS_ZPP_Q` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_ZPP_ZQ` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_GES_SPORT` tinyint(1) DEFAULT 0,
+  `KURS_GES_ERNAEHRUNG` tinyint(1) DEFAULT 0,
+  `KURS_GES_STRESS` tinyint(1) DEFAULT 0,
+  `KURS_GES_RAUCHEN` tinyint(1) DEFAULT 0,
+  `KURS_GES_BEWEGUNG` tinyint(1) DEFAULT 0,
+  `KURS_UEBERGEWICHT` tinyint(1) DEFAULT 0,
+  `KURS_ENTSPANNUNG` tinyint(1) DEFAULT 0,
+  `KURS_ALKOHOL` tinyint(1) DEFAULT 0,
+  `KURS_SICHTBAR` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_NICHTIMHEFT` tinyint(1) DEFAULT NULL,
+  `KURS_FERTIG` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_EMAIL_INFO` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_SCHLUESSEL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
+  `KURS_ANMFRIST` date NOT NULL DEFAULT '0000-00-00',
+  `KURS_ABMELDESCHLUSS` date DEFAULT NULL,
+  `KURS_VERANSTALTUNG` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_VERANST_TEXT` varchar(100) COLLATE latin1_german2_ci DEFAULT NULL,
+  `KURS_NICHT_BUCHBAR` tinyint(1) DEFAULT 0,
+  `KURS_BUCHBAR_GEMEINDE` tinyint(1) DEFAULT 0,
+  `KURS_SONDERSTATUS` tinyint(1) NOT NULL DEFAULT 0,
+  `KURS_REFERENT_SONDERHONORAR_TX` varchar(250) COLLATE latin1_german2_ci NOT NULL,
+  `KURS_STATUS_MIN` tinyint(1) NOT NULL,
+  `KURS_UNTERSCHRIFT` tinyint(1) DEFAULT 0,
+  `KURS_UNTERSCHRIFT_DATUM` date DEFAULT NULL,
+  `KURS_STATUS_STATT` tinyint(1) NOT NULL,
+  `KURS_STATUS_ABGESAGT` tinyint(1) NOT NULL,
+  `KURS_HONORAR_FINAL` double NOT NULL,
+  `KURS_EINZUG_DATUM` date DEFAULT NULL,
+  `KURS_FERTIG_UEBERW` tinyint(1) NOT NULL,
+  `KURS_DATUM_UEBERW` date NOT NULL,
+  `KURS_KURSSTAT_ID` int(4) NOT NULL DEFAULT 0,
+  `EINGEGEBEN_VON_USER` int(11) NOT NULL,
+  `EINGEGEBEN_AM_DATUM` date NOT NULL,
+  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
+  `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
+  `ARCHIV_AM_DATUM` date DEFAULT NULL,
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`KURS_ID`),
+  KEY `KURS_REFERENT_ID` (`KURS_REFERENT_ID`),
+  KEY `KURS_REFERENT_ID_2` (`KURS_REFERENT_ID`),
+  KEY `KURS_PREIS` (`KURS_PREIS`),
+  KEY `KURS_BEGINN` (`KURS_BEGINN`),
+  KEY `KURS_BEGINN_UHRZEIT` (`KURS_BEGINN_UHRZEIT`),
+  KEY `KURS_ENDE` (`KURS_ENDE`),
+  KEY `KURS_ENDE_UHRZEIT` (`KURS_ENDE_UHRZEIT`)
+) ENGINE=MyISAM AUTO_INCREMENT=2018154 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci PACK_KEYS=1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vhslq_kurse`
+--
+
+LOCK TABLES `vhslq_kurse` WRITE;
+/*!40000 ALTER TABLE `vhslq_kurse` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kurse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kursstatus`
+--
+
+DROP TABLE IF EXISTS `vhslq_kursstatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vhslq_kursstatus` (
+  `KURSSTAT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `KURSSTAT_TEXT` varchar(200) COLLATE latin1_german2_ci NOT NULL,
+  `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
+  `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
+  `GEAENDERT_AM_DATUM` date DEFAULT NULL,
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  `EINGEGEBEN_VON_USER` int(11) NOT NULL,
+  `EINGEGEBEN_AM_DATUM` date NOT NULL,
+  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
+  `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
+  `GELOESCHT_AM_DATUM` date DEFAULT NULL,
+  `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
+  `DATENHISTORY` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
+  `GESPERRT_VON_USER` int(11) DEFAULT NULL,
+  `GESPERRT_AM_DATUM` date DEFAULT NULL,
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`KURSSTAT_ID`),
+  KEY `KURSSTAT_TEXT` (`KURSSTAT_TEXT`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vhslq_kursstatus`
+--
+
+LOCK TABLES `vhslq_kursstatus` WRITE;
+/*!40000 ALTER TABLE `vhslq_kursstatus` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kursstatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kv_aufgaben`
+--
+
+DROP TABLE IF EXISTS `vhslq_kv_aufgaben`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_kv_aufgaben` (
-  `AUFG_ID` int(11) NOT NULL,
+  `AUFG_ID` int(11) NOT NULL AUTO_INCREMENT,
   `AUFG_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `AUFG_TITEL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `AUFG_BESCHREIBUNG` text COLLATE latin1_german2_ci NOT NULL,
@@ -2247,20 +2977,32 @@ CREATE TABLE `vhslq_kv_aufgaben` (
   `AUFG_ERLEDINGEN_VON` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `AUFG_EINGESTELLT_VON` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `AUFG_ANTWORT` text COLLATE latin1_german2_ci NOT NULL,
-  `AUFG_STAT_ID` int(11) NOT NULL DEFAULT '1',
+  `AUFG_STAT_ID` int(11) NOT NULL DEFAULT 1,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
-  `EINGEGEBEN_AM_ZEIT` time NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
+  PRIMARY KEY (`AUFG_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kv_fehler`
+-- Dumping data for table `vhslq_kv_aufgaben`
 --
 
+LOCK TABLES `vhslq_kv_aufgaben` WRITE;
+/*!40000 ALTER TABLE `vhslq_kv_aufgaben` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kv_aufgaben` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kv_fehler`
+--
+
+DROP TABLE IF EXISTS `vhslq_kv_fehler`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_kv_fehler` (
-  `FEH_ID` int(11) NOT NULL,
+  `FEH_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FEH_DATUM` date NOT NULL DEFAULT '0000-00-00',
   `FEH_TITEL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `FEH_EINGESTELLT_VON` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -2275,39 +3017,63 @@ CREATE TABLE `vhslq_kv_fehler` (
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `FEH_STAT_ID` int(11) NOT NULL DEFAULT '1',
+  `FEH_STAT_ID` int(11) NOT NULL DEFAULT 1,
   `FEH_LOESUNG` text COLLATE latin1_german2_ci NOT NULL,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
-  `EINGEGEBEN_AM_ZEIT` time NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
+  PRIMARY KEY (`FEH_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_kv_status`
+-- Dumping data for table `vhslq_kv_fehler`
 --
 
+LOCK TABLES `vhslq_kv_fehler` WRITE;
+/*!40000 ALTER TABLE `vhslq_kv_fehler` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kv_fehler` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_kv_status`
+--
+
+DROP TABLE IF EXISTS `vhslq_kv_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_kv_status` (
-  `STATUS_ID` int(11) NOT NULL,
+  `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `STATUS_STATUS` varchar(200) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
-  `GEAENDERT_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`STATUS_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_musikschule`
+-- Dumping data for table `vhslq_kv_status`
 --
 
+LOCK TABLES `vhslq_kv_status` WRITE;
+/*!40000 ALTER TABLE `vhslq_kv_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_kv_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_musikschule`
+--
+
+DROP TABLE IF EXISTS `vhslq_musikschule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_musikschule` (
-  `MUS_ID` int(11) NOT NULL,
+  `MUS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `MUS_POS` int(3) DEFAULT NULL,
   `MUS_KURSNAME` varchar(200) DEFAULT NULL,
-  `MUS_BESCHREIBUNG` text,
+  `MUS_BESCHREIBUNG` text DEFAULT NULL,
   `MUS_PREIS` double DEFAULT NULL,
   `MUS_ORT_ID` int(11) DEFAULT NULL,
   `MUS_BEGINN` date DEFAULT NULL,
@@ -2328,27 +3094,39 @@ CREATE TABLE `vhslq_musikschule` (
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
+  `DATENHISTORY` text DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
-  `GESPERRT_AM_ZEIT` time DEFAULT NULL
+  `GESPERRT_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`MUS_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_orte`
+-- Dumping data for table `vhslq_musikschule`
 --
 
+LOCK TABLES `vhslq_musikschule` WRITE;
+/*!40000 ALTER TABLE `vhslq_musikschule` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_musikschule` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_orte`
+--
+
+DROP TABLE IF EXISTS `vhslq_orte`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_orte` (
-  `ORT_ID` int(11) NOT NULL,
+  `ORT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ORT_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ORT_STRASSE` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ORT_PLZ` varchar(5) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `ORT_ORTSNAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `ORT_ARCHIV` tinyint(1) DEFAULT '0',
-  `ORT_CODE` tinyint(1) DEFAULT '0',
+  `ORT_ARCHIV` tinyint(1) DEFAULT 0,
+  `ORT_CODE` tinyint(1) DEFAULT 0,
   `CHECKSUM` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -2356,36 +3134,51 @@ CREATE TABLE `vhslq_orte` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ORT_ID`),
+  KEY `ORT_NAME` (`ORT_NAME`),
+  KEY `ORT_STRASSE` (`ORT_STRASSE`),
+  KEY `ORT_ORTSNAME` (`ORT_ORTSNAME`)
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_presse`
+-- Dumping data for table `vhslq_orte`
 --
 
+LOCK TABLES `vhslq_orte` WRITE;
+/*!40000 ALTER TABLE `vhslq_orte` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_orte` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_presse`
+--
+
+DROP TABLE IF EXISTS `vhslq_presse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_presse` (
-  `PRESSE_ID` int(11) NOT NULL,
+  `PRESSE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PRESSE_UEBERSCHRIFT` varchar(250) NOT NULL DEFAULT '0',
-  `PRESSE_KURZ` text,
+  `PRESSE_KURZ` text DEFAULT NULL,
   `PRESSE_DATUM` date DEFAULT NULL,
   `PRESSE_SICHTBAR` tinyint(1) DEFAULT NULL,
   `PRESSE_DATEIT` varchar(100) DEFAULT NULL,
   `PRESSE_DATEI` varchar(100) DEFAULT NULL,
   `PRESSE_LINK` varchar(255) DEFAULT NULL,
-  `PRESSE_ZEIT_ID` int(10) NOT NULL DEFAULT '0',
+  `PRESSE_ZEIT_ID` int(10) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
   `EINGEGEBEN_AM_DATUM` date DEFAULT NULL,
@@ -2401,60 +3194,85 @@ CREATE TABLE `vhslq_presse` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`PRESSE_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=296 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_rubriken`
+-- Dumping data for table `vhslq_presse`
 --
 
+LOCK TABLES `vhslq_presse` WRITE;
+/*!40000 ALTER TABLE `vhslq_presse` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_presse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_rubriken`
+--
+
+DROP TABLE IF EXISTS `vhslq_rubriken`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_rubriken` (
-  `RUB_ID` int(11) NOT NULL,
+  `RUB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `RUB_NAME` varchar(100) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `RUB_TEIL_ID` int(11) NOT NULL DEFAULT '0',
-  `RUB_ALT` tinyint(1) DEFAULT '0',
+  `RUB_TEIL_ID` int(11) NOT NULL DEFAULT 0,
+  `RUB_ALT` tinyint(1) DEFAULT 0,
   `RUB_TITEL` varchar(200) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `RUB_BILDT` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `RUB_BILD` varchar(255) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
-  `RUB_BILD_ID` int(10) DEFAULT '0',
-  `RUB_BILDBREITE` int(10) DEFAULT '0',
-  `RUB_TEXT` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
-  `RUB_FBT_ID` int(2) DEFAULT '1',
+  `RUB_BILD_ID` int(10) DEFAULT 0,
+  `RUB_BILDBREITE` int(10) DEFAULT 0,
+  `RUB_TEXT` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
+  `RUB_FBT_ID` int(2) DEFAULT 1,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`RUB_ID`),
+  KEY `RUB_NAME` (`RUB_NAME`)
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_schliesszeiten`
+-- Dumping data for table `vhslq_rubriken`
 --
 
+LOCK TABLES `vhslq_rubriken` WRITE;
+/*!40000 ALTER TABLE `vhslq_rubriken` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_rubriken` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_schliesszeiten`
+--
+
+DROP TABLE IF EXISTS `vhslq_schliesszeiten`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_schliesszeiten` (
-  `SCHL_ID` int(11) NOT NULL,
+  `SCHL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SCHL_BEZEICHNUNG` varchar(100) DEFAULT '0',
   `SCHL_DATUM_VON` date DEFAULT NULL,
   `SCHL_DATUM_BIS` date DEFAULT NULL,
-  `SCHL_ORT_ID` int(11) DEFAULT '0',
+  `SCHL_ORT_ID` int(11) DEFAULT 0,
   `SCHL_NOTIZ` varchar(150) NOT NULL,
   `CHECKSUM` varchar(50) DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) DEFAULT NULL,
@@ -2471,17 +3289,29 @@ CREATE TABLE `vhslq_schliesszeiten` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `DATENHISTORY` text DEFAULT NULL,
+  PRIMARY KEY (`SCHL_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_sonderkosten`
+-- Dumping data for table `vhslq_schliesszeiten`
 --
 
+LOCK TABLES `vhslq_schliesszeiten` WRITE;
+/*!40000 ALTER TABLE `vhslq_schliesszeiten` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_schliesszeiten` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_sonderkosten`
+--
+
+DROP TABLE IF EXISTS `vhslq_sonderkosten`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_sonderkosten` (
-  `SONDERKOSTEN_ID` int(11) NOT NULL,
+  `SONDERKOSTEN_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SONDERKOSTEN_TEXT` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
@@ -2489,22 +3319,34 @@ CREATE TABLE `vhslq_sonderkosten` (
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
-  `EINGEGEBEN_AM_ZEIT` time NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `EINGEGEBEN_AM_ZEIT` time NOT NULL,
+  PRIMARY KEY (`SONDERKOSTEN_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_status`
+-- Dumping data for table `vhslq_sonderkosten`
 --
 
+LOCK TABLES `vhslq_sonderkosten` WRITE;
+/*!40000 ALTER TABLE `vhslq_sonderkosten` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_sonderkosten` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_status`
+--
+
+DROP TABLE IF EXISTS `vhslq_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_status` (
-  `STAT_ID` int(11) NOT NULL,
+  `STAT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `STAT_KUERZEL` char(1) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `STAT_STATUS` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `STAT_RECHNUNG` tinyint(1) NOT NULL DEFAULT '0',
-  `STAT_WARTELISTE` tinyint(1) NOT NULL DEFAULT '0',
-  `STAT_ABGEMELDET` tinyint(1) NOT NULL DEFAULT '0',
+  `STAT_RECHNUNG` tinyint(1) NOT NULL DEFAULT 0,
+  `STAT_WARTELISTE` tinyint(1) NOT NULL DEFAULT 0,
+  `STAT_ABGEMELDET` tinyint(1) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
@@ -2512,34 +3354,47 @@ CREATE TABLE `vhslq_status` (
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci,
+  `DATENHISTORY` text CHARACTER SET latin1 COLLATE latin1_german2_ci DEFAULT NULL,
   `GESPERRT_FELD` tinyint(1) DEFAULT NULL,
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`STAT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_teilnehmer`
+-- Dumping data for table `vhslq_status`
 --
 
+LOCK TABLES `vhslq_status` WRITE;
+/*!40000 ALTER TABLE `vhslq_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_teilnehmer`
+--
+
+DROP TABLE IF EXISTS `vhslq_teilnehmer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_teilnehmer` (
-  `TEIL_ID` int(11) NOT NULL,
-  `TEIL_ARCHIV` tinyint(1) NOT NULL DEFAULT '0',
-  `TEIL_REFERENT` tinyint(1) NOT NULL DEFAULT '0',
+  `TEIL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TEIL_ARCHIV` tinyint(1) NOT NULL DEFAULT 0,
+  `TEIL_REFERENT` tinyint(1) NOT NULL DEFAULT 0,
   `TEIL_REF_SEIT` date DEFAULT NULL,
-  `TEIL_USER_ID` int(11) NOT NULL DEFAULT '0',
-  `TEIL_GEMEINDEMIT` tinyint(1) NOT NULL DEFAULT '0',
-  `TEIL_ANREDE` int(11) NOT NULL DEFAULT '0',
+  `TEIL_USER_ID` int(11) NOT NULL DEFAULT 0,
+  `TEIL_PASSWORT` varchar(255) COLLATE latin1_german2_ci NOT NULL,
+  `TEIL_GEMEINDEMIT` tinyint(1) NOT NULL DEFAULT 0,
+  `TEIL_ANREDE` int(11) NOT NULL DEFAULT 0,
   `TEIL_VORNAME` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_NACHNAME` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_STRASSE1` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -2552,7 +3407,7 @@ CREATE TABLE `vhslq_teilnehmer` (
   `TEIL_FAX1` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_HANDY` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_EMAIL` varchar(255) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEIL_NEWSLETTER` tinyint(1) NOT NULL DEFAULT '0',
+  `TEIL_NEWSLETTER` tinyint(1) NOT NULL DEFAULT 0,
   `TEIL_KONTOINHABER` varchar(100) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_KONTO` varchar(10) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
   `TEIL_BLZ` varchar(8) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
@@ -2560,45 +3415,45 @@ CREATE TABLE `vhslq_teilnehmer` (
   `TEIL_IBAN` varchar(22) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_MANDAT_DATUM` date DEFAULT NULL,
   `TEIL_MANDAT_GENUTZT` date DEFAULT NULL,
-  `TEIL_EINZUG` tinyint(1) NOT NULL DEFAULT '0',
+  `TEIL_EINZUG` tinyint(1) NOT NULL DEFAULT 0,
   `CHECKSUM` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `GEAENDERT_VON_USER` int(11) DEFAULT NULL,
   `GEAENDERT_AM_DATUM` date DEFAULT NULL,
   `GEAENDERT_AM_ZEIT` time DEFAULT NULL,
-  `TEIL_GESCH_ID` int(11) NOT NULL DEFAULT '0',
-  `TEIL_MITGLIED` tinyint(1) NOT NULL DEFAULT '0',
-  `TEIL_KERNTEAM` tinyint(1) DEFAULT '0',
+  `TEIL_GESCH_ID` int(11) NOT NULL DEFAULT 0,
+  `TEIL_MITGLIED` tinyint(1) NOT NULL DEFAULT 0,
+  `TEIL_KERNTEAM` tinyint(1) DEFAULT 0,
   `TEIL_VHS_SEIT` date DEFAULT NULL,
-  `TEIL_FACHBEREICH` tinyint(1) NOT NULL DEFAULT '0',
+  `TEIL_FACHBEREICH` tinyint(1) NOT NULL DEFAULT 0,
   `TEIL_ANMELDEDATUM` date NOT NULL DEFAULT '0000-00-00',
   `TEIL_NOTIZEN` text COLLATE latin1_german2_ci NOT NULL,
   `TEIL_FAX2` varchar(30) COLLATE latin1_german2_ci NOT NULL DEFAULT '',
-  `TEIL_TEIL_ID_ZUORDNUNG` int(11) NOT NULL DEFAULT '0',
+  `TEIL_TEIL_ID_ZUORDNUNG` int(11) NOT NULL DEFAULT 0,
   `TEIL_QUAL` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_QUAL_ZUSATZ` varchar(200) COLLATE latin1_german2_ci DEFAULT NULL,
-  `TEIL_REF_PROFIL_TEXT` text COLLATE latin1_german2_ci,
-  `TEIL_REF_PROFIL_QUAL` text COLLATE latin1_german2_ci,
-  `TEIL_REF_PROFIL_BESOND` text COLLATE latin1_german2_ci,
-  `TEIL_REF_PROFIL_PERS` text COLLATE latin1_german2_ci,
+  `TEIL_REF_PROFIL_TEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `TEIL_REF_PROFIL_QUAL` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `TEIL_REF_PROFIL_BESOND` text COLLATE latin1_german2_ci DEFAULT NULL,
+  `TEIL_REF_PROFIL_PERS` text COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_BILDT` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_BILD` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_BILD2T` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_BILD2` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `TEIL_REF_ANZEIGEN` tinyint(1) DEFAULT '0',
+  `TEIL_REF_ANZEIGEN` tinyint(1) DEFAULT 0,
   `TEIL_VHS_TITEL` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `TEIL_VHS_TEXT` text COLLATE latin1_german2_ci,
+  `TEIL_VHS_TEXT` text COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_VHS_BILDT` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
   `TEIL_VHS_BILD` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,
-  `TEIL_VHS_ANZEIGEN` tinyint(1) DEFAULT '0',
-  `TEIL_VHS_POSITION` tinyint(3) DEFAULT '0',
-  `TEIL_CODE` int(6) DEFAULT '0',
-  `TEIL_CODE_ACTIV` tinyint(1) DEFAULT '0',
-  `TEIL_CODE_DRUCKEN` tinyint(1) DEFAULT '0',
+  `TEIL_VHS_ANZEIGEN` tinyint(1) DEFAULT 0,
+  `TEIL_VHS_POSITION` tinyint(3) DEFAULT 0,
+  `TEIL_CODE` int(6) DEFAULT 0,
+  `TEIL_CODE_ACTIV` tinyint(1) DEFAULT 0,
+  `TEIL_CODE_DRUCKEN` tinyint(1) DEFAULT 0,
   `EINGEGEBEN_VON_USER` int(11) NOT NULL,
   `EINGEGEBEN_AM_DATUM` date NOT NULL,
   `EINGEGEBEN_AM_ZEIT` time NOT NULL,
   `DATENHISTORY` text COLLATE latin1_german2_ci NOT NULL,
-  `GELOESCHT_FELD` tinyint(1) DEFAULT '0',
+  `GELOESCHT_FELD` tinyint(1) DEFAULT 0,
   `GELOESCHT_VON_USER` int(11) DEFAULT NULL,
   `GELOESCHT_AM_DATUM` date DEFAULT NULL,
   `GELOESCHT_AM_ZEIT` time DEFAULT NULL,
@@ -2606,19 +3461,37 @@ CREATE TABLE `vhslq_teilnehmer` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
-
--- --------------------------------------------------------
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`TEIL_ID`),
+  KEY `TEIL_USER_ID` (`TEIL_USER_ID`),
+  KEY `TEIL_VORNAME` (`TEIL_VORNAME`),
+  KEY `TEIL_NACHNAME` (`TEIL_NACHNAME`),
+  KEY `TEIL_ORT` (`TEIL_ORT`),
+  KEY `TEIL_TEIL_ID_ZUORDNUNG` (`TEIL_TEIL_ID_ZUORDNUNG`),
+  KEY `TEIL_ANREDE` (`TEIL_ANREDE`)
+) ENGINE=MyISAM AUTO_INCREMENT=4704 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tabellenstruktur für Tabelle `vhslq_zeitungen`
+-- Dumping data for table `vhslq_teilnehmer`
 --
 
+LOCK TABLES `vhslq_teilnehmer` WRITE;
+/*!40000 ALTER TABLE `vhslq_teilnehmer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_teilnehmer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vhslq_zeitungen`
+--
+
+DROP TABLE IF EXISTS `vhslq_zeitungen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vhslq_zeitungen` (
-  `ZEIT_ID` int(11) NOT NULL,
+  `ZEIT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ZEIT_NAME` varchar(50) DEFAULT NULL,
   `ZEIT_KUERZEL` varchar(10) NOT NULL DEFAULT '0',
   `CHECKSUM` varchar(50) DEFAULT NULL,
@@ -2636,834 +3509,30 @@ CREATE TABLE `vhslq_zeitungen` (
   `GESPERRT_VON_USER` int(11) DEFAULT NULL,
   `GESPERRT_AM_DATUM` date DEFAULT NULL,
   `GESPERRT_AM_ZEIT` time DEFAULT NULL,
-  `DATENHISTORY` text,
-  `ARCHIV_VON_USER` int(11) DEFAULT '0',
+  `DATENHISTORY` text DEFAULT NULL,
+  `ARCHIV_VON_USER` int(11) DEFAULT 0,
   `ARCHIV_AM_DATUM` date DEFAULT NULL,
-  `ARCHIV_AM_ZEIT` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ARCHIV_AM_ZEIT` time DEFAULT NULL,
+  PRIMARY KEY (`ZEIT_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Indizes der exportierten Tabellen
+-- Dumping data for table `vhslq_zeitungen`
 --
 
---
--- Indizes für die Tabelle `cms_bilder`
---
-ALTER TABLE `cms_bilder`
-  ADD PRIMARY KEY (`BILD_ID`);
-
---
--- Indizes für die Tabelle `cms_bilder_ordner`
---
-ALTER TABLE `cms_bilder_ordner`
-  ADD PRIMARY KEY (`BIO_ID`);
-
---
--- Indizes für die Tabelle `cms_bilder_web`
---
-ALTER TABLE `cms_bilder_web`
-  ADD PRIMARY KEY (`BIW_ID`);
-
---
--- Indizes für die Tabelle `cms_buttonstile`
---
-ALTER TABLE `cms_buttonstile`
-  ADD PRIMARY KEY (`BUTT_ID`);
-
---
--- Indizes für die Tabelle `cms_config`
---
-ALTER TABLE `cms_config`
-  ADD PRIMARY KEY (`CONF_ID`);
-
---
--- Indizes für die Tabelle `cms_datenbanken`
---
-ALTER TABLE `cms_datenbanken`
-  ADD PRIMARY KEY (`DB_ID`);
-
---
--- Indizes für die Tabelle `cms_dsgvo`
---
-ALTER TABLE `cms_dsgvo`
-  ADD PRIMARY KEY (`DS_ID`);
-
---
--- Indizes für die Tabelle `cms_error`
---
-ALTER TABLE `cms_error`
-  ADD PRIMARY KEY (`ERROR_ID`);
-
---
--- Indizes für die Tabelle `cms_error_log`
---
-ALTER TABLE `cms_error_log`
-  ADD PRIMARY KEY (`ERROR_ID`);
-
---
--- Indizes für die Tabelle `cms_files`
---
-ALTER TABLE `cms_files`
-  ADD PRIMARY KEY (`FILE_ID`);
-
---
--- Indizes für die Tabelle `cms_groups`
---
-ALTER TABLE `cms_groups`
-  ADD PRIMARY KEY (`GROUP_ID`),
-  ADD KEY `GROUP_NAME` (`GROUP_NAME`),
-  ADD KEY `GROUP_ADMIN` (`GROUP_ADMIN`),
-  ADD KEY `GROUP_CONF_ID` (`GROUP_CONF_ID`);
-
---
--- Indizes für die Tabelle `cms_groups_rights`
---
-ALTER TABLE `cms_groups_rights`
-  ADD PRIMARY KEY (`GROUP_RIGHT_ID`),
-  ADD KEY `GROUP_ID` (`GROUP_ID`),
-  ADD KEY `NAV_ID` (`NAV_ID`);
-
---
--- Indizes für die Tabelle `cms_hacking_log`
---
-ALTER TABLE `cms_hacking_log`
-  ADD PRIMARY KEY (`HACK_ID`);
-
---
--- Indizes für die Tabelle `cms_languages`
---
-ALTER TABLE `cms_languages`
-  ADD PRIMARY KEY (`LANG_ID`);
-
---
--- Indizes für die Tabelle `cms_nachrichten`
---
-ALTER TABLE `cms_nachrichten`
-  ADD PRIMARY KEY (`NEWS_ID`);
-
---
--- Indizes für die Tabelle `cms_nachrichten_groups`
---
-ALTER TABLE `cms_nachrichten_groups`
-  ADD PRIMARY KEY (`NG_ID`);
-
---
--- Indizes für die Tabelle `cms_nachrichten_module`
---
-ALTER TABLE `cms_nachrichten_module`
-  ADD PRIMARY KEY (`NM_ID`);
-
---
--- Indizes für die Tabelle `cms_nachrichten_user`
---
-ALTER TABLE `cms_nachrichten_user`
-  ADD PRIMARY KEY (`NU_ID`);
-
---
--- Indizes für die Tabelle `cms_navigation`
---
-ALTER TABLE `cms_navigation`
-  ADD PRIMARY KEY (`NAV_ID`),
-  ADD KEY `NAV_REFER_ID` (`NAV_REFER_ID`),
-  ADD KEY `NAV_TEXT` (`NAV_TEXT`),
-  ADD KEY `NAV_TEXT_FORMULAR` (`NAV_TEXT_FORMULAR`),
-  ADD KEY `NAV_DATEI` (`NAV_DATEI`),
-  ADD KEY `NAV_DATEI_FORMULAR` (`NAV_DATEI_FORMULAR`),
-  ADD KEY `NAV_ORDNER` (`NAV_ORDNER`),
-  ADD KEY `NAV_KLASSENNAME` (`NAV_KLASSENNAME`),
-  ADD KEY `NAV_PARENT` (`NAV_PARENT`);
-
---
--- Indizes für die Tabelle `cms_notice`
---
-ALTER TABLE `cms_notice`
-  ADD PRIMARY KEY (`NOT_ID`);
-
---
--- Indizes für die Tabelle `cms_numbers`
---
-ALTER TABLE `cms_numbers`
-  ADD PRIMARY KEY (`NUMB_ID`);
-
---
--- Indizes für die Tabelle `cms_quellen`
---
-ALTER TABLE `cms_quellen`
-  ADD PRIMARY KEY (`QUEL_ID`);
-
---
--- Indizes für die Tabelle `cms_sessions`
---
-ALTER TABLE `cms_sessions`
-  ADD PRIMARY KEY (`SESS_ID`),
-  ADD KEY `SESS_SESSIONID` (`SESS_SESSIONID`),
-  ADD KEY `SESS_KEY` (`SESS_KEY`),
-  ADD KEY `SESS_USER_ID` (`SESS_USER_ID`);
-
---
--- Indizes für die Tabelle `cms_sessions_history`
---
-ALTER TABLE `cms_sessions_history`
-  ADD PRIMARY KEY (`SESS_ID`);
-
---
--- Indizes für die Tabelle `cms_session_log`
---
-ALTER TABLE `cms_session_log`
-  ADD PRIMARY KEY (`SESSLOG_ID`);
-
---
--- Indizes für die Tabelle `cms_tabellenfelder`
---
-ALTER TABLE `cms_tabellenfelder`
-  ADD PRIMARY KEY (`TF_ID`);
-
---
--- Indizes für die Tabelle `cms_templates`
---
-ALTER TABLE `cms_templates`
-  ADD PRIMARY KEY (`TEMP_ID`),
-  ADD KEY `TEMP_NAME` (`TEMP_NAME`),
-  ADD KEY `TEMP_PATH` (`TEMP_PATH`);
-
---
--- Indizes für die Tabelle `cms_templates_layout`
---
-ALTER TABLE `cms_templates_layout`
-  ADD PRIMARY KEY (`TLAY_ID`);
-
---
--- Indizes für die Tabelle `cms_times`
---
-ALTER TABLE `cms_times`
-  ADD PRIMARY KEY (`T_ID`);
-
---
--- Indizes für die Tabelle `cms_user`
---
-ALTER TABLE `cms_user`
-  ADD PRIMARY KEY (`USER_ID`),
-  ADD KEY `USER_VORNAME` (`USER_VORNAME`),
-  ADD KEY `USER_NACHNAME` (`USER_NACHNAME`),
-  ADD KEY `USER_USERNAME` (`USER_USERNAME`),
-  ADD KEY `SESSION_ID` (`SESSION_ID`),
-  ADD KEY `USER_EMAIL` (`USER_EMAIL`);
-
---
--- Indizes für die Tabelle `cms_user_group`
---
-ALTER TABLE `cms_user_group`
-  ADD PRIMARY KEY (`USER_GROUP_ID`),
-  ADD KEY `USER_ID` (`USER_ID`),
-  ADD KEY `GROUP_ID` (`GROUP_ID`);
-
---
--- Indizes für die Tabelle `cms_viewoptions`
---
-ALTER TABLE `cms_viewoptions`
-  ADD PRIMARY KEY (`VIEW_ID`),
-  ADD KEY `VIEW_USER_ID` (`VIEW_USER_ID`),
-  ADD KEY `VIEW_NAV_ID` (`VIEW_NAV_ID`);
-
---
--- Indizes für die Tabelle `com_status`
---
-ALTER TABLE `com_status`
-  ADD PRIMARY KEY (`STATUS_ID`);
-
---
--- Indizes für die Tabelle `global_gl_status`
---
-ALTER TABLE `global_gl_status`
-  ADD PRIMARY KEY (`STATUS_ID`);
-
---
--- Indizes für die Tabelle `pma_table_info`
---
-ALTER TABLE `pma_table_info`
-  ADD PRIMARY KEY (`db_name`,`table_name`);
-
---
--- Indizes für die Tabelle `prot_protokolle`
---
-ALTER TABLE `prot_protokolle`
-  ADD PRIMARY KEY (`PROT_ID`);
-
---
--- Indizes für die Tabelle `prot_protokoll_dateien`
---
-ALTER TABLE `prot_protokoll_dateien`
-  ADD PRIMARY KEY (`DAT_ID`);
-
---
--- Indizes für die Tabelle `prot_protokoll_eintrag`
---
-ALTER TABLE `prot_protokoll_eintrag`
-  ADD PRIMARY KEY (`PRE_ID`);
-
---
--- Indizes für die Tabelle `vhslq_agb_dsr`
---
-ALTER TABLE `vhslq_agb_dsr`
-  ADD PRIMARY KEY (`GB_ID`);
-
---
--- Indizes für die Tabelle `vhslq_aktuelles`
---
-ALTER TABLE `vhslq_aktuelles`
-  ADD PRIMARY KEY (`AKT_ID`);
-
---
--- Indizes für die Tabelle `vhslq_aktuelles_texte`
---
-ALTER TABLE `vhslq_aktuelles_texte`
-  ADD PRIMARY KEY (`AKTT_ID`);
-
---
--- Indizes für die Tabelle `vhslq_anmeldeart`
---
-ALTER TABLE `vhslq_anmeldeart`
-  ADD PRIMARY KEY (`ANMA_ID`);
-
---
--- Indizes für die Tabelle `vhslq_anmeldestellen`
---
-ALTER TABLE `vhslq_anmeldestellen`
-  ADD PRIMARY KEY (`ANMST_ID`);
-
---
--- Indizes für die Tabelle `vhslq_anmeldungen`
---
-ALTER TABLE `vhslq_anmeldungen`
-  ADD PRIMARY KEY (`ANM_ID`),
-  ADD KEY `ANM_TEIL_ID` (`ANM_TEIL_ID`),
-  ADD KEY `ANM_KURS_ID` (`ANM_KURS_ID`),
-  ADD KEY `ANM_STAT_ID` (`ANM_STAT_ID`),
-  ADD KEY `ANM_ANMA_ID` (`ANM_ANMA_ID`);
-
---
--- Indizes für die Tabelle `vhslq_anrede`
---
-ALTER TABLE `vhslq_anrede`
-  ADD PRIMARY KEY (`ANR_ID`);
-
---
--- Indizes für die Tabelle `vhslq_ausgaben`
---
-ALTER TABLE `vhslq_ausgaben`
-  ADD PRIMARY KEY (`AUSG_ID`);
-
---
--- Indizes für die Tabelle `vhslq_buchungsvorlagen`
---
-ALTER TABLE `vhslq_buchungsvorlagen`
-  ADD PRIMARY KEY (`BV_ID`);
-
---
--- Indizes für die Tabelle `vhslq_einnahmen`
---
-ALTER TABLE `vhslq_einnahmen`
-  ADD PRIMARY KEY (`EINN_ID`);
-
---
--- Indizes für die Tabelle `vhslq_fb_template`
---
-ALTER TABLE `vhslq_fb_template`
-  ADD PRIMARY KEY (`FBT_ID`);
-
---
--- Indizes für die Tabelle `vhslq_geschaeftsbedingungen`
---
-ALTER TABLE `vhslq_geschaeftsbedingungen`
-  ADD PRIMARY KEY (`GB_ID`);
-
---
--- Indizes für die Tabelle `vhslq_geschaeftsjahr`
---
-ALTER TABLE `vhslq_geschaeftsjahr`
-  ADD PRIMARY KEY (`GJ_ID`),
-  ADD KEY `GJ_JAHR` (`GJ_JAHR`),
-  ADD KEY `GJ_JAHR_ANZEIGEN` (`GJ_JAHR_ANZEIGEN`),
-  ADD KEY `GJ_AKTUELL` (`GJ_AKTUELL`),
-  ADD KEY `GJ_ANMELDBAR` (`GJ_ANMELDBAR`),
-  ADD KEY `GJ_INPLANUNG` (`GJ_INPLANUNG`),
-  ADD KEY `GJ_ANM_ANZEIGEN` (`GJ_ANM_ANZEIGEN`);
-
---
--- Indizes für die Tabelle `vhslq_geschlecht`
---
-ALTER TABLE `vhslq_geschlecht`
-  ADD PRIMARY KEY (`GESCHL_ID`);
-
---
--- Indizes für die Tabelle `vhslq_infoart`
---
-ALTER TABLE `vhslq_infoart`
-  ADD PRIMARY KEY (`INFO_ID`);
-
---
--- Indizes für die Tabelle `vhslq_kostengruppen`
---
-ALTER TABLE `vhslq_kostengruppen`
-  ADD PRIMARY KEY (`KG_ID`);
-
---
--- Indizes für die Tabelle `vhslq_kurse`
---
-ALTER TABLE `vhslq_kurse`
-  ADD PRIMARY KEY (`KURS_ID`),
-  ADD KEY `KURS_REFERENT_ID` (`KURS_REFERENT_ID`),
-  ADD KEY `KURS_REFERENT_ID_2` (`KURS_REFERENT_ID`),
-  ADD KEY `KURS_PREIS` (`KURS_PREIS`),
-  ADD KEY `KURS_BEGINN` (`KURS_BEGINN`),
-  ADD KEY `KURS_BEGINN_UHRZEIT` (`KURS_BEGINN_UHRZEIT`),
-  ADD KEY `KURS_ENDE` (`KURS_ENDE`),
-  ADD KEY `KURS_ENDE_UHRZEIT` (`KURS_ENDE_UHRZEIT`);
-
---
--- Indizes für die Tabelle `vhslq_kursstatus`
---
-ALTER TABLE `vhslq_kursstatus`
-  ADD PRIMARY KEY (`KURSSTAT_ID`),
-  ADD KEY `KURSSTAT_TEXT` (`KURSSTAT_TEXT`);
-
---
--- Indizes für die Tabelle `vhslq_kurs_termine`
---
-ALTER TABLE `vhslq_kurs_termine`
-  ADD PRIMARY KEY (`KT_ID`),
-  ADD KEY `KT_KURS_ID` (`KT_KURS_ID`),
-  ADD KEY `KT_ORT_ID` (`KT_ORT_ID`),
-  ADD KEY `KT_DATUM` (`KT_DATUM`),
-  ADD KEY `KT_ZEIT_VON` (`KT_ZEIT_VON`),
-  ADD KEY `KT_ZEIT_BIS` (`KT_ZEIT_BIS`);
-
---
--- Indizes für die Tabelle `vhslq_kv_aufgaben`
---
-ALTER TABLE `vhslq_kv_aufgaben`
-  ADD PRIMARY KEY (`AUFG_ID`);
-
---
--- Indizes für die Tabelle `vhslq_kv_fehler`
---
-ALTER TABLE `vhslq_kv_fehler`
-  ADD PRIMARY KEY (`FEH_ID`);
-
---
--- Indizes für die Tabelle `vhslq_kv_status`
---
-ALTER TABLE `vhslq_kv_status`
-  ADD PRIMARY KEY (`STATUS_ID`);
-
---
--- Indizes für die Tabelle `vhslq_musikschule`
---
-ALTER TABLE `vhslq_musikschule`
-  ADD PRIMARY KEY (`MUS_ID`);
-
---
--- Indizes für die Tabelle `vhslq_orte`
---
-ALTER TABLE `vhslq_orte`
-  ADD PRIMARY KEY (`ORT_ID`),
-  ADD KEY `ORT_NAME` (`ORT_NAME`),
-  ADD KEY `ORT_STRASSE` (`ORT_STRASSE`),
-  ADD KEY `ORT_ORTSNAME` (`ORT_ORTSNAME`);
-
---
--- Indizes für die Tabelle `vhslq_presse`
---
-ALTER TABLE `vhslq_presse`
-  ADD PRIMARY KEY (`PRESSE_ID`);
-
---
--- Indizes für die Tabelle `vhslq_rubriken`
---
-ALTER TABLE `vhslq_rubriken`
-  ADD PRIMARY KEY (`RUB_ID`),
-  ADD KEY `RUB_NAME` (`RUB_NAME`);
-
---
--- Indizes für die Tabelle `vhslq_schliesszeiten`
---
-ALTER TABLE `vhslq_schliesszeiten`
-  ADD PRIMARY KEY (`SCHL_ID`);
-
---
--- Indizes für die Tabelle `vhslq_sonderkosten`
---
-ALTER TABLE `vhslq_sonderkosten`
-  ADD PRIMARY KEY (`SONDERKOSTEN_ID`);
-
---
--- Indizes für die Tabelle `vhslq_status`
---
-ALTER TABLE `vhslq_status`
-  ADD PRIMARY KEY (`STAT_ID`);
-
---
--- Indizes für die Tabelle `vhslq_teilnehmer`
---
-ALTER TABLE `vhslq_teilnehmer`
-  ADD PRIMARY KEY (`TEIL_ID`),
-  ADD KEY `TEIL_USER_ID` (`TEIL_USER_ID`),
-  ADD KEY `TEIL_VORNAME` (`TEIL_VORNAME`),
-  ADD KEY `TEIL_NACHNAME` (`TEIL_NACHNAME`),
-  ADD KEY `TEIL_ORT` (`TEIL_ORT`),
-  ADD KEY `TEIL_TEIL_ID_ZUORDNUNG` (`TEIL_TEIL_ID_ZUORDNUNG`),
-  ADD KEY `TEIL_ANREDE` (`TEIL_ANREDE`);
-
---
--- Indizes für die Tabelle `vhslq_zeitungen`
---
-ALTER TABLE `vhslq_zeitungen`
-  ADD PRIMARY KEY (`ZEIT_ID`);
-
---
--- AUTO_INCREMENT für exportierte Tabellen
---
+LOCK TABLES `vhslq_zeitungen` WRITE;
+/*!40000 ALTER TABLE `vhslq_zeitungen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vhslq_zeitungen` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- AUTO_INCREMENT für Tabelle `cms_bilder`
---
-ALTER TABLE `cms_bilder`
-  MODIFY `BILD_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2021;
---
--- AUTO_INCREMENT für Tabelle `cms_bilder_ordner`
---
-ALTER TABLE `cms_bilder_ordner`
-  MODIFY `BIO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `cms_bilder_web`
---
-ALTER TABLE `cms_bilder_web`
-  MODIFY `BIW_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_buttonstile`
---
-ALTER TABLE `cms_buttonstile`
-  MODIFY `BUTT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT für Tabelle `cms_config`
---
-ALTER TABLE `cms_config`
-  MODIFY `CONF_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT für Tabelle `cms_datenbanken`
---
-ALTER TABLE `cms_datenbanken`
-  MODIFY `DB_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT für Tabelle `cms_dsgvo`
---
-ALTER TABLE `cms_dsgvo`
-  MODIFY `DS_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_error`
---
-ALTER TABLE `cms_error`
-  MODIFY `ERROR_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_error_log`
---
-ALTER TABLE `cms_error_log`
-  MODIFY `ERROR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8156;
---
--- AUTO_INCREMENT für Tabelle `cms_files`
---
-ALTER TABLE `cms_files`
-  MODIFY `FILE_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_groups`
---
-ALTER TABLE `cms_groups`
-  MODIFY `GROUP_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
---
--- AUTO_INCREMENT für Tabelle `cms_groups_rights`
---
-ALTER TABLE `cms_groups_rights`
-  MODIFY `GROUP_RIGHT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3150;
---
--- AUTO_INCREMENT für Tabelle `cms_hacking_log`
---
-ALTER TABLE `cms_hacking_log`
-  MODIFY `HACK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9104;
---
--- AUTO_INCREMENT für Tabelle `cms_languages`
---
-ALTER TABLE `cms_languages`
-  MODIFY `LANG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `cms_nachrichten`
---
-ALTER TABLE `cms_nachrichten`
-  MODIFY `NEWS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT für Tabelle `cms_nachrichten_groups`
---
-ALTER TABLE `cms_nachrichten_groups`
-  MODIFY `NG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT für Tabelle `cms_nachrichten_module`
---
-ALTER TABLE `cms_nachrichten_module`
-  MODIFY `NM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `cms_nachrichten_user`
---
-ALTER TABLE `cms_nachrichten_user`
-  MODIFY `NU_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=449;
---
--- AUTO_INCREMENT für Tabelle `cms_navigation`
---
-ALTER TABLE `cms_navigation`
-  MODIFY `NAV_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=704;
---
--- AUTO_INCREMENT für Tabelle `cms_notice`
---
-ALTER TABLE `cms_notice`
-  MODIFY `NOT_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_numbers`
---
-ALTER TABLE `cms_numbers`
-  MODIFY `NUMB_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_quellen`
---
-ALTER TABLE `cms_quellen`
-  MODIFY `QUEL_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_sessions`
---
-ALTER TABLE `cms_sessions`
-  MODIFY `SESS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1300186;
---
--- AUTO_INCREMENT für Tabelle `cms_sessions_history`
---
-ALTER TABLE `cms_sessions_history`
-  MODIFY `SESS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2640302;
---
--- AUTO_INCREMENT für Tabelle `cms_session_log`
---
-ALTER TABLE `cms_session_log`
-  MODIFY `SESSLOG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25716;
---
--- AUTO_INCREMENT für Tabelle `cms_tabellenfelder`
---
-ALTER TABLE `cms_tabellenfelder`
-  MODIFY `TF_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `cms_templates`
---
-ALTER TABLE `cms_templates`
-  MODIFY `TEMP_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT für Tabelle `cms_templates_layout`
---
-ALTER TABLE `cms_templates_layout`
-  MODIFY `TLAY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `cms_times`
---
-ALTER TABLE `cms_times`
-  MODIFY `T_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
---
--- AUTO_INCREMENT für Tabelle `cms_user`
---
-ALTER TABLE `cms_user`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2631;
---
--- AUTO_INCREMENT für Tabelle `cms_user_group`
---
-ALTER TABLE `cms_user_group`
-  MODIFY `USER_GROUP_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2850;
---
--- AUTO_INCREMENT für Tabelle `cms_viewoptions`
---
-ALTER TABLE `cms_viewoptions`
-  MODIFY `VIEW_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10050;
---
--- AUTO_INCREMENT für Tabelle `com_status`
---
-ALTER TABLE `com_status`
-  MODIFY `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT für Tabelle `global_gl_status`
---
-ALTER TABLE `global_gl_status`
-  MODIFY `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT für Tabelle `prot_protokolle`
---
-ALTER TABLE `prot_protokolle`
-  MODIFY `PROT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
---
--- AUTO_INCREMENT für Tabelle `prot_protokoll_dateien`
---
-ALTER TABLE `prot_protokoll_dateien`
-  MODIFY `DAT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT für Tabelle `prot_protokoll_eintrag`
---
-ALTER TABLE `prot_protokoll_eintrag`
-  MODIFY `PRE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
---
--- AUTO_INCREMENT für Tabelle `vhslq_agb_dsr`
---
-ALTER TABLE `vhslq_agb_dsr`
-  MODIFY `GB_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT für Tabelle `vhslq_aktuelles`
---
-ALTER TABLE `vhslq_aktuelles`
-  MODIFY `AKT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
---
--- AUTO_INCREMENT für Tabelle `vhslq_aktuelles_texte`
---
-ALTER TABLE `vhslq_aktuelles_texte`
-  MODIFY `AKTT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
---
--- AUTO_INCREMENT für Tabelle `vhslq_anmeldeart`
---
-ALTER TABLE `vhslq_anmeldeart`
-  MODIFY `ANMA_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT für Tabelle `vhslq_anmeldestellen`
---
-ALTER TABLE `vhslq_anmeldestellen`
-  MODIFY `ANMST_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT für Tabelle `vhslq_anmeldungen`
---
-ALTER TABLE `vhslq_anmeldungen`
-  MODIFY `ANM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20344;
---
--- AUTO_INCREMENT für Tabelle `vhslq_anrede`
---
-ALTER TABLE `vhslq_anrede`
-  MODIFY `ANR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT für Tabelle `vhslq_ausgaben`
---
-ALTER TABLE `vhslq_ausgaben`
-  MODIFY `AUSG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3041;
---
--- AUTO_INCREMENT für Tabelle `vhslq_buchungsvorlagen`
---
-ALTER TABLE `vhslq_buchungsvorlagen`
-  MODIFY `BV_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT für Tabelle `vhslq_einnahmen`
---
-ALTER TABLE `vhslq_einnahmen`
-  MODIFY `EINN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
---
--- AUTO_INCREMENT für Tabelle `vhslq_fb_template`
---
-ALTER TABLE `vhslq_fb_template`
-  MODIFY `FBT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `vhslq_geschaeftsbedingungen`
---
-ALTER TABLE `vhslq_geschaeftsbedingungen`
-  MODIFY `GB_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `vhslq_geschaeftsjahr`
---
-ALTER TABLE `vhslq_geschaeftsjahr`
-  MODIFY `GJ_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT für Tabelle `vhslq_geschlecht`
---
-ALTER TABLE `vhslq_geschlecht`
-  MODIFY `GESCHL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT für Tabelle `vhslq_infoart`
---
-ALTER TABLE `vhslq_infoart`
-  MODIFY `INFO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kostengruppen`
---
-ALTER TABLE `vhslq_kostengruppen`
-  MODIFY `KG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kurse`
---
-ALTER TABLE `vhslq_kurse`
-  MODIFY `KURS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018154;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kursstatus`
---
-ALTER TABLE `vhslq_kursstatus`
-  MODIFY `KURSSTAT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kurs_termine`
---
-ALTER TABLE `vhslq_kurs_termine`
-  MODIFY `KT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11998;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kv_aufgaben`
---
-ALTER TABLE `vhslq_kv_aufgaben`
-  MODIFY `AUFG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kv_fehler`
---
-ALTER TABLE `vhslq_kv_fehler`
-  MODIFY `FEH_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
---
--- AUTO_INCREMENT für Tabelle `vhslq_kv_status`
---
-ALTER TABLE `vhslq_kv_status`
-  MODIFY `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT für Tabelle `vhslq_musikschule`
---
-ALTER TABLE `vhslq_musikschule`
-  MODIFY `MUS_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `vhslq_orte`
---
-ALTER TABLE `vhslq_orte`
-  MODIFY `ORT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
---
--- AUTO_INCREMENT für Tabelle `vhslq_presse`
---
-ALTER TABLE `vhslq_presse`
-  MODIFY `PRESSE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
---
--- AUTO_INCREMENT für Tabelle `vhslq_rubriken`
---
-ALTER TABLE `vhslq_rubriken`
-  MODIFY `RUB_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT für Tabelle `vhslq_schliesszeiten`
---
-ALTER TABLE `vhslq_schliesszeiten`
-  MODIFY `SCHL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
---
--- AUTO_INCREMENT für Tabelle `vhslq_sonderkosten`
---
-ALTER TABLE `vhslq_sonderkosten`
-  MODIFY `SONDERKOSTEN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `vhslq_status`
---
-ALTER TABLE `vhslq_status`
-  MODIFY `STAT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT für Tabelle `vhslq_teilnehmer`
---
-ALTER TABLE `vhslq_teilnehmer`
-  MODIFY `TEIL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4704;
---
--- AUTO_INCREMENT für Tabelle `vhslq_zeitungen`
---
-ALTER TABLE `vhslq_zeitungen`
-  MODIFY `ZEIT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-08-19 22:30:45
