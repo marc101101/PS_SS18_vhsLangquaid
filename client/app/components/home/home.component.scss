@@ -1,0 +1,31 @@
+.burgerElement{
+    color: white;
+    font-size: 1.5rem;
+    padding: 1.25rem;
+    padding-bottom: 0rem;
+}
+
+.navbar {
+    float: left;
+}
+
+.menuPosition {
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    margin-top: -3.5rem;
+    width: 65%;
+    overflow: hidden;
+}
+
+.contentPosition {
+    margin-left: 19rem;
+}
+
+/*
+    background-color: white;
+    border: 1px solid;
+    width: 75%;
+    margin-top: -3.5rem;
+    */

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { User } from '../../model/User';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../model/User';
 import {Location} from '@angular/common';
 import { log } from 'util';
 

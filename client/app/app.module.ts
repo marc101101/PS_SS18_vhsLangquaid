@@ -11,13 +11,15 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
-import { CategoriesComponent } from './components/categories/categories.component';
 import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
 import { AlertService } from './services/alert.service';
-import { AlertComponent } from './directives';
 import { RouterModule } from '@angular/router';
-import { ProfilComponent } from './components/profil/profil.component';
+import { CategoriesComponent } from './components/home/categories/categories.component';
+import { ProfilComponent } from './components/home/profil/profil.component';
+import { HomeComponent } from './components/home/home.component';
+import { AlertComponent } from './directives/alert/alert.component';
+import { MenuComponent } from './directives/menu/menu.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { ProfilComponent } from './components/profil/profil.component';
         CategoriesComponent,
         PageNotFoundComponent,
         AlertComponent,
-        ProfilComponent
+        ProfilComponent,
+        HomeComponent,
+        MenuComponent
     ],
     imports: [
         HttpClientModule,
@@ -45,7 +49,7 @@ import { ProfilComponent } from './components/profil/profil.component';
         RouterModule,
         HttpClientModule
     ],
-    exports: [AlertComponent],
+    exports: [AlertComponent, MenuComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
