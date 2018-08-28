@@ -13,7 +13,7 @@ import { map, catchError } from 'rxjs/operators';
 export class AuthService {
 
   private authStatus: boolean = false;
-  private url: string = environment.apiUrl;
+  private url: string = "/v1";
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
 
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(user:UserData): Observable<any>{
-    return this.http.post(this.url + "/auth", {email: user.mail, password: user.password}).pipe(
+    return this.http.post(this.url+"/auth", {email: user.mail, password: user.password}).pipe(
       map((res: Response) => {
         this.authStatus = true;
         return res;
