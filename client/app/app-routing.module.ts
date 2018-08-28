@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { CategoriesComponent } from './components/categories/categories.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/not-found';
-import { ProfilComponent } from './components/profil/profil.component';
+import { HomeComponent } from './components/home/home.component';
+import { CategoriesComponent } from './components/home/categories/categories.component';
+import { ProfilComponent } from './components/home/profil/profil.component';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
  const routes: Routes = [
     {
@@ -23,13 +25,9 @@ import { ProfilComponent } from './components/profil/profil.component';
         component: RegistrationComponent
     },
     {
-        path: 'categories',
-        component: CategoriesComponent
-    },
-    {
-        path: 'profil',
-        component: ProfilComponent,
-        canActivate: [AuthGuard]
+        path: 'home',
+        loadChildren: './components/home/home.module#HomeModule',
+        data: {prelaod: true}
     },
     {
         path: '**',
@@ -39,7 +37,8 @@ import { ProfilComponent } from './components/profil/profil.component';
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
+    exports: [RouterModule],
+    providers: [SelectivePreloadingStrategy]
 })
 export class AppRoutingModule { }

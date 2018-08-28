@@ -1,0 +1,13 @@
+<div class="burgerElement" (click)="setMenu()">
+  <i class="fa fa-bars" aria-hidden="true"></i>
+</div>
+
+<menu *ngIf="menuOpen" class="menuPosition"></menu>
+
+<div *ngIf="menuOpen" class="contentPosition" (click)="setMenu()">
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!menuOpen">
+  <router-outlet></router-outlet>
+</div>

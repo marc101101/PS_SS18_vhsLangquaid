@@ -6,6 +6,7 @@ import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../model/User';
 import { log } from 'util';
+import { RegisterUser } from '../model/RegisterUser';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,18 @@ export class UserService {
 
   updateUserMe(user:User): Observable<any>{
     return this.http.put(this.url + "/user/me", user, this.httpOptions).pipe(
+      map((res: Response) => {
+        return Object.assign(User, res);
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    )
+  }
+
+  registerUser(user:RegisterUser): Observable<any>{
+    return this.http.post(this.url + "/user", user, this.httpOptions).pipe(
       map((res: Response) => {
         return Object.assign(User, res);
       }),

@@ -1,12 +1,24 @@
 .circleBackground {
     height: 30rem;
     width: 30rem;
-    z-index: -1;
+    z-index: 0;
     background-color: #209cee;
     border-radius: 15rem;
     position: absolute;
     margin-top: -13rem;
     margin-left: -7rem;
+}
+
+.fullScreenBackground {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0px 0px 13px #6E6E6E;
+}
+
+.active{
+    border-radius: 1rem;
 }
 
 .icon {
@@ -25,7 +37,7 @@
     font-size: 1.5rem;
 }
 
-.is-primary{   
+.is-primary {
     -webkit-transition: background-color 500ms linear;
     -moz-transition: background-color 500ms linear;
     -o-transition: background-color 500ms linear;

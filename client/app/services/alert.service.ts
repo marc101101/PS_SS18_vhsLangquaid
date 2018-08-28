@@ -37,7 +37,7 @@ export class AlertService {
     this.subject.next({ type: 'error', text: this.mapMessage(message) });
   }
 
-  setErrorMessage(message: string, keepAfterNavigationChange = false) {
+  setErrorMessage(message: string, keepAfterNavigationChange = false) {   
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'error', text: message });
   }

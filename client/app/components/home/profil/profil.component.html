@@ -1,6 +1,6 @@
-<div class="container fullscreenBackground">
+<div class="container fullScreenBackground" [ngClass]="{'active': menuState}">
   <div class="circleBackground"></div>   
-  <div class="columns is-mobile" style="padding: 2rem; padding-bottom: 0rem;">
+  <div class="columns is-mobile" style="padding: 2rem; padding-bottom: 0rem; padding-top: 1rem;">
     <div class="column is-2" style="padding: 1.4rem; padding-left: 0rem;">
       <div>
         <span class="icon">
@@ -8,7 +8,7 @@
         </span>
       </div>
     </div>
-    <div class="column is-10">
+    <div class="column is-10" style="z-index: 1;">
       <div style="font-size: 1.5rem; color:white; margin-top: 0.2rem;">
         {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
       </div>
@@ -19,8 +19,8 @@
   </div>
  
   <section class="login" style="padding: 1rem; padding-top: 0rem;">
-    <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()">
-      <input class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()" >
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
         #mail="ngModel">
       <br>
       <br>
@@ -47,8 +47,7 @@
         </div>
         <div class="column is-10" style="padding: 0rem;">
           <button #save class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">
-            <div>{{button_text}}</div>
-            <i class="fa fa-circle-o-notch fa-spin iconCircle" *ngIf="circleSpinning"></i>
+            <div>{{button_text}}</div>            
           </button>
         </div>
       </div>
