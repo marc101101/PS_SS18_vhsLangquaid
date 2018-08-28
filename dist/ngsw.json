@@ -18,6 +18,14 @@
       "updateMode": "prefetch",
       "urls": [
         "/assets/css/bulma.min.css",
+        "/assets/css/font-awesome.css",
+        "/assets/css/font-awesome.min.css",
+        "/assets/fonts/FontAwesome.otf",
+        "/assets/fonts/fontawesome-webfont.eot",
+        "/assets/fonts/fontawesome-webfont.svg",
+        "/assets/fonts/fontawesome-webfont.ttf",
+        "/assets/fonts/fontawesome-webfont.woff",
+        "/assets/fonts/fontawesome-webfont.woff2",
         "/assets/icons/android-icon-144x144.png",
         "/assets/icons/android-icon-192x192.png",
         "/assets/icons/android-icon-36x36.png",
@@ -43,6 +51,7 @@
         "/assets/icons/ms-icon-144x144.png",
         "/assets/icons/ms-icon-150x150.png",
         "/assets/icons/ms-icon-310x310.png",
+        "/assets/img/iphone_portrait_black.png",
         "/assets/img/loading.gif",
         "/assets/js/idb.js"
       ],
@@ -64,6 +73,14 @@
   ],
   "hashTable": {
     "/assets/css/bulma.min.css": "2ce20e01d8d3c9171b4b14de00d6c89655444330",
+    "/assets/css/font-awesome.css": "0140952c64e3f2b74ef64e050f2fe86eab6624c8",
+    "/assets/css/font-awesome.min.css": "512c7d79033e3028a9be61b540cf1a6870c896f8",
+    "/assets/fonts/FontAwesome.otf": "048707bc52ac4b6563aaa383bfe8660a0ddc908c",
+    "/assets/fonts/fontawesome-webfont.eot": "d980c2ce873dc43af460d4d572d441304499f400",
+    "/assets/fonts/fontawesome-webfont.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/assets/fonts/fontawesome-webfont.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/assets/fonts/fontawesome-webfont.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/assets/fonts/fontawesome-webfont.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "/assets/icons/android-icon-144x144.png": "637d3fac84e57187cee10f00a6056bd8a0186ecb",
     "/assets/icons/android-icon-192x192.png": "9b4af179b3daa77341c89f8d099dd6f76cc0fa82",
     "/assets/icons/android-icon-36x36.png": "b6d12f6cc97f7138bb0271c48d86fc4f32b6338e",
@@ -89,10 +106,11 @@
     "/assets/icons/ms-icon-144x144.png": "637d3fac84e57187cee10f00a6056bd8a0186ecb",
     "/assets/icons/ms-icon-150x150.png": "0fdaba5907e37f003f388dcaca1c86d81a8ad9da",
     "/assets/icons/ms-icon-310x310.png": "a69f9d2a97f90ce71f84e132e01b0a511b2974b6",
+    "/assets/img/iphone_portrait_black.png": "35a2d3f9b4ac276ea84dd6ec3a081685e98fd0e8",
     "/assets/img/loading.gif": "cdc1627a1ff312a43d1700a3694da1050e0e026d",
     "/assets/js/idb.js": "6f82cc3f3c743e77b6931a0129d7afddd6cfe3c4",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "d6a1487dea98bd6bb9f2a1db65b2a1ef3c529e92"
+    "/index.html": "64062fa4053e1ba94763a89a633347e8f605efd2"
   },
   "navigationUrls": [
     {
