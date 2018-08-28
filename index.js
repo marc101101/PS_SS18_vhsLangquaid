@@ -48,7 +48,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerUi());
 });
 
-module.exports = http.createServer(app).listen(serverPort, function () {
+module.exports = http.createServer(app).listen(serverPort, '0.0.0.0', function () {
   console.log('[REST] '.green + 'Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
   console.log('[REST] '.green + 'Swagger-ui is available on http://localhost:%d/docs', serverPort);
   console.log('[FRONTEND] '.green + 'UI is available on http://localhost:%d/', serverPort);

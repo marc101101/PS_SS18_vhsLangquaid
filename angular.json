@@ -40,10 +40,6 @@
               "serviceWorker": true,
               "ngswConfigPath": "client/ngsw-config.json",
               "fileReplacements": [
-                {
-                  "replace": "client/environments/environment.ts",
-                  "with": "client/environments/environment.prod.ts"
-                }
               ]
             }
           }

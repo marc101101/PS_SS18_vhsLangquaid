@@ -5,7 +5,7 @@ import {
 
 import { AuthService } from '../../services/auth.service';
 import { UserData } from '../../model/UserData';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
 import { log } from 'util';
 
@@ -17,7 +17,7 @@ import { log } from 'util';
 export class LoginComponent implements OnInit {
 
   public model: UserData = new UserData("", "");  
-  private jwtHelper: JwtHelper = new JwtHelper();
+  private jwtHelper: JwtHelperService = new JwtHelperService();
   private returnUrl: string;
 
   constructor(private authSerive: AuthService, private router:Router, private route: ActivatedRoute) {}
