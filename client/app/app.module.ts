@@ -19,7 +19,6 @@ import { CategoriesComponent } from './components/home/categories/categories.com
 import { ProfilComponent } from './components/home/profil/profil.component';
 import { HomeComponent } from './components/home/home.component';
 import { AlertComponent } from './directives/alert/alert.component';
-import { MenuComponent } from './directives/menu/menu.component';
 
 @NgModule({
     declarations: [
