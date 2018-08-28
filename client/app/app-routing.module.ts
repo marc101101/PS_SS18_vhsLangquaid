@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './components/not-found';
 import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/home/categories/categories.component';
 import { ProfilComponent } from './components/home/profil/profil.component';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
  const routes: Routes = [
     {
@@ -25,18 +26,8 @@ import { ProfilComponent } from './components/home/profil/profil.component';
     },
     {
         path: 'home',
-        component: HomeComponent,
-        children:[
-                    {
-                        path: 'categories',
-                        component: CategoriesComponent
-                    },
-                    {
-                        path: 'profil',
-                        component: ProfilComponent
-                        //canActivate: [AuthGuard]
-                    }
-                ]
+        loadChildren: './components/home/home.module#HomeModule',
+        data: {prelaod: true}
     },
     {
         path: '**',
@@ -46,7 +37,8 @@ import { ProfilComponent } from './components/home/profil/profil.component';
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
+    exports: [RouterModule],
+    providers: [SelectivePreloadingStrategy]
 })
 export class AppRoutingModule { }

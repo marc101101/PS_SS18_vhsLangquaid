@@ -26,12 +26,8 @@ import { MenuComponent } from './directives/menu/menu.component';
         AppComponent,
         LoginComponent,
         RegistrationComponent,
-        CategoriesComponent,
         PageNotFoundComponent,
-        AlertComponent,
-        ProfilComponent,
-        HomeComponent,
-        MenuComponent
+        AlertComponent
     ],
     imports: [
         HttpClientModule,
@@ -49,7 +45,7 @@ import { MenuComponent } from './directives/menu/menu.component';
         RouterModule,
         HttpClientModule
     ],
-    exports: [AlertComponent, MenuComponent],
+    exports: [AlertComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
