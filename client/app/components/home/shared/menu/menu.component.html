@@ -1,0 +1,42 @@
+<div class="circleBackground"></div>
+<div class="userProfil" [routerLink]="['profil']" (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-user"></i>
+    </span>
+    Nutzerprofil
+</div>
+
+<div class="menuPoint" style="margin-top: 8rem" [routerLink]="['meine-kurse']"  (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-user"></i>
+    </span>
+    Meine Kurse
+</div>
+
+<div class="menuPoint" [routerLink]="['aktuelles']"  (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-user"></i>
+    </span>
+    Aktuelles
+</div>
+
+<div class="menuPoint" [routerLink]="['kurs-uebersicht']"  (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-user"></i>
+    </span>
+    Kursübersicht
+</div>
+
+<div class="menuPoint" [routerLink]="['kontakt']"  (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-user"></i>
+    </span>
+    Kontakt
+</div>
+
+<div class="signOut" (click)="signOut()">
+    <span class="icon">
+        <i class="fa fa-sign-out"></i>
+    </span>
+    Ausloggen
+</div>

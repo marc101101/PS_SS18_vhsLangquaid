@@ -8,9 +8,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { MenuComponent } from '../../directives/menu/menu.component';
-import { AlertComponent } from '../../directives/alert/alert.component';
+import { AlertComponent } from './shared/alert/alert.component';
 import { HomeComponent } from './home.component';
+import { MenuComponent } from './shared/menu/menu.component';
+import { CommunicationService } from './shared/communication.service';
 
 @NgModule({
   imports: [
@@ -22,12 +23,14 @@ import { HomeComponent } from './home.component';
     CategoriesComponent,
     ProfilComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   providers: [
       AlertService,
       AuthService,
-      UserService
+      UserService,
+      CommunicationService
   ],
   exports: [MenuComponent],
 })

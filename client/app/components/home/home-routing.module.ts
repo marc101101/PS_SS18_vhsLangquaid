@@ -12,7 +12,23 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
     children: [
       {
-        path: 'categories',
+        path: 'kategorien',
+        component: CategoriesComponent
+      },
+      {
+        path: 'meine-kurse',
+        component: CategoriesComponent
+      },
+      {
+        path: 'aktuelles',
+        component: CategoriesComponent
+      },
+      {
+        path: 'kurs-uebersicht',
+        component: CategoriesComponent
+      },
+      {
+        path: 'kontakt',
         component: CategoriesComponent
       },
       {
