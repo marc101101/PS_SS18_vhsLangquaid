@@ -3,7 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.prod';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AlertingService } from './alerting.service';
+import { AlertService } from '../../../sharedModule/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class CategoryService {
     })
   };
 
-  constructor(public http: HttpClient, public alertService: AlertingService) { }
+  constructor(public http: HttpClient, public alertService: AlertService) { }
 
   
   getAllCategories(): Observable<any>{
@@ -29,7 +29,7 @@ export class CategoryService {
         return res;
       }),
       catchError((err: HttpErrorResponse) => {
-        //this.alertService.push(err);
+        this.alertService.push(err);
         return Observable.of(err);
       })
     )

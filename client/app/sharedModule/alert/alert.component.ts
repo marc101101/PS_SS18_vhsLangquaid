@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-import { log } from 'util';
-import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../sharedModule/alert.service';
 
 @Component({
   moduleId: module.id,

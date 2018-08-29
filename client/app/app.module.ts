@@ -11,17 +11,16 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
-import { AlertService } from './services/alert.service';
+import { AlertService } from './sharedModule/alert.service';
 import { RouterModule } from '@angular/router';
-import { AlertComponent } from './directives/alert/alert.component';
+import { SharedModule } from './sharedModule/shared.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         RegistrationComponent,
-        PageNotFoundComponent,
-        AlertComponent
+        PageNotFoundComponent
     ],
     imports: [
         HttpClientModule,
@@ -29,7 +28,8 @@ import { AlertComponent } from './directives/alert/alert.component';
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,     
-        RouterModule
+        RouterModule,
+        SharedModule
         //ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [
@@ -39,7 +39,6 @@ import { AlertComponent } from './directives/alert/alert.component';
         RouterModule,
         HttpClientModule
     ],
-    exports: [AlertComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

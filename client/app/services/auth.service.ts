@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/co
 import { Observable } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environement';
 import { UserData } from '../model/UserData';
-import { AlertService } from './alert.service';
+import { AlertService } from '../sharedModule/alert.service';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({

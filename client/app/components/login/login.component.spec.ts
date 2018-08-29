@@ -3,10 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../sharedModule/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AlertComponent } from '../../directives/alert/alert.component';
 
 
 describe('LoginComponent', () => {
@@ -15,7 +14,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent, AlertComponent],
+      declarations: [ LoginComponent],
       imports: [ FormsModule, HttpClientModule, RouterTestingModule ],
       providers: [ AuthService, AlertService ],
     })
