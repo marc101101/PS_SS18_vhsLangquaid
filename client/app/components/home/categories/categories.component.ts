@@ -8,12 +8,12 @@ import { CategoryService } from '../shared/category.service';
 })
 export class CategoriesComponent implements OnInit {
   public categories: Array<any>;
+  public colorArray: Array<any> = ["primary", "link", "danger", "success", "warning", "info"]
 
   constructor(public categoryService: CategoryService) { }
 
   ngOnInit() {
     this.categoryService.getAllCategories().subscribe(response =>{
-      console.log(response);
       this.categories = response;
     });
   }

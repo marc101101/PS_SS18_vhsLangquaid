@@ -7,10 +7,23 @@
       </div>
     </div>
   </div>
+
+  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
+    <alert></alert>
+  </div>
   
-  <section class="login" style="padding: 1rem; position: absolute; padding-top: 5rem">
-    <div class="" *ngFor="let category of categories" style="z-index: 1">
-      {{category.rub_name}}
+  <section style="padding: 1rem;">
+    <div class="card" *ngFor="let category of categories; let i=index">
+      <div class="color-marker" [ngClass]="colorArray[i]">
+      </div>
+      <div class="card-content">
+        <p class="title">
+          {{category.rub_name}}
+        </p>
+        <p class="subtitle">
+          {{category.rub_text}}
+        </p>
+      </div>
     </div>
   </section>
 

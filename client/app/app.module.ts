@@ -1,9 +1,7 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {environment} from '../environments/environment.dev';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
@@ -15,9 +13,6 @@ import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { RouterModule } from '@angular/router';
-import { CategoriesComponent } from './components/home/categories/categories.component';
-import { ProfilComponent } from './components/home/profil/profil.component';
-import { HomeComponent } from './components/home/home.component';
 import { AlertComponent } from './directives/alert/alert.component';
 
 @NgModule({
