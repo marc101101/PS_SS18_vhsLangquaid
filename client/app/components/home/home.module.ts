@@ -11,7 +11,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { CommunicationService } from './shared/communication.service';
 import { UserService } from '../../services/user.service';
 import { SharedModule } from '../../sharedModule/shared.module';
-import { AlertService } from '../../sharedModule/alert.service';
+import { AlertService } from '../../services/alert.service';
+import { CategoryService } from '../../services/category.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { AlertService } from '../../sharedModule/alert.service';
   providers: [
       AuthService,
       UserService,
-      CommunicationService
+      AlertService,
+      CommunicationService,
+      CategoryService
   ],
   exports: [MenuComponent],
 })

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AlertService } from '../../../sharedModule/alert.service';
+import { AlertService } from '../../../services/alert.service';
 import { AuthService } from '../../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilComponent } from './profil.component';

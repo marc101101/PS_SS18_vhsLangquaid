@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterUser } from '../../model/RegisterUser';
-import { AlertService } from '../../sharedModule/alert.service';
+import { RegisterUser } from '../../models/RegisterUser';
+import { AlertService } from '../../services/alert.service';
 import { UserService } from '../../services/user.service';
 
 @Component({

@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
-import { User } from '../../../model/User';
-import {Location} from '@angular/common';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Location } from '@angular/common';
 import { UserService } from '../../../services/user.service';
 
 @Component({

@@ -4,12 +4,14 @@ import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { log } from 'util';
-import { reserveSlots } from '@angular/core/src/render3/instructions';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class AlertService {
   private subject = new Subject<any>();
-  private keepAfterNavigationChange = false;
+  private keepAfterNavigationChange = true;
   private status_message = '';
 
   constructor(private router: Router) {
@@ -18,7 +20,7 @@ export class AlertService {
       if (event instanceof NavigationStart) {
         if (this.keepAfterNavigationChange) {
           // only keep for a single location change
-          this.keepAfterNavigationChange = false;
+          this.keepAfterNavigationChange = true;
         } else {
           // clear alert
           this.status_message = '';
@@ -28,17 +30,17 @@ export class AlertService {
     });
   }
 
-  success(message: object, keepAfterNavigationChange = false) {
+  success(message: object, keepAfterNavigationChange = true) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'success', text: this.mapMessage(message) });
   }
 
-  error(message: object, keepAfterNavigationChange = false) {
+  error(message: object, keepAfterNavigationChange = true) {    
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'error', text: this.mapMessage(message) });
   }
 
-  setErrorMessage(message: string, keepAfterNavigationChange = false) {   
+  setErrorMessage(message: string, keepAfterNavigationChange = true) {   
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'error', text: message });
   }
@@ -112,11 +114,10 @@ export class AlertService {
   push(err, login_page = false) {
     if (err instanceof Error) {
       // display error message for dev
-        console.log(this.mapMessage(err));
-        this.subject.next({ type: 'error', text: this.mapMessage(err)  });
-
+      this.subject.next({ type: 'error', text: this.mapMessage(err) });
     } else {
       if (login_page) {
+        
         this.subject.next({ type: 'error', text: this.mapMessageLogin(err) });
       } else {
         this.subject.next({ type: 'error', text: this.mapMessage(err) });

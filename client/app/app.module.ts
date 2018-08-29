@@ -11,9 +11,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { PageNotFoundComponent } from './components/not-found';
 import { FormsModule }   from '@angular/forms';
-import { AlertService } from './sharedModule/alert.service';
+import { AlertService } from './services/alert.service';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './sharedModule/shared.module';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,8 @@ import { SharedModule } from './sharedModule/shared.module';
     providers: [
         AuthGuard,
         AuthService,
+        AlertService,
+        CategoryService,
         RouterModule,
         HttpClientModule
     ],

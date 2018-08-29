@@ -11,20 +11,20 @@
   <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
     <alert></alert>
   </div>
-  
-  <section style="padding: 1rem;">
-      <div class="card" *ngFor="let category of categories; let i=index">
-        <div class="color-marker" [ngClass]="colorArray[i]">
-        </div>
-        <div class="card-content">
-          <p class="title">
-            {{category.rub_name}}
-          </p>
-          <p class="subtitle">
-            {{category.rub_text}}
-          </p>
-        </div>
+
+  <section style="padding: 1rem;" *ngIf="dataIsAvailable">
+    <div class="card" *ngFor="let category of categories; let i=index">
+      <div class="color-marker" [ngClass]="colorArray[i]">
       </div>
-    </section>
+      <div class="card-content">
+        <p class="title">
+          {{category.RUB_NAME}}
+        </p>
+        <p class="subtitle">
+          {{category.RUB_TEXT}}
+        </p>
+      </div>
+    </div>
+  </section>
   
 </div>

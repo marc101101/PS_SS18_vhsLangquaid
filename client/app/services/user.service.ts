@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environement';
-import { AlertService } from '../sharedModule/alert.service';
+import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
-import { User } from '../model/User';
-import { log } from 'util';
-import { RegisterUser } from '../model/RegisterUser';
+import { User } from '../models/User';
+import { RegisterUser } from '../models/RegisterUser';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +31,7 @@ export class UserService {
         //return Object.assign(User, res);
       }),
       catchError((err: HttpErrorResponse) => {
+        console.log(err);        
         this.alertService.push(err);
         return Observable.of(err);
       })

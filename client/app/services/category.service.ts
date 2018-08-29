@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AlertService } from '../../../sharedModule/alert.service';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,6 @@ export class CategoryService {
   };
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
-
   
   getAllCategories(): Observable<any>{
     return this.http.get(this.url + "/categories", this.httpOptions).pipe(
