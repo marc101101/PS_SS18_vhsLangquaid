@@ -20,6 +20,10 @@
     width: 65%;
     overflow: hidden;
     border-top-right-radius: 1rem;
+    -webkit-transition: margin-left 1s; /* Safari */
+    -webkit-transition: margin-top 1s; /* Safari */
+    transition: margin-left 1s;
+    transition: margin-top 1s;
 }
 
 .contentPosition {

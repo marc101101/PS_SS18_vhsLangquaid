@@ -15,18 +15,18 @@
     Meine Kurse
 </div>
 
+<div class="menuPoint" [routerLink]="['kategorien']"  (click)="routing()">
+    <span class="icon">
+        <i class="fa fa-tasks"></i>
+    </span>
+    Kurs Kategorien
+</div>
+
 <div class="menuPoint" [routerLink]="['aktuelles']"  (click)="routing()">
     <span class="icon">
         <i class="fa fa-calendar"></i>
     </span>
     Aktuelles
-</div>
-
-<div class="menuPoint" [routerLink]="['kurs-uebersicht']"  (click)="routing()">
-    <span class="icon">
-        <i class="fa fa-list"></i>
-    </span>
-    Kursübersicht
 </div>
 
 <div class="menuPoint" [routerLink]="['kontakt']"  (click)="routing()">

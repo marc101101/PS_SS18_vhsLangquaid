@@ -5,8 +5,8 @@ import { AlertService } from '../../../services/alert.service';
 import { AuthService } from '../../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilComponent } from './profil.component';
-import { UserService } from '../../../services/user.service';
 import { AlertComponent } from '../../../directives/alert/alert.component';
+import { UserService } from '../../../services/user.service';
 
 describe('ProfilComponent', () => {
   let component: ProfilComponent;

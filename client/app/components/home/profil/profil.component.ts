@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
-import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/User';
 import {Location} from '@angular/common';
-import { log } from 'util';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'profil',

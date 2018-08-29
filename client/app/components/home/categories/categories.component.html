@@ -1,3 +1,17 @@
-<div class="tile is-primary">
-  <p class="title">Categories</p>
+<div class="container fullScreenBackground" [ngClass]="{'active': menuState}">
+  <div class="circleBackground"></div>   
+  <div class="columns is-mobile">
+    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem;">
+      <div style="font-size: 1.5rem; color:white;">
+        Kurs Kategorien
+      </div>
+    </div>
+  </div>
+  
+  <section class="login" style="padding: 1rem; position: absolute; padding-top: 5rem">
+    <div class="" *ngFor="let category of categories" style="z-index: 1">
+      {{category.rub_name}}
+    </div>
+  </section>
+
 </div>
