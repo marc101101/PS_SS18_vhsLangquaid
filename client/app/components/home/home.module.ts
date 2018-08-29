@@ -11,19 +11,20 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { CommunicationService } from './shared/communication.service';
 import { UserService } from '../../services/user.service';
 import { SharedModule } from '../../sharedModule/shared.module';
+import { AlertService } from '../../sharedModule/alert.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    HomeRoutingModule,
-    SharedModule
-  ],
   declarations: [
     CategoriesComponent,
     ProfilComponent,
     MenuComponent,
     HomeComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HomeRoutingModule,
+    SharedModule
   ],
   providers: [
       AuthService,

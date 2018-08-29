@@ -35,12 +35,9 @@ import { SharedModule } from './sharedModule/shared.module';
     providers: [
         AuthGuard,
         AuthService,
-        AlertService,
         RouterModule,
         HttpClientModule
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule {}

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { log } from 'util';
+import { reserveSlots } from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class AlertService {
@@ -111,11 +112,9 @@ export class AlertService {
   push(err, login_page = false) {
     if (err instanceof Error) {
       // display error message for dev
-      if (err.message) {
-        this.subject.next({ type: 'error', text: err.message });
-      } else {
-        this.subject.next({ type: 'error', text: 'Application error occurred!' });
-      }
+        console.log(this.mapMessage(err));
+        this.subject.next({ type: 'error', text: this.mapMessage(err)  });
+
     } else {
       if (login_page) {
         this.subject.next({ type: 'error', text: this.mapMessageLogin(err) });

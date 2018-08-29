@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import { AlertService } from '../../sharedModule/alert.service';
 
@@ -14,7 +14,7 @@ export class AlertComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public navStatus = true;
 
-  constructor(private alertService: AlertService, private changeDetectorRef:ChangeDetectorRef) {}
+  constructor(private alertService: AlertService) {}
 
   ngOnInit() {
     if (this.alertService.getStatusText()) {
