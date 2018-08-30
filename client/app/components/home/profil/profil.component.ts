@@ -14,7 +14,6 @@ export class ProfilComponent implements OnInit {
   public user: any;
   public dataIsAvailable: boolean = false;
   public button_text: string = 'Speichern';
-  public menuState: boolean = false;
 
   constructor(
     private userService:UserService, 
