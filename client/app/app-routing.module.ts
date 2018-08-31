@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/home/categories/categories.component';
 import { ProfilComponent } from './components/home/profil/profil.component';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
  const routes: Routes = [
     {
@@ -39,6 +40,6 @@ import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 @NgModule({
     imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
     exports: [RouterModule],
-    providers: [SelectivePreloadingStrategy]
+    providers: [SelectivePreloadingStrategy, { provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
 export class AppRoutingModule { }
