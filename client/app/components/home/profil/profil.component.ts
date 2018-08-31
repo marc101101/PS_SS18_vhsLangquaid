@@ -22,8 +22,8 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserMe().subscribe(response => {    
-      this.dataIsAvailable = true; 
       this.user = response;
+      this.dataIsAvailable = true; 
     });
   }
 
