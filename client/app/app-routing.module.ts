@@ -28,6 +28,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     {
         path: 'home',
         loadChildren: './components/home/home.module#HomeModule',
+        canActivate: [AuthGuard],
         data: {prelaod: true}
     },
     {

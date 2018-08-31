@@ -5,6 +5,9 @@ import { environment } from '../../environments/environement';
 import { UserData } from '../models/UserData';
 import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
+import { log } from 'util';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +17,30 @@ export class AuthService {
 
   private authStatus: boolean = false;
   private url: string = environment.apiUrl;
+  private jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(public http: HttpClient, public alertService: AlertService) { }
+  constructor(public http: HttpClient, public alertService: AlertService, public router: Router) { }
 
-  isLoggedIn(): boolean{   
-    return this.authStatus;
+  isLoggedIn(): Observable<boolean>{   
+    if(this.jwtHelper.isTokenExpired(localStorage.getItem('token'))){
+      this.navToLogin();
+    }
+    else{
+      this.authStatus = true;
+    }
+
+    if(!this.authStatus){
+      this.navToLogin();
+    }
+    
+    return Observable.of(this.authStatus);
+  }
+
+  navToLogin():void{
+    this.authStatus = false;
+    this.router.navigate(['/login']).catch(error => {
+      console.log(error);       
+    });    
   }
 
   login(user:UserData): Observable<any>{
@@ -35,7 +57,9 @@ export class AuthService {
   }
 
   logout(): void{
-
+    localStorage.removeItem('token');
+    this.authStatus = false;
+    console.log("2", this.authStatus);
   }
 
   register(): void{
