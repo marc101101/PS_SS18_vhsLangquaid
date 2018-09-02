@@ -6,12 +6,17 @@ import { log } from 'util';
 export class CommunicationService{
 
     public instruction_sub_comb = new Subject<any>();
+    public color_subject = new Subject<any>();
 
     constructor() {
     }
 
     sendMessage(message: boolean) {        
         this.instruction_sub_comb.next(message);
+    }
+
+    setColor(color: string) {
+        this.color_subject.next(color)
     }
 
 }     

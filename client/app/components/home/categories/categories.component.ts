@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
+import { Router } from '@angular/router';
+import { CommunicationService } from '../shared/communication.service';
 
 @Component({
   selector: 'categories',
@@ -11,7 +13,7 @@ export class CategoriesComponent implements OnInit {
   public categories: Array<any>;
   public colorArray: Array<any> = ["primary", "link", "danger", "success", "warning", "info"];
 
-  constructor(public categoryService: CategoryService) { }
+  constructor(public categoryService: CategoryService, private router: Router, public comService: CommunicationService) { }
 
   ngOnInit() {
     this.categoryService.getAllCategories().subscribe(response =>{    
@@ -20,6 +22,11 @@ export class CategoriesComponent implements OnInit {
         this.categories = response;
       }
     });
+  }
+
+  routeToCourse(categoryId: number, color: string) {
+    this.router.navigateByUrl('home/kurs-uebersicht/' + categoryId);
+    this.comService.setColor(color);
   }
 
 }

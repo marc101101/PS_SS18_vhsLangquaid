@@ -32,6 +32,18 @@ export class CategoryService {
         return Observable.of(err);
       })
     )
-  } 
-
+  }
+  
+  getCoursesByCategoryId(courseId: String): Observable<any>{
+    return this.http.get(this.url + "/categories/" + courseId + "/courses", this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    );
+  }
+  
 }

@@ -38,7 +38,7 @@ export class ProfilComponent implements OnInit {
 
   resetButton() {
     this.renderer.removeClass(this.saveButton.nativeElement, 'is-primary-save');
-      this.button_text = 'Speichern';
+    this.button_text = 'Speichern';
   }
 
   backClicked() {
