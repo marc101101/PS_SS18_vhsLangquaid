@@ -13,7 +13,7 @@
   </div>
 
   <section style="padding: 1rem;" *ngIf="dataIsAvailable">
-    <div class="card" *ngFor="let category of categories; let i=index">
+    <div class="card" *ngFor="let category of categories; let i=index" [(routerLink)]="category.id">
       <div class="color-marker" [ngClass]="colorArray[i]">
       </div>
       <div class="card-content">
