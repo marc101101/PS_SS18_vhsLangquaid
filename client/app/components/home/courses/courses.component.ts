@@ -15,16 +15,15 @@ export class CoursesComponent implements OnInit {
 
   public dataIsAvailable: boolean = false;
   public courses: Array<any>;
-  public categoryColor: string;
 
   constructor(public categoryService: CategoryService,
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
   public renderer: Renderer2) { 
     let localThis = this;
-    this.comService.color_subject.subscribe(color => {   
-      this.renderer.addClass(this.backgroundElement.nativeElement, localThis.categoryColor);
-      this.categoryColor = color;
+    this.comService.getColor().subscribe(color => {   
+      console.log(color);
+      this.renderer.addClass(this.backgroundElement.nativeElement, color);
     });
   }
 
