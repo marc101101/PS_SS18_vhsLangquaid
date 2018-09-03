@@ -23,9 +23,7 @@ export class CoursesComponent implements AfterViewInit {
   public userService: UserService,
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
-  public renderer: Renderer2) { 
-    
-  }
+  public renderer: Renderer2) {}
 
   ngAfterViewInit() {
     this.comService.getColor().subscribe(color => {         
@@ -33,12 +31,11 @@ export class CoursesComponent implements AfterViewInit {
     });
 
     this.activatedRoute.params.subscribe((params: Params) => {     
-      console.log(params);
-      if(Object.keys(params)[0] == "me"){
+      if(params.id == "me"){
         this.requestCoursesByUser();
       }
       else{
-        this.requestCoursesByCategory(params.courseId);    
+        this.requestCoursesByCategory(params.id);    
       }      
     });
   }
