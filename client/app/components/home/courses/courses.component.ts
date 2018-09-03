@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
 import { log } from 'util';
 import { UserService } from '../../../services/user.service';
+import { CoursesService } from '../shared/courses.service';
 
 @Component({
   selector: 'courses',
@@ -23,6 +24,7 @@ export class CoursesComponent implements AfterViewInit {
   public userService: UserService,
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
+  public coursesService: CoursesService,
   public renderer: Renderer2) {}
 
   ngAfterViewInit() {
@@ -42,10 +44,16 @@ export class CoursesComponent implements AfterViewInit {
 
   requestCoursesByUser():void{
     this.userService.getCoursesByUser().subscribe(response =>{    
-      this.courses = response;       
+      response.forEach(element => {
+        this.courses = [];
+        this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(response => {
+          console.log(response);
+          response.ANM_DATUM = element.ANM_DATUM;
+          this.courses.push(response);
+        });
+      });
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
-        this.courses = response;
       }
     });
   }
