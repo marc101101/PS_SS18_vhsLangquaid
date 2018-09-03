@@ -17,7 +17,8 @@ export class CoursesComponent implements AfterViewInit {
 
   public dataIsAvailable: boolean = false;
   public courses: Array<any>;
-  public headerText: string;
+  public headerText: string = "";
+  public category: string = "";
 
   constructor(
   public categoryService: CategoryService,
@@ -28,8 +29,9 @@ export class CoursesComponent implements AfterViewInit {
   public renderer: Renderer2) {}
 
   ngAfterViewInit() {
-    this.comService.getColor().subscribe(color => {         
-      this.renderer.addClass(this.backgroundElement.nativeElement, color);
+    this.comService.getInfo().subscribe(response => {         
+      this.category = response.category;
+      this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
     });
 
     this.activatedRoute.params.subscribe((params: Params) => {     
@@ -43,11 +45,11 @@ export class CoursesComponent implements AfterViewInit {
   }
 
   requestCoursesByUser():void{
+    this.headerText = "Meine";
     this.userService.getCoursesByUser().subscribe(response =>{    
       response.forEach(element => {
         this.courses = [];
         this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(response => {
-          console.log(response);
           response.ANM_DATUM = element.ANM_DATUM;
           this.courses.push(response);
         });
@@ -59,6 +61,7 @@ export class CoursesComponent implements AfterViewInit {
   }
 
   requestCoursesByCategory(courseId: string):void{
+    this.headerText = this.category;
     this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{    
       this.courses = response;       
       if(response.name != "HttpResponseError"){
