@@ -62,4 +62,16 @@ export class UserService {
     )
   }
 
+  getCoursesByUser(): Observable<any>{
+    return this.http.get(this.url + "/user/me/courses", this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    );
+  }
+
 }
