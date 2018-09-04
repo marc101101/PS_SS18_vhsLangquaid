@@ -110,4 +110,25 @@ describe('User', () => {
       })
     })
   })
+  it("it should try to create a user with an already used emai and fail", (done) => {
+    let user =  {
+      teil_vorname: "Peter",
+      teil_nachname: "Lustig",
+      teil_email: "johndoe@vhslq.de",
+      teil_notizen: "Peter's notes",
+      teil_passwort: "hunter22",
+      eingegeben_von_user: 0,
+      eingegeben_am_datum: "2018-01-01",
+      eingegeben_am_zeit: "00:00:00",
+      datenhistory: "Peters's data history"
+    }
+    chai.request(server)
+      .post('/v1/user')
+      .set("Content-Type", "application/json")
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(409);
+        done();
+      })
+  });
 });
