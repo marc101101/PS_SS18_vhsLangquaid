@@ -13,7 +13,7 @@
   </div>
 
   <section style="padding: 1rem;" *ngIf="dataIsAvailable">
-    <div class="card" *ngFor="let course of courses; let i=index">
+    <div class="card" *ngFor="let course of courses; let i=index" [(routerLink)]="'/home/kurs/' + course.KURS_ID">
       <div class="color-marker">
       </div>
       <div class="card-content">

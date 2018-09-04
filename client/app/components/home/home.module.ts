@@ -15,12 +15,14 @@ import { AlertService } from '../../services/alert.service';
 import { CategoryService } from '../../services/category.service';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './shared/courses.service';
+import { SingleCourseComponent } from './singlecourse/singlecourse.component';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     ProfilComponent,
     CoursesComponent,
+    SingleCourseComponent,
     MenuComponent,
     HomeComponent
   ],
