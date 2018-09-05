@@ -176,3 +176,31 @@ describe("Courses Last Minute", () => {
     })
   });
 }); 
+
+describe("Courses Highlights", () => {
+  it("it should get an empty array of courses", (done) => {
+    coursesService.clearDataBase().then(() => {
+      chai.request(server)
+        .get('/v1/courses/highlights')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.should.be.empty;
+          done();
+        })
+    })
+  });
+
+  it("it should create 4 courses but only return 1 course as valid highlight course", (done) => {
+    coursesService.setupHighlights().then(() => {
+      chai.request(server)
+        .get('/v1/courses/highlights')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.equal(1);
+          done();
+        })
+    })
+  });
+}); 

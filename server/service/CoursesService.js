@@ -205,25 +205,15 @@ exports.coursesGET = function () {
  **/
 exports.coursesHighlightsGET = function () {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [{
-      "max_age": 99,
-      "name": "Kunst-Grundkurs",
-      "id": 1,
-      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age": 1
-    }, {
-      "max_age": 99,
-      "name": "Kunst-Grundkurs",
-      "id": 1,
-      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age": 1
-    }];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Courses
+      .where({kurs_highlight: 1})
+      .fetchAll()
+      .then((courses) => {
+        resolve(courses.map(item => item.attributes));
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -307,6 +297,24 @@ if (process.env.NODE_ENV === 'test') {
           })
         })
         .catch((error) => {
+          reject(error);
+        })
+    });
+  }
+
+  exports.setupHighlights = () => {
+    console.log("Setting up Highlights Content in Table vhslq_kurse")
+    return new Promise((resolve, reject) => {
+      let sample = require('../utils/sampleData').coursesForHighlights();
+      let _Courses = require('../utils/database').Courses;
+      let courses = _Courses.forge(sample);
+        
+      Promise.all(courses.invokeMap('save'))
+        .then((data) => {
+          console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
+          resolve("done");
+        }).catch((error) => {
+          console.log(error)
           reject(error);
         })
     });
