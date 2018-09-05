@@ -68,18 +68,29 @@ exports.userMeCoursesGET = function (user_id) {
  **/
 exports.userPOST = function (data) {
   return new Promise(function (resolve, reject) {
-    new User(data)
-      .save()
-      .then((user) => {
-        let token = jwt.sign({
-          id: user.attributes.id
-        }, config.secret, {
-          expiresIn: 86400 // expires in 24 hours
-        });
-        resolve({
-          user: user,
-          token: token
-        });
+    User.where({teil_email: data.teil_email})
+      .fetch()
+      .then((model) => {
+          if (!model) {
+            new User(data)
+            .save()
+            .then((user) => {
+              let token = jwt.sign({
+                id: user.attributes.id
+              }, config.secret, {
+                expiresIn: 86400 // expires in 24 hours
+              });
+              resolve({
+                user: user,
+                token: token
+              });
+            })
+            .catch((error) => {
+              reject(error);
+            })
+          } else {
+            reject(Errors.conflict("POST USER EMAIL"))
+          }
       })
       .catch((error) => {
         reject(error);
