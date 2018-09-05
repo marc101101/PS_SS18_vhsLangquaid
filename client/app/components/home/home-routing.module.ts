@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'kategorien',
@@ -42,5 +42,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
+  
 })
 export class HomeRoutingModule { }

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       if (data.token && !this.jwtHelper.isTokenExpired(data.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', data.token);       
-        this.router.navigate(['/home/profil']).catch(error => {
+        this.router.navigate(['/home/kategorien']).catch(error => {
           console.log(error);
         });
       }
