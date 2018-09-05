@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environement';
-import { UserData } from '../model/UserData';
+import { UserData } from '../models/UserData';
 import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { map, catchError } from 'rxjs/operators';
 export class AuthService {
 
   private authStatus: boolean = false;
-  private url: string = "/v1";
+  private url: string = environment.apiUrl;
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
 

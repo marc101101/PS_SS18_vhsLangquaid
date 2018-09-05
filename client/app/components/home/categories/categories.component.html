@@ -1,3 +1,30 @@
-<div class="tile is-primary">
-  <p class="title">Categories</p>
+<div class="container fullScreenBackground">
+  <div class="circleBackground"></div>   
+  <div class="columns is-mobile">
+    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem;">
+      <div style="font-size: 1.5rem; color:white;">
+        Kurs Kategorien
+      </div>
+    </div>
+  </div>
+
+  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
+    <alert></alert>
+  </div>
+
+  <section style="padding: 1rem;" *ngIf="dataIsAvailable">
+    <div class="card" *ngFor="let category of categories; let i=index">
+      <div class="color-marker" [ngClass]="colorArray[i]">
+      </div>
+      <div class="card-content">
+        <p class="title">
+          {{category.RUB_NAME}}
+        </p>
+        <p class="subtitle">
+          {{category.RUB_TEXT}}
+        </p>
+      </div>
+    </div>
+  </section>
+  
 </div>

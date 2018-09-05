@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Location } from '@angular/common';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../model/User';
-import {Location} from '@angular/common';
-import { log } from 'util';
 
 @Component({
   selector: 'profil',
@@ -16,7 +14,6 @@ export class ProfilComponent implements OnInit {
   public user: any;
   public dataIsAvailable: boolean = false;
   public button_text: string = 'Speichern';
-  public menuState: boolean = false;
 
   constructor(
     private userService:UserService, 

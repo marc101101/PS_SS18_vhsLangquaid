@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
-import { UserData } from '../../model/UserData';
+import { UserData } from '../../models/UserData';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
 import { log } from 'util';

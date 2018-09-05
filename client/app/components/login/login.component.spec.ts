@@ -6,7 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AlertComponent } from '../../directives/alert/alert.component';
+import { AlertComponent } from '../../sharedModule/alert/alert.component';
+import { SharedModule } from '../../sharedModule/shared.module';
 
 
 describe('LoginComponent', () => {
@@ -15,8 +16,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent, AlertComponent],
-      imports: [ FormsModule, HttpClientModule, RouterTestingModule ],
+      declarations: [ LoginComponent ],
+      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule ],
       providers: [ AuthService, AlertService ],
     })
     .compileComponents();

@@ -1,7 +1,6 @@
-import {Component, OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import { AlertService } from '../../services/alert.service';
-import { log } from 'util';
 
 @Component({
   moduleId: module.id,
@@ -15,13 +14,14 @@ export class AlertComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public navStatus = true;
 
-  constructor(private alertService: AlertService, private changeDetectorRef:ChangeDetectorRef) {}
+  constructor(private alertService: AlertService) {}
 
   ngOnInit() {
     if (this.alertService.getStatusText()) {
       this.message = {text: this.alertService.getStatusText()};
     }
-    this.subscription = this.alertService.getMessage().subscribe(message => {      
+    this.subscription = this.alertService.getMessage().subscribe(message => {     
+      console.log(message); 
       try {
         if(message.text == "clear"){
           this.message = null;       
