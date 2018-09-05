@@ -1,4 +1,4 @@
-<div class="container fullScreenBackground" [ngClass]="{'active': menuState}">
+<div class="container fullScreenBackground">
   <div class="circleBackground"></div>   
   <div class="columns is-mobile" style="padding: 2rem; padding-bottom: 0rem; padding-top: 1rem;">
     <div class="column is-2" style="padding: 1.4rem; padding-left: 0rem;">
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="column is-10" style="z-index: 1;">
-      <div style="font-size: 1.5rem; color:white; margin-top: 0.2rem;">
+      <div *ngIf="dataIsAvailable" style="font-size: 1.5rem; color:white; margin-top: 0.2rem;">
         {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
       </div>
     </div>
@@ -24,17 +24,14 @@
         #mail="ngModel">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="Telefon / Handy" id="mobile" [(ngModel)]="user.TEIL_HANDY" name="mobile" #mail="ngModel">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address"
+        #address="ngModel">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address"
-        #mail="ngModel">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ" name="blz" #blz="ngModel" maxlength="8">
       <br>
       <br>
-      <input class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ" name="blz" #mail="ngModel" maxlength="8">
-      <br>
-      <br>
-      <input class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #mail="ngModel" maxlength="22">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #iban="ngModel" maxlength="22">
       <br>
       <br>
       <div class="columns is-mobile">

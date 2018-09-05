@@ -57,6 +57,7 @@ describe('Categories', () => {
       })
     });
   });
+  
   categoryIDs.then(ids => {
     describe("Courses For Category", () => {
     ids.forEach((id) => {
