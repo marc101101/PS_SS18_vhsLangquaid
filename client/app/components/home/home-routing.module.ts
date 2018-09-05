@@ -4,6 +4,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { HomeComponent } from './home.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProfilComponent } from './profil/profil.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   {
@@ -24,8 +25,8 @@ const routes: Routes = [
         component: CategoriesComponent
       },
       {
-        path: 'kurs-uebersicht',
-        component: CategoriesComponent
+        path: 'kurs-uebersicht/:courseId',
+        component: CoursesComponent
       },
       {
         path: 'kontakt',
@@ -42,5 +43,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
+  
 })
 export class HomeRoutingModule { }

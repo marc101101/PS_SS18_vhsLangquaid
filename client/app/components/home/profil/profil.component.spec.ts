@@ -6,7 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilComponent } from './profil.component';
 import { UserService } from '../../../services/user.service';
-import { AlertComponent } from '../../../directives/alert/alert.component';
+import { SharedModule } from '../../../sharedModule/shared.module';
 
 describe('ProfilComponent', () => {
   let component: ProfilComponent;
@@ -14,8 +14,8 @@ describe('ProfilComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfilComponent, AlertComponent ],
-      imports: [ FormsModule, HttpClientModule, RouterTestingModule ],
+      declarations: [ ProfilComponent ],
+      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule],
       providers: [ UserService, AlertService ],
     })
     .compileComponents();

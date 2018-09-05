@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterUser } from '../../model/RegisterUser';
-import { UserService } from '../../services/user.service';
-import { log } from 'util';
-import { ReturnStatement } from '@angular/compiler';
+import { RegisterUser } from '../../models/RegisterUser';
 import { AlertService } from '../../services/alert.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'registration',
