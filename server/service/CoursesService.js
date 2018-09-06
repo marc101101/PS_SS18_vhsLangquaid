@@ -1,6 +1,7 @@
 'use strict';
 var Courses = require('../utils/database').Course;
 var Applications = require('../utils/database').Application;
+var CourseFeedback = require('../utils/database').CourseFeedback;
 
 
 var knex = require('../utils/database').knex;
@@ -106,16 +107,15 @@ exports.generateApplicationFor = generateApplicationFor;
  **/
 exports.coursesCourse_idFeedbackPOST = function (course_id, data) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-      "text": "This app is great!",
-      "email": "this@me.com"
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    new CourseFeedback({...data, kurs_id: course_id})
+      .save()
+      .then((feedback) => {
+        resolve(feedback.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      })
   });
 }
 

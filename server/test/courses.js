@@ -178,6 +178,7 @@ describe("Courses Last Minute", () => {
 }); 
 
 describe("Courses Highlights", () => {
+  var courseID = 0;
   it("it should get an empty array of courses", (done) => {
     coursesService.clearDataBase().then(() => {
       chai.request(server)
@@ -199,8 +200,27 @@ describe("Courses Highlights", () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.equal(1);
+          courseID = res.body[0].KURS_ID;
+          console.log(courseID);
           done();
         })
     })
   });
+
+  it("it should create a feedback for the found highlight course", (done) => {
+    chai.request(server)
+      .post('/v1/courses/'+courseID+'/feedback')
+      .set("Content-Type", "application/json")
+      .send({
+        text: "Solid Course! 10/10",
+        bewertung: 5,
+      })
+      .end((err, res) => {
+        console.log(res.body);
+        res.should.have.status(200);
+        res.body.bewertung.should.equal(5);
+        res.body.should.be.a('object');
+        done();
+      })
+  })
 }); 
