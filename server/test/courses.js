@@ -201,7 +201,6 @@ describe("Courses Highlights", () => {
           res.body.should.be.a('array');
           res.body.length.should.equal(1);
           courseID = res.body[0].KURS_ID;
-          console.log(courseID);
           done();
         })
     })
@@ -216,7 +215,6 @@ describe("Courses Highlights", () => {
         bewertung: 5,
       })
       .end((err, res) => {
-        console.log(res.body);
         res.should.have.status(200);
         res.body.bewertung.should.equal(5);
         res.body.should.be.a('object');
