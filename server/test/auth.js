@@ -2,7 +2,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../index');
 
-let authService = require('../service/AuthService');
+let dbHelper = require('./helpers/dbhelpers')
 
 let should = chai.should();
 
@@ -13,7 +13,7 @@ let invalidUser = {email: 'franzXYZ@vhslq.de', password: 'hunter22'}
 
 describe('Authentication', () => {
     before(() => {
-      return authService.clearDataBaseInsertUser();
+      return dbHelper.Auth.clearDataBaseInsertUser();
     });
 
   

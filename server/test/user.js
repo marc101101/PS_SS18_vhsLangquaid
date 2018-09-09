@@ -1,4 +1,5 @@
-let userService = require('../service/UserService');
+let dbHelper = require('./helpers/dbhelpers')
+
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -13,7 +14,7 @@ describe('User', () => {
   let authToken = "";
   let userID = "";
   before(() => {
-    return userService
+    return dbHelper.User
       .clearDataBase()
   });
   it("it should fail with 401 because auth token is missing", (done) => {
@@ -98,7 +99,7 @@ describe('User', () => {
       });
   });
   it("it should get John Doe's Courses", (done) => {
-    userService.addCoursesToSampleUser(userID).then(() => {
+    dbHelper.User.addCoursesToSampleUser(userID).then(() => {
       chai.request(server)
       .get('/v1/user/me/courses')
       .set('authorization', 'Bearer ' + authToken)
