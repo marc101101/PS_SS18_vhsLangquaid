@@ -1,7 +1,7 @@
 .circleBackground {
     height: 30rem;
     width: 30rem;
-    z-index: 0;
+    z-index: -1;
     background-color: #209cee;
     border-radius: 15rem;
     position: absolute;
@@ -11,7 +11,6 @@
 
 .fullScreenBackground {
     position: absolute;
-    height: 100%;
     width: 100%;
     overflow: hidden;
     box-shadow: 0px 0px 13px #6E6E6E;
@@ -63,4 +62,11 @@
 
 .danger{
     background-color: #ff3860;
+}
+
+.info-icon{
+    float: left; 
+    color:white;
+    margin-right: 0.7rem;
+    margin-top: 0.2rem;
 }

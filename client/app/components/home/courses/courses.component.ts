@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
@@ -11,7 +11,7 @@ import { CoursesService } from '../shared/courses.service';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements AfterViewInit {
+export class CoursesComponent implements OnInit {
 
   @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
@@ -28,7 +28,7 @@ export class CoursesComponent implements AfterViewInit {
     public coursesService: CoursesService,
     public renderer: Renderer2) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.comService.getInfo().subscribe(response => {         
       this.category = response.category;
       this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
