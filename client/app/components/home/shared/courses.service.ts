@@ -33,5 +33,29 @@ export class CoursesService {
       })
     );
   }
+
+  applyToCourse(courseId: String): Observable<any>{   
+    return this.http.post(this.url + "/courses/" + courseId + "/apply", "" ,this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    )
+  }
+
+  signOffToCourse(courseId: String): Observable<any>{
+    return this.http.post(this.url + "/courses/" + courseId + "/signoff", "", this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return Observable.of(err);
+      })
+    )
+  }
   
 }

@@ -84,7 +84,7 @@ export class AlertService {
     } else if (response.status === 405) {
       return 'Method not allowed!';
     } else if (response.status === 409) {
-      return 'Conflict: Client already exists!';
+      return 'Sie sind bereits angemeldet!';
     } else if (response.status === 503) {
       this.keepAfterNavigationChange = true;
       this.status_message = response.status + '\n' + 'Service Unavailable.';

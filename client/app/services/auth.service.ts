@@ -15,7 +15,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthService {
 
-  private authStatus: boolean = false;
+  public authStatus: boolean = false;
   private url: string = environment.apiUrl;
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
