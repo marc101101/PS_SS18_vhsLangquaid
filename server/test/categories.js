@@ -1,6 +1,6 @@
-let categoriesService = require('../service/CategoriesService');
-let coursesService = require('../service/CoursesService');
-let sampleCategories = require('../utils/sampleData').categories();
+let sampleCategories = require('./helpers/sampleData').categories();
+let dbHelper = require('./helpers/dbhelpers')
+
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 describe('Categories', () => {
   it("it should get no categories", (done) => {
-    categoriesService.clearDataBase().then(() => {
+    dbHelper.Categories.clearDataBase().then(() => {
       chai.request(server)
       .get('/v1/categories')
       .end((err, res) => {
@@ -34,8 +34,8 @@ describe('Categories', () => {
   })
   let categoryIDs = new Promise((resolve, reject) => {
     it("it should get all categories", (done) => {
-      categoriesService.setupDataBase().then(() => {
-        coursesService.clearDataBase().then(() => {
+      dbHelper.Categories.setupDataBase().then(() => {
+        dbHelper.Courses.clearDataBase().then(() => {
           chai.request(server)
           .get('/v1/categories')
           .end((err, res) => {
@@ -62,7 +62,7 @@ describe('Categories', () => {
     describe("Courses For Category", () => {
     ids.forEach((id) => {
       it("should get all courses from category "+id, (done) => {
-        coursesService.setupCoursesOfCategory(id).then(() => {
+        dbHelper.Courses.setupCoursesOfCategory(id).then(() => {
           chai.request(server)
             .get('/v1/categories/'+id+'/courses')
             .end((err, res) => {

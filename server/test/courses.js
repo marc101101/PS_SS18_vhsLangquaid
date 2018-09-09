@@ -1,6 +1,8 @@
 let coursesService = require('../service/CoursesService');
-let sampleCourses = require('../utils/sampleData').courses();
-let sampleAppliactions = require('../utils/sampleData').applications();
+let sampleCourses = require('./helpers/sampleData').courses();
+let sampleAppliactions = require('./helpers/sampleData').applications();
+let dbHelper = require('./helpers/dbhelpers')
+
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -17,7 +19,7 @@ let authToken = "";
 describe('Courses', () => {
 
   it("it should get no course", (done) => {
-    coursesService.clearDataBase().then(() => {
+    dbHelper.Courses.clearDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses')
         .end((err, res) => {
@@ -30,7 +32,7 @@ describe('Courses', () => {
   });
 
   it("it should get all courses", (done) => {
-    coursesService.setupDataBase().then(() => {
+    dbHelper.Courses.setupDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses')
         .end((err, res) => {
@@ -58,7 +60,7 @@ describe('Courses', () => {
   });
 
   it("it should get no course and 404 status", (done) => {
-    coursesService.clearDataBase().then(() => {
+    dbHelper.Courses.clearDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses/' + '/2018175')
         .end((err, res) => {
@@ -69,7 +71,7 @@ describe('Courses', () => {
   });
 
   it("it should get no course for an not existing course ", (done) => {
-    coursesService.clearDataBase().then(() => {
+    dbHelper.Courses.clearDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses/' + '/NOT_EXISTING_COURSE_ID')
         .end((err, res) => {
@@ -88,8 +90,8 @@ describe('Courses', () => {
         authToken = res.body.token;
       });
       
-      coursesService.setupDataBase().then(() => {
-        coursesService.setupCoursesOfCategory(818).then(() => {
+      dbHelper.Courses.setupDataBase().then(() => {
+        dbHelper.Courses.setupCoursesOfCategory(818).then(() => {
           chai.request(server)
             .post('/v1/courses/' + '2018175' + '/apply')
             .set('authorization', 'Bearer ' + authToken)
@@ -151,7 +153,7 @@ describe('Courses', () => {
 
 describe("Courses Last Minute", () => {
   it("it should get an empty array of courses", (done) => {
-    coursesService.clearDataBase().then(() => {
+    dbHelper.Courses.clearDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses/lastminute')
         .end((err, res) => {
@@ -164,7 +166,7 @@ describe("Courses Last Minute", () => {
   });
 
   it("it should create 4 courses but only return 1 course as valid last minute course", (done) => {
-    coursesService.setupLastMinute().then(() => {
+    dbHelper.Courses.setupLastMinute().then(() => {
       chai.request(server)
         .get('/v1/courses/lastminute')
         .end((err, res) => {
@@ -180,7 +182,7 @@ describe("Courses Last Minute", () => {
 describe("Courses Highlights", () => {
   var courseID = 0;
   it("it should get an empty array of courses", (done) => {
-    coursesService.clearDataBase().then(() => {
+    dbHelper.Courses.clearDataBase().then(() => {
       chai.request(server)
         .get('/v1/courses/highlights')
         .end((err, res) => {
@@ -193,7 +195,7 @@ describe("Courses Highlights", () => {
   });
 
   it("it should create 4 courses but only return 1 course as valid highlight course", (done) => {
-    coursesService.setupHighlights().then(() => {
+    dbHelper.Courses.setupHighlights().then(() => {
       chai.request(server)
         .get('/v1/courses/highlights')
         .end((err, res) => {

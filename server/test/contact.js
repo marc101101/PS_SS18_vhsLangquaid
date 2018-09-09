@@ -2,8 +2,6 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../..');
 
-let contactService = require('../service/ContactService');
-
 let should = chai.should();
 
 chai.use(chaiHttp);
