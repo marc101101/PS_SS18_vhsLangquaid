@@ -50,7 +50,7 @@ exports.userMeCoursesGET = function (user_id) {
         withRelated: ["course"]
       })
       .then((applications) => {
-        resolve(applications.map(item => item.related('course').toJSON()))
+        resolve(applications.models);
       })
       .catch((error) => {
         reject(error);
