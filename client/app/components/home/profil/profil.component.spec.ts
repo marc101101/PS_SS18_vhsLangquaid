@@ -30,7 +30,7 @@ describe('ProfilComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfilComponent ],
-      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule],
+      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule ],
       providers: [ UserService, AlertService ],
     })
     .compileComponents();

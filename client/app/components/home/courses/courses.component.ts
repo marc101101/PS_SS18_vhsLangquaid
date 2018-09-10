@@ -20,10 +20,8 @@ export class CoursesComponent implements OnInit {
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
   public renderer: Renderer2) { 
-    let localThis = this;
     this.comService.getColor().subscribe(color => {   
-      console.log(color);
-      this.renderer.addClass(this.backgroundElement.nativeElement, color);
+      //this.renderer.addClass(this.backgroundElement.nativeElement, color);
     });
   }
 
