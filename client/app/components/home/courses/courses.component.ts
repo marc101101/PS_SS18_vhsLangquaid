@@ -11,7 +11,7 @@ import { CoursesService } from '../shared/courses.service';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements AfterViewInit {
+export class CoursesComponent implements OnInit {
 
   @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
@@ -21,15 +21,18 @@ export class CoursesComponent implements AfterViewInit {
   public category: string = "";
 
   constructor(
+  public coursesService: CoursesService,
   public categoryService: CategoryService,
   public userService: UserService,
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
   public renderer: Renderer2) { 
-    this.comService.getColor().subscribe(color => {   
+    this.comService.getInfo().subscribe(color => {   
       //this.renderer.addClass(this.backgroundElement.nativeElement, color);
-    });
+    });  
+  }
 
+  ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {     
       if(params.id == "me"){
         this.requestCoursesByUser();

@@ -24,9 +24,9 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  routeToCourse(categoryId: number, color: string) {
+  routeToCourse(categoryId: number, color: string, category: string) {
     this.router.navigateByUrl('#/home/kurs-uebersicht/' + categoryId);
-    this.comService.setColor(color);
+    this.comService.setInfo(color, category);
   }
 
 }
