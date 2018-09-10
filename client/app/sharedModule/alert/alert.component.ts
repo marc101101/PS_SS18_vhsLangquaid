@@ -9,7 +9,7 @@ import { AlertService } from '../../services/alert.service';
   styleUrls: ['./alert.component.scss']
 })
 
-export class AlertComponent implements OnInit, OnDestroy {
+export class AlertComponent implements OnInit {
   message: any;
   private subscription: Subscription;
   public navStatus = true;
@@ -33,9 +33,5 @@ export class AlertComponent implements OnInit, OnDestroy {
         
       }
     });   
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }
