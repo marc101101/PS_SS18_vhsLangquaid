@@ -23,13 +23,12 @@ export class LoginComponent {
 
   onSubmit() {
     this.authSerive.login(this.model).subscribe(response => {
-      // login successful if there's a jwt token in the response
+      // login successful if there's a jwt token in the response      
       if (response.token && !this.jwtHelper.isTokenExpired(response.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('token', response.token);       
-        this.router.navigate(['/home/kategorien']).catch(error => {
-          console.log(error);
-        });
+        localStorage.setItem('token', response.token);  
+
+        this.router.navigateByUrl('#/home/kategorien');
       }
     });
   }
