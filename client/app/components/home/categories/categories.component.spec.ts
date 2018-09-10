@@ -46,7 +46,7 @@ describe('CategoriesComponent', () => {
   });
 
   //test ngOnit methods and check its effects by mocking userService method getUserMe
-  it("CategoriesComponent: ngOnit() sets user and dataIsAvailable values correctly", fakeAsync(() => {
+  it("CategoriesComponent: ngOnit() sets categories and dataIsAvailable values correctly", fakeAsync(() => {
     //set preconditions 
     spyOn(categoryService, "getAllCategories").and.returnValue(Observable.of(categoriesModel));
     //call testing method
@@ -57,7 +57,7 @@ describe('CategoriesComponent', () => {
     expect(component.dataIsAvailable).toBe(true);
   }));
 
-  it('CategoriesComponent: navigate to course(id: 1111) redirects you to /home', fakeAsync(() => { 
+  it('CategoriesComponent: navigate to course(id: 1111) redirects you to /#/home/kurs-uebersicht/1111', fakeAsync(() => { 
     component.routeToCourse("1111", "primary");
     tick(50); 
     expect(location._platformStrategy.internalPath).toBe('/#/home/kurs-uebersicht/1111'); 

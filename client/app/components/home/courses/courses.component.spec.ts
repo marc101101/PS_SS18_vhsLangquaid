@@ -42,7 +42,7 @@ describe('CoursesComponent', () => {
   });
 
   //test ngOnit methods and check its effects by mocking userService method getUserMe
-  it("CoursesComponent: ngOnit() sets user and dataIsAvailable values correctly", fakeAsync(() => {
+  it("CoursesComponent: ngOnit() sets courses and dataIsAvailable values correctly", fakeAsync(() => {
     //set preconditions 
     spyOn(categoryService, "getCoursesByCategoryId").and.returnValue(Observable.of(coursesModel));
     //call testing method
