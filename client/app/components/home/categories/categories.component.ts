@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   routeToCourse(categoryId: number, color: string) {
-    this.router.navigateByUrl('home/kurs-uebersicht/' + categoryId);
+    this.router.navigateByUrl('#/home/kurs-uebersicht/' + categoryId);
     this.comService.setColor(color);
   }
 
