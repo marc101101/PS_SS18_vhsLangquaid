@@ -8,6 +8,7 @@ export class CommunicationService{
 
     public instruction_sub_comb = new Subject<any>();
     private color: string;
+    private category: string;
 
     constructor() {
     }
@@ -16,12 +17,17 @@ export class CommunicationService{
         this.instruction_sub_comb.next(message);
     }
 
-    setColor(color: string) {
+    setInfo(color: string, category: string) {
         this.color = color;
+        this.category = category;
     }
 
-    getColor(): Observable<string>{
-        return Observable.of(this.color);
+    getInfo(): Observable<any>{
+        return Observable.of(
+            {
+                'color': this.color,
+                'category': this.category
+            });
     }
 
 }     

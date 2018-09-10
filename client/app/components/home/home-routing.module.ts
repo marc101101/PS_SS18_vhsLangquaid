@@ -17,15 +17,15 @@ const routes: Routes = [
         component: CategoriesComponent
       },
       {
-        path: 'meine-kurse',
-        component: CategoriesComponent
-      },
-      {
         path: 'aktuelles',
         component: CategoriesComponent
       },
       {
-        path: 'kurs-uebersicht/:courseId',
+        path: 'kurs-uebersicht/:id',
+        component: CoursesComponent
+      },
+      {
+        path: 'kurs-uebersicht/me',
         component: CoursesComponent
       },
       {
