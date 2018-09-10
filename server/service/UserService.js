@@ -44,13 +44,13 @@ exports.userMeCoursesGET = function (user_id) {
   return new Promise(function (resolve, reject) {
     Applications
       .where({
-        ANM_TEIL_ID: user_id
+        ANM_TEIL_ID: user_id,
       })
       .fetchAll({
         withRelated: ["course"]
       })
       .then((applications) => {
-        resolve(applications.models);
+        resolve(applications.models.filter(item => item.ANM_STAT_ID == 1 || 2));
       })
       .catch((error) => {
         reject(error);
