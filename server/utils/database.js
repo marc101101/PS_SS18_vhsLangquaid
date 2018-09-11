@@ -36,7 +36,7 @@ let course = bookshelf.Model.extend({
     return this.belongsTo(category, "KURS_RUB_ID", "RUB_ID")
   },
   applications: function() {
-    return this.hasMany(application, "ANM_KURS_ID", "KURS_ID")
+    return this.hasMany(application, "KURS_ID", "ANM_KURS_ID")
   },
   location: function() {
     return this.belongsTo(location, "KURS_ORT_ID", "ORT_ID")
@@ -81,10 +81,10 @@ exports.User = bookshelf.Model.extend({
 let application  = bookshelf.Model.extend({
   tableName: 'vhslq_anmeldungen',
   course: function() {
-    return this.belongsTo(course, "KURS_ID", "ANM_KURS_ID")
+    return this.belongsTo(course, "ANM_KURS_ID", "KURS_ID")
   },
   user: function() {
-    return this.belongsTo(user, "TEIL_ID", "ANM_TEIL_ID")
+    return this.belongsTo(user, "ANM_TEIL_ID", "TEIL_ID")
   }
 })
 
