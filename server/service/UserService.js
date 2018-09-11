@@ -40,10 +40,11 @@ exports.userMeCoursesGET = function (user_id) {
         ANM_TEIL_ID: user_id
       })
       .fetchAll({
-        withRelated: ["course"]
+        withRelated: ["course.location"]
       })
       .then((applications) => {
-        resolve(applications.models);
+        let courses = applications.map(item => item.related('course').toJSON());
+        resolve(courses);
       })
       .catch((error) => {
         reject(error);
