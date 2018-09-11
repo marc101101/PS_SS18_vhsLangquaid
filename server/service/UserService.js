@@ -25,13 +25,6 @@ exports.userMeGET = function (id) {
         if (!user) {
           reject(Errors.notFound("GET ID " + id, "USER"))
         }
-        /*let trimmedUser = {
-          "firstname": user.attributes.TEIL_VORNAME,
-          "address": user.attributes.TEIL_ORT,
-          "id": user.attributes.TEIL_ID,
-          "email": user.attributes.TEIL_EMAIL,
-          "lastname": user.attributes.TEIL_NACHNAME
-        };*/
         resolve(user);
       })
       .catch((error) => {
