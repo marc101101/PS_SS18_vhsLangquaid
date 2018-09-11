@@ -68,18 +68,29 @@ exports.userMeCoursesGET = function (user_id) {
  **/
 exports.userPOST = function (data) {
   return new Promise(function (resolve, reject) {
-    new User(data)
-      .save()
-      .then((user) => {
-        let token = jwt.sign({
-          id: user.attributes.id
-        }, config.secret, {
-          expiresIn: 86400 // expires in 24 hours
-        });
-        resolve({
-          user: user,
-          token: token
-        });
+    User.where({teil_email: data.teil_email})
+      .fetch()
+      .then((model) => {
+          if (!model) {
+            new User(data)
+            .save()
+            .then((user) => {
+              let token = jwt.sign({
+                id: user.attributes.id
+              }, config.secret, {
+                expiresIn: 86400 // expires in 24 hours
+              });
+              resolve({
+                user: user,
+                token: token
+              });
+            })
+            .catch((error) => {
+              reject(error);
+            })
+          } else {
+            reject(Errors.conflict("POST USER EMAIL"))
+          }
       })
       .catch((error) => {
         reject(error);
@@ -112,42 +123,4 @@ exports.userPUT = function (id, data) {
         reject(err);
       });
   });
-}
-
-if (process.env.NODE_ENV === 'test') {
-  exports.clearDataBase = () => {
-    return new Promise((resolve, reject) => {
-      console.log("Clearing all Content in Table vhslq_teilnehmer");
-      knex("vhslq_teilnehmer")
-        .del()
-        .then(() => {
-          console.log("Finished clearing all Content in Table vhslq_teilnehmer");
-          resolve();
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    })
-  }
-
-  exports.addCoursesToSampleUser = (user_id) => {
-    return new Promise((resolve, reject) => {
-      console.log("Adding Sample Courses To User ID " + user_id);
-      let setupCourses = require('../service/CoursesService').setupDataBase;
-      setupCourses().then((courses) => {
-        let _Applications = require('../utils/database').Applications
-        let generateApplicationFor = require('../service/CoursesService').generateApplicationFor;
-        let applications = courses
-          .map(item => item.attributes.id)
-          .map(course_id => generateApplicationFor(user_id, course_id))
-        Promise.all(_Applications.forge(applications).invokeMap('save')).then(() => {
-          console.log("Finished Adding Courses to User ID " + user_id);
-          resolve("done");
-        }).catch((error) => {
-          console.log(error)
-          reject(error);
-        })
-      })
-    });
-  }
 }

@@ -28,10 +28,8 @@ export class UserService {
     return this.http.get(this.url + "/user/me", this.httpOptions).pipe(
       map((res: Response) => {
         return res;
-        //return Object.assign(User, res);
       }),
       catchError((err: HttpErrorResponse) => {
-        console.log(err);        
         this.alertService.push(err);
         return Observable.of(err);
       })

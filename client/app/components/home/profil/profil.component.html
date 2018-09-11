@@ -20,12 +20,10 @@
  
   <section class="login" style="padding: 1rem; padding-top: 0rem;">
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()" >
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"
-        #mail="ngModel">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"  #mail="ngModel">
       <br>
       <br>
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address"
-        #address="ngModel">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address" #address="ngModel">
       <br>
       <br>
       <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ" name="blz" #blz="ngModel" maxlength="8">

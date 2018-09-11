@@ -1,6 +1,7 @@
 'use strict';
 var Courses = require('../utils/database').Course;
 var Applications = require('../utils/database').Application;
+var CourseFeedback = require('../utils/database').CourseFeedback;
 
 
 var knex = require('../utils/database').knex;
@@ -106,16 +107,15 @@ exports.generateApplicationFor = generateApplicationFor;
  **/
 exports.coursesCourse_idFeedbackPOST = function (course_id, data) {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-      "text": "This app is great!",
-      "email": "this@me.com"
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    new CourseFeedback({...data, kurs_id: course_id})
+      .save()
+      .then((feedback) => {
+        resolve(feedback.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      })
   });
 }
 
@@ -205,25 +205,15 @@ exports.coursesGET = function () {
  **/
 exports.coursesHighlightsGET = function () {
   return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [{
-      "max_age": 99,
-      "name": "Kunst-Grundkurs",
-      "id": 1,
-      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age": 1
-    }, {
-      "max_age": 99,
-      "name": "Kunst-Grundkurs",
-      "id": 1,
-      "text": "Dass Kunst nicht immer fad ist, soll in diesem Kurs klar gemacht werden",
-      "min_age": 1
-    }];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    Courses
+      .where({kurs_highlight: 1})
+      .fetchAll()
+      .then((courses) => {
+        resolve(courses.map(item => item.attributes));
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 
@@ -246,89 +236,4 @@ exports.coursesLastminuteGET = function() {
         reject(error);
       });
   });
-}
-
-if (process.env.NODE_ENV === 'test') {
-  exports.clearDataBase = () => {
-    console.log("Clearing all Content in Table vhslq_kurse");
-    return new Promise((resolve, reject) => {
-      knex("vhslq_kurse")
-        .del()
-        .then(() => {
-          console.log("Finished clearing all Content in Table vhslq_kurse");
-          resolve("clean");
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    })
-  }
-
-  exports.setupDataBase = () => {
-    console.log("Setting up Content in Table vhslq_kurse")
-    return new Promise((resolve, reject) => {
-      let sample = require('../utils/sampleData').courses();
-      let _Courses = require('../utils/database').Courses;
-      let courses = _Courses.forge(sample);
-
-      Promise.all(courses.invokeMap('save'))
-        .then((data) => {
-          console.log("Finished Setting up Content in Table vhslq_kurse")
-          resolve(data);
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    });
-  }
-
-  exports.setupLastMinute = () => {
-    console.log("Setting up Last Minute Content in Table vhslq_kurse")
-    return new Promise((resolve, reject) => {
-      let sample = require('../utils/sampleData').coursesForLastMinute();
-      let _Courses = require('../utils/database').Courses;
-      let courses = _Courses.forge(sample);
-        
-      Promise.all(courses.invokeMap('save'))
-        .then((data) => {
-          let courseIDs = data.map(item => item.attributes.id);
-          let fullCourse = courseIDs[2];
-          let _Applications = require('../utils/database').Applications
-          let applications = _Applications.forge([
-            generateApplicationFor(1222313, fullCourse),
-            generateApplicationFor(1222312, fullCourse)
-          ])
-          Promise.all(applications.invokeMap('save')).then(() => {
-            console.log("Finished Setting up Last Minute Content in Table vhslq_kurse")
-            resolve("done");
-          }).catch((error) => {
-            console.log(error)
-            reject(error);
-          })
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    });
-  }
-
-
-  exports.setupCoursesOfCategory = (category_id) => {
-    return new Promise((resolve, reject) => {
-      console.log("Setting up Content for Category with ID " + category_id);
-      let sample = require('../utils/sampleData').coursesForCategory(category_id);
-      let _Courses = require('../utils/database').Courses;
-      let courses = _Courses
-        .forge(sample)
-
-      Promise.all(courses.invokeMap('save'))
-        .then((data) => {
-          console.log("Finished Setting up Content in Table vhslq_rubriken");
-          resolve("done");
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    });
-  }
 }
