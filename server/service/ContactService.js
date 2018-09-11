@@ -1,5 +1,8 @@
 'use strict';
 
+var AppFeedback = require('../utils/database').AppFeedback;
+var knex = require('../utils/database').knex;
+var Errors = require('../utils/errors');
 
 /**
  * give general feedback to the team
@@ -10,16 +13,14 @@
  **/
 exports.contactPOST = function(data) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "text" : "This app is great!",
-  "email" : "this@me.com"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    new AppFeedback(data)
+      .save()
+      .then((feedback) => {
+        resolve(feedback.attributes);
+      })
+      .catch((error) => {
+        reject(error);
+      })
   });
 }
 

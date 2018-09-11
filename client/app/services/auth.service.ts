@@ -59,7 +59,6 @@ export class AuthService {
   logout(): void{
     localStorage.removeItem('token');
     this.authStatus = false;
-    console.log("2", this.authStatus);
   }
 
   register(): void{

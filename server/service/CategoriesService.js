@@ -71,39 +71,3 @@ exports.categoriesGET = function() {
       });
   });
 }
-
-if (process.env.NODE_ENV === 'test') {
-  exports.clearDataBase = () => {
-    return new Promise((resolve, reject) => {
-      console.log("Clearing all Content in Table vhslq_rubriken");
-      knex("vhslq_rubriken")
-        .del()
-        .then(() => {
-          console.log("Finished clearing all Content in Table vhslq_rubriken");
-          resolve("clean");
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    })
-  }
-
-  exports.setupDataBase = () => {
-    return new Promise((resolve, reject) => {
-      console.log("Setting up Content in Table vhslq_rubriken")
-      let sample = require('../utils/sampleData').categories();
-      let _Categories = require('../utils/database').Categories;
-      let categories = _Categories
-        .forge(sample)
-        
-      Promise.all(categories.invokeMap('save'))
-        .then((data) => {
-          console.log("Finished Setting up Content in Table vhslq_rubriken")
-          resolve("done");
-        })
-        .catch((error) => {
-          reject(error);
-        })
-    });
-  }
-}

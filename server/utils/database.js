@@ -74,6 +74,16 @@ let application  = bookshelf.Model.extend({
   }
 })
 
+// -- FEEDBACK_APP
+exports.AppFeedback = bookshelf.Model.extend({
+  tableName: 'vhslq_feedback_app',
+})
+
+// -- FEEDBACK_COURSES
+exports.CourseFeedback = bookshelf.Model.extend({
+  tableName: 'vhslq_feedback_kurse',
+})
+
 exports.Application = application;
 exports.Applications = bookshelf.Collection.extend({
   model: application

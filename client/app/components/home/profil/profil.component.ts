@@ -20,14 +20,14 @@ export class ProfilComponent implements OnInit {
     private _location: Location,
     private renderer: Renderer2) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.userService.getUserMe().subscribe(response => {    
       this.user = response;
       this.dataIsAvailable = true; 
     });
   }
 
-  onSubmit() {
+  onSubmit():void {
     this.userService.updateUserMe(this.user).subscribe(response => {
       if(response.name != "HttpResponseError"){
         this.renderer.addClass(this.saveButton.nativeElement, 'is-primary-save');
@@ -36,13 +36,13 @@ export class ProfilComponent implements OnInit {
     });
   }
 
-  resetButton() {
+  resetButton():void {
     this.renderer.removeClass(this.saveButton.nativeElement, 'is-primary-save');
     this.button_text = 'Speichern';
   }
 
-  backClicked() {
+  backClicked():void {
     this._location.back();
-}
+  }
 
 }
