@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
@@ -11,7 +11,7 @@ import { CoursesService } from '../shared/courses.service';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements AfterViewInit {
+export class CoursesComponent implements OnInit {
 
   @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
@@ -21,14 +21,14 @@ export class CoursesComponent implements AfterViewInit {
   public category: string = "";
 
   constructor(
-  public categoryService: CategoryService,
-  public userService: UserService,
-  private activatedRoute: ActivatedRoute,
-  public comService: CommunicationService,
-  public coursesService: CoursesService,
-  public renderer: Renderer2) {}
+    public categoryService: CategoryService,
+    public userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    public comService: CommunicationService,
+    public coursesService: CoursesService,
+    public renderer: Renderer2) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.comService.getInfo().subscribe(response => {         
       this.category = response.category;
       this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
@@ -50,7 +50,7 @@ export class CoursesComponent implements AfterViewInit {
       response.forEach(element => {
         this.courses = [];
         this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(response => {
-          response.ANM_DATUM = element.ANM_DATUM;
+          response.ANM_DATUM = element.ANM_DATUM;          
           this.courses.push(response);
         });
       });
@@ -63,7 +63,7 @@ export class CoursesComponent implements AfterViewInit {
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
     this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{    
-      this.courses = response;       
+      this.courses = response;             
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
         this.courses = response;

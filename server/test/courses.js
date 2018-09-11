@@ -110,7 +110,7 @@ describe('Courses', () => {
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
           res.should.have.status(409);          
-          res.body.message.should.include("Resource Application for course 2018175");
+          res.body.message.should.include("Course ID 2018175");
           done();
         });
     });
@@ -132,8 +132,7 @@ describe('Courses', () => {
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
           res.should.have.status(200);          
-          res.body.ANM_ABR_ABRECHNEN.should.equal(1);
-          res.body.ANM_ABR_DATUM.should.equal(moment().format('YYYY-MM-DD'));
+          res.body.ANM_STAT_ID.should.equal(3);
           done();
         });
     });

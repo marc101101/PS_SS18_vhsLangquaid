@@ -1,3 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:' + process.env.PORT || 8080 +'/v1'};
+    apiUrl: 'http://localhost:8080/v1'
+};

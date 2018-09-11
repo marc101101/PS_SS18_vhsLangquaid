@@ -1,0 +1,59 @@
+<div class="container fullScreenBackground">
+  <div class="circleBackground"></div>
+  <div class="columns is-mobile">
+    <div class="column is-12" *ngIf="dataIsAvailable" style="z-index: 0; padding: 2rem; padding-left: 5rem; padding-bottom: 0rem;">
+      <div style="font-size: 1.5rem; color:white;">
+        {{singleCourse.KURS_NAME}}
+      </div>
+      <p style="color:white">{{singleCourse.KURS_SUBNAME}}</p>
+    </div>
+    <div class="columns is-mobile">
+    </div>
+  </div>
+
+  <div class="column is-12" *ngIf="dataIsAvailable" style="z-index: 0; padding: 1rem;">
+    <div>
+      <i class="fa fa-clock-o info-icon"></i>
+      <p style="color:white">Beginn: {{singleCourse.KURS_BEGINN_UHRZEIT}}</p>
+    </div>
+    <div>
+      <i class="fa fa-map-marker info-icon"></i>
+      <p style="color:white">Ort: {{singleCourse.KURS_ORT_ID}}</p>
+    </div>
+    <div>
+      <i class="fa fa-user info-icon"></i>
+      <p style="color:white">Veranstalter: {{singleCourse.KURS_VERANSTALTUNG}}</p>
+    </div>
+  </div>
+
+  <div class="column is-12" *ngIf="showButton">
+    <a #button class="button is-fullwidth is-primary" (click)="apply()" *ngIf="!alreadyApplied">{{button_text}}</a>
+    <a #button class="button is-fullwidth is-danger" (click)="signOff()" *ngIf="alreadyApplied">{{button_text}}</a>
+  </div>
+
+  <div class="column" style="margin-top: -2rem;padding: 1rem;">
+    <alert></alert>
+  </div>
+  
+
+  <!--section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable">
+    <div class="card" style="padding:1rem; height: 4rem">
+      <div style="font-size: 1.2rem; float: left;">
+        Mehr Informationen
+      </div>
+      <div style="padding: 0.5rem;">
+        <i class="fa fa-chevron-down " style="float: right;" aria-hidden="true"></i>
+      </div>
+    </div>
+  </section-->
+
+  <section *ngIf="dataIsAvailable" style=" margin-bottom: 2rem">
+    <div class="card" style="padding:1rem">
+      <div style="font-size: 1.4rem">
+        Kursinhalt
+      </div>
+      {{singleCourse.KURS_BESCHREIBUNG}}
+    </div>
+  </section>
+
+</div>

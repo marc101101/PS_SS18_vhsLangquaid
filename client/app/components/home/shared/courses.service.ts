@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.prod';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../../../services/alert.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,33 @@ export class CoursesService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     );
+  }
+
+  applyToCourse(courseId: String): Observable<any>{   
+    return this.http.post(this.url + "/courses/" + courseId + "/apply", "" ,this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return of(err);
+      })
+    )
+  }
+
+  signOffToCourse(courseId: String): Observable<any>{
+    return this.http.post(this.url + "/courses/" + courseId + "/signoff", "", this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return of(err);
+      })
+    )
   }
   
 }
