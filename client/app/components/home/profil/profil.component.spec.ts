@@ -6,10 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilComponent } from './profil.component';
 import { SharedModule } from '../../../sharedModule/shared.module';
 import { UserService } from '../../../services/user.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { By } from "@angular/platform-browser";
-import 'rxjs/add/observable/from';
-
 
 /**
   * Test should test all four methods of profil.component.ts
