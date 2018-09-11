@@ -45,12 +45,16 @@ exports.userMeCoursesGET = function (user_id) {
     Applications
       .where({
         ANM_TEIL_ID: user_id,
+        ANM_STAT_ID: 1 || 2
       })
       .fetchAll({
         withRelated: ["course"]
       })
       .then((applications) => {
-        resolve(applications.models.filter(item => item.ANM_STAT_ID == 1 || 2));
+        let courses = applications.models.map(item => {
+          return item.related("course").toJSON();
+        })
+        resolve(courses);
       })
       .catch((error) => {
         reject(error);
@@ -137,9 +141,16 @@ if (process.env.NODE_ENV === 'test') {
       setupCourses().then((courses) => {
         let _Applications = require('../utils/database').Applications
         let generateApplicationFor = require('../service/CoursesService').generateApplicationFor;
-        let applications = courses
-          .map(item => item.attributes.id)
-          .map(course_id => generateApplicationFor(user_id, course_id))
+        let applications = [];
+        courses.map(item => {
+            let courseId = item.attributes.id;
+            // this is a valid application (ANM_STAT_ID is 1)
+            applications.push(generateApplicationFor(user_id, courseId));
+            // this is a cancelled application (ANM_STAT_ID is 3) and should be filtered by api/v1/user/me/courses
+            let invalidApplication = generateApplicationFor(user_id, courseId);
+            invalidApplication.ANM_STAT_ID = 3;
+            applications.push(invalidApplication);
+          })
         Promise.all(_Applications.forge(applications).invokeMap('save')).then(() => {
           console.log("Finished Adding Courses to User ID " + user_id);
           resolve("done");
