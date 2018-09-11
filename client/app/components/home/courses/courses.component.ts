@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
