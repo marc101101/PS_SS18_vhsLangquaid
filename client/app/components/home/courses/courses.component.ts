@@ -46,9 +46,7 @@ export class CoursesComponent implements OnInit {
   requestCoursesByUser():void{
     this.headerText = "Meine";
     this.courses = [];
-    this.userService.getCoursesByUser().subscribe(responseUser =>{    
-      console.log(responseUser);
-      
+    this.userService.getCoursesByUser().subscribe(responseUser =>{         
       responseUser.forEach(element => {
         this.coursesService.getCoursesByCourseId(element.KURS_ID).subscribe(responseCourse => {
           responseCourse.ANM_DATUM = element.ANM_DATUM;          
