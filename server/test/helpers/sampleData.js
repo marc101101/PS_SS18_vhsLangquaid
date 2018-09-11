@@ -8,7 +8,8 @@ if (process.env.NODE_ENV === 'test') {
       rub_text: "Sammelplatz für allgemeine Kurse und Veranstaltungen",
       eingegeben_von_user: 0,
       eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00"
+      eingegeben_am_zeit: "00:00:00",
+      datenhistory: "CATEGORY_IDENTIFIER",
     },
     {
       rub_name: "Kunst und Musik",
@@ -16,7 +17,8 @@ if (process.env.NODE_ENV === 'test') {
       rub_text: "Sammelplatz für Kunst und Musik",
       eingegeben_von_user: 0,
       eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00"
+      eingegeben_am_zeit: "00:00:00",
+      datenhistory: "CATEGORY_IDENTIFIER",
     },
     {
       rub_name: "Technik",
@@ -24,7 +26,8 @@ if (process.env.NODE_ENV === 'test') {
       rub_text: "Sammelplatz für technische Kurse",
       eingegeben_von_user: 0,
       eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00"
+      eingegeben_am_zeit: "00:00:00",
+      datenhistory: "CATEGORY_IDENTIFIER",
     },
     {
       rub_name: "Sport",
@@ -32,7 +35,8 @@ if (process.env.NODE_ENV === 'test') {
       rub_text: "Sammelplatz für sportliche Kurse",
       eingegeben_von_user: 0,
       eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00"
+      eingegeben_am_zeit: "00:00:00",
+      datenhistory: "CATEGORY_IDENTIFIER",
     }
   ]
 
@@ -55,7 +59,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_rub_id: category_id,
     },
     {
@@ -77,7 +81,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_rub_id: category_id,
     },
     {
@@ -99,7 +103,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_rub_id: category_id,
     }
   ]
@@ -124,7 +128,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2022-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_beginn: "2018-01-01",
       kurs_beginn_uhrzeit: "20:15:00"
     },
@@ -147,7 +151,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_beginn: "2018-01-01",
       kurs_beginn_uhrzeit: "20:15:00"
     },
@@ -170,7 +174,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
       kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
       kurs_beginn_uhrzeit: "20:15:00",
@@ -196,7 +200,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 1,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Daten History",
+      datenhistory: "COURSE_IDENTIFIER",
       kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
       kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
       kurs_beginn_uhrzeit: "20:15:00",
@@ -227,7 +231,7 @@ if (process.env.NODE_ENV === 'test') {
     eingegeben_von_user: 1,
     eingegeben_am_datum: "2022-01-01",
     eingegeben_am_zeit: "00:00:00",
-    datenhistory: "Daten History",
+    datenhistory: "COURSE_IDENTIFIER",
     kurs_beginn: "2018-01-01",
     kurs_beginn_uhrzeit: "20:15:00",
     kurs_highlight: 1
@@ -251,7 +255,7 @@ if (process.env.NODE_ENV === 'test') {
     eingegeben_von_user: 1,
     eingegeben_am_datum: "2018-01-01",
     eingegeben_am_zeit: "00:00:00",
-    datenhistory: "Daten History",
+    datenhistory: "COURSE_IDENTIFIER",
     kurs_beginn: "2018-01-01",
     kurs_beginn_uhrzeit: "20:15:00"
   },
@@ -274,7 +278,7 @@ if (process.env.NODE_ENV === 'test') {
     eingegeben_von_user: 1,
     eingegeben_am_datum: "2018-01-01",
     eingegeben_am_zeit: "00:00:00",
-    datenhistory: "Daten History",
+    datenhistory: "COURSE_IDENTIFIER",
     kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
     kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
     kurs_beginn_uhrzeit: "20:15:00",
@@ -300,7 +304,7 @@ if (process.env.NODE_ENV === 'test') {
     eingegeben_von_user: 1,
     eingegeben_am_datum: "2018-01-01",
     eingegeben_am_zeit: "00:00:00",
-    datenhistory: "Daten History",
+    datenhistory: "COURSE_IDENTIFIER",
     kurs_beginn: moment().add(7, 'weeks').format("YYYY-MM-DD"),
     kurs_anmfrist: moment().add(5, 'weeks').format("YYYY-MM-DD"),
     kurs_beginn_uhrzeit: "20:15:00",
@@ -431,7 +435,7 @@ if (process.env.NODE_ENV === 'test') {
       EINGEGEBEN_VON_USER: 0,
       EINGEGEBEN_AM_DATUM: 0,
       EINGEGEBEN_AM_ZEIT: 0,
-      DATENHISTORY: "",
+      DATENHISTORY: "COURSE_IDENTIFIER",
       GELOESCHT_FELD: 0,
       GELOESCHT_VON_USER: 0,
       GELOESCHT_AM_DATUM: 0,
@@ -565,7 +569,7 @@ if (process.env.NODE_ENV === 'test') {
       EINGEGEBEN_VON_USER: 0,
       EINGEGEBEN_AM_DATUM: 0,
       EINGEGEBEN_AM_ZEIT: 0,
-      DATENHISTORY: "",
+      DATENHISTORY: "COURSE_IDENTIFIER",
       GELOESCHT_FELD: 0,
       GELOESCHT_VON_USER: 0,
       GELOESCHT_AM_DATUM: 0,
@@ -597,7 +601,7 @@ if (process.env.NODE_ENV === 'test') {
     EINGEGEBEN_VON_USER: 0,
     EINGEGEBEN_AM_DATUM: "",
     EINGEGEBEN_AM_ZEIT: "",
-    DATENHISTORY: ""
+    DATENHISTORY: "APPLICATION_IDENTIFIER"
   }]
 
   exports.location = () => {
@@ -609,7 +613,7 @@ if (process.env.NODE_ENV === 'test') {
       EINGEGEBEN_VON_USER: 0,
       EINGEGEBEN_AM_DATUM: 0,
       EINGEGEBEN_AM_ZEIT: 0,
-      DATENHISTORY: ""
+      DATENHISTORY: "LOCATION_IDENTIFIER"
     }
   }
 }

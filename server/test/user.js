@@ -107,6 +107,8 @@ describe('User', () => {
         res.should.have.status(200);
         res.body.should.be.a('array');
         res.body.length.should.equal(2);
+        res.body[0].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
+        res.body[1].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
         done();
       })
     })
