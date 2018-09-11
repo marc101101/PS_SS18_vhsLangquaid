@@ -16,7 +16,7 @@ export class CoursesComponent implements OnInit {
   @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
   public dataIsAvailable: boolean = false;
-  public courses: Array<any>;
+  public courses: Array<any> = [];
   public headerText: string = "";
   public category: string = "";
 
@@ -44,16 +44,17 @@ export class CoursesComponent implements OnInit {
   }
 
   requestCoursesByUser():void{
+    console.log("1");
     this.headerText = "Meine";
-    this.userService.getCoursesByUser().subscribe(response =>{    
-      response.forEach(element => {
-        this.courses = [];
-        this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(response => {
-          response.ANM_DATUM = element.ANM_DATUM;
-          this.courses.push(response);
+    this.courses = [];
+    this.userService.getCoursesByUser().subscribe(responseUser =>{    
+      responseUser.forEach(element => {
+        this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(responseCourse => {
+          responseCourse.ANM_DATUM = element.ANM_DATUM;          
+          this.courses.push(responseCourse);
         });
       });
-      if(response.name != "HttpResponseError"){
+      if(responseUser.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
       }
     });
@@ -61,8 +62,13 @@ export class CoursesComponent implements OnInit {
 
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
-    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{    
-      this.courses = response;       
+    console.log("2");
+    this.courses = [];
+    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{
+      console.log(response);
+      console.log(this.course);
+          
+      this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
         this.courses = response;

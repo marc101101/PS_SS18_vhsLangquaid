@@ -21,19 +21,19 @@ describe('CoursesComponent', () => {
   let userCoursesModel = [
     {
       "ANM_KURS_ID": 1,
-      "ANM_DATUM": "00-00-00"
+      "ANM_DATUM": Date.now()
     },
     {
       "ANM_KURS_ID": 2,
-      "ANM_DATUM": "00-00-00"
+      "ANM_DATUM": Date.now()
     }
   ];
 
-  let coursesByCourseIdModel = [{
-    "ANM_DATUM": "00-00-00",
+  let coursesByCourseIdModel = {
+    "ANM_DATUM": Date.now(),
     "KURS_NAME": "Testname",
     "KURS_BESCHREIBUNG": "Testbeschreibung"
-  }];
+  };
 
   var fixture;
   var component;
@@ -70,6 +70,37 @@ describe('CoursesComponent', () => {
   it('CoursesComponent: should successfuly be able to create a CoursesComponent', () => {
     expect(fixture.componentInstance instanceof CoursesComponent).toBe(true, "should create CoursesComponent");
   });
+
+   //test ngOnit methods and check its effects by mocking userService method getUserMe
+   it("CoursesComponent /me: ngOnit() sets courses and dataIsAvailable values correctly", fakeAsync(() => {
+    //set preconditions 
+    spyOn(userService, "getCoursesByUser").and.returnValue(Observable.of(userCoursesModel));
+    spyOn(coursesService, "getCoursesByCourseId").and.returnValue(Observable.of(coursesByCourseIdModel));
+    //call testing method
+    component.ngOnInit();
+    //check results
+    fixture.detectChanges();
+    expect(component.courses[0].KURS_BESCHREIBUNG).toBe("Testbeschreibung");
+    expect(component.courses[0].KURS_NAME).toBe("Testname");
+    expect(component.dataIsAvailable).toBe(true);
+  }));
+
+  //test ngOnit methods and check its effects by mocking userService method getUserMe
+  it("CoursesComponent /:kursId: ngOnit() sets courses and dataIsAvailable values correctly", fakeAsync(() => {
+    //here a different test bed is needed because the ActivatedRoute is /1111
+    component.category = "Test Category";
+    component.activatedRoute.params.value.id = "test-kursId";
+    //set preconditions 
+    spyOn(categoryService, "getCoursesByCategoryId").and.returnValue(Observable.of(coursesByCourseIdModel));
+    //call testing method
+    component.ngOnInit();
+    //check results
+    fixture.detectChanges();
+    console.log(component);
+    expect(component.courses[0].KURS_BESCHREIBUNG).toBe("Testbeschreibung");
+    expect(component.courses[0].KURS_NAME).toBe("Testname");
+    expect(component.dataIsAvailable).toBe(true);
+  }));
 
 
 });
