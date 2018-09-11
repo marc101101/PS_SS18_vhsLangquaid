@@ -4,6 +4,8 @@ import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { log } from 'util';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -123,6 +125,6 @@ export class AlertService {
         this.subject.next({ type: 'error', text: this.mapMessage(err) });
       }
     }
-    return Observable.of(null);
+    return of(null);
   }
 }
