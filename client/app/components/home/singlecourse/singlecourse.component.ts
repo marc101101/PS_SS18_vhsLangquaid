@@ -52,16 +52,12 @@ export class SingleCourseComponent implements OnInit {
   }
 
   checkAlreadyApplied(){
-    this.userService.getCoursesByUser().subscribe(response =>{
-      console.log(response);
-      
+    this.userService.getCoursesByUser().subscribe(response =>{      
       response.forEach(element => {
-        if(element.ANM_KURS_ID == this.singleCourse.KURS_ID){
-          if(element.ANM_ABR_ABRECHNEN == "0"){
+        if(element.KURS_ID == this.singleCourse.KURS_ID){
             this.alreadyApplied = true;
             this.button_text = "Abmelden";
           }
-        }
       });      
     });
   }
