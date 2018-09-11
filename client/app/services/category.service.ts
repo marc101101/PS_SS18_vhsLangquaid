@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from './alert.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class CategoryService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     )
   }
@@ -41,7 +42,7 @@ export class CategoryService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     );
   }

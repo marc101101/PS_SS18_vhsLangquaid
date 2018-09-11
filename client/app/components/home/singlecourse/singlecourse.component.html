@@ -22,13 +22,19 @@
     </div>
     <div>
       <i class="fa fa-user info-icon"></i>
-      <p style="color:white">Veranstalter{{singleCourse.KURS_VERANSTALTUNG}}</p>
+      <p style="color:white">Veranstalter: {{singleCourse.KURS_VERANSTALTUNG}}</p>
     </div>
+  </div>
+
+  <div class="column is-12" *ngIf="showButton">
+    <a #button class="button is-fullwidth is-primary" (click)="apply()" *ngIf="!alreadyApplied">{{button_text}}</a>
+    <a #button class="button is-fullwidth is-danger" (click)="signOff()" *ngIf="alreadyApplied">{{button_text}}</a>
   </div>
 
   <div class="column" style="margin-top: -2rem;padding: 1rem;">
     <alert></alert>
   </div>
+  
 
   <!--section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable">
     <div class="card" style="padding:1rem; height: 4rem">

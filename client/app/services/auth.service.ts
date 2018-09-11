@@ -8,6 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 import { log } from 'util';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthService {
 
-  private authStatus: boolean = false;
+  public authStatus: boolean = false;
   private url: string = environment.apiUrl;
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
@@ -33,7 +34,7 @@ export class AuthService {
       this.navToLogin();
     }
     
-    return Observable.of(this.authStatus);
+    return of(this.authStatus);
   }
 
   navToLogin():void{
@@ -51,7 +52,7 @@ export class AuthService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     )
   }

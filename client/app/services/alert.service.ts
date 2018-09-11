@@ -4,6 +4,8 @@ import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { log } from 'util';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +86,7 @@ export class AlertService {
     } else if (response.status === 405) {
       return 'Method not allowed!';
     } else if (response.status === 409) {
-      return 'Conflict: Client already exists!';
+      return 'Sie sind bereits angemeldet!';
     } else if (response.status === 503) {
       this.keepAfterNavigationChange = true;
       this.status_message = response.status + '\n' + 'Service Unavailable.';
@@ -123,6 +125,6 @@ export class AlertService {
         this.subject.next({ type: 'error', text: this.mapMessage(err) });
       }
     }
-    return Observable.of(null);
+    return of(null);
   }
 }

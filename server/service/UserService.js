@@ -37,7 +37,8 @@ exports.userMeCoursesGET = function (user_id) {
   return new Promise(function (resolve, reject) {
     Applications
       .where({
-        ANM_TEIL_ID: user_id
+        ANM_TEIL_ID: user_id,
+        ANM_STAT_ID: 1 || 2
       })
       .fetchAll({
         withRelated: ["course.location"]
