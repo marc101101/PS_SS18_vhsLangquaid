@@ -131,6 +131,21 @@ const CoursesHelper = {
     });
   },
 
+  setupHighlightsCoursesWithTeacher: () => {
+    return new Promise((resolve, reject) => {
+      User.where({TEIL_VORNAME: "John"})
+        .fetch()
+        .then(user => {
+          Courses
+          .where({KURS_HIGHLIGHT: 1})
+          .save({KURS_REFERENT_ID: user.attributes.TEIL_ID}, {patch: true})
+          .then(courses => {
+            resolve(courses.toJSON());
+          })
+        })
+    })
+  },
+
   setupLastMinute: () => {
     console.log("Setting up Last Minute Content in Table vhslq_kurse")
     return new Promise((resolve, reject) => {

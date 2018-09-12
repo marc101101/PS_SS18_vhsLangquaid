@@ -223,4 +223,22 @@ describe("Courses Highlights", () => {
         done();
       })
   })
+
+  it("it should show valid teacher data for all highlight courses", (done) => {
+
+    dbHelper.Courses.setupHighlightsCoursesWithTeacher()
+      .then(() => {
+        chai.request(server)
+      .get('/v1/courses/highlights')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        res.body.forEach(item => {
+          console.log(item.teacher.TEIL_VORNAME);
+          item.teacher.TEIL_VORNAME.should.equal("John");
+        })        
+        done();
+      })
+      })
+  })
 }); 
