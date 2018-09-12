@@ -25,13 +25,6 @@ exports.userMeGET = function (id) {
         if (!user) {
           reject(Errors.notFound("GET ID " + id, "USER"))
         }
-        /*let trimmedUser = {
-          "firstname": user.attributes.TEIL_VORNAME,
-          "address": user.attributes.TEIL_ORT,
-          "id": user.attributes.TEIL_ID,
-          "email": user.attributes.TEIL_EMAIL,
-          "lastname": user.attributes.TEIL_NACHNAME
-        };*/
         resolve(user);
       })
       .catch((error) => {
@@ -48,12 +41,10 @@ exports.userMeCoursesGET = function (user_id) {
         ANM_STAT_ID: 1 || 2
       })
       .fetchAll({
-        withRelated: ["course"]
+        withRelated: ["course.location"]
       })
       .then((applications) => {
-        let courses = applications.models.map(item => {
-          return item.related("course").toJSON();
-        })
+        let courses = applications.map(item => item.related('course').toJSON());
         resolve(courses);
       })
       .catch((error) => {

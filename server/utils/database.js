@@ -27,22 +27,36 @@ var moment = require('moment');
 var bookshelf = require('bookshelf')(knex);
 exports.knex = knex;
 
+
 // -- COURSES
 let course = bookshelf.Model.extend({
   tableName: "vhslq_kurse",
   // use function() instead of lambda big arrow here otherwise "this" is not the correct this ....
   category: function() {
-    return this.belongsTo(category, "RUB_ID")
+    return this.belongsTo(category, "KURS_RUB_ID", "RUB_ID")
   },
   applications: function() {
-    return this.hasMany(application, "ANM_KURS_ID", "KURS_ID")
+    return this.hasMany(application, "KURS_ID", "ANM_KURS_ID")
   },
+  location: function() {
+    return this.belongsTo(location, "KURS_ORT_ID", "ORT_ID")
+  }
 })
 
 exports.Course = course
 exports.Courses = bookshelf.Collection.extend({
   model: course
 })
+
+// -- LOCATION
+let location = bookshelf.Model.extend({
+  tableName: 'vhslq_orte',
+  
+  courses: function() {
+    return this.hasMany(course, "KURS_ORT_ID", "ORT_ID");
+  }
+})
+exports.Location = location;
 
 // -- CATEGORIES
 let category  = bookshelf.Model.extend({

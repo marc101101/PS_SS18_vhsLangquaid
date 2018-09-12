@@ -6,7 +6,8 @@ var Courses = require('../../utils/database').Course;
 var Applications = require('../../utils/database').Application;
 var CourseFeedback = require('../../utils/database').CourseFeedback;
 var User = require('../../utils/database').User;
-var Applications = require('../../utils/database').Application
+var Applications = require('../../utils/database').Application;
+var Location = require('../../utils/database').Location;
 
 var generateApplicationFor = require('../../service/CoursesService').generateApplicationFor;
 
@@ -100,6 +101,19 @@ const CoursesHelper = {
   },
 
   setupDataBase: () => {
+    Location
+      .fetchAll()
+      .then(locations => {
+        if (locations.length == 0) {
+          console.log("No Locations found. Adding a sample Location");
+          let sampleLocation = require('./sampleData').location();
+          new Location(sampleLocation)
+            .save()
+            .then(() => {
+              console.log("Location added!");
+            });
+        }
+      })
     console.log("Setting up Content in Table vhslq_kurse")
     return new Promise((resolve, reject) => {
       let sample = require('./sampleData').courses();
