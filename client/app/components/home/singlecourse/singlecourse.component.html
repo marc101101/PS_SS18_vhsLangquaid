@@ -36,7 +36,7 @@
     </a>
   </section>
 
-  <div class="column is-12" *ngIf="showButton" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
+  <div class="column is-12" *ngIf="showButton" style="padding: 1rem; padding-top: 1.5rem; padding-bottom: 1.5rem;">
     <a #button class="button is-fullwidth is-primary" (click)="apply()" *ngIf="!alreadyApplied">{{button_text}}</a>
     <a #button class="button is-fullwidth is-danger" (click)="signOff()" *ngIf="alreadyApplied">{{button_text}}</a>
   </div>
