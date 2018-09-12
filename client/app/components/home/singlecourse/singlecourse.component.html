@@ -11,22 +11,32 @@
     </div>
   </div>
 
-  <div class="column is-12" *ngIf="dataIsAvailable" style="z-index: 0; padding: 1rem;">
-    <div>
-      <i class="fa fa-clock-o info-icon"></i>
-      <p style="color:white">Beginn: {{singleCourse.KURS_BEGINN_UHRZEIT}}</p>
+  <section style="padding: 1rem; margin-top: -2rem; padding-top: 1rem; padding-bottom: 0rem;" *ngIf="dataIsAvailable">
+    <div class="card" style="padding:1rem;">
+      <div>
+        <i class="fa fa-clock-o info-icon" style="color:black"></i>
+        <p>Beginn: {{singleCourse.KURS_BEGINN_UHRZEIT}}</p>
+      </div>
+      <div>
+        <i class="fa fa-map-marker info-icon" style="color:black"></i>
+        <p>Ort: {{singleCourse.location.ORT_STRASSE}}, {{singleCourse.location.ORT_PLZ}}
+          {{singleCourse.location.ORT_ORTSNAME}}</p>
+      </div>
+      <div>
+        <i class="fa fa-user info-icon" style="color:black"></i>
+        <p>Veranstalter: {{singleCourse.KURS_REFERENT_ID}}</p>
+      </div>
     </div>
-    <div>
-      <i class="fa fa-map-marker info-icon"></i>
-      <p style="color:white">Ort: {{singleCourse.location.ORT_STRASSE}}, {{singleCourse.location.ORT_PLZ}} {{singleCourse.location.ORT_ORTSNAME}}</p>
-    </div>
-    <div>
-      <i class="fa fa-user info-icon"></i>
-      <p style="color:white">Veranstalter: {{singleCourse.KURS_REFERENT_ID}}</p>
-    </div>
-  </div>
+    <a class="button is-fullwidth is-primary nav-button" 
+    [attr.href]="'http://maps.google.com/?q= ' 
+    + singleCourse.location.ORT_STRASSE + ', '
+    + singleCourse.location.ORT_ORTSNAME + ', '
+    + singleCourse.location.ORT_PLZ">
+      <i class="fa fa-location-arrow" aria-hidden="true"></i>
+    </a>
+  </section>
 
-  <div class="column is-12" *ngIf="showButton">
+  <div class="column is-12" *ngIf="showButton" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
     <a #button class="button is-fullwidth is-primary" (click)="apply()" *ngIf="!alreadyApplied">{{button_text}}</a>
     <a #button class="button is-fullwidth is-danger" (click)="signOff()" *ngIf="alreadyApplied">{{button_text}}</a>
   </div>
@@ -34,7 +44,7 @@
   <div class="column" style="margin-top: -2rem;padding: 1rem;">
     <alert></alert>
   </div>
-  
+
 
   <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable && moreInfo">
     <div class="card" style="padding:1rem;" (click)="moreInfo = false">
