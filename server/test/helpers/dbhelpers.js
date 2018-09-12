@@ -9,6 +9,8 @@ var User = require('../../utils/database').User;
 var Applications = require('../../utils/database').Application;
 var Location = require('../../utils/database').Location;
 
+let sampleUser = require('./sampleData').user();
+
 var generateApplicationFor = require('../../service/CoursesService').generateApplicationFor;
 
 
@@ -17,23 +19,12 @@ const AuthHelper = {
   clearDataBaseInsertUser: () => {
     return new Promise((resolve, reject) => {
       console.log("Clearing all Content in Table vhslq_teilnehmer and Insert valid user");
-      let user =  {
-        teil_vorname: "John",
-        teil_nachname: "Doe",
-        teil_email: "johndoe@vhslq.de",
-        teil_notizen: "john's notes",
-        teil_passwort: "hunter22",
-        eingegeben_von_user: 0,
-        eingegeben_am_datum: "2018-01-01",
-        eingegeben_am_zeit: "00:00:00",
-        datenhistory: "John's data history"
-      };
       
       knex("vhslq_teilnehmer")
         .del()
         .then(() => {
           console.log("Finished clearing all Content in Table vhslq_teilnehmer");
-          new User(user)
+          new User(sampleUser)
             .save()
             .then((user) => {
               resolve(user);

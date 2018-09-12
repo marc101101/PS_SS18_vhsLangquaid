@@ -234,8 +234,8 @@ describe("Courses Highlights", () => {
         res.should.have.status(200);
         res.body.should.be.a('array');
         res.body.forEach(item => {
-          console.log(item.teacher.TEIL_VORNAME);
           item.teacher.TEIL_VORNAME.should.equal("John");
+          item.teacher.DATENHISTORY.should.equal("USER_IDENTIFIER");
         })        
         done();
       })

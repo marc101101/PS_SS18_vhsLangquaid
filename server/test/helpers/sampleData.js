@@ -627,7 +627,7 @@ if (process.env.NODE_ENV === 'test') {
       eingegeben_von_user: 0,
       eingegeben_am_datum: "2018-01-01",
       eingegeben_am_zeit: "00:00:00",
-      datenhistory: "John's data history"
+      datenhistory: "USER_IDENTIFIER"
     }
   }
 }
