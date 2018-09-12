@@ -18,6 +18,7 @@ export class SingleCourseComponent implements OnInit {
   public button_text: string = "Anmelden";
   public showButton: boolean = false;
   public alreadyApplied: boolean = false;
+  public moreInfo: boolean = false;
 
   @ViewChild('button') elButton: ElementRef;
 

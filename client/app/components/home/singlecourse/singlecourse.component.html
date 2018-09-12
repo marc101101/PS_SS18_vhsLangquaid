@@ -36,23 +36,34 @@
   </div>
   
 
-  <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable">
-    <div class="card" style="padding:1rem;">
+  <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable && moreInfo">
+    <div class="card" style="padding:1rem;" (click)="moreInfo = false">
+      <div style="font-size: 1.2rem; float: left;">
+        Weniger Informationen
+      </div>
+      <div style="padding: 0.5rem;">
+        <i class="fa fa-chevron-up " style="float: right;" aria-hidden="true"></i>
+      </div>
+      <div class="column is-12" style="padding-left: 0rem; padding-top: 1rem;">
+        <div>
+          <p>Teilnehmer: max. {{singleCourse.KURS_TEIL_MAX}} / min. {{singleCourse.KURS_TEIL_MIN}}</p>
+          <p>Termine: {{singleCourse.KURS_ANZAHLTERMINE}}</p>
+          <p>Mitzubringen: {{singleCourse.KURS_MITZUBRINGEN}}</p>
+          <p>Kursgebühr: {{singleCourse.KURS_PREIS}}</p>
+          <p>Anmeldefrist: {{singleCourse.KURS_ANMFRIST}}</p>
+          <p>Ende: {{singleCourse.KURS_ENDE_UHRZEIT}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable && !moreInfo">
+    <div class="card" style="padding:1rem; height: 4rem" (click)="moreInfo = true">
       <div style="font-size: 1.2rem; float: left;">
         Mehr Informationen
       </div>
       <div style="padding: 0.5rem;">
         <i class="fa fa-chevron-down " style="float: right;" aria-hidden="true"></i>
-      </div>
-      <div class="column is-12" style="padding-left: 0rem; padding-top: 1rem;">
-        <div>
-          <p>Teilnehmer:{{singleCourse.KURS_REFERENT_ID}}</p>
-          <p>Termine:{{singleCourse.KURS_REFERENT_ID}}</p>
-          <p>Mitzubringen:{{singleCourse.KURS_REFERENT_ID}}</p>
-          <p>Kursgebühr:{{singleCourse.KURS_REFERENT_ID}}</p>
-          <p>Anmeldefrist:{{singleCourse.KURS_REFERENT_ID}}</p>
-          <p>Dauer:{{singleCourse.KURS_REFERENT_ID}}</p>
-        </div>
       </div>
     </div>
   </section>
