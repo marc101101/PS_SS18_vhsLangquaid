@@ -234,9 +234,13 @@ paths:
       tags:
       - "Courses"
       summary: "get all courses"
-      description: "get all courses"
+      description: "get all courses, optional search"
       operationId: "coursesGET"
-      parameters: []
+      parameters:
+      - name: "search"
+        in: "query"
+        required: false
+        type: "string"
       responses:
         200:
           description: "request successful"
