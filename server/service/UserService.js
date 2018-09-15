@@ -41,7 +41,7 @@ exports.userMeCoursesGET = function (user_id) {
         ANM_STAT_ID: 1 || 2
       })
       .fetchAll({
-        withRelated: ["course.location"]
+        withRelated: ["course.location", "course.teacher"]
       })
       .then((applications) => {
         let courses = applications.map(item => item.related('course').toJSON());

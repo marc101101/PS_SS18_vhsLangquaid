@@ -6,6 +6,8 @@ let chaiHttp = require('chai-http');
 let server = require('../../index');
 let Errors = require('../utils/errors');
 
+let sampleUser = require('./helpers/sampleData').user();
+
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -13,6 +15,7 @@ chai.use(chaiHttp);
 describe('User', () => {
   let authToken = "";
   let userID = "";
+  let teacherID = "";
   before(() => {
     return dbHelper.User
       .clearDataBase()
@@ -39,27 +42,16 @@ describe('User', () => {
       });
   })
   it("it should create user John Doe", (done) => {
-    let user =  {
-      teil_vorname: "John",
-      teil_nachname: "Doe",
-      teil_email: "johndoe@vhslq.de",
-      teil_notizen: "john's notes",
-      teil_passwort: "hunter22",
-      eingegeben_von_user: 0,
-      eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00",
-      datenhistory: "John's data history"
-    }
     chai.request(server)
       .post('/v1/user')
       .set("Content-Type", "application/json")
-      .send(user)
+      .send(sampleUser)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.user.teil_vorname.should.equal(user.teil_vorname);
-        res.body.user.teil_nachname.should.equal(user.teil_nachname);
-        res.body.user.teil_email.should.equal(user.teil_email);
+        res.body.user.teil_vorname.should.equal(sampleUser.teil_vorname);
+        res.body.user.teil_nachname.should.equal(sampleUser.teil_nachname);
+        res.body.user.teil_email.should.equal(sampleUser.teil_email);
         userID = res.body.user.id;
         authToken = res.body.token;
         done();
