@@ -619,15 +619,15 @@ if (process.env.NODE_ENV === 'test') {
 
   exports.user = () => {
     return {
-      teil_vorname: "John",
-      teil_nachname: "Doe",
-      teil_email: "johndoe@vhslq.de",
-      teil_notizen: "john's notes",
-      teil_passwort: "hunter22",
-      eingegeben_von_user: 0,
-      eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00",
-      datenhistory: "USER_IDENTIFIER"
+      TEIL_VORNAME: "John",
+      TEIL_NACHNAME: "Doe",
+      TEIL_EMAIL: "johndoe@vhslq.de",
+      TEIL_NOTIZEN: "john's notes",
+      TEIL_PASSWORT: "hunter22",
+      EINGEGEBEN_VON_USER: 0,
+      EINGEGEBEN_AM_DATUM: "2018-01-01",
+      EINGEGEBEN_AM_ZEIT: "00:00:00",
+      DATENHISTORY: "USER_IDENTIFIER"
     }
   }
 }
