@@ -3,6 +3,7 @@
 var Categories = require('../utils/database').Category;
 var knex = require('../utils/database').knex;
 var Errors = require('../utils/errors');
+var Trimmer = require('../utils/trim');
 /**
  * get all courses of a category
  * get all courses of a category
@@ -20,7 +21,7 @@ exports.categoriesCategory_idCoursesGET = function(category_id) {
           reject(Errors.notFound("GET ID " +category_id, "Category"));
         }
         let courses = category.related("courses").toJSON();
-        resolve(courses);
+        resolve(Trimmer.courses(courses));
       }))
       .catch((error) => {
         reject(error);
@@ -64,7 +65,7 @@ exports.categoriesGET = function() {
     Categories
       .fetchAll()
       .then((categories) => {
-        resolve(categories.map(item => item.attributes));
+        resolve(Trimmer.categories(categories.toJSON()));
       })
       .catch((error) => {
         reject(error);
