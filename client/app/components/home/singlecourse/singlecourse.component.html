@@ -34,6 +34,9 @@
     + singleCourse.location.ORT_PLZ">
       <i class="fa fa-location-arrow" aria-hidden="true"></i>
     </a>
+    <a class="button is-fullwidth is-warning nav-button" [routerLink]="['/home/kontakt/' + singleCourse.KURS_ID]" >
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </a>
   </section>
 
   <div class="column is-12" *ngIf="showButton" style="padding: 1rem; padding-top: 1.5rem; padding-bottom: 1.5rem;">

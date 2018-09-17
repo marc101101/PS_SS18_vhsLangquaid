@@ -39,6 +39,10 @@ const routes: Routes = [
         component: ContactComponent
       },
       {
+        path: 'kontakt/:id',
+        component: ContactComponent
+      },
+      {
         path: 'profil',
         component: ProfilComponent
       }
