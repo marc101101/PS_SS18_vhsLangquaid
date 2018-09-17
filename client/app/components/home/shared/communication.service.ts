@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { log } from 'util';
 import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable()
 export class CommunicationService{
@@ -23,7 +24,7 @@ export class CommunicationService{
     }
 
     getInfo(): Observable<any>{
-        return Observable.of(
+        return of(
             {
                 'color': this.color,
                 'category': this.category

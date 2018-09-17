@@ -110,7 +110,7 @@ describe('Courses', () => {
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
           res.should.have.status(409);          
-          res.body.message.should.include("Resource Application for course 2018175");
+          res.body.message.should.include("Course ID 2018175");
           done();
         });
     });
@@ -132,8 +132,7 @@ describe('Courses', () => {
         .set('authorization', 'Bearer ' + authToken)
         .end((err, res) => {
           res.should.have.status(200);          
-          res.body.ANM_ABR_ABRECHNEN.should.equal(1);
-          res.body.ANM_ABR_DATUM.should.equal(moment().format('YYYY-MM-DD'));
+          res.body.ANM_STAT_ID.should.equal(3);
           done();
         });
     });
@@ -173,6 +172,7 @@ describe("Courses Last Minute", () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.equal(1);
+          res.body[0].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
           done();
         })
     })
@@ -220,6 +220,20 @@ describe("Courses Highlights", () => {
         res.should.have.status(200);
         res.body.bewertung.should.equal(5);
         res.body.should.be.a('object');
+        done();
+      })
+  })
+
+  it("it should get all courses with found by a query", (done) => {
+    chai.request(server)
+      .get('/v1/courses')
+      .query({search: 'schuhe'})
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.forEach(item => {
+          item.KURS_NAME.toLowerCase().should.contain('schuhe');
+          item.DATENHISTORY.should.equal("COURSE_IDENTIFIER");
+        })
         done();
       })
   })

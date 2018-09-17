@@ -19,7 +19,7 @@ var moment = require('moment');
 exports.coursesCourse_idApplyPOST = function (course_id, req) {
   let user_id = getUserFromToken(req);
 
-  //first we have to check if the user is already applied or not
+  // Check if Course exists
   return new Promise(function (resolve, reject) {
     Courses.where({
         kurs_id: course_id
@@ -27,22 +27,29 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
       .fetch()
       .then((course) => {
         if (course != null) {
+          // get all active applications for course
           Applications
+            .where({
+              ANM_KURS_ID: course_id,
+              ANM_STAT_ID: 1 || 2
+            })
             .fetchAll()
-            .then((applications) => {
-              if (applicationFound(applications, user_id, course_id)) {
-                new Applications(generateApplicationFor(user_id, course_id))
-                  .save()
-                  .then((application) => {
-                    resolve(application);
-                  })
-                  .catch((error) => {
-                    reject(error);
-                  });
-              } else {
-                //Resource 'appliaction with course_id and user_id' already exists.
-                reject(Errors.conflict("Application for course " + course_id + " and user " + user_id));
+            .then((applicationModells) => {
+              // check if user has already applied
+              if (applicationModells.filter(item => item.attributes.ANM_TEIL_ID == user_id).length != 0) {
+                // User is already applied to this course
+                reject(Errors.conflict("Application of User ID " + user_id + " and Course ID " + course_id));
               }
+              let areSlotsLefToParticipate = applicationModells.length < course.attributes.KURS_TEIL_MAX;
+              //create new application
+              new Applications(generateApplicationFor(user_id, course_id, areSlotsLefToParticipate))
+              .save()
+              .then((application) => {
+                resolve(application);
+              })
+              .catch((error) => {
+                reject(error);
+              });
             })
             .catch((error) => {
               reject(error);
@@ -63,24 +70,13 @@ function getUserFromToken(req) {
   return jwt.decode(token).id;
 }
 
-function applicationFound(applications, user_id, course_id) {
-  let applicationFound = true;
-  applications.forEach(application => {
-    if ((application.attributes.ANM_TEIL_ID == user_id) &&
-      (application.attributes.ANM_KURS_ID == course_id)) {
-      applicationFound = false;
-    }
-  });
-  return applicationFound;
-}
-
-function generateApplicationFor(user_id, course_id) {
+function generateApplicationFor(user_id, course_id, addToQueue) {
   return {
     ANM_DATUM: moment().format('YYYY-MM-DD'),
     ANM_TEIL_ID: user_id,
     ANM_KURS_ID: course_id,
     ANM_BEARBEITER: 0,
-    ANM_STAT_ID: 0,
+    ANM_STAT_ID: addToQueue ? 2 : 1,
     ANM_ABR_DATUM: 0,
     ANM_ABR_RUECKLAST_DATUM: 0,
     ANM_TNB_GEM_DRUCKEN: 0,
@@ -132,12 +128,12 @@ exports.coursesCourse_idGET = function (course_id) {
     Courses.where({
         kurs_id: course_id
       })
-      .fetch()
+      .fetch({withRelated: ["location"]})
       .then((course) => {
         if (!course) {
           reject(Errors.notFound("GET ID " + course_id, "COURSE"));
         }
-        resolve(course);
+        resolve(course.toJSON());
       })
       .catch((error) => {
         reject(error);
@@ -159,9 +155,10 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
 
     Applications.where({
         ANM_TEIL_ID: user_id,
-        ANM_KURS_ID: course_id
+        ANM_KURS_ID: course_id,
+        ANM_STAT_ID: 1 || 2
       })
-      .save({ANM_ABR_ABRECHNEN: 1, ANM_ABR_DATUM: moment().format('YYYY-MM-DD')}, {
+      .save({ANM_STAT_ID: 3}, {
         patch: true
       })
       .then(applicationModel => {
@@ -183,16 +180,32 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
  *
  * returns List
  **/
-exports.coursesGET = function () {
+exports.coursesGET = function (query) {
   return new Promise(function (resolve, reject) {
+    if (query !== undefined) {
+      Courses
+        .query(function (qb) {
+          qb.where('KURS_NAME', 'LIKE', '%'+query+'%')
+            .orWhere('KURS_BESCHREIBUNG', 'LIKE', '%'+query+'%')
+        })
+        
+        .fetchAll({withRelated: ["location"]})
+        .then((course) => {
+          resolve(course.toJSON());
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    } else {
     Courses
-      .fetchAll()
+      .fetchAll({withRelated: ["location"]})
       .then((course) => {
-        resolve(course.map(item => item.attributes));
+        resolve(course.toJSON());
       })
       .catch((error) => {
         reject(error);
       });
+    }
   });
 }
 
@@ -207,9 +220,9 @@ exports.coursesHighlightsGET = function () {
   return new Promise(function (resolve, reject) {
     Courses
       .where({kurs_highlight: 1})
-      .fetchAll()
+      .fetchAll({withRelated: ["location"]})
       .then((courses) => {
-        resolve(courses.map(item => item.attributes));
+        resolve(courses.toJSON());
       })
       .catch((error) => {
         reject(error);
@@ -224,12 +237,12 @@ exports.coursesLastminuteGET = function() {
       .query(function(qb) {
         qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
-      .fetchAll({withRelated: ["applications"]})
+      .fetchAll({withRelated: ["applications", "location"]})
       .then((courses) => {
         resolve(courses
           .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
           .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
-          .map(item => item.attributes)
+          .map(item => item.toJSON())
         )
       })
       .catch((error) => {

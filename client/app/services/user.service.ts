@@ -6,6 +6,7 @@ import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class UserService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     )
   } 
@@ -43,7 +44,7 @@ export class UserService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     )
   }
@@ -55,7 +56,7 @@ export class UserService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     )
   }
@@ -67,7 +68,7 @@ export class UserService {
       }),
       catchError((err: HttpErrorResponse) => {
         this.alertService.push(err);
-        return Observable.of(err);
+        return of(err);
       })
     );
   }

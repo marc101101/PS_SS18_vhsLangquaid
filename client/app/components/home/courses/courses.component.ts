@@ -47,9 +47,9 @@ export class CoursesComponent implements OnInit {
     console.log("1");
     this.headerText = "Meine";
     this.courses = [];
-    this.userService.getCoursesByUser().subscribe(responseUser =>{    
+    this.userService.getCoursesByUser().subscribe(responseUser =>{         
       responseUser.forEach(element => {
-        this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(responseCourse => {
+        this.coursesService.getCoursesByCourseId(element.KURS_ID).subscribe(responseCourse => {
           responseCourse.ANM_DATUM = element.ANM_DATUM;          
           this.courses.push(responseCourse);
         });
@@ -62,12 +62,8 @@ export class CoursesComponent implements OnInit {
 
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
-    console.log("2");
     this.courses = [];
-    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{
-      console.log(response);
-      console.log(this.course);
-          
+    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{          
       this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  

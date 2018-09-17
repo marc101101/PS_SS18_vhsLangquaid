@@ -6,10 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilComponent } from './profil.component';
 import { SharedModule } from '../../../sharedModule/shared.module';
 import { UserService } from '../../../services/user.service';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { By } from "@angular/platform-browser";
-import 'rxjs/add/observable/from';
-
 
 /**
   * Test should test all four methods of profil.component.ts
@@ -47,7 +45,7 @@ describe('ProfilComponent', () => {
   //test ngOnit methods and check its effects by mocking userService method getUserMe
   it("ProfilComponent: ngOnit() sets user and dataIsAvailable values correctly", fakeAsync(() => {
     //set preconditions 
-    spyOn(userService, "getUserMe").and.returnValue(Observable.of(userModel));
+    spyOn(userService, "getUserMe").and.returnValue(of(userModel));
     //call testing method
     component.ngOnInit();
     //check results
@@ -59,7 +57,7 @@ describe('ProfilComponent', () => {
   //test onSubmit methods and check its effects by mocking userService method updateUserMe
   it("ProfilComponent: onSubmit() change button styles and set button_text", () => {   
     //set preconditions 
-    spyOn(userService, "updateUserMe").and.returnValue(Observable.of(userModel));
+    spyOn(userService, "updateUserMe").and.returnValue(of(userModel));
     component.dataIsAvailable = true;
     component.user = userModel;
     //call testing method

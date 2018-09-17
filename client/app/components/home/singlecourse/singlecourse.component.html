@@ -1,0 +1,90 @@
+<div class="container fullScreenBackground">
+  <div class="circleBackground"></div>
+  <div class="columns is-mobile">
+    <div class="column is-12" *ngIf="dataIsAvailable" style="z-index: 0; padding: 2rem; padding-left: 5rem; padding-bottom: 0rem;">
+      <div style="font-size: 1.5rem; color:white;">
+        {{singleCourse.KURS_NAME}}
+      </div>
+      <p style="color:white">{{singleCourse.KURS_SUBNAME}}</p>
+    </div>
+    <div class="columns is-mobile">
+    </div>
+  </div>
+
+  <section style="padding: 1rem; margin-top: -2rem; padding-top: 1rem; padding-bottom: 0rem;" *ngIf="dataIsAvailable">
+    <div class="card" style="padding:1rem;">
+      <div>
+        <i class="fa fa-clock-o info-icon" style="color:black"></i>
+        <p>Beginn: {{singleCourse.KURS_BEGINN_UHRZEIT}}</p>
+      </div>
+      <div>
+        <i class="fa fa-map-marker info-icon" style="color:black"></i>
+        <p>Ort: {{singleCourse.location.ORT_STRASSE}}, {{singleCourse.location.ORT_PLZ}}
+          {{singleCourse.location.ORT_ORTSNAME}}</p>
+      </div>
+      <div>
+        <i class="fa fa-user info-icon" style="color:black"></i>
+        <p>Veranstalter: {{singleCourse.KURS_REFERENT_ID}}</p>
+      </div>
+    </div>
+    <a class="button is-fullwidth is-primary nav-button" 
+    [attr.href]="'http://maps.google.com/?q= ' 
+    + singleCourse.location.ORT_STRASSE + ', '
+    + singleCourse.location.ORT_ORTSNAME + ', '
+    + singleCourse.location.ORT_PLZ">
+      <i class="fa fa-location-arrow" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <div class="column is-12" *ngIf="showButton" style="padding: 1rem; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+    <a #button class="button is-fullwidth is-primary" (click)="apply()" *ngIf="!alreadyApplied">{{button_text}}</a>
+    <a #button class="button is-fullwidth is-danger" (click)="signOff()" *ngIf="alreadyApplied">{{button_text}}</a>
+  </div>
+
+  <div class="column" style="margin-top: -2rem;padding: 1rem;">
+    <alert></alert>
+  </div>
+
+
+  <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable && moreInfo">
+    <div class="card" style="padding:1rem;" (click)="moreInfo = false">
+      <div style="font-size: 1.2rem; float: left;">
+        Weniger Informationen
+      </div>
+      <div style="padding: 0.5rem;">
+        <i class="fa fa-chevron-up " style="float: right;" aria-hidden="true"></i>
+      </div>
+      <div class="column is-12" style="padding-left: 0rem; padding-top: 1rem;">
+        <div>
+          <p>Teilnehmer: max. {{singleCourse.KURS_TEIL_MAX}} / min. {{singleCourse.KURS_TEIL_MIN}}</p>
+          <p>Termine: {{singleCourse.KURS_ANZAHLTERMINE}}</p>
+          <p>Mitzubringen: {{singleCourse.KURS_MITZUBRINGEN}}</p>
+          <p>Kursgebühr: {{singleCourse.KURS_PREIS}}</p>
+          <p>Anmeldefrist: {{singleCourse.KURS_ANMFRIST}}</p>
+          <p>Ende: {{singleCourse.KURS_ENDE_UHRZEIT}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 1rem; margin-top: -2rem;" *ngIf="dataIsAvailable && !moreInfo">
+    <div class="card" style="padding:1rem; height: 4rem" (click)="moreInfo = true">
+      <div style="font-size: 1.2rem; float: left;">
+        Mehr Informationen
+      </div>
+      <div style="padding: 0.5rem;">
+        <i class="fa fa-chevron-down " style="float: right;" aria-hidden="true"></i>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="dataIsAvailable" style=" margin-bottom: 2rem">
+    <div class="card" style="padding:1rem">
+      <div style="font-size: 1.4rem">
+        Kursinhalt
+      </div>
+      {{singleCourse.KURS_BESCHREIBUNG}}
+    </div>
+  </section>
+
+</div>
