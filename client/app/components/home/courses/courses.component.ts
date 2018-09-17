@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
@@ -16,25 +16,24 @@ export class CoursesComponent implements OnInit {
   @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
   public dataIsAvailable: boolean = false;
-  public courses: Array<any>;
+  public courses: Array<any> = [];
   public headerText: string = "";
   public category: string = "";
 
   constructor(
-    public categoryService: CategoryService,
-    public userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    public comService: CommunicationService,
-    public coursesService: CoursesService,
-    public renderer: Renderer2) {}
+  public coursesService: CoursesService,
+  public categoryService: CategoryService,
+  public userService: UserService,
+  private activatedRoute: ActivatedRoute,
+  public comService: CommunicationService,
+  public renderer: Renderer2) { 
+    this.comService.getInfo().subscribe(color => {   
+      //this.renderer.addClass(this.backgroundElement.nativeElement, color);
+    });  
+  }
 
-  ngOnInit() {
-    this.comService.getInfo().subscribe(response => {         
-      this.category = response.category;
-      this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
-    });
-
-    this.activatedRoute.params.subscribe((params: Params) => {     
+  ngOnInit(){
+    this.activatedRoute.params.subscribe((params: Params) => {          
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
@@ -46,15 +45,15 @@ export class CoursesComponent implements OnInit {
 
   requestCoursesByUser():void{
     this.headerText = "Meine";
-    this.userService.getCoursesByUser().subscribe(response =>{    
-      response.forEach(element => {
-        this.courses = [];
-        this.coursesService.getCoursesByCourseId(element.ANM_KURS_ID).subscribe(response => {
-          response.ANM_DATUM = element.ANM_DATUM;          
-          this.courses.push(response);
+    this.courses = [];
+    this.userService.getCoursesByUser().subscribe(responseUser =>{         
+      responseUser.forEach(element => {
+        this.coursesService.getCoursesByCourseId(element.KURS_ID).subscribe(responseCourse => {
+          responseCourse.ANM_DATUM = element.ANM_DATUM;          
+          this.courses.push(responseCourse);
         });
       });
-      if(response.name != "HttpResponseError"){
+      if(responseUser.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
       }
     });
@@ -62,8 +61,9 @@ export class CoursesComponent implements OnInit {
 
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
-    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{    
-      this.courses = response;             
+    this.courses = [];
+    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{          
+      this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
         this.courses = response;

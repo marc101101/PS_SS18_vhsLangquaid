@@ -128,12 +128,12 @@ exports.coursesCourse_idGET = function (course_id) {
     Courses.where({
         kurs_id: course_id
       })
-      .fetch()
+      .fetch({withRelated: ["location"]})
       .then((course) => {
         if (!course) {
           reject(Errors.notFound("GET ID " + course_id, "COURSE"));
         }
-        resolve(course);
+        resolve(course.toJSON());
       })
       .catch((error) => {
         reject(error);
@@ -183,9 +183,9 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
 exports.coursesGET = function () {
   return new Promise(function (resolve, reject) {
     Courses
-      .fetchAll()
+      .fetchAll({withRelated: ["location"]})
       .then((course) => {
-        resolve(course.map(item => item.attributes));
+        resolve(course.toJSON());
       })
       .catch((error) => {
         reject(error);
@@ -204,9 +204,9 @@ exports.coursesHighlightsGET = function () {
   return new Promise(function (resolve, reject) {
     Courses
       .where({kurs_highlight: 1})
-      .fetchAll()
+      .fetchAll({withRelated: ["location"]})
       .then((courses) => {
-        resolve(courses.map(item => item.attributes));
+        resolve(courses.toJSON());
       })
       .catch((error) => {
         reject(error);
@@ -221,12 +221,12 @@ exports.coursesLastminuteGET = function() {
       .query(function(qb) {
         qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
-      .fetchAll({withRelated: ["applications"]})
+      .fetchAll({withRelated: ["applications", "location"]})
       .then((courses) => {
         resolve(courses
           .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
           .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
-          .map(item => item.attributes)
+          .map(item => item.toJSON())
         )
       })
       .catch((error) => {

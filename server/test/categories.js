@@ -27,7 +27,6 @@ describe('Categories', () => {
     chai.request(server)
       .get('/v1/categories/42/courses')
       .end((err, res) => {
-        console.log(err)
         res.should.have.status(404);
         done();
     })
@@ -68,6 +67,9 @@ describe('Categories', () => {
             .end((err, res) => {
               res.should.have.status(200);
               res.body.length.should.equal(3);
+              res.body[0].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
+              res.body[1].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
+              res.body[2].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
               done();
             })
           })
