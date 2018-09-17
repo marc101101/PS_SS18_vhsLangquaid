@@ -35,6 +35,18 @@ export class CoursesService {
     );
   }
 
+  getCoursesByHighlight(): Observable<any>{
+    return this.http.get(this.url + "/courses/highlights", this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return of(err);
+      })
+    );
+  }
+
   applyToCourse(courseId: String): Observable<any>{   
     return this.http.post(this.url + "/courses/" + courseId + "/apply", "" ,this.httpOptions).pipe(
       map((res: Response) => {
