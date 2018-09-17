@@ -172,6 +172,7 @@ describe("Courses Last Minute", () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.equal(1);
+          res.body[0].DATENHISTORY.should.equal("COURSE_IDENTIFIER");
           done();
         })
     })
