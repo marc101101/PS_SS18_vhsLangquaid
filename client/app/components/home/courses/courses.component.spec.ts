@@ -81,8 +81,8 @@ describe('CoursesComponent', () => {
     component.ngOnInit();
     //check results
     fixture.detectChanges();
-    //expect(component.courses[0].KURS_BESCHREIBUNG).toBe("Testbeschreibung");
-    //expect(component.courses[0].KURS_NAME).toBe("Testname");
+    expect(component.courses[0].KURS_BESCHREIBUNG).toBe("Testbeschreibung");
+    expect(component.courses[0].KURS_NAME).toBe("Testname");
     expect(component.dataIsAvailable).toBe(true);
   }));
 

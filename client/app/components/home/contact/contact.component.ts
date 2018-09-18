@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
-import { log } from 'util';
 import { CoursesService } from '../shared/courses.service';
 
 @Component({
@@ -23,14 +22,13 @@ export class ContactComponent implements OnInit{
   @ViewChild('send') sendButton: ElementRef;
 
   constructor(
-    private router: Router, 
     private renderer: Renderer2,
     private contactService: ContactService,
     private activatedRoute: ActivatedRoute,
     private coursesService:CoursesService) { }
 
   ngOnInit(){
-    this.activatedRoute.params.subscribe((params: Params) => {                
+    this.activatedRoute.params.subscribe((params: Params) => {    
       if(params.id){
         this.coursesService.getCoursesByCourseId(params.id).subscribe(response =>{
           this.single_course = response;
@@ -44,7 +42,6 @@ export class ContactComponent implements OnInit{
   submit():void{
     if(this.course_feedback){
       this.coursesService.postFeedbackByCourse(this.contactMessage, this.single_course.KURS_ID).subscribe(response => {
-        console.log(response);
         if(response.name != "HttpResponseError"){
           this.renderer.addClass(this.sendButton.nativeElement, 'is-primary-save');
           this.button_text = 'Senden erfolgreich';
