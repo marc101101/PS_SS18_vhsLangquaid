@@ -40,6 +40,9 @@ let course = bookshelf.Model.extend({
   },
   location: function() {
     return this.belongsTo(location, "KURS_ORT_ID", "ORT_ID")
+  },
+  teacher: function() {
+    return this.belongsTo(user, "KURS_REFERENT_ID", "TEIL_ID");
   }
 })
 
@@ -73,9 +76,18 @@ exports.Categories = bookshelf.Collection.extend({
 })
 
 // -- USER
-exports.User = bookshelf.Model.extend({
+let user = bookshelf.Model.extend({
   tableName: 'vhslq_teilnehmer',
+
+  coursesToTeach: function() {
+    return this.hasMany(course, "TEIL_ID", "KURS_REFERENT_ID");
+  }
 });
+
+exports.User = user;
+exports.Users = bookshelf.Collection.extend({
+  model: user
+})
 
 // -- APPLICATIONS
 let application  = bookshelf.Model.extend({

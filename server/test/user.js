@@ -6,6 +6,8 @@ let chaiHttp = require('chai-http');
 let server = require('../../index');
 let Errors = require('../utils/errors');
 
+let sampleUser = require('./helpers/sampleData').user();
+
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -13,6 +15,7 @@ chai.use(chaiHttp);
 describe('User', () => {
   let authToken = "";
   let userID = "";
+  let teacherID = "";
   before(() => {
     return dbHelper.User
       .clearDataBase()
@@ -39,28 +42,17 @@ describe('User', () => {
       });
   })
   it("it should create user John Doe", (done) => {
-    let user =  {
-      teil_vorname: "John",
-      teil_nachname: "Doe",
-      teil_email: "johndoe@vhslq.de",
-      teil_notizen: "john's notes",
-      teil_passwort: "hunter22",
-      eingegeben_von_user: 0,
-      eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00",
-      datenhistory: "John's data history"
-    }
     chai.request(server)
       .post('/v1/user')
       .set("Content-Type", "application/json")
-      .send(user)
+      .send(sampleUser)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.user.teil_vorname.should.equal(user.teil_vorname);
-        res.body.user.teil_nachname.should.equal(user.teil_nachname);
-        res.body.user.teil_email.should.equal(user.teil_email);
-        userID = res.body.user.id;
+        res.body.user.TEIL_VORNAME.should.equal(sampleUser.TEIL_VORNAME);
+        res.body.user.TEIL_NACHNAME.should.equal(sampleUser.TEIL_NACHNAME);
+        res.body.user.TEIL_EMAIL.should.equal(sampleUser.TEIL_EMAIL);
+        userID = res.body.user.TEIL_ID;
         authToken = res.body.token;
         done();
       })
@@ -81,11 +73,11 @@ describe('User', () => {
     chai.request(server)
       .put('/v1/user/me')
       .set('authorization', 'Bearer ' + authToken)
-      .send({teil_nachname: "Although"})
+      .send({TEIL_NACHNAME: "Although"})
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.teil_nachname.should.equal("Although");
+        res.body.TEIL_NACHNAME.should.equal("Although");
         chai.request(server)
           .get('/v1/user/me')
           .set('authorization', 'Bearer ' + authToken)
@@ -100,6 +92,7 @@ describe('User', () => {
   });
   it("it should get John Doe's Courses", (done) => {
     dbHelper.User.addCoursesToSampleUser(userID).then(() => {
+
       chai.request(server)
       .get('/v1/user/me/courses')
       .set('authorization', 'Bearer ' + authToken)
@@ -115,15 +108,15 @@ describe('User', () => {
   })
   it("it should try to create a user with an already used emai and fail", (done) => {
     let user =  {
-      teil_vorname: "Peter",
-      teil_nachname: "Lustig",
-      teil_email: "johndoe@vhslq.de",
-      teil_notizen: "Peter's notes",
-      teil_passwort: "hunter22",
-      eingegeben_von_user: 0,
-      eingegeben_am_datum: "2018-01-01",
-      eingegeben_am_zeit: "00:00:00",
-      datenhistory: "Peters's data history"
+      TEIL_VORNAME: "Peter",
+      TEIL_NACHNAME: "Lustig",
+      TEIL_EMAIL: "johndoe@vhslq.de",
+      TEIL_NOTIZEN: "Peter's notes",
+      TEIL_PASSWORT: "hunter22",
+      EINGEGEBEN_VON_USER: 0,
+      EINGEGEBEN_AM_DATUM: "2018-01-01",
+      EINGEGEBEN_AM_ZEIT: "00:00:00",
+      DATENHISTORY: "Peters's data history"
     }
     chai.request(server)
       .post('/v1/user')

@@ -616,4 +616,18 @@ if (process.env.NODE_ENV === 'test') {
       DATENHISTORY: "LOCATION_IDENTIFIER"
     }
   }
+
+  exports.user = () => {
+    return {
+      TEIL_VORNAME: "John",
+      TEIL_NACHNAME: "Doe",
+      TEIL_EMAIL: "johndoe@vhslq.de",
+      TEIL_NOTIZEN: "john's notes",
+      TEIL_PASSWORT: "hunter22",
+      EINGEGEBEN_VON_USER: 0,
+      EINGEGEBEN_AM_DATUM: "2018-01-01",
+      EINGEGEBEN_AM_ZEIT: "00:00:00",
+      DATENHISTORY: "USER_IDENTIFIER"
+    }
+  }
 }

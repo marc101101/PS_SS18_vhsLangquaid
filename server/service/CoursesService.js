@@ -8,6 +8,7 @@ var knex = require('../utils/database').knex;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var Errors = require('../utils/errors');
 var moment = require('moment');
+var Trimmer = require('../utils/trim');
 
 /**
  * apply to participate in specific course
@@ -45,7 +46,7 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
               new Applications(generateApplicationFor(user_id, course_id, areSlotsLefToParticipate))
               .save()
               .then((application) => {
-                resolve(application);
+                resolve(application.toJSON());
               })
               .catch((error) => {
                 reject(error);
@@ -106,7 +107,7 @@ exports.coursesCourse_idFeedbackPOST = function (course_id, data) {
     new CourseFeedback({...data, kurs_id: course_id})
       .save()
       .then((feedback) => {
-        resolve(feedback.attributes);
+        resolve(feedback.toJSON());
       })
       .catch((error) => {
         console.log(error);
@@ -128,12 +129,12 @@ exports.coursesCourse_idGET = function (course_id) {
     Courses.where({
         kurs_id: course_id
       })
-      .fetch({withRelated: ["location"]})
+      .fetch({withRelated: ["location", "teacher"]})
       .then((course) => {
         if (!course) {
           reject(Errors.notFound("GET ID " + course_id, "COURSE"));
         }
-        resolve(course.toJSON());
+        resolve(Trimmer.course(course.toJSON()));
       })
       .catch((error) => {
         reject(error);
@@ -161,11 +162,11 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
       .save({ANM_STAT_ID: 3}, {
         patch: true
       })
-      .then(applicationModel => {
-        if (!applicationModel) {
+      .then(application => {
+        if (!application) {
           reject(Errors.notFound("course with ID ", course_id));
         }
-        resolve(applicationModel);
+        resolve(application.toJSON());
       })
       .catch(err => {
         reject(Errors.notFound("course with ID ", course_id));
@@ -198,9 +199,9 @@ exports.coursesGET = function (query) {
         });
     } else {
     Courses
-      .fetchAll({withRelated: ["location"]})
-      .then((course) => {
-        resolve(course.toJSON());
+      .fetchAll({withRelated: ["location", "teacher"]})
+      .then((courses) => {
+        resolve(Trimmer.courses(courses.toJSON()));
       })
       .catch((error) => {
         reject(error);
@@ -220,9 +221,9 @@ exports.coursesHighlightsGET = function () {
   return new Promise(function (resolve, reject) {
     Courses
       .where({kurs_highlight: 1})
-      .fetchAll({withRelated: ["location"]})
+      .fetchAll({withRelated: ["location", "teacher"]})
       .then((courses) => {
-        resolve(courses.toJSON());
+        resolve(Trimmer.courses(courses.toJSON()));
       })
       .catch((error) => {
         reject(error);
@@ -237,12 +238,14 @@ exports.coursesLastminuteGET = function() {
       .query(function(qb) {
         qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
-      .fetchAll({withRelated: ["applications", "location"]})
+      .fetchAll({withRelated: ["applications", "location", "teacher"]})
       .then((courses) => {
-        resolve(courses
-          .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
-          .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
-          .map(item => item.toJSON())
+        resolve(Trimmer.courses(
+          courses
+            .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+            .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
+            .map(item => item.toJSON())
+          )
         )
       })
       .catch((error) => {
