@@ -129,7 +129,7 @@ exports.coursesCourse_idGET = function (course_id) {
     Courses.where({
         kurs_id: course_id
       })
-      .fetch({withRelated: ["location"]})
+      .fetch({withRelated: ["location", "teacher"]})
       .then((course) => {
         if (!course) {
           reject(Errors.notFound("GET ID " + course_id, "COURSE"));
