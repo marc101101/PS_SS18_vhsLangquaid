@@ -8,6 +8,7 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config'); // get config file
 var Errors = require('../utils/errors');
+var Trimmer = require('../utils/trim');
 
 /**
  * get me
@@ -25,7 +26,7 @@ exports.userMeGET = function (id) {
         if (!user) {
           reject(Errors.notFound("GET ID " + id, "USER"))
         }
-        resolve(user);
+        resolve(Trimmer.user(user.toJSON()));
       })
       .catch((error) => {
         reject(error);
@@ -41,11 +42,11 @@ exports.userMeCoursesGET = function (user_id) {
         ANM_STAT_ID: 1 || 2
       })
       .fetchAll({
-        withRelated: ["course.location", "course.teacher"]
+        withRelated: ["course.location"]
       })
       .then((applications) => {
         let courses = applications.map(item => item.related('course').toJSON());
-        resolve(courses);
+        resolve(Trimmer.courses(courses));
       })
       .catch((error) => {
         reject(error);
@@ -63,7 +64,7 @@ exports.userMeCoursesGET = function (user_id) {
  **/
 exports.userPOST = function (data) {
   return new Promise(function (resolve, reject) {
-    User.where({teil_email: data.teil_email})
+    User.where({TEIL_EMAIL  : data.TEIL_EMAIL})
       .fetch()
       .then((model) => {
           if (!model) {
@@ -75,8 +76,11 @@ exports.userPOST = function (data) {
               }, config.secret, {
                 expiresIn: 86400 // expires in 24 hours
               });
+              // for some reason, bookshelf returns TEIL_ID just as id after saving
+              let trimmedUser = Trimmer.user(user.toJSON());
+              trimmedUser.TEIL_ID = user.attributes.id;
               resolve({
-                user: user,
+                user: trimmedUser,
                 token: token
               });
             })
@@ -108,11 +112,11 @@ exports.userPUT = function (id, data) {
       .save(data, {
         patch: true
       })
-      .then(userModel => {
-        if (!userModel) {
+      .then(user => {
+        if (!user) {
           reject(Errors.notFound("PUT ID " + id, "USER"));
         }
-        resolve(userModel);
+        resolve(Trimmer.user(user.toJSON()));
       })
       .catch(err => {
         reject(err);
