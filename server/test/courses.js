@@ -224,6 +224,23 @@ describe("Courses Highlights", () => {
       })
   })
 
+  it("it should show valid teacher data for all highlight courses", (done) => {
+
+    dbHelper.Courses.setupHighlightsCoursesWithTeacher()
+      .then(() => {
+        chai.request(server)
+      .get('/v1/courses/highlights')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        res.body.forEach(item => {
+          item.teacher.TEIL_VORNAME.should.equal("John");
+          item.teacher.DATENHISTORY.should.equal("USER_IDENTIFIER");
+        })        
+        done();
+      })
+      })
+  })
   it("it should get all courses with found by a query", (done) => {
     chai.request(server)
       .get('/v1/courses')
