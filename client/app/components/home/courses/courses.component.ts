@@ -37,6 +37,9 @@ export class CoursesComponent implements OnInit {
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
+      if(params.id == "highlights"){
+        this.requestCoursesByHighlights();
+      }
       else{
         this.requestCoursesByCategory(params.id);    
       }      
@@ -63,6 +66,18 @@ export class CoursesComponent implements OnInit {
     this.headerText = this.category;
     this.courses = [];
     this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{          
+      this.courses.push(response);  
+      if(response.name != "HttpResponseError"){
+        this.dataIsAvailable = true;  
+        this.courses = response;
+      }
+    });
+  }
+
+  requestCoursesByHighlights():void{
+    this.headerText = "Highlights";
+    this.courses = [];
+    this.coursesService.getCoursesByHighlight().subscribe(response =>{          
       this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
