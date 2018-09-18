@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { CategoryService } from '../../../services/category.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
 import { CoursesService } from '../shared/courses.service';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
-import { log } from 'util';
 
 @Component({
   selector: 'categories',
@@ -65,15 +63,19 @@ export class SingleCourseComponent implements OnInit {
 
   apply(){
     this.courseService.applyToCourse(this.singleCourse.KURS_ID).subscribe(response =>{
-      this.renderer.addClass(this.elButton.nativeElement, 'is-primary-save');
-      this.button_text = 'Anmelden erfolgreich';
+      if(response.name != "HttpResponseError"){
+        this.renderer.addClass(this.elButton.nativeElement, 'is-primary-save');
+        this.button_text = 'Anmelden erfolgreich';
+      }
     });
   }
 
   signOff(){
     this.courseService.signOffToCourse(this.singleCourse.KURS_ID).subscribe(response =>{
-      this.renderer.addClass(this.elButton.nativeElement, 'is-primary-save');
-      this.button_text = 'Abmelden erfolgreich';
+      if(response.name != "HttpResponseError"){
+        this.renderer.addClass(this.elButton.nativeElement, 'is-primary-save');
+        this.button_text = 'Abmelden erfolgreich';
+      }
     });
   }
 }

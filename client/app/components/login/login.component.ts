@@ -14,27 +14,21 @@ import { log } from 'util';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public model: UserData = new UserData("", "");  
   private jwtHelper: JwtHelperService = new JwtHelperService();
-  private returnUrl: string;
 
   constructor(private authSerive: AuthService, private router:Router, private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/profil';
-  }
-
   onSubmit() {
-    this.authSerive.login(this.model).subscribe(data => {
-      // login successful if there's a jwt token in the response
-      if (data.token && !this.jwtHelper.isTokenExpired(data.token)) {
+    this.authSerive.login(this.model).subscribe(response => {
+      // login successful if there's a jwt token in the response      
+      if (response.token && !this.jwtHelper.isTokenExpired(response.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('token', data.token);       
-        this.router.navigate(['/home/kategorien']).catch(error => {
-          console.log(error);
-        });
+        localStorage.setItem('token', response.token);  
+
+        this.router.navigateByUrl('#/home/kategorien');
       }
     });
   }

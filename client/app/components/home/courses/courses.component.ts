@@ -33,15 +33,17 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.activatedRoute.params.subscribe((params: Params) => {          
+    this.activatedRoute.params.subscribe((params: Params) => {     
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
-      if(params.id == "highlights"){
-        this.requestCoursesByHighlights();
-      }
       else{
-        this.requestCoursesByCategory(params.id);    
+        if(params.id == "highlights"){
+          this.requestCoursesByHighlights();
+        }
+        else{
+          this.requestCoursesByCategory(params.id);    
+        }      
       }      
     });
   }
@@ -49,7 +51,7 @@ export class CoursesComponent implements OnInit {
   requestCoursesByUser():void{
     this.headerText = "Meine";
     this.courses = [];
-    this.userService.getCoursesByUser().subscribe(responseUser =>{         
+    this.userService.getCoursesByUser().subscribe(responseUser =>{            
       responseUser.forEach(element => {
         this.coursesService.getCoursesByCourseId(element.KURS_ID).subscribe(responseCourse => {
           responseCourse.ANM_DATUM = element.ANM_DATUM;          
@@ -65,7 +67,7 @@ export class CoursesComponent implements OnInit {
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
     this.courses = [];
-    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{          
+    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{ 
       this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
