@@ -1,0 +1,137 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/css/bulma.min.css",
+        "/assets/css/font-awesome.css",
+        "/assets/css/font-awesome.min.css",
+        "/assets/fonts/FontAwesome.otf",
+        "/assets/fonts/fontawesome-webfont.eot",
+        "/assets/fonts/fontawesome-webfont.svg",
+        "/assets/fonts/fontawesome-webfont.ttf",
+        "/assets/fonts/fontawesome-webfont.woff",
+        "/assets/fonts/fontawesome-webfont.woff2",
+        "/assets/icons/android-icon-144x144.png",
+        "/assets/icons/android-icon-192x192.png",
+        "/assets/icons/android-icon-36x36.png",
+        "/assets/icons/android-icon-48x48.png",
+        "/assets/icons/android-icon-72x72.png",
+        "/assets/icons/android-icon-96x96.png",
+        "/assets/icons/angular-pwa-course.png",
+        "/assets/icons/apple-icon-114x114.png",
+        "/assets/icons/apple-icon-120x120.png",
+        "/assets/icons/apple-icon-144x144.png",
+        "/assets/icons/apple-icon-152x152.png",
+        "/assets/icons/apple-icon-180x180.png",
+        "/assets/icons/apple-icon-57x57.png",
+        "/assets/icons/apple-icon-60x60.png",
+        "/assets/icons/apple-icon-72x72.png",
+        "/assets/icons/apple-icon-76x76.png",
+        "/assets/icons/apple-icon-precomposed.png",
+        "/assets/icons/apple-icon.png",
+        "/assets/icons/favicon-16x16.png",
+        "/assets/icons/favicon-32x32.png",
+        "/assets/icons/favicon-96x96.png",
+        "/assets/icons/main-page-logo-small-hat.png",
+        "/assets/icons/ms-icon-144x144.png",
+        "/assets/icons/ms-icon-150x150.png",
+        "/assets/icons/ms-icon-310x310.png",
+        "/assets/img/iphone_portrait_black.png",
+        "/assets/img/loading.gif",
+        "/assets/js/idb.js"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "lessons-api",
+      "patterns": [
+        "\\/api\\/lessons"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 86400000,
+      "timeoutMs": 10000,
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/assets/css/bulma.min.css": "2ce20e01d8d3c9171b4b14de00d6c89655444330",
+    "/assets/css/font-awesome.css": "0140952c64e3f2b74ef64e050f2fe86eab6624c8",
+    "/assets/css/font-awesome.min.css": "512c7d79033e3028a9be61b540cf1a6870c896f8",
+    "/assets/fonts/FontAwesome.otf": "048707bc52ac4b6563aaa383bfe8660a0ddc908c",
+    "/assets/fonts/fontawesome-webfont.eot": "d980c2ce873dc43af460d4d572d441304499f400",
+    "/assets/fonts/fontawesome-webfont.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/assets/fonts/fontawesome-webfont.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/assets/fonts/fontawesome-webfont.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/assets/fonts/fontawesome-webfont.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/assets/icons/android-icon-144x144.png": "637d3fac84e57187cee10f00a6056bd8a0186ecb",
+    "/assets/icons/android-icon-192x192.png": "9b4af179b3daa77341c89f8d099dd6f76cc0fa82",
+    "/assets/icons/android-icon-36x36.png": "b6d12f6cc97f7138bb0271c48d86fc4f32b6338e",
+    "/assets/icons/android-icon-48x48.png": "ebba3c46c56e4600cb1243e69410566724f642c3",
+    "/assets/icons/android-icon-72x72.png": "3cb5fb3477cd5d6ec9da262ed1356a1ecd728dc3",
+    "/assets/icons/android-icon-96x96.png": "c58388bc574b0fefdbbcb7553167be3c8ac38bc2",
+    "/assets/icons/angular-pwa-course.png": "84458a3597d71b45c34114a34a4e7394b54bfa47",
+    "/assets/icons/apple-icon-114x114.png": "37bd3fa6d579e3d43cc8ebb7cb1635207ec49297",
+    "/assets/icons/apple-icon-120x120.png": "a55923b0e582b25ae6ecb5b175ce12a1c8467c8f",
+    "/assets/icons/apple-icon-144x144.png": "637d3fac84e57187cee10f00a6056bd8a0186ecb",
+    "/assets/icons/apple-icon-152x152.png": "bc10de5d4bea5df9029f77bd9df7d143649eeb60",
+    "/assets/icons/apple-icon-180x180.png": "67a6a29005a9b5d7b262e4d1cabf47a7bd44a5d1",
+    "/assets/icons/apple-icon-57x57.png": "3e8947f8ce3fe2a676f4a94a9bb256b6d77f2758",
+    "/assets/icons/apple-icon-60x60.png": "5a884db1b4f27be6ca0f09ecaeeb1834ea8b494a",
+    "/assets/icons/apple-icon-72x72.png": "3cb5fb3477cd5d6ec9da262ed1356a1ecd728dc3",
+    "/assets/icons/apple-icon-76x76.png": "93c96667cb04a00b3fa8277319441620341f7216",
+    "/assets/icons/apple-icon-precomposed.png": "a16580a147c63018dbd8a74e54efb69ed46fb9e4",
+    "/assets/icons/apple-icon.png": "a16580a147c63018dbd8a74e54efb69ed46fb9e4",
+    "/assets/icons/favicon-16x16.png": "668764127910a3b49bf572f173a49591b8549d0b",
+    "/assets/icons/favicon-32x32.png": "46d8a12be63d2e6c55c358859bb4822b8ee3cf3a",
+    "/assets/icons/favicon-96x96.png": "c58388bc574b0fefdbbcb7553167be3c8ac38bc2",
+    "/assets/icons/main-page-logo-small-hat.png": "a69b701ae8f1c76a12648bf5f4608e2baece1169",
+    "/assets/icons/ms-icon-144x144.png": "637d3fac84e57187cee10f00a6056bd8a0186ecb",
+    "/assets/icons/ms-icon-150x150.png": "0fdaba5907e37f003f388dcaca1c86d81a8ad9da",
+    "/assets/icons/ms-icon-310x310.png": "a69f9d2a97f90ce71f84e132e01b0a511b2974b6",
+    "/assets/img/iphone_portrait_black.png": "35a2d3f9b4ac276ea84dd6ec3a081685e98fd0e8",
+    "/assets/img/loading.gif": "cdc1627a1ff312a43d1700a3694da1050e0e026d",
+    "/assets/js/idb.js": "6f82cc3f3c743e77b6931a0129d7afddd6cfe3c4",
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+<<<<<<<<< Temporary merge branch 1
+    "/index.html": "ddd41bb17fac02df04e340345552a3ccfa37bf92"
+=========
+    "/index.html": "03eb209dd5570c5324be09681b2438acd2300697"
+>>>>>>>>> Temporary merge branch 2
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*\\.[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*\\/.*$"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
-import { environment } from '../../environments/environement';
+import { environment } from '../../environments/environment';
 import { AlertService } from './alert.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../models/User';
