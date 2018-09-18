@@ -37,11 +37,13 @@ export class CoursesComponent implements OnInit {
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
-      if(params.id == "highlights"){
-        this.requestCoursesByHighlights();
-      }
       else{
-        this.requestCoursesByCategory(params.id);    
+        if(params.id == "highlights"){
+          this.requestCoursesByHighlights();
+        }
+        else{
+          this.requestCoursesByCategory(params.id);    
+        }      
       }      
     });
   }
@@ -49,7 +51,7 @@ export class CoursesComponent implements OnInit {
   requestCoursesByUser():void{
     this.headerText = "Meine";
     this.courses = [];
-    this.userService.getCoursesByUser().subscribe(responseUser =>{         
+    this.userService.getCoursesByUser().subscribe(responseUser =>{            
       responseUser.forEach(element => {
         this.coursesService.getCoursesByCourseId(element.KURS_ID).subscribe(responseCourse => {
           responseCourse.ANM_DATUM = element.ANM_DATUM;          
