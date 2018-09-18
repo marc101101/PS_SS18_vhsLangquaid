@@ -181,8 +181,23 @@ exports.coursesCourse_idSignoffPOST = function (course_id, req) {
  *
  * returns List
  **/
-exports.coursesGET = function () {
+exports.coursesGET = function (query) {
   return new Promise(function (resolve, reject) {
+    if (query !== undefined) {
+      Courses
+        .query(function (qb) {
+          qb.where('KURS_NAME', 'LIKE', '%'+query+'%')
+            .orWhere('KURS_BESCHREIBUNG', 'LIKE', '%'+query+'%')
+        })
+        
+        .fetchAll({withRelated: ["location"]})
+        .then((course) => {
+          resolve(course.toJSON());
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    } else {
     Courses
       .fetchAll({withRelated: ["location", "teacher"]})
       .then((courses) => {
@@ -191,6 +206,7 @@ exports.coursesGET = function () {
       .catch((error) => {
         reject(error);
       });
+    }
   });
 }
 

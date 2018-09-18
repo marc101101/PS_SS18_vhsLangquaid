@@ -6,6 +6,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ProfilComponent } from './profil/profil.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SingleCourseComponent } from './singlecourse/singlecourse.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'kontakt',
-        component: CategoriesComponent
+        component: ContactComponent
       },
       {
         path: 'profil',

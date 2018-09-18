@@ -16,6 +16,7 @@ import { CategoryService } from '../../services/category.service';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './shared/courses.service';
 import { SingleCourseComponent } from './singlecourse/singlecourse.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SingleCourseComponent } from './singlecourse/singlecourse.component';
     ProfilComponent,
     CoursesComponent,
     SingleCourseComponent,
+    ContactComponent,
     MenuComponent,
     HomeComponent
   ],

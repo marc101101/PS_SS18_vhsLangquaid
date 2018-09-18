@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AlertService } from './alert.service';
+import { AlertService } from '../../../services/alert.service';
 import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CategoryService {
+export class ContactService {
 
   private url: string = environment.apiUrl;
 
@@ -22,9 +22,9 @@ export class CategoryService {
   };
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
-  
-  getAllCategories(): Observable<any>{
-    return this.http.get(this.url + "/categories", this.httpOptions).pipe(
+    
+  postContactFeedback(feedback: any): Observable<any>{   
+    return this.http.post(this.url + "/contact/", feedback ,this.httpOptions).pipe(
       map((res: Response) => {
         return res;
       }),
@@ -33,18 +33,6 @@ export class CategoryService {
         return of(err);
       })
     )
-  }
-  
-  getCoursesByCategoryId(courseId: String): Observable<any>{
-    return this.http.get(this.url + "/categories/" + courseId + "/courses", this.httpOptions).pipe(
-      map((res: Response) => {
-        return res;
-      }),
-      catchError((err: HttpErrorResponse) => {
-        this.alertService.push(err);
-        return of(err);
-      })
-    );
-  }
+  }  
   
 }
