@@ -91,7 +91,7 @@ describe('CoursesComponent', () => {
     component.category = "Test Category";
     component.activatedRoute.params.value.id = "test-kursId";
     //set preconditions 
-    spyOn(categoryService, "getCoursesByCategoryId").and.returnValue(Observable.of(coursesByCourseIdModel));
+    spyOn(categoryService, "getCoursesByCategoryId").and.returnValue(Observable.of([coursesByCourseIdModel]));
     //call testing method
     component.ngOnInit();
     //check results

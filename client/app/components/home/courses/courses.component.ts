@@ -44,7 +44,6 @@ export class CoursesComponent implements OnInit {
   }
 
   requestCoursesByUser():void{
-    console.log("1");
     this.headerText = "Meine";
     this.courses = [];
     this.userService.getCoursesByUser().subscribe(responseUser =>{         
@@ -63,7 +62,7 @@ export class CoursesComponent implements OnInit {
   requestCoursesByCategory(courseId: string):void{
     this.headerText = this.category;
     this.courses = [];
-    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{          
+    this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{ 
       this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  
