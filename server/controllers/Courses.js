@@ -55,7 +55,8 @@ module.exports.coursesCourse_idSignoffPOST = function coursesCourse_idSignoffPOS
 };
 
 module.exports.coursesGET = function coursesGET (req, res, next) {
-  Courses.coursesGET()
+  let query = req.swagger.params['search'].value;
+  Courses.coursesGET(query)
     .then(function (response) {
       utils.writeJson(res, response);
     })

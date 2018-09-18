@@ -40,42 +40,19 @@
     border-bottom-left-radius: 0.8rem;
 }
 
-.primary{
-    background-color: #00d1b2;
+.textarea:not([rows]) {
+    max-height: 605px;
+    min-height: 20rem;
 }
 
-.link{
-    background-color: #3273dc;
+.fa-star-o {
+    padding: 0.5rem;
 }
 
-.info{
-    background-color: #23d160;
+.fa-star {
+    padding: 0.5rem;
 }
 
-.success{
-    background-color: #ffdd57;
-}
-
-.warning{
-    background-color: #ffbc6b;
-}
-
-.danger{
-    background-color: #ff3860;
-}
-
-.info-icon{
-    float: left; 
-    color:white;
-    margin-right: 0.7rem;
-    margin-top: 0.2rem;
-}
-
-.nav-button{
-    border-radius: 3rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    float: right;
-    margin-top: -1.5rem;
-    margin-right: 1rem;
+.is-primary-save {
+    background-color: #209cee !important;
 }

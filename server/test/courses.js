@@ -241,4 +241,17 @@ describe("Courses Highlights", () => {
       })
       })
   })
+  it("it should get all courses with found by a query", (done) => {
+    chai.request(server)
+      .get('/v1/courses')
+      .query({search: 'schuhe'})
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.forEach(item => {
+          item.KURS_NAME.toLowerCase().should.contain('schuhe');
+          item.DATENHISTORY.should.equal("COURSE_IDENTIFIER");
+        })
+        done();
+      })
+  })
 }); 
