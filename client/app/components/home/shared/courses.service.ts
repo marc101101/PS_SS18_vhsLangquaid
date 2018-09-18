@@ -58,5 +58,19 @@ export class CoursesService {
       })
     )
   }
+
+  postFeedbackByCourse(feedback: any, courseId:string): Observable<any>{   
+    return this.http.post(this.url + "/courses/" + courseId + "/feedback" ,feedback, this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        this.alertService.push(err);
+        return of(err);
+      })
+    )
+  }
+
+
   
 }
