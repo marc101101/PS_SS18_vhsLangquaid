@@ -26,9 +26,12 @@
   }],
   "dataGroups": [
     {
-      "name": "lessons-api",
+      "name": "api",
       "urls": [
-        "/api/lessons"
+        "/v1/user/*",
+        "/v1/categories/*",
+        "/v1/courses/*",
+        "/v1/contact/*"
       ],
       "cacheConfig": {
         "strategy": "freshness",
