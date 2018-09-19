@@ -12,7 +12,8 @@ export class AuthGuard {
   }
 
   canActivate( route : ActivatedRouteSnapshot, state : RouterStateSnapshot ): Observable<boolean> {
-    return this.authService.isLoggedIn();
+    return Observable.of(true);
+    //return this.authService.isLoggedIn();
   }
 
 }
