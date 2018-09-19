@@ -59,12 +59,12 @@
       </div>
       <div class="column is-12" style="padding-left: 0rem; padding-top: 1rem;">
         <div>
-          <p>Teilnehmer: max. {{singleCourse.KURS_TEIL_MAX}} / min. {{singleCourse.KURS_TEIL_MIN}}</p>
-          <p>Termine: {{singleCourse.KURS_ANZAHLTERMINE}}</p>
-          <p>Mitzubringen: {{singleCourse.KURS_MITZUBRINGEN}}</p>
-          <p>Kursgebühr: {{singleCourse.KURS_PREIS}}</p>
-          <p>Anmeldefrist: {{singleCourse.KURS_ANMFRIST}}</p>
-          <p>Ende: {{singleCourse.KURS_ENDE_UHRZEIT}}</p>
+          <p *ngIf="singleCourse.KURS_TEIL_MAX">Teilnehmer: max. {{singleCourse.KURS_TEIL_MAX}} / min. {{singleCourse.KURS_TEIL_MIN}}</p>
+          <p *ngIf="singleCourse.KURS_ANZAHLTERMINE">Termine: {{singleCourse.KURS_ANZAHLTERMINE}}</p>
+          <p *ngIf="singleCourse.KURS_MITZUBRINGEN">Mitzubringen: {{singleCourse.KURS_MITZUBRINGEN}}</p>
+          <p *ngIf="singleCourse.KURS_PREIS">Kursgebühr: {{singleCourse.KURS_PREIS}}</p>
+          <p *ngIf="singleCourse.KURS_ANMFRIST">Anmeldefrist: {{singleCourse.KURS_ANMFRIST}}</p>
+          <p *ngIf="singleCourse.KURS_ENDE_UHRZEIT">Ende: {{singleCourse.KURS_ENDE_UHRZEIT}}</p>
         </div>
       </div>
     </div>
