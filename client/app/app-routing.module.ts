@@ -39,7 +39,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
+    imports: [RouterModule.forRoot(routes,  { enableTracing: true })],
     exports: [RouterModule],
     providers: [SelectivePreloadingStrategy, { provide: LocationStrategy, useClass: HashLocationStrategy}]
 })

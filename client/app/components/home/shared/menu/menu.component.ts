@@ -20,8 +20,9 @@ export class MenuComponent implements OnInit {
     
   }
 
-  routing(): void{
+  routing(path): void{
     this.comService.sendMessage(false);
+    this.router.navigate([path]);
   }
 
   signOut():void{

@@ -1,35 +1,42 @@
 <i class="fa fa-times" aria-hidden="true" style="float: right; padding: 1rem; color: white; font-size: 1.5rem;" (click)="routing()"></i>
 
 <div class="circleBackground"></div>
-<div class="userProfil" [routerLink]="['profil']" (click)="routing()">
+<div class="userProfil" (click)="routing('home/profil')">
     <span class="icon">
         <i class="fa fa-user"></i>
     </span>
     Profil
 </div>
 
-<div class="menuPoint" style="margin-top: 8rem" [routerLink]="['kurs-uebersicht/me']"  (click)="routing()">
+<div class="menuPoint" style="margin-top: 8rem" (click)="routing('home/kurs-uebersicht/me')">
     <span class="icon">
         <i class="fa fa-star"></i>
     </span>
     Meine Kurse
 </div>
 
-<div class="menuPoint" [routerLink]="['kategorien']"  (click)="routing()">
+<div class="menuPoint" (click)="routing('home/kategorien')">
     <span class="icon">
         <i class="fa fa-tasks"></i>
     </span>
     Kategorien
 </div>
 
-<div class="menuPoint" [routerLink]="['kurs-uebersicht/highlights']"  (click)="routing()">
+<div class="menuPoint" (click)="routing('home/kurs-uebersicht/highlights')">
     <span class="icon">
         <i class="fa fa-calendar"></i>
     </span>
     Highlights
 </div>
 
-<div class="menuPoint" [routerLink]="['kontakt']"  (click)="routing()">
+<div class="menuPoint" (click)="routing('home/kurs-uebersicht/lastminute')">
+    <span class="icon">
+        <i class="fa fa-fire"></i>
+    </span>
+    Last Minute
+</div>
+
+<div class="menuPoint" (click)="routing('home/kontakt')">
     <span class="icon">
         <i class="fa fa-envelope"></i>
     </span>
