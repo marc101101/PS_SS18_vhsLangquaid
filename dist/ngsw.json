@@ -62,10 +62,10 @@
     {
       "name": "api",
       "patterns": [
-        "\\/v1\\/user\\/[^/]*",
-        "\\/v1\\/categories\\/[^/]*",
-        "\\/v1\\/courses\\/[^/]*",
-        "\\/v1\\/contact\\/[^/]*"
+        "\\/v1\\/user\\/[^\\/]*",
+        "\\/v1\\/categories\\/[^\\/]*",
+        "\\/v1\\/courses\\/[^\\/]*",
+        "\\/v1\\/contact\\/[^\\/]*"
       ],
       "strategy": "freshness",
       "maxSize": 100,
@@ -76,11 +76,11 @@
   ],
   "hashTable": {
     "/assets/css/bulma.min.css": "2ce20e01d8d3c9171b4b14de00d6c89655444330",
-    "/assets/css/font-awesome.css": "3655f1fdf1e584c4d8e8d39026093ca306a5a341",
-    "/assets/css/font-awesome.min.css": "88af80502c44cd52ca81ffe7dc7276b7eccb06cf",
+    "/assets/css/font-awesome.css": "0140952c64e3f2b74ef64e050f2fe86eab6624c8",
+    "/assets/css/font-awesome.min.css": "512c7d79033e3028a9be61b540cf1a6870c896f8",
     "/assets/fonts/FontAwesome.otf": "048707bc52ac4b6563aaa383bfe8660a0ddc908c",
     "/assets/fonts/fontawesome-webfont.eot": "d980c2ce873dc43af460d4d572d441304499f400",
-    "/assets/fonts/fontawesome-webfont.svg": "b5483b11f8ba213e733b5b8af9927a04fec996f6",
+    "/assets/fonts/fontawesome-webfont.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
     "/assets/fonts/fontawesome-webfont.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "/assets/fonts/fontawesome-webfont.woff": "28b782240b3e76db824e12c02754a9731a167527",
     "/assets/fonts/fontawesome-webfont.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
@@ -111,9 +111,9 @@
     "/assets/icons/ms-icon-310x310.png": "a69f9d2a97f90ce71f84e132e01b0a511b2974b6",
     "/assets/img/iphone_portrait_black.png": "35a2d3f9b4ac276ea84dd6ec3a081685e98fd0e8",
     "/assets/img/loading.gif": "cdc1627a1ff312a43d1700a3694da1050e0e026d",
-    "/assets/js/idb.js": "b402b7017292948671313cdc5683bbf60871a450",
+    "/assets/js/idb.js": "6f82cc3f3c743e77b6931a0129d7afddd6cfe3c4",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "cacc31c89f252217fcf5703564d3fc3f045e1f77"
+    "/index.html": "4c87aba35d7bf4d8f9573edb316f93ed86e9ed4a"
   },
   "navigationUrls": [
     {
@@ -122,15 +122,15 @@
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+      "regex": "^\\/(?:.+\\/)?[^\\/]*\\.[^\\/]*$"
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*$"
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*\\/.*$"
     }
   ]
 }
