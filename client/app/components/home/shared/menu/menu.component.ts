@@ -17,9 +17,12 @@ export class MenuComponent {
   constructor(public router:Router, public authService: AuthService, public comService: CommunicationService) {}
 
 
-  routing(path): void{    
+  routing(path?): void{
     this.comService.sendMessage(false);
-    this.router.navigate([path]);
+    if(path){
+      this.router.navigate([path]);    
+    }
+  
   }
 
   closeMenu():void{

@@ -10,6 +10,8 @@ const cors = require('cors');
 const swaggerTools = require('swagger-tools');
 const jsyaml = require('js-yaml');
 const colors = require('colors');
+//const compression = require('compression');
+
 
 // process.env.PORT lets the port be set by Heroku
 const serverPort = process.env.PORT || 8080;
@@ -26,6 +28,7 @@ const options = {
 app.use('/', express.static(path.join(__dirname, 'dist')));
 
 app.use(cors(getCorsOptions()));
+//app.use(compression());
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 const spec = fs.readFileSync(path.join(__dirname,'server/api/swagger.yaml'), 'utf8');
