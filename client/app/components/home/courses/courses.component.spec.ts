@@ -29,6 +29,12 @@ describe('CoursesComponent', () => {
     }
   ];
 
+  let categories = [
+    {
+      "RUB_ID": "test-kursId"
+    }
+  ]
+
   let coursesByCourseIdModel = {
     "ANM_DATUM": Date.now(),
     "KURS_NAME": "Testname",
@@ -92,6 +98,7 @@ describe('CoursesComponent', () => {
     component.category = "Test Category";
     component.activatedRoute.params.value.id = "test-kursId";
     //set preconditions 
+    spyOn(categoryService, "getAllCategories").and.returnValue(Observable.of(categories));
     spyOn(categoryService, "getCoursesByCategoryId").and.returnValue(Observable.of([coursesByCourseIdModel]));
     //call testing method
     component.ngOnInit();
