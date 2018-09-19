@@ -15,6 +15,7 @@ import { AlertService } from './services/alert.service';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './sharedModule/shared.module';
 import { CategoryService } from './services/category.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -30,8 +31,8 @@ import { CategoryService } from './services/category.service';
         ReactiveFormsModule,
         FormsModule,     
         RouterModule,
-        SharedModule
-        //ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+        SharedModule,
+        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [
         AuthGuard,
