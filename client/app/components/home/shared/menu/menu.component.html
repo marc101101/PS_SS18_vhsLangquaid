@@ -5,7 +5,7 @@
     <span class="icon">
         <i class="fa fa-user"></i>
     </span>
-    Nutzerprofil
+    Profil
 </div>
 
 <div class="menuPoint" style="margin-top: 8rem" [routerLink]="['kurs-uebersicht/me']"  (click)="routing()">
@@ -19,7 +19,7 @@
     <span class="icon">
         <i class="fa fa-tasks"></i>
     </span>
-    Kurs Kategorien
+    Kategorien
 </div>
 
 <div class="menuPoint" [routerLink]="['kurs-uebersicht/highlights']"  (click)="routing()">
@@ -36,7 +36,7 @@
     Kontakt
 </div>
 
-<div class="signOut" (click)="signOut()">
+<div class="menuPoint" (click)="signOut()" style="color: #209cee;">
     <span class="icon">
         <i class="fa fa-sign-out"></i>
     </span>

@@ -65,7 +65,14 @@ export class CoursesComponent implements OnInit {
   }
 
   requestCoursesByCategory(courseId: string):void{
-    this.headerText = this.category;
+    this.headerText = "";
+    this.categoryService.getAllCategories().subscribe(response => {
+      response.forEach(element => {
+        if(element.RUB_ID == courseId){
+          this.headerText = element.RUB_NAME;
+        }
+      });
+    });
     this.courses = [];
     this.categoryService.getCoursesByCategoryId(courseId).subscribe(response =>{ 
       this.courses.push(response);  
