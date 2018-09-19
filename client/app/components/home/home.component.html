@@ -4,10 +4,6 @@
 
 <menu *ngIf="menuOpen" class="menuPosition"></menu>
 
-<div *ngIf="menuOpen" class="contentPosition" (click)="setMenu()">
-  <router-outlet></router-outlet>
-</div>
-
-<div *ngIf="!menuOpen">
+<div [ngClass]="{'contentPosition': menuOpen}" (click)="setMenu()">
   <router-outlet></router-outlet>
 </div>

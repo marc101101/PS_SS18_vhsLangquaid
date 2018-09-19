@@ -46,7 +46,6 @@ export class CoursesComponent implements OnInit {
             this.requestCoursesBylastMinute();
           }
           else{
-            console.log("H?", params.id);
             this.requestCoursesByCategory(params.id);
           }
         }
