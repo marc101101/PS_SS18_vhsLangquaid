@@ -23,7 +23,7 @@ export class AppComponent  implements OnInit {
       //X = 607 / 960 0,6322916667
       this.calcHeight = window.innerHeight * 0.958;
       this.frameHeight = window.innerHeight * 0.662;
-      this.frameWidth = window.innerHeight * 0.395;
+      this.frameWidth = window.innerHeight * 0.400;
 
       var ua = navigator.userAgent;
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua))
