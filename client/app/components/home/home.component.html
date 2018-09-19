@@ -2,8 +2,8 @@
   <i class="fa fa-bars" aria-hidden="true"></i>
 </div>
 
-<menu *ngIf="menuOpen" class="menuPosition"></menu>
+<menu [ngClass]="{'menuVisible': !menuOpen}" class="menuPosition"></menu>
 
-<div [ngClass]="{'contentPosition': menuOpen}" (click)="setMenu()">
+<div [ngClass]="{'contentPosition': menuOpen}">
   <router-outlet></router-outlet>
 </div>
