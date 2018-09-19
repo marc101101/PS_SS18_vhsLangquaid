@@ -54,13 +54,14 @@ describe('LoginComponent', () => {
   it("LoginComponent: onSubmit() with valid user routes to /#/home/kategorien", fakeAsync(() => {
     //set preconditions     
     spyOn(authSerive, "login").and.returnValue(Observable.of(userModel));
+    spyOn(component.router, 'navigate').and.returnValue(true);
     //call testing method
     component.onSubmit();
     //check results
     fixture.detectChanges();
     tick(50); 
     expect(localStorage.getItem("token")).toBe(userModel.token);   
-    expect(location._platformStrategy.internalPath).toBe('/#/home/kategorien'); 
+    expect(component.router.navigate).toHaveBeenCalledWith(['/home/kategorien']); 
   }));
  
 });

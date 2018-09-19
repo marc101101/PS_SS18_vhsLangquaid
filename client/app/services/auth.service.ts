@@ -25,6 +25,7 @@ export class AuthService {
   isLoggedIn(): Observable<boolean>{   
     if(this.jwtHelper.isTokenExpired(localStorage.getItem('token'))){
       this.navToLogin();
+      this.authStatus = false;
     }
     else{
       this.authStatus = true;
@@ -33,7 +34,6 @@ export class AuthService {
     if(!this.authStatus){
       this.navToLogin();
     }
-    
     return of(this.authStatus);
   }
 

@@ -8,7 +8,7 @@ import 'rxjs/add/observable/from';
 import { CategoryService } from '../../../services/category.service';
 import { CommunicationService } from '../shared/communication.service';
 import { CategoriesComponent } from './categories.component';
-import {Location} from "@angular/common";
+
 
 
 
@@ -30,15 +30,22 @@ describe('CategoriesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CategoriesComponent ],
-      imports: [ HttpClientModule, RouterTestingModule, SharedModule ],
-      providers: [ CategoryService, AlertService, CommunicationService, Location],
+      imports: [ 
+        HttpClientModule, 
+        RouterTestingModule, 
+        SharedModule
+      ],
+      providers: [ 
+        CategoryService, 
+        AlertService, 
+        CommunicationService       
+      ],
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(CategoriesComponent);
     component = fixture.componentInstance;
     categoryService = fixture.debugElement.injector.get(CategoryService);
-    location = TestBed.get(Location);
   }));
 
   it('CategoriesComponent: should successfuly be able to create a CategoriesComponent', () => {
@@ -57,9 +64,11 @@ describe('CategoriesComponent', () => {
     expect(component.dataIsAvailable).toBe(true);
   }));
 
-  it('CategoriesComponent: navigate to course(id: 1111) redirects you to /#/home/kurs-uebersicht/1111', fakeAsync(() => { 
+  it('CategoriesComponent: navigate to course(id: 1111) redirects you to /home/kurs-uebersicht/1111', fakeAsync(() => { 
+    spyOn(component.router, 'navigate').and.returnValue(true);
+
     component.routeToCourse("1111", "primary");
-    tick(50); 
-    expect(location._platformStrategy.internalPath).toBe('/#/home/kurs-uebersicht/1111'); 
+    tick(50);
+    expect(component.router.navigate).toHaveBeenCalledWith(['/home/kurs-uebersicht/1111']);
   }));
 });
