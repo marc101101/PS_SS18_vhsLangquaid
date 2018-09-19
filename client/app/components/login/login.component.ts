@@ -19,7 +19,7 @@ export class LoginComponent {
   public model: UserData = new UserData("", "");  
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private authSerive: AuthService, private router:Router, private route: ActivatedRoute) {}
+  constructor(private authSerive: AuthService, private router:Router) {}
 
   onSubmit() {
     this.authSerive.login(this.model).subscribe(response => {
@@ -28,7 +28,7 @@ export class LoginComponent {
         // store jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', response.token);  
 
-        this.router.navigateByUrl('#/home/kategorien');
+        this.router.navigate(['/home/kategorien']);
       }
     });
   }

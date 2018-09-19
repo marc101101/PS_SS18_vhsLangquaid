@@ -320,10 +320,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(authSerive, router, route) {
+    function LoginComponent(authSerive, router) {
         this.authSerive = authSerive;
         this.router = router;
-        this.route = route;
         this.model = new _models_UserData__WEBPACK_IMPORTED_MODULE_2__["UserData"]("", "");
         this.jwtHelper = new _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_3__["JwtHelperService"]();
     }
@@ -334,7 +333,7 @@ var LoginComponent = /** @class */ (function () {
             if (response.token && !_this.jwtHelper.isTokenExpired(response.token)) {
                 // store jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('token', response.token);
-                _this.router.navigateByUrl('#/home/kategorien');
+                _this.router.navigate(['/home/kategorien']);
             }
         });
     };
@@ -344,7 +343,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./client/app/components/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./client/app/components/login/login.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]])
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -911,7 +910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environement */ "./client/environments/environement.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./client/environments/environment.ts");
 /* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./alert.service */ "./client/app/services/alert.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -940,12 +939,13 @@ var AuthService = /** @class */ (function () {
         this.alertService = alertService;
         this.router = router;
         this.authStatus = false;
-        this.url = _environments_environement__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
+        this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
         this.jwtHelper = new _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_6__["JwtHelperService"]();
     }
     AuthService.prototype.isLoggedIn = function () {
         if (this.jwtHelper.isTokenExpired(localStorage.getItem('token'))) {
             this.navToLogin();
+            this.authStatus = false;
         }
         else {
             this.authStatus = true;
@@ -1002,7 +1002,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryService", function() { return CategoryService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment.prod */ "./client/environments/environment.prod.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./client/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./alert.service */ "./client/app/services/alert.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
@@ -1025,7 +1025,7 @@ var CategoryService = /** @class */ (function () {
     function CategoryService(http, alertService) {
         this.http = http;
         this.alertService = alertService;
-        this.url = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
+        this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Content-Type': 'application/json',
@@ -1076,7 +1076,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environement */ "./client/environments/environement.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "./client/environments/environment.ts");
 /* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./alert.service */ "./client/app/services/alert.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/User */ "./client/app/models/User.ts");
@@ -1101,7 +1101,7 @@ var UserService = /** @class */ (function () {
     function UserService(http, alertService) {
         this.http = http;
         this.alertService = alertService;
-        this.url = _environments_environement__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
+        this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
         this.httpOptions = {
             headers: new _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json',
@@ -1294,28 +1294,10 @@ var SharedModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./client/environments/environement.ts":
-/*!*********************************************!*\
-  !*** ./client/environments/environement.ts ***!
-  \*********************************************/
-/*! exports provided: environment */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-var environment = {
-    production: true,
-    apiUrl: 'http://localhost:8080/v1'
-};
-
-
-/***/ }),
-
-/***/ "./client/environments/environment.dev.ts":
-/*!************************************************!*\
-  !*** ./client/environments/environment.dev.ts ***!
-  \************************************************/
+/***/ "./client/environments/environment.ts":
+/*!********************************************!*\
+  !*** ./client/environments/environment.ts ***!
+  \********************************************/
 /*! exports provided: environment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1324,24 +1306,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 var environment = {
     production: false,
-    apiUrl: 'http://localhost:8080/v1'
-};
-
-
-/***/ }),
-
-/***/ "./client/environments/environment.prod.ts":
-/*!*************************************************!*\
-  !*** ./client/environments/environment.prod.ts ***!
-  \*************************************************/
-/*! exports provided: environment */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-var environment = {
-    production: true,
     apiUrl: 'http://localhost:8080/v1'
 };
 
@@ -1360,14 +1324,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./client/app/app.module.ts");
-/* harmony import */ var _environments_environment_dev__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment.dev */ "./client/environments/environment.dev.ts");
 
 
 
-
-if (_environments_environment_dev__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
-}
+/*if (environment.production) {
+  enableProdMode();
+}*/
+Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+console.log(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["isDevMode"])());
 document.addEventListener('DOMContentLoaded', function () {
     Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"]);
 });

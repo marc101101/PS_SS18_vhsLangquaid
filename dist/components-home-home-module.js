@@ -67,7 +67,7 @@ var CategoriesComponent = /** @class */ (function () {
         });
     };
     CategoriesComponent.prototype.routeToCourse = function (categoryId, color, category) {
-        this.router.navigateByUrl('#/home/kurs-uebersicht/' + categoryId);
+        this.router.navigate(['/home/kurs-uebersicht/' + categoryId]);
         this.comService.setInfo(color, category);
     };
     CategoriesComponent = __decorate([
@@ -209,7 +209,7 @@ var ContactComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container fullScreenBackground\">\r\n  <div class=\"circleBackground\" #backgroundElement></div>   \r\n  <div class=\"columns is-mobile\">\r\n    <div class=\"column is-12\" style=\"z-index: 0; padding: 2rem; padding-left: 5rem;\">\r\n      <div style=\"font-size: 1.5rem; color:white;\" >\r\n        {{headerText}} - Kurse\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"column\" style=\"margin-top: -2rem;padding: 1.0rem;\">\r\n    <alert></alert>\r\n  </div>\r\n\r\n  <section style=\"padding: 1rem;\" *ngIf=\"dataIsAvailable\">\r\n    <div class=\"card\" *ngFor=\"let course of courses; let i=index\" [(routerLink)]=\"'/home/kurs/' + course.KURS_ID\">\r\n      <div class=\"color-marker\">\r\n      </div>\r\n      <div class=\"card-content\">\r\n        <p class=\"title\">\r\n          {{course.KURS_NAME}}\r\n        </p>\r\n        <p class=\"subtitle\">\r\n          {{course.KURS_SUBNAME}}\r\n        </p>\r\n        <p class=\"subtitle applicationDate\" *ngIf=\"course.ANM_DATUM\">\r\n          Anmeldung | {{course.ANM_DATUM | date:'dd.MM.yyyy'}}\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </section>\r\n  \r\n</div>"
+module.exports = "<div class=\"container fullScreenBackground\">\r\n  <div class=\"circleBackground\" #backgroundElement></div>   \r\n  <div class=\"columns is-mobile\">\r\n    <div class=\"column is-12\" style=\"z-index: 0; padding: 2rem; padding-left: 5rem;\">\r\n      <div style=\"font-size: 1.5rem; color:white;\" >\r\n        {{headerText}} - Kurse\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"column\" style=\"margin-top: -2rem;padding: 1.0rem;\">\r\n    <alert></alert>\r\n  </div>\r\n\r\n  <section style=\"padding: 1rem; color:white\" *ngIf=\"dataIsAvailable && courses.length == 0\">\r\n    Keine Kurs gefunden.\r\n  </section>\r\n\r\n  <section style=\"padding: 1rem;\" *ngIf=\"dataIsAvailable\">\r\n    <div class=\"card\" *ngFor=\"let course of courses; let i=index\" [(routerLink)]=\"'/home/kurs/' + course.KURS_ID\">\r\n      <div class=\"color-marker\">\r\n      </div>\r\n      <div class=\"card-content\">\r\n        <p class=\"title\">\r\n          {{course.KURS_NAME}}\r\n        </p>\r\n        <p class=\"subtitle\">\r\n          {{course.KURS_SUBNAME}}\r\n        </p>\r\n        <p class=\"subtitle applicationDate\" *ngIf=\"course.ANM_DATUM\">\r\n          Anmeldung | {{course.ANM_DATUM | date:'dd.MM.yyyy'}}\r\n        </p>\r\n      </div>\r\n    </div>\r\n  </section>\r\n  \r\n</div>"
 
 /***/ }),
 
@@ -220,7 +220,7 @@ module.exports = "<div class=\"container fullScreenBackground\">\r\n  <div class
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".circleBackground {\n  height: 30rem;\n  width: 30rem;\n  z-index: 0;\n  background-color: #209cee;\n  border-radius: 15rem;\n  position: absolute;\n  margin-top: -13rem;\n  margin-left: -7rem; }\n\n.fullScreenBackground {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow: hidden; }\n\n.card {\n  margin-top: 1rem;\n  border-radius: 0.5rem; }\n\n.title {\n  font-size: 1.25rem !important;\n  padding-left: 1rem; }\n\n.subtitle {\n  font-size: 0.9rem;\n  padding-left: 1rem; }\n\n.color-marker {\n  float: right;\n  height: 100%;\n  position: absolute;\n  width: 10px;\n  border-top-left-radius: 0.8rem;\n  border-bottom-left-radius: 0.8rem; }\n\n.applicationDate {\n  float: right;\n  font-size: 0.8rem; }\n\n.primary {\n  background-color: #00d1b2; }\n\n.link {\n  background-color: #3273dc; }\n\n.info {\n  background-color: #23d160; }\n\n.success {\n  background-color: #ffdd57; }\n\n.warning {\n  background-color: #ffbc6b; }\n\n.danger {\n  background-color: #ff3860; }\n"
+module.exports = ".circleBackground {\n  height: 30rem;\n  width: 30rem;\n  z-index: -1;\n  background-color: #209cee;\n  border-radius: 15rem;\n  position: absolute;\n  margin-top: -13rem;\n  margin-left: -7rem; }\n\n.fullScreenBackground {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow: hidden; }\n\n.card {\n  margin-top: 1rem;\n  border-radius: 0.5rem; }\n\n.title {\n  font-size: 1.25rem !important;\n  padding-left: 1rem; }\n\n.subtitle {\n  font-size: 0.9rem;\n  padding-left: 1rem; }\n\n.color-marker {\n  float: right;\n  height: 100%;\n  position: absolute;\n  width: 10px;\n  border-top-left-radius: 0.8rem;\n  border-bottom-left-radius: 0.8rem; }\n\n.applicationDate {\n  float: right;\n  font-size: 0.8rem; }\n\n.primary {\n  background-color: #00d1b2; }\n\n.link {\n  background-color: #3273dc; }\n\n.info {\n  background-color: #23d160; }\n\n.success {\n  background-color: #ffdd57; }\n\n.warning {\n  background-color: #ffbc6b; }\n\n.danger {\n  background-color: #ff3860; }\n"
 
 /***/ }),
 
@@ -305,7 +305,14 @@ var CoursesComponent = /** @class */ (function () {
     };
     CoursesComponent.prototype.requestCoursesByCategory = function (courseId) {
         var _this = this;
-        this.headerText = this.category;
+        this.headerText = "";
+        this.categoryService.getAllCategories().subscribe(function (response) {
+            response.forEach(function (element) {
+                if (element.RUB_ID == courseId) {
+                    _this.headerText = element.RUB_NAME;
+                }
+            });
+        });
         this.courses = [];
         this.categoryService.getCoursesByCategoryId(courseId).subscribe(function (response) {
             _this.courses.push(response);
@@ -363,12 +370,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeRoutingModule", function() { return HomeRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.component */ "./client/app/components/home/home.component.ts");
-/* harmony import */ var _categories_categories_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./categories/categories.component */ "./client/app/components/home/categories/categories.component.ts");
-/* harmony import */ var _profil_profil_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profil/profil.component */ "./client/app/components/home/profil/profil.component.ts");
-/* harmony import */ var _courses_courses_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./courses/courses.component */ "./client/app/components/home/courses/courses.component.ts");
-/* harmony import */ var _singlecourse_singlecourse_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./singlecourse/singlecourse.component */ "./client/app/components/home/singlecourse/singlecourse.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./contact/contact.component */ "./client/app/components/home/contact/contact.component.ts");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../guards/auth.guard */ "./client/app/guards/auth.guard.ts");
+/* harmony import */ var _home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home.component */ "./client/app/components/home/home.component.ts");
+/* harmony import */ var _categories_categories_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories/categories.component */ "./client/app/components/home/categories/categories.component.ts");
+/* harmony import */ var _profil_profil_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profil/profil.component */ "./client/app/components/home/profil/profil.component.ts");
+/* harmony import */ var _courses_courses_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./courses/courses.component */ "./client/app/components/home/courses/courses.component.ts");
+/* harmony import */ var _singlecourse_singlecourse_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./singlecourse/singlecourse.component */ "./client/app/components/home/singlecourse/singlecourse.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./contact/contact.component */ "./client/app/components/home/contact/contact.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -383,43 +391,44 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     {
         path: '',
-        component: _home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"],
-        //canActivate: [AuthGuard],
+        component: _home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"],
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]],
         children: [
             {
                 path: 'kategorien',
-                component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_3__["CategoriesComponent"]
+                component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_4__["CategoriesComponent"]
             },
             {
                 path: 'aktuelles',
-                component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_3__["CategoriesComponent"]
+                component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_4__["CategoriesComponent"]
             },
             {
                 path: 'kurs-uebersicht/:id',
-                component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_5__["CoursesComponent"]
+                component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_6__["CoursesComponent"]
             },
             {
                 path: 'kurs-uebersicht/me',
-                component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_5__["CoursesComponent"]
+                component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_6__["CoursesComponent"]
             },
             {
                 path: 'kurs/:id',
-                component: _singlecourse_singlecourse_component__WEBPACK_IMPORTED_MODULE_6__["SingleCourseComponent"]
+                component: _singlecourse_singlecourse_component__WEBPACK_IMPORTED_MODULE_7__["SingleCourseComponent"]
             },
             {
                 path: 'kontakt',
-                component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_7__["ContactComponent"]
+                component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__["ContactComponent"]
             },
             {
                 path: 'kontakt/:id',
-                component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_7__["ContactComponent"]
+                component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__["ContactComponent"]
             },
             {
                 path: 'profil',
-                component: _profil_profil_component__WEBPACK_IMPORTED_MODULE_4__["ProfilComponent"]
+                component: _profil_profil_component__WEBPACK_IMPORTED_MODULE_5__["ProfilComponent"]
             }
         ]
     }
@@ -770,7 +779,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactService", function() { return ContactService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment.prod */ "./client/environments/environment.prod.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ "./client/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _services_alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/alert.service */ "./client/app/services/alert.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
@@ -793,7 +802,7 @@ var ContactService = /** @class */ (function () {
     function ContactService(http, alertService) {
         this.http = http;
         this.alertService = alertService;
-        this.url = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
+        this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Content-Type': 'application/json',
@@ -835,7 +844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoursesService", function() { return CoursesService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment.prod */ "./client/environments/environment.prod.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ "./client/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _services_alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/alert.service */ "./client/app/services/alert.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
@@ -858,7 +867,7 @@ var CoursesService = /** @class */ (function () {
     function CoursesService(http, alertService) {
         this.http = http;
         this.alertService = alertService;
-        this.url = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
+        this.url = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl;
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
                 'Content-Type': 'application/json',
@@ -931,7 +940,7 @@ var CoursesService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<i class=\"fa fa-times\" aria-hidden=\"true\" style=\"float: right; padding: 1rem; color: white; font-size: 1.5rem;\" (click)=\"routing()\"></i>\r\n\r\n<div class=\"circleBackground\"></div>\r\n<div class=\"userProfil\" [routerLink]=\"['profil']\" (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-user\"></i>\r\n    </span>\r\n    Nutzerprofil\r\n</div>\r\n\r\n<div class=\"menuPoint\" style=\"margin-top: 8rem\" [routerLink]=\"['kurs-uebersicht/me']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-star\"></i>\r\n    </span>\r\n    Meine Kurse\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kategorien']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-tasks\"></i>\r\n    </span>\r\n    Kurs Kategorien\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kurs-uebersicht/highlights']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </span>\r\n    Highlights\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kontakt']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-envelope\"></i>\r\n    </span>\r\n    Kontakt\r\n</div>\r\n\r\n<div class=\"signOut\" (click)=\"signOut()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-sign-out\"></i>\r\n    </span>\r\n    Ausloggen\r\n</div>"
+module.exports = "<i class=\"fa fa-times\" aria-hidden=\"true\" style=\"float: right; padding: 1rem; color: white; font-size: 1.5rem;\" (click)=\"routing()\"></i>\r\n\r\n<div class=\"circleBackground\"></div>\r\n<div class=\"userProfil\" [routerLink]=\"['profil']\" (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-user\"></i>\r\n    </span>\r\n    Profil\r\n</div>\r\n\r\n<div class=\"menuPoint\" style=\"margin-top: 8rem\" [routerLink]=\"['kurs-uebersicht/me']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-star\"></i>\r\n    </span>\r\n    Meine Kurse\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kategorien']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-tasks\"></i>\r\n    </span>\r\n    Kategorien\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kurs-uebersicht/highlights']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </span>\r\n    Highlights\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kontakt']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-envelope\"></i>\r\n    </span>\r\n    Kontakt\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"signOut()\" style=\"color: #209cee;\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-sign-out\"></i>\r\n    </span>\r\n    Ausloggen\r\n</div>"
 
 /***/ }),
 
@@ -986,7 +995,7 @@ var MenuComponent = /** @class */ (function () {
     };
     MenuComponent.prototype.signOut = function () {
         this.authService.logout();
-        this.router.navigateByUrl('/login');
+        this.router.navigate(['/login']);
     };
     MenuComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

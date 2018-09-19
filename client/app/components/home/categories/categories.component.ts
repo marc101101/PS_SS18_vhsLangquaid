@@ -3,6 +3,7 @@ import { CategoryService } from '../../../services/category.service';
 import { Router } from '@angular/router';
 import { CommunicationService } from '../shared/communication.service';
 
+
 @Component({
   selector: 'categories',
   templateUrl: './categories.component.html',
@@ -25,7 +26,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   routeToCourse(categoryId: number, color: string, category: string) {
-    this.router.navigateByUrl('#/home/kurs-uebersicht/' + categoryId);
+    this.router.navigate(['/home/kurs-uebersicht/' + categoryId]);
+    
     this.comService.setInfo(color, category);
   }
 
