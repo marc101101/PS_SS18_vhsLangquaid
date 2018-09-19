@@ -28,7 +28,7 @@ export class LoginComponent {
         // store jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', response.token);  
 
-        this.router.navigateByUrl('#/home/kategorien');
+        this.router.navigateByUrl('/home/kategorien');
       }
     });
   }
