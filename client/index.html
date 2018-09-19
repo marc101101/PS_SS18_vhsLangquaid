@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bulma.min.css">
+    <meta name="theme-color" content="#209cee">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <style>
@@ -17,13 +18,15 @@
         }
 
         @keyframes rotator {
-        0% {
-            transform: rotate(0deg);
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(270deg);
+            }
         }
-        100% {
-            transform: rotate(270deg);
-        }
-        }
+
         .path {
             stroke-dasharray: 187;
             stroke-dashoffset: 0;
@@ -35,15 +38,19 @@
             0% {
                 stroke: #4285F4;
             }
+
             25% {
                 stroke: #DE3E35;
             }
+
             50% {
                 stroke: #F7C223;
             }
+
             75% {
                 stroke: #1B9A59;
             }
+
             100% {
                 stroke: #4285F4;
             }
@@ -53,16 +60,17 @@
             0% {
                 stroke-dashoffset: 187;
             }
+
             50% {
                 stroke-dashoffset: 46.75;
                 transform: rotate(135deg);
             }
+
             100% {
                 stroke-dashoffset: 187;
                 transform: rotate(450deg);
             }
         }
-
     </style>
 </head>
 
@@ -74,6 +82,11 @@
             </svg>
         </div>
     </app-root>
+    <noscript>
+        <h3 style="color: black; margin: 2rem;">
+            Entschuldigen Sie, aber die App ist ohne Javascript nicht verfügbar.
+        </h3>
+    </noscript>
 </body>
 
 </html>
