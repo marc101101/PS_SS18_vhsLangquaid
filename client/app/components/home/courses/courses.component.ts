@@ -33,7 +33,7 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.activatedRoute.params.subscribe((params: Params) => {     
+    this.activatedRoute.params.subscribe((params: Params) => {   
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
@@ -42,9 +42,14 @@ export class CoursesComponent implements OnInit {
           this.requestCoursesByHighlights();
         }
         else{
-          this.requestCoursesByCategory(params.id);    
-        }      
-      }      
+          if(params.id == "lastminute"){
+            this.requestCoursesBylastMinute();
+          }
+          else{
+            this.requestCoursesByCategory(params.id);
+          }
+        }
+      }    
     });
   }
 
@@ -87,6 +92,18 @@ export class CoursesComponent implements OnInit {
     this.headerText = "Highlights";
     this.courses = [];
     this.coursesService.getCoursesByHighlight().subscribe(response =>{          
+      this.courses.push(response);  
+      if(response.name != "HttpResponseError"){
+        this.dataIsAvailable = true;  
+        this.courses = response;
+      }
+    });
+  }
+
+  requestCoursesBylastMinute():void{
+    this.headerText = "Last Minute";
+    this.courses = [];
+    this.coursesService.getCoursesByLastMinute().subscribe(response =>{          
       this.courses.push(response);  
       if(response.name != "HttpResponseError"){
         this.dataIsAvailable = true;  

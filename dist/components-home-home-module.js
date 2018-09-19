@@ -282,7 +282,12 @@ var CoursesComponent = /** @class */ (function () {
                     _this.requestCoursesByHighlights();
                 }
                 else {
-                    _this.requestCoursesByCategory(params.id);
+                    if (params.id == "lastminute") {
+                        _this.requestCoursesBylastMinute();
+                    }
+                    else {
+                        _this.requestCoursesByCategory(params.id);
+                    }
                 }
             }
         });
@@ -327,6 +332,18 @@ var CoursesComponent = /** @class */ (function () {
         this.headerText = "Highlights";
         this.courses = [];
         this.coursesService.getCoursesByHighlight().subscribe(function (response) {
+            _this.courses.push(response);
+            if (response.name != "HttpResponseError") {
+                _this.dataIsAvailable = true;
+                _this.courses = response;
+            }
+        });
+    };
+    CoursesComponent.prototype.requestCoursesBylastMinute = function () {
+        var _this = this;
+        this.headerText = "Last Minute";
+        this.courses = [];
+        this.coursesService.getCoursesByLastMinute().subscribe(function (response) {
             _this.courses.push(response);
             if (response.name != "HttpResponseError") {
                 _this.dataIsAvailable = true;
@@ -411,10 +428,6 @@ var routes = [
                 component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_6__["CoursesComponent"]
             },
             {
-                path: 'kurs-uebersicht/me',
-                component: _courses_courses_component__WEBPACK_IMPORTED_MODULE_6__["CoursesComponent"]
-            },
-            {
                 path: 'kurs/:id',
                 component: _singlecourse_singlecourse_component__WEBPACK_IMPORTED_MODULE_7__["SingleCourseComponent"]
             },
@@ -456,7 +469,7 @@ var HomeRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"burgerElement\" (click)=\"setMenu()\">\r\n  <i class=\"fa fa-bars\" aria-hidden=\"true\"></i>\r\n</div>\r\n\r\n<menu *ngIf=\"menuOpen\" class=\"menuPosition\"></menu>\r\n\r\n<div *ngIf=\"menuOpen\" class=\"contentPosition\" (click)=\"setMenu()\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n<div *ngIf=\"!menuOpen\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+module.exports = "<div class=\"burgerElement\" (click)=\"setMenu()\">\r\n  <i class=\"fa fa-bars\" aria-hidden=\"true\"></i>\r\n</div>\r\n\r\n<menu *ngIf=\"menuOpen\" class=\"menuPosition\"></menu>\r\n\r\n<div [ngClass]=\"{'contentPosition': menuOpen}\" (click)=\"setMenu()\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -622,7 +635,7 @@ var HomeModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container fullScreenBackground\">\r\n  <div class=\"circleBackground\"></div>   \r\n  <div class=\"columns is-mobile\" style=\"padding: 2rem; padding-bottom: 0rem; padding-top: 1rem;\">\r\n    <div class=\"column is-2\" style=\"padding: 1.4rem; padding-left: 0rem;\">\r\n      <div>\r\n        <span class=\"icon\">\r\n          <i class=\"fa fa-user\"></i>\r\n        </span>\r\n      </div>\r\n    </div>\r\n    <div class=\"column is-10\" style=\"z-index: 1;\">\r\n      <div *ngIf=\"dataIsAvailable\" style=\"font-size: 1.5rem; color:white; margin-top: 0.2rem;\">\r\n        {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"column\" style=\"margin-top: -2rem;padding: 1.0rem;\">\r\n    <alert></alert>\r\n  </div>\r\n \r\n  <section class=\"login\" style=\"padding: 1rem; padding-top: 0rem;\">\r\n    <form (ngSubmit)=\"onSubmit()\" #heroForm=\"ngForm\" (change)=\"resetButton()\" >\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"email\" placeholder=\"Email\" id=\"mail\" required [(ngModel)]=\"user.TEIL_EMAIL\" name=\"mail\"  #mail=\"ngModel\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"Adresse\" id=\"address\" [(ngModel)]=\"user.TEIL_ORT\" name=\"address\" #address=\"ngModel\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"BLZ\" id=\"blz\" [(ngModel)]=\"user.TEIL_BLZ\" name=\"blz\" #blz=\"ngModel\" maxlength=\"8\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"IBAN\" id=\"iban\" [(ngModel)]=\"user.TEIL_IBAN\" name=\"iban\" #iban=\"ngModel\" maxlength=\"22\">\r\n      <br>\r\n      <br>\r\n      <div class=\"columns is-mobile\">\r\n        <div class=\"column is-2\">\r\n          <div style=\"margin-top: 0.65rem;\" (click)=\"backClicked()\">\r\n            <span class=\"icon\" style=\"color: #00d1b2; padding: 1.5rem; padding-left: 1rem\">\r\n              <i class=\"fa fa-chevron-left\"></i>              \r\n            </span>\r\n          </div>\r\n        </div>\r\n        <div class=\"column is-10\" style=\"padding: 0rem;\">\r\n          <button #save class=\"button is-primary is-medium is-fullwidth\" style=\"margin-top:1.5rem\" [disabled]=\"!heroForm.form.valid\" type=\"submit\">\r\n            <div>{{button_text}}</div>            \r\n          </button>\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </section>\r\n</div>"
+module.exports = "<div class=\"container fullScreenBackground\">\r\n  <div class=\"circleBackground\"></div>\r\n  <div class=\"columns is-mobile\">\r\n    <div class=\"column is-12\" style=\"z-index: 0; padding: 2rem; padding-left: 5rem;\">\r\n      <div style=\"font-size: 1.5rem; color:white;\" *ngIf=\"dataIsAvailable\">\r\n        {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"column\" style=\"margin-top: -2rem;padding: 1.0rem;\">\r\n    <alert></alert>\r\n  </div>\r\n\r\n  <section class=\"login\" style=\"padding: 1rem; padding-top: 0rem;\">\r\n    <form (ngSubmit)=\"onSubmit()\" #heroForm=\"ngForm\" (change)=\"resetButton()\">\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"email\" placeholder=\"Email\" id=\"mail\" required\r\n        [(ngModel)]=\"user.TEIL_EMAIL\" name=\"mail\" #mail=\"ngModel\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"Adresse\" id=\"address\" [(ngModel)]=\"user.TEIL_ORT\"\r\n        name=\"address\" #address=\"ngModel\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"BLZ\" id=\"blz\" [(ngModel)]=\"user.TEIL_BLZ\"\r\n        name=\"blz\" #blz=\"ngModel\" maxlength=\"8\">\r\n      <br>\r\n      <br>\r\n      <input *ngIf=\"dataIsAvailable\" class=\"input is-medium\" type=\"text\" placeholder=\"IBAN\" id=\"iban\" [(ngModel)]=\"user.TEIL_IBAN\"\r\n        name=\"iban\" #iban=\"ngModel\" maxlength=\"22\">\r\n      <br>\r\n      <br>\r\n      <div class=\"columns is-mobile\">\r\n        <div class=\"column is-2\">\r\n          <div style=\"margin-top: 0.65rem;\" (click)=\"backClicked()\">\r\n            <span class=\"icon\" style=\"color: #00d1b2; padding: 1.5rem; padding-left: 1rem\">\r\n              <i class=\"fa fa-chevron-left\"></i>\r\n            </span>\r\n          </div>\r\n        </div>\r\n        <div class=\"column is-10\" style=\"padding: 0rem;\">\r\n          <button #save class=\"button is-primary is-medium is-fullwidth\" style=\"margin-top:1.5rem\" [disabled]=\"!heroForm.form.valid\"\r\n            type=\"submit\">\r\n            <div>{{button_text}}</div>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </section>\r\n</div>"
 
 /***/ }),
 
@@ -893,6 +906,15 @@ var CoursesService = /** @class */ (function () {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(err);
         }));
     };
+    CoursesService.prototype.getCoursesByLastMinute = function () {
+        var _this = this;
+        return this.http.get(this.url + "/courses/lastminute", this.httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (res) {
+            return res;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (err) {
+            _this.alertService.push(err);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(err);
+        }));
+    };
     CoursesService.prototype.applyToCourse = function (courseId) {
         var _this = this;
         return this.http.post(this.url + "/courses/" + courseId + "/apply", "", this.httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (res) {
@@ -940,7 +962,7 @@ var CoursesService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<i class=\"fa fa-times\" aria-hidden=\"true\" style=\"float: right; padding: 1rem; color: white; font-size: 1.5rem;\" (click)=\"routing()\"></i>\r\n\r\n<div class=\"circleBackground\"></div>\r\n<div class=\"userProfil\" [routerLink]=\"['profil']\" (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-user\"></i>\r\n    </span>\r\n    Profil\r\n</div>\r\n\r\n<div class=\"menuPoint\" style=\"margin-top: 8rem\" [routerLink]=\"['kurs-uebersicht/me']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-star\"></i>\r\n    </span>\r\n    Meine Kurse\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kategorien']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-tasks\"></i>\r\n    </span>\r\n    Kategorien\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kurs-uebersicht/highlights']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </span>\r\n    Highlights\r\n</div>\r\n\r\n<div class=\"menuPoint\" [routerLink]=\"['kontakt']\"  (click)=\"routing()\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-envelope\"></i>\r\n    </span>\r\n    Kontakt\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"signOut()\" style=\"color: #209cee;\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-sign-out\"></i>\r\n    </span>\r\n    Ausloggen\r\n</div>"
+module.exports = "<i class=\"fa fa-times\" aria-hidden=\"true\" style=\"float: right; padding: 1rem; color: white; font-size: 1.5rem;\" (click)=\"routing()\"></i>\r\n\r\n<div class=\"circleBackground\"></div>\r\n<div class=\"userProfil\" (click)=\"routing('home/profil')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-user\"></i>\r\n    </span>\r\n    Profil\r\n</div>\r\n\r\n<div class=\"menuPoint\" style=\"margin-top: 8rem\" (click)=\"routing('home/kurs-uebersicht/me')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-star\"></i>\r\n    </span>\r\n    Meine Kurse\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"routing('home/kategorien')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-tasks\"></i>\r\n    </span>\r\n    Kategorien\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"routing('home/kurs-uebersicht/highlights')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </span>\r\n    Highlights\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"routing('home/kurs-uebersicht/lastminute')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-fire\"></i>\r\n    </span>\r\n    Last Minute\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"routing('home/kontakt')\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-envelope\"></i>\r\n    </span>\r\n    Kontakt\r\n</div>\r\n\r\n<div class=\"menuPoint\" (click)=\"signOut()\" style=\"color: #209cee;\">\r\n    <span class=\"icon\">\r\n        <i class=\"fa fa-sign-out\"></i>\r\n    </span>\r\n    Ausloggen\r\n</div>"
 
 /***/ }),
 
@@ -990,8 +1012,9 @@ var MenuComponent = /** @class */ (function () {
     }
     MenuComponent.prototype.ngOnInit = function () {
     };
-    MenuComponent.prototype.routing = function () {
+    MenuComponent.prototype.routing = function (path) {
         this.comService.sendMessage(false);
+        this.router.navigate([path]);
     };
     MenuComponent.prototype.signOut = function () {
         this.authService.logout();

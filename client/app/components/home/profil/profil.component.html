@@ -1,48 +1,47 @@
 <div class="container fullScreenBackground">
-  <div class="circleBackground"></div>   
-  <div class="columns is-mobile" style="padding: 2rem; padding-bottom: 0rem; padding-top: 1rem;">
-    <div class="column is-2" style="padding: 1.4rem; padding-left: 0rem;">
-      <div>
-        <span class="icon">
-          <i class="fa fa-user"></i>
-        </span>
-      </div>
-    </div>
-    <div class="column is-10" style="z-index: 1;">
-      <div *ngIf="dataIsAvailable" style="font-size: 1.5rem; color:white; margin-top: 0.2rem;">
+  <div class="circleBackground"></div>
+  <div class="columns is-mobile">
+    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem;">
+      <div style="font-size: 1.5rem; color:white;" *ngIf="dataIsAvailable">
         {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
       </div>
     </div>
   </div>
+
   <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
     <alert></alert>
   </div>
- 
+
   <section class="login" style="padding: 1rem; padding-top: 0rem;">
-    <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()" >
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="email" placeholder="Email" id="mail" required [(ngModel)]="user.TEIL_EMAIL" name="mail"  #mail="ngModel">
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (change)="resetButton()">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="email" placeholder="Email" id="mail" required
+        [(ngModel)]="user.TEIL_EMAIL" name="mail" #mail="ngModel">
       <br>
       <br>
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT" name="address" #address="ngModel">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="Adresse" id="address" [(ngModel)]="user.TEIL_ORT"
+        name="address" #address="ngModel">
       <br>
       <br>
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ" name="blz" #blz="ngModel" maxlength="8">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="BLZ" id="blz" [(ngModel)]="user.TEIL_BLZ"
+        name="blz" #blz="ngModel" maxlength="8">
       <br>
       <br>
-      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN" name="iban" #iban="ngModel" maxlength="22">
+      <input *ngIf="dataIsAvailable" class="input is-medium" type="text" placeholder="IBAN" id="iban" [(ngModel)]="user.TEIL_IBAN"
+        name="iban" #iban="ngModel" maxlength="22">
       <br>
       <br>
       <div class="columns is-mobile">
         <div class="column is-2">
           <div style="margin-top: 0.65rem;" (click)="backClicked()">
             <span class="icon" style="color: #00d1b2; padding: 1.5rem; padding-left: 1rem">
-              <i class="fa fa-chevron-left"></i>              
+              <i class="fa fa-chevron-left"></i>
             </span>
           </div>
         </div>
         <div class="column is-10" style="padding: 0rem;">
-          <button #save class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid" type="submit">
-            <div>{{button_text}}</div>            
+          <button #save class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="!heroForm.form.valid"
+            type="submit">
+            <div>{{button_text}}</div>
           </button>
         </div>
       </div>

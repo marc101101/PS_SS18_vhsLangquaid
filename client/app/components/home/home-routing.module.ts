@@ -27,10 +27,6 @@ const routes: Routes = [
         component: CoursesComponent
       },
       {
-        path: 'kurs-uebersicht/me',
-        component: CoursesComponent
-      },
-      {
         path: 'kurs/:id',
         component: SingleCourseComponent
       },

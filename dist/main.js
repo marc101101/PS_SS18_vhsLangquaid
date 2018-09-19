@@ -95,7 +95,7 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { preloadingStrategy: _selective_preloading_strategy__WEBPACK_IMPORTED_MODULE_5__["SelectivePreloadingStrategy"] })],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
             providers: [_selective_preloading_strategy__WEBPACK_IMPORTED_MODULE_5__["SelectivePreloadingStrategy"], { provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__["HashLocationStrategy"] }]
         })
@@ -1306,7 +1306,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 var environment = {
     production: false,
-    apiUrl: 'http://localhost:8080/v1'
+    apiUrl: 'https://dev-ps-ss18-vhslangquaid.herokuapp.com/v1'
 };
 
 
