@@ -12,17 +12,18 @@ import { CommunicationService } from '../communication.service';
   styleUrls: ['./menu.component.scss']
 })
 
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   constructor(public router:Router, public authService: AuthService, public comService: CommunicationService) {}
 
-  ngOnInit() {
-    
-  }
 
-  routing(path): void{
+  routing(path): void{    
     this.comService.sendMessage(false);
     this.router.navigate([path]);
+  }
+
+  closeMenu():void{
+    this.comService.sendMessage(false);
   }
 
   signOut():void{

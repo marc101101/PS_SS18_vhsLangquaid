@@ -1,7 +1,6 @@
 import {
   Component,
-  OnInit,
-  AfterViewInit
+  OnInit
 } from '@angular/core';
 import { CommunicationService } from './shared/communication.service';
 
@@ -10,7 +9,7 @@ import { CommunicationService } from './shared/communication.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   public menuOpen: boolean = false;
 
@@ -19,17 +18,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.comService.instruction_sub_comb.subscribe(message =>{
+    this.comService.instruction_sub_comb.subscribe(message =>{    
       this.menuOpen = message;
     });
   }
 
-  ngAfterViewInit() {
-
-  }
-
   setMenu() {
-    
     this.menuOpen = !this.menuOpen;
   }
 
