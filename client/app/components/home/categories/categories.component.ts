@@ -12,7 +12,7 @@ import { CommunicationService } from '../shared/communication.service';
 export class CategoriesComponent implements OnInit {
   public dataIsAvailable: boolean = false;
   public categories: Array<any>;
-  public colorArray: Array<any> = ["primary", "link", "danger", "success", "warning", "info"];
+  public colorArray: Array<any> = ["primary", "link", "danger", "success", "warning", "info",  "primary", "link", "danger", "success", "warning", "info"];
 
   constructor(public categoryService: CategoryService, private router: Router, public comService: CommunicationService) { }
 

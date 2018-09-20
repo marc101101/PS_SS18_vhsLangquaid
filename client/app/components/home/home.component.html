@@ -2,8 +2,10 @@
   <i class="fa fa-bars" aria-hidden="true"></i>
 </div>
 
-<menu [ngClass]="{'menuVisible': !menuOpen}" class="menuPosition"></menu>
+<div [ngClass]="{'wrapperClass': menuOpen}">
+  <menu [ngClass]="{'menuVisible': !menuOpen}" class="menuPosition"></menu>
 
-<div [ngClass]="{'contentPosition': menuOpen}">
-  <router-outlet></router-outlet>
+  <div [ngClass]="{'contentPosition': menuOpen}">
+    <router-outlet></router-outlet>
+  </div>
 </div>

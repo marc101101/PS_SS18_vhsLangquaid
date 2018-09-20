@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,19 +7,18 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent  implements OnInit {
 
-    mobile: boolean = false;
-    calcHeight: number;
-    frameHeight: number;
-    frameWidth: number;
+    public mobile: boolean = false;
+    public calcHeight: number;
+    public frameHeight: number;
+    public frameWidth: number;
+    public promptEvent;
+
     
     constructor() {
-
+     
     }
 
     ngOnInit(){
-      //X = 920 / 960 0,958333333333333
-      //X = 380 / 960 0,3958333333 
-      //X = 607 / 960 0,6322916667
       this.calcHeight = window.innerHeight * 0.958;
       this.frameHeight = window.innerHeight * 0.662;
       this.frameWidth = window.innerHeight * 0.400;

@@ -62,8 +62,4 @@ export class AuthService {
     this.authStatus = false;
   }
 
-  register(): void{
-
-  }
-
 }
