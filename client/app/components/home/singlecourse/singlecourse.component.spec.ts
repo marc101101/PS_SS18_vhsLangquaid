@@ -40,7 +40,11 @@ describe('SingleCourseComponent', () => {
     "KURS_MITZUBRINGEN": "",
     "KURS_PREIS": "",
     "KURS_ANMFRIST": "",
-    "KURS_ENDE_UHRZEIT": ""
+    "KURS_ENDE_UHRZEIT": "",
+    "teacher": {
+      "TEIL_VORNAME": "",
+      "TEIL_NACHNAME": ""
+    }
    };
 
   let userCoursesModel = [

@@ -22,7 +22,7 @@
           {{singleCourse.location.ORT_ORTSNAME}}</p>
       </div>
       <div>
-        <i class="fa fa-user info-icon" style="color:black"></i>
+        <i class="fa fa-user info-icon" style="color:black" *ngIf="singleCourse.teacher"></i>
         <p>Referent: {{singleCourse.teacher.TEIL_VORNAME}} {{singleCourse.teacher.TEIL_NACHNAME}}</p>
       </div>
     </div>
