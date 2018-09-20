@@ -16,31 +16,38 @@ const routes: Routes = [
     children: [
       {
         path: 'kategorien',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'aktuelles',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'kurs-uebersicht/:id',
-        component: CoursesComponent
+        component: CoursesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'kurs/:id',
-        component: SingleCourseComponent
+        component: SingleCourseComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'kontakt',
-        component: ContactComponent
+        component: ContactComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'kontakt/:id',
-        component: ContactComponent
+        component: ContactComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'profil',
-        component: ProfilComponent
+        component: ProfilComponent,
+        canActivate: [AuthGuard]
       }
     ]
   }

@@ -1,7 +1,7 @@
 
 let courseFields = ["KURS_ID", "KURS_SUBNAME", "KURS_TEIL_MAX", "KURS_TEIL_MIN", "KURS_ANZAHLTERMINE", "KURS_MITZUBRINGEN", "KURS_PREIS", "KURS_ANMFRIST", "KURS_NAME", "KURS_BEGINN_UHRZEIT", "KURS_ENDE_UHRZEIT", "KURS_BESCHREIBUNG", "location", "teacher"];
 let categoryFields = ["RUB_ID", "RUB_NAME", "RUB_TITEL", "RUB_TEXT"];
-let userFields = ["TEIL_ID", "TEIL_EMAIL", "TEIL_VORNAME", "TEIL_NACHNAME"];
+let userFields = ["TEIL_ID", "TEIL_EMAIL", "TEIL_VORNAME", "TEIL_NACHNAME", "TEIL_ORT", "TEIL_IBAN", "TEIL_BLZ"];
 let locationFields = ["ORT_ID", "ORT_NAME", "ORT_STRASSE", "ORT_PLZ", "ORT_ORTSNAME"];
 
 // for testing purposes also add field DATENHISTORY to each object 
