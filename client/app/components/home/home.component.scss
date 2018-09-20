@@ -21,7 +21,7 @@
     overflow: hidden;
     border-top-right-radius: 1rem;
     margin-left: 0rem;
-    margin-top: -2rem;
+    margin-top: 0rem;
     -webkit-transition: margin-left 1s; /* Safari */
     -webkit-transition: margin-top 1s; /* Safari */
     transition: margin-left 1s;
@@ -38,9 +38,11 @@
     display: none;
 }
 
-/*
-    background-color: white;
-    border: 1px solid;
-    width: 75%;
-    margin-top: -3.5rem;
-    */
+.wrapperClass{
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}
