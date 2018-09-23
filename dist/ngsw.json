@@ -1,0 +1,140 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/css/bulma.min.css",
+        "/assets/css/font-awesome.css",
+        "/assets/css/font-awesome.min.css",
+        "/assets/fonts/FontAwesome.otf",
+        "/assets/fonts/fontawesome-webfont.eot",
+        "/assets/fonts/fontawesome-webfont.svg",
+        "/assets/fonts/fontawesome-webfont.ttf",
+        "/assets/fonts/fontawesome-webfont.woff",
+        "/assets/fonts/fontawesome-webfont.woff2",
+        "/assets/icons/android-icon-144x144.png",
+        "/assets/icons/android-icon-192x192.png",
+        "/assets/icons/android-icon-36x36.png",
+        "/assets/icons/android-icon-48x48.png",
+        "/assets/icons/android-icon-512x512.png",
+        "/assets/icons/android-icon-72x72.png",
+        "/assets/icons/android-icon-96x96.png",
+        "/assets/icons/apple-icon-114x114.png",
+        "/assets/icons/apple-icon-120x120.png",
+        "/assets/icons/apple-icon-144x144.png",
+        "/assets/icons/apple-icon-152x152.png",
+        "/assets/icons/apple-icon-180x180.png",
+        "/assets/icons/apple-icon-57x57.png",
+        "/assets/icons/apple-icon-60x60.png",
+        "/assets/icons/apple-icon-72x72.png",
+        "/assets/icons/apple-icon-76x76.png",
+        "/assets/icons/apple-icon-precomposed.png",
+        "/assets/icons/apple-icon.png",
+        "/assets/icons/browserconfig.xml",
+        "/assets/icons/favicon-16x16.png",
+        "/assets/icons/favicon-32x32.png",
+        "/assets/icons/favicon-96x96.png",
+        "/assets/icons/manifest.json",
+        "/assets/icons/ms-icon-144x144.png",
+        "/assets/icons/ms-icon-150x150.png",
+        "/assets/icons/ms-icon-310x310.png",
+        "/assets/icons/ms-icon-70x70.png",
+        "/assets/img/iphone_portrait_black.png",
+        "/assets/img/loading.gif",
+        "/assets/js/idb.js"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "patterns": [
+        "\\/v1\\/user\\/[^/]*",
+        "\\/v1\\/categories\\/[^/]*",
+        "\\/v1\\/courses\\/[^/]*",
+        "\\/v1\\/contact\\/[^/]*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 86400000,
+      "timeoutMs": 10000,
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/assets/css/bulma.min.css": "2ce20e01d8d3c9171b4b14de00d6c89655444330",
+    "/assets/css/font-awesome.css": "0140952c64e3f2b74ef64e050f2fe86eab6624c8",
+    "/assets/css/font-awesome.min.css": "512c7d79033e3028a9be61b540cf1a6870c896f8",
+    "/assets/fonts/FontAwesome.otf": "048707bc52ac4b6563aaa383bfe8660a0ddc908c",
+    "/assets/fonts/fontawesome-webfont.eot": "d980c2ce873dc43af460d4d572d441304499f400",
+    "/assets/fonts/fontawesome-webfont.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/assets/fonts/fontawesome-webfont.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/assets/fonts/fontawesome-webfont.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/assets/fonts/fontawesome-webfont.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/assets/icons/android-icon-144x144.png": "594b8cf15ac9a92f564c99d850fc65a22a49fca8",
+    "/assets/icons/android-icon-192x192.png": "c9a38c7ca51e997a965e6e5046023ca73b0efc76",
+    "/assets/icons/android-icon-36x36.png": "cf9cb4ee3a2407265a04c7eea9bcdb32a4c8a7d5",
+    "/assets/icons/android-icon-48x48.png": "cd5b0e9d2539619bdacaf930ce20c8022f0714fa",
+    "/assets/icons/android-icon-512x512.png": "89db5f1d4d8db7bea0af2d6ae4065547eaecf4dd",
+    "/assets/icons/android-icon-72x72.png": "f9916a2e92a837bf913e71f6d9f7c7efd700f479",
+    "/assets/icons/android-icon-96x96.png": "92598a2b89116f4077bc7106db8715d32387d7c8",
+    "/assets/icons/apple-icon-114x114.png": "8dc37e4b649e0b465d2fb03a2f2fda8c2d55c2d7",
+    "/assets/icons/apple-icon-120x120.png": "363fc0acfa7988c4fa5a211ff4a46eebed38b1a2",
+    "/assets/icons/apple-icon-144x144.png": "594b8cf15ac9a92f564c99d850fc65a22a49fca8",
+    "/assets/icons/apple-icon-152x152.png": "c6448e385e63733f217c96bbbe714862f8ae6dfc",
+    "/assets/icons/apple-icon-180x180.png": "4aa602e9c9e1786f6033d83bd54e030cc6f01292",
+    "/assets/icons/apple-icon-57x57.png": "d24c31f531c815b3e2e2d5049e18f264eabcf44b",
+    "/assets/icons/apple-icon-60x60.png": "a6136c177ca539eb4eea3efb8d3c8ede27df3d4a",
+    "/assets/icons/apple-icon-72x72.png": "f9916a2e92a837bf913e71f6d9f7c7efd700f479",
+    "/assets/icons/apple-icon-76x76.png": "f1a172abeef403557a9961b07abcad6a4569d7fe",
+    "/assets/icons/apple-icon-precomposed.png": "563b7910f4e5a96e178f1b6e33840f40e65e1c15",
+    "/assets/icons/apple-icon.png": "563b7910f4e5a96e178f1b6e33840f40e65e1c15",
+    "/assets/icons/browserconfig.xml": "853389b6c4273965899eb1302d665eb91395fd0c",
+    "/assets/icons/favicon-16x16.png": "50edfbfec282785d65915ba25b332b9af3566109",
+    "/assets/icons/favicon-32x32.png": "703b0546adb2229b7c60c54422d85451a8eaa0e7",
+    "/assets/icons/favicon-96x96.png": "92598a2b89116f4077bc7106db8715d32387d7c8",
+    "/assets/icons/manifest.json": "d11febf9e708a9e11baee37ed7dc5e99902580be",
+    "/assets/icons/ms-icon-144x144.png": "594b8cf15ac9a92f564c99d850fc65a22a49fca8",
+    "/assets/icons/ms-icon-150x150.png": "a77766f68212fef92c6e0d99ebd704daaaff061a",
+    "/assets/icons/ms-icon-310x310.png": "1157c9cda4225793b85f66909f11a556a490101a",
+    "/assets/icons/ms-icon-70x70.png": "cce37a578e972857002e7201904e576fe18af70b",
+    "/assets/img/iphone_portrait_black.png": "35a2d3f9b4ac276ea84dd6ec3a081685e98fd0e8",
+    "/assets/img/loading.gif": "cdc1627a1ff312a43d1700a3694da1050e0e026d",
+    "/assets/js/idb.js": "6f82cc3f3c743e77b6931a0129d7afddd6cfe3c4",
+    "/favicon.ico": "4dcb5bccd0acfad546f6efa5b1e023a159f1e018",
+    "/index.html": "8af2ce856e9ffc18605459426122a3c37fb45eea"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
