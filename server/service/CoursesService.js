@@ -30,9 +30,15 @@ exports.coursesCourse_idApplyPOST = function (course_id, req) {
         if (course != null) {
           // get all active applications for course
           Applications
-            .where({
-              ANM_KURS_ID: course_id,
-              ANM_STAT_ID: 1 || 2
+            .query({
+              where: {
+                ANM_KURS_ID: course_id,
+                ANM_STAT_ID: 1
+              },
+              orWhere: {
+                ANM_KURS_ID: course_id,
+                ANM_STAT_ID: 2
+              }
             })
             .fetchAll()
             .then((applicationModells) => {
@@ -153,11 +159,18 @@ exports.coursesCourse_idGET = function (course_id) {
 exports.coursesCourse_idSignoffPOST = function (course_id, req) {
   return new Promise(function (resolve, reject) {
     let user_id = getUserFromToken(req);
-
-    Applications.where({
-        ANM_TEIL_ID: user_id,
-        ANM_KURS_ID: course_id,
-        ANM_STAT_ID: 1 || 2
+    Applications
+      .query({
+        where: {
+          ANM_TEIL_ID: user_id,
+          ANM_KURS_ID: course_id,
+          ANM_STAT_ID: 1 
+        },
+        orWhere: {
+          ANM_TEIL_ID: user_id,
+          ANM_KURS_ID: course_id,
+          ANM_STAT_ID: 2
+        }
       })
       .save({ANM_STAT_ID: 3}, {
         patch: true

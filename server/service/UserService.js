@@ -37,9 +37,15 @@ exports.userMeGET = function (id) {
 exports.userMeCoursesGET = function (user_id) {
   return new Promise(function (resolve, reject) {
     Applications
-      .where({
-        ANM_TEIL_ID: user_id,
-        ANM_STAT_ID: 1 || 2
+      .query({
+        where: {
+          ANM_TEIL_ID: user_id,
+          ANM_STAT_ID: 2
+        },
+        orWhere: 
+        { ANM_TEIL_ID: user_id,
+          ANM_STAT_ID: 1
+        }
       })
       .fetchAll({
         withRelated: ["course.location"]
