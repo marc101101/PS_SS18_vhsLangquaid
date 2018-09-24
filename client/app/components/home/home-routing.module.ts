@@ -7,6 +7,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SingleCourseComponent } from './singlecourse/singlecourse.component';
 import { ContactComponent } from './contact/contact.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
       {
         path: 'profil',
         component: ProfilComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'search',
+        component: SearchComponent,
         canActivate: [AuthGuard]
       }
     ]
