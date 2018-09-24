@@ -2,7 +2,7 @@
 
 <p>
    <a href="https://github.com/marc101101/PS_SS18_vhsLangquaid/releases">
-        <img src="https://img.shields.io/badge/release-0.0.5-blue.svg?longCache=true" alt="Latest release" />
+        <img src="https://img.shields.io/badge/release-0.0.10-blue.svg?longCache=true" alt="Latest release" />
     </a>
     <a href="https://travis-ci.com/marc101101/PS_SS18_vhsLangquaid">
         <img src="https://travis-ci.com/marc101101/PS_SS18_vhsLangquaid.svg?token=q4ZzuewzZrMnM6gfyh2w&branch=master" alt="Build status" />
