@@ -36,7 +36,7 @@ let course = bookshelf.Model.extend({
     return this.belongsTo(category, "KURS_RUB_ID", "RUB_ID")
   },
   applications: function() {
-    return this.hasMany(application, "KURS_ID", "ANM_KURS_ID")
+    return this.hasMany(application, "ANM_KURS_ID", "KURS_ID")
   },
   location: function() {
     return this.belongsTo(location, "KURS_ORT_ID", "ORT_ID")
