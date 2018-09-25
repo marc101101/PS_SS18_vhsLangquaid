@@ -7,15 +7,15 @@
     overflow: hidden;
 }
 
-.circleBackground {
+.circleBackground{
     height: 30rem;
     width: 30rem;
     z-index: -1;
     background-color: #209cee;
     border-radius: 15rem;
     position: absolute;
-    margin-top: 6rem;
-    margin-left: 7rem;
+    margin-top: -13rem;
+    margin-left: -7rem;
 }
 
 .card {
@@ -47,6 +47,7 @@
     padding: 2rem; 
     padding-left: 5rem; 
     padding-bottom: 0rem;
+    padding-top: 1.2rem;
 }
 
 .headline-style{
@@ -57,6 +58,14 @@
 .subheadline-style{
     padding: 1rem; 
     color:white
+}
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
 }
 
 .alert-style{

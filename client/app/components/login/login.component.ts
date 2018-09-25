@@ -6,8 +6,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { UserData } from '../../models/UserData';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router, ActivatedRoute } from '@angular/router';
-import { log } from 'util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -23,9 +22,11 @@ export class LoginComponent {
 
   onSubmit() {
     this.authSerive.login(this.model).subscribe(response => {
-      // login successful if there's a jwt token in the response      
+      // login successful if there's a jwt token in the response   
+      console.log("erer", response);   
       if (response.token && !this.jwtHelper.isTokenExpired(response.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
+        
         localStorage.setItem('token', response.token);  
 
         this.router.navigate(['/home/kategorien']);
