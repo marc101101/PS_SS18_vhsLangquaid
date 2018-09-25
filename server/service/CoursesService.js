@@ -247,7 +247,6 @@ exports.coursesHighlightsGET = function () {
 exports.coursesLastminuteGET = function() {
   return new Promise(function(resolve, reject) {
     Courses
-      .forge()
       .query(function(qb) {
         qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
       })
