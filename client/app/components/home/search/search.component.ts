@@ -8,7 +8,7 @@ import { CoursesService } from '../shared/courses.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
   @ViewChild('searchElement') searchElement: ElementRef;
 
@@ -19,10 +19,6 @@ export class SearchComponent implements OnInit {
     private coursesService: CoursesService,
     private _location: Location,
     private renderer: Renderer2) { }
-
-  ngOnInit():void {
-    
-  }
 
   onSubmit():void {
     this.coursesService.getSearchCourses(this.searchElement.nativeElement.value).subscribe(response => {

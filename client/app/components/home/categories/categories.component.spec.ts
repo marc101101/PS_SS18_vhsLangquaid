@@ -9,9 +9,6 @@ import { CategoryService } from '../../../services/category.service';
 import { CommunicationService } from '../shared/communication.service';
 import { CategoriesComponent } from './categories.component';
 
-
-
-
 /**
   * Test should test all four methods of courses.component.ts
   * ngOnInit() / routeToCourse()
@@ -25,7 +22,6 @@ describe('CategoriesComponent', () => {
   var fixture;
   var component;
   var categoryService: CategoryService;
-  var location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

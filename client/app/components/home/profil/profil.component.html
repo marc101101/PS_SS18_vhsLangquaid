@@ -2,13 +2,13 @@
   <div class="circleBackground"></div>
   <div class="columns is-mobile">
     <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem;">
-      <div style="font-size: 1.5rem; color:white;" *ngIf="dataIsAvailable">
+      <div class="headline-style" *ngIf="dataIsAvailable">
         {{user.TEIL_VORNAME}} {{user.TEIL_NACHNAME}}
       </div>
     </div>
   </div>
 
-  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
+  <div class="column alert-style">
     <alert></alert>
   </div>
 

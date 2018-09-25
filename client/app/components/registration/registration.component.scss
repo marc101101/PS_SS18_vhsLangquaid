@@ -56,14 +56,7 @@ li:nth-child(4) {
 }
 
 .circleBackground {
-    height: 30rem;
-    width: 30rem;
-    z-index: -1;
-    background-color: #00d1b2;
-    border-radius: 15rem;
-    position: absolute;
-    margin-top: 6rem;
-    margin-left: 7rem;
+    background-color: #00d1b2 !important;
 }
 
 .login{

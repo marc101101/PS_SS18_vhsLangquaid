@@ -1,8 +1,8 @@
 <div class="container fullScreenBackground">
   <div class="circleBackground"></div>
   <div class="columns is-mobile">
-    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem; padding-bottom: 0rem; padding-right: 1rem;">
-      <div style="font-size: 1.5rem; color:white;">
+    <div class="column is-12 headline-position" style="padding-right: 1rem;">
+      <div class="headline-style">
         <input #searchElement class="input is-medium" type="text" placeholder="Suche nach Kursen">
       </div>
     </div>
@@ -14,11 +14,11 @@
     </button>
   </div>
 
-  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
+  <div class="column alert-style">
     <alert></alert>
   </div>
 
-  <section style="padding: 1rem; color:white" *ngIf="dataIsAvailable && courses.length == 0">
+  <section class="subheadline-style" *ngIf="dataIsAvailable && courses.length == 0">
     Keine Kurs gefunden.
   </section>
 

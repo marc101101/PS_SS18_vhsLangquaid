@@ -1,45 +1,3 @@
-.circleBackground {
-    height: 30rem;
-    width: 30rem;
-    z-index: -1;
-    background-color: #209cee;
-    border-radius: 15rem;
-    position: absolute;
-    margin-top: -13rem;
-    margin-left: -7rem;
-}
-
-.fullScreenBackground {
-    position: absolute;
-    width: 100%;
-    overflow: hidden;    
-    min-height: 100%;
-}
-
-.card {
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
-
-.title {
-    font-size: 1.25rem !important;
-    padding-left: 1rem;
-}
-
-.subtitle {
-    font-size: 0.9rem;
-    padding-left: 1rem;
-}
-
-.color-marker {
-    float: right;
-    height: 100%;
-    position: absolute;
-    width: 10px;
-    border-top-left-radius: 0.8rem;
-    border-bottom-left-radius: 0.8rem;
-}
-
 .textarea:not([rows]) {
     max-height: 605px;
     min-height: 20rem;
@@ -53,6 +11,11 @@
     padding: 0.5rem;
 }
 
-.is-primary-save {
-    background-color: #209cee !important;
+.padding-button{
+    padding: 1rem; 
+    padding-top:0rem;
+}
+
+.margin-15{
+    margin-top:1.5rem;
 }
