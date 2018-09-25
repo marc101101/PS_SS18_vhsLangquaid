@@ -16,13 +16,15 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './sharedModule/shared.module';
 import { CategoryService } from './services/category.service';
 import { environment } from '../environments/environment';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         RegistrationComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        InfoComponent
     ],
     imports: [
         HttpClientModule,

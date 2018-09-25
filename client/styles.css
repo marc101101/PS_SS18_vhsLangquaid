@@ -1,12 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-.fullscreenBackground {
-    position: absolute;
-    min-height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
 .circleBackground{
     height: 30rem;
     width: 30rem;
@@ -16,6 +8,13 @@
     position: absolute;
     margin-top: -13rem;
     margin-left: -7rem;
+}
+
+.fullscreenBackground {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .card {
@@ -47,7 +46,6 @@
     padding: 2rem; 
     padding-left: 5rem; 
     padding-bottom: 0rem;
-    padding-top: 1.2rem;
 }
 
 .headline-style{

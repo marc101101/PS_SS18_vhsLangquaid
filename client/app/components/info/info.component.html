@@ -1,0 +1,10 @@
+<div class="container fullscreenBackground">
+  <div class="circleBackground"></div>
+  
+  <div class="has-text-centered" style="padding: 2rem">
+    <span class="dot" [ngClass]="{'active': state==0}" (click)="state = 0"></span>
+    <span class="dot" [ngClass]="{'active': state==1}" (click)="state = 1"></span>
+    <span class="dot" [ngClass]="{'active': state==2}" (click)="state = 2"></span>
+  </div>
+
+</div>

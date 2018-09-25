@@ -1,7 +1,7 @@
-<div class="container fullScreenBackground">
+<div class="container fullscreenBackground">
   <div class="circleBackground"></div>
   <div class="columns is-mobile">
-    <div class="column is-12 headline-pos-long" *ngIf="dataIsAvailable">
+    <div class="column is-12 headline-position" style="padding-right: 3.5rem;" *ngIf="dataIsAvailable">
       <div class="headline-style">
         {{singleCourse.KURS_NAME}}
       </div>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <section style="single-course-position" *ngIf="dataIsAvailable">
+  <section class="single-course-position" *ngIf="dataIsAvailable">
     <div class="card single-course-card">
       <div>
         <i class="fa fa-clock-o info-icon color-black"></i>

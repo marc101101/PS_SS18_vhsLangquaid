@@ -28,7 +28,7 @@ export class CoursesComponent implements OnInit {
   public comService: CommunicationService,
   public renderer: Renderer2) { 
     this.comService.getInfo().subscribe(color => {   
-      //this.renderer.addClass(this.backgroundElement.nativeElement, color);
+      this.renderer.addClass(this.backgroundElement.nativeElement, color);
     });  
   }
 
