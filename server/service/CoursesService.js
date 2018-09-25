@@ -256,7 +256,10 @@ exports.coursesLastminuteGET = function() {
       .then((courses) => {
         resolve(Trimmer.courses(
           courses
-            .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+            .filter(item => {
+              let applications = item.related('applications').toJSON().filter(item => item.ANM_STAT_ID != 3);
+              return applications.length < item.attributes.KURS_TEIL_MAX
+            })
             .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
             .map(item => item.toJSON())
           )
