@@ -246,16 +246,20 @@ exports.coursesHighlightsGET = function () {
 
 exports.coursesLastminuteGET = function() {
   return new Promise(function(resolve, reject) {
+    let now = moment().format('YYYY-MM-DD');
+    let inSixWeeks = moment().add(6, 'weeks').format('YYYY-MM-DD');
     Courses
-      .forge()
       .query(function(qb) {
-        qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
+        qb.whereBetween('KURS_ANMFRIST', [now, inSixWeeks]);
       })
       .fetchAll({withRelated: ["applications", "location", "teacher"]})
       .then((courses) => {
         resolve(Trimmer.courses(
           courses
-            .filter(item => item.related('applications').toJSON().length < item.attributes.KURS_TEIL_MAX)
+            .filter(item => {
+              let applications = item.related('applications').toJSON().filter(item => item.ANM_STAT_ID != 3);
+              return applications.length < item.attributes.KURS_TEIL_MAX
+            })
             .filter(item => item.attributes.KURS_KURSSTAT_ID === 3)
             .map(item => item.toJSON())
           )
