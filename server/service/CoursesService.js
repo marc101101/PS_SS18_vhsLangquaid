@@ -246,9 +246,13 @@ exports.coursesHighlightsGET = function () {
 
 exports.coursesLastminuteGET = function() {
   return new Promise(function(resolve, reject) {
+    let now = moment().format('YYYY-MM-DD');
+    let inSixWeeks = moment().add(6, 'weeks').format('YYYY-MM-DD');
+    console.log(now);
+    console.log(inSixWeeks);
     Courses
       .query(function(qb) {
-        qb.whereBetween('KURS_ANMFRIST', [moment().format('YYYY-MM-DD'), moment().add(6, 'weeks').format('YYYY-MM-DD')]);
+        qb.whereBetween('KURS_ANMFRIST', [now, inSixWeeks]);
       })
       .fetchAll({withRelated: ["applications", "location", "teacher"]})
       .then((courses) => {
