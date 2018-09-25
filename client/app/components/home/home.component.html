@@ -2,6 +2,10 @@
   <i class="fa fa-bars" aria-hidden="true"></i>
 </div>
 
+<div class="burgerElement" style="float: right; position: sticky;" [routerLink]="['/home/search']">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</div>
+
 <div [ngClass]="{'wrapperClass': menuOpen}">
   <menu [ngClass]="{'menuVisible': !menuOpen}" class="menuPosition"></menu>
 

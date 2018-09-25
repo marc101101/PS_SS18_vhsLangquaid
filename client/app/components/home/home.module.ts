@@ -17,6 +17,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './shared/courses.service';
 import { SingleCourseComponent } from './singlecourse/singlecourse.component';
 import { ContactComponent } from './contact/contact.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ContactComponent } from './contact/contact.component';
     SingleCourseComponent,
     ContactComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
