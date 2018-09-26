@@ -1,26 +1,59 @@
 {
-	"variables": [],
 	"info": {
 		"name": "PS_SS18_vhsLangquaid",
-		"_postman_id": "42714f41-e2e0-72f8-6feb-a77fdd075ea4",
+		"_postman_id": "98713be4-cac8-5676-befc-89c577b8a57b",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "/auth",
+			"name": "Contact",
 			"description": "",
 			"item": [
 				{
-					"name": "post /auth",
+					"name": " give general feedback to the team",
 					"request": {
-						"url": "{{host}}/v1/auth",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"teil_vorname\": \"John\",\n      \"teil_nachname\": \"Doe\",\n      \"teil_email\": \"johndoe@vhslq.de\",\n      \"teil_notizen\": \"john's notes\",\n      \"eingegeben_von_user\": 0,\n      \"eingegeben_am_datum\": \"2018-01-01\",\n      \"eingegeben_am_zeit\": \"00:00:00\",\n      \"datenhistory\": \"John's data history\"\n    }"
+						},
+						"url": {
+							"raw": "{{host}}/v1/contact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"contact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "get authtoken from server",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "",
 								"value": "",
-								"description": "",
 								"disabled": true
 							}
 						],
@@ -30,183 +63,503 @@
 								{
 									"key": "email",
 									"value": "johndoe@vhslq.de",
-									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "hunter22",
-									"description": "",
 									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"auth"
+							]
+						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "94bf76b8-dc49-478c-9b4d-7c7caec4dad1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "eadbf699-7643-4f3c-8c5c-43adc52dfa0f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
 		{
-			"name": "/user",
-			"description": "",
+			"name": "User",
 			"item": [
 				{
-					"name": "get /user",
+					"name": "get me",
 					"request": {
-						"url": "{{host}}/v1/user",
 						"method": "GET",
 						"header": [
 							{
 								"key": "authorization",
-								"value": "{{token}}",
-								"description": ""
-							}
-						],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "get /user/id",
-					"request": {
-						"url": "{{host}}/v1/user/4704",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "update /user",
-					"request": {
-						"url": "{{host}}/v1/user",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM",
-								"description": ""
-							},
-							{
-								"key": "teil_nachname",
-								"value": "Doe",
-								"description": ""
+								"value": "{{token}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "create /user",
+					"name": "get my courses",
 					"request": {
-						"url": "{{host}}/v1/user",
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{host}}/v1/user/me/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"me",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit user details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM"
+							},
+							{
+								"key": "teil_nachname",
+								"value": "Doe"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register a new user",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM",
-								"description": ""
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDc1NiwiaWF0IjoxNTMxODUyOTczLCJleHAiOjE1MzE5MzkzNzN9.nW45uqSbywmH4jN9GEsmGfARniJrUyGuxQFNtpH6FfM"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n      \"teil_vorname\": \"John\",\n      \"teil_nachname\": \"Doe\",\n      \"teil_email\": \"johndoe@vhslq.de\",\n      \"teil_notizen\": \"john's notes\",\n      \"eingegeben_von_user\": 0,\n      \"eingegeben_am_datum\": \"2018-01-01\",\n      \"eingegeben_am_zeit\": \"00:00:00\",\n      \"datenhistory\": \"John's data history\"\n    }"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user"
+							]
+						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "df607ed1-f745-4367-bbf1-eff1d13702f7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1969006b-0352-4dd4-b0b3-f33abdb5a678",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
 		{
-			"name": "/categories",
-			"description": "",
+			"name": "Categories",
 			"item": [
 				{
-					"name": "{{host}}/v1/categories",
+					"name": "get all categories",
 					"request": {
-						"url": "{{host}}/v1/categories",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
 						"body": {},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"categories"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "{{host}}/v1/categories/id",
+					"name": "get category by id",
 					"request": {
-						"url": "{{host}}/v1/categories/779/courses",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
 						"body": {},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/categories/779",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"categories",
+								"779"
+							]
+						}
 					},
 					"response": []
+				},
+				{
+					"name": " get all courses of a category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{host}}/v1/categories/779/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"categories",
+								"779",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "380b9d06-f947-458b-a496-677997c2bc73",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "71e14994-436f-4396-b6af-aca2f220e2d3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
 		{
-			"name": "/courses",
-			"description": "",
+			"name": "Courses",
 			"item": [
 				{
-					"name": "get /courses/id",
+					"name": "get all courses",
 					"request": {
-						"url": "{{host}}/v1/courses/2018284",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
 						"body": {},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "get /courses/id/apply",
+					"name": "get course by id",
 					"request": {
-						"url": "{{host}}/v1/courses/20182399/apply",
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "authorization",
-								"value": "{{token}}",
-								"description": ""
+								"value": "{{token}}"
 							}
 						],
 						"body": {},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/courses/highlights",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"highlights"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "get /courses/id/signoff",
+					"name": " get currated highlights",
 					"request": {
-						"url": "{{host}}/v1/courses/2018202/signoff",
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{host}}/v1/courses/2018284",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"2018284"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get last minute courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{host}}/v1/courses/lastminute",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"lastminute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply to participate in specific course",
+					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "authorization",
-								"value": "{{token}}",
-								"description": ""
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/v1/courses/20182399/apply",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"20182399",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signoff to participate in specific course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/v1/courses/2018202/signoff",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"2018202",
+								"signoff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "give feedback to a course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}"
 							}
 						],
 						"body": {},
-						"description": ""
+						"url": {
+							"raw": "{{host}}/v1/courses/2018202/feedback",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"courses",
+								"2018202",
+								"feedback"
+							]
+						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6a704806-490a-4b7c-886b-b484fa957b45",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3a35749-b41e-4e58-a74f-89c96a583a01",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
