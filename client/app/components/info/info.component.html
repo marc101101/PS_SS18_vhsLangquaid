@@ -1,13 +1,12 @@
 <div class="container fullscreenBackground">
-  <div class="circleBackground"></div>
-
-  <div class="has-text-centered" style="padding: 2rem">
-    <span class="dot" [ngClass]="{'active': state==0}" (click)="state = 0"></span>
-    <span class="dot" [ngClass]="{'active': state==1}" (click)="state = 1"></span>
-    <span class="dot" [ngClass]="{'active': state==2}" (click)="state = 2"></span>
-  </div>
 
   <div class="padding-1">
+    <img src="../../../assets/img/tut_1.png">
+    <div class="has-text-centered">
+        <span class="dot" [ngClass]="{'active': state==0}" (click)="state = 0"></span>
+        <span class="dot" [ngClass]="{'active': state==1}" (click)="state = 1"></span>
+        <span class="dot" [ngClass]="{'active': state==2}" (click)="state = 2"></span>
+      </div>
     <button class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem">Einloggen</button>
   </div>
 </div>
