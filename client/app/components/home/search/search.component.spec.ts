@@ -8,6 +8,7 @@ import { SharedModule } from '../../../sharedModule/shared.module';
 import { UserService } from '../../../services/user.service';
 import { of } from 'rxjs';
 import { CoursesService } from '../shared/courses.service';
+import { CommunicationService } from '../shared/communication.service';
 
 /**
   * Test should test all four methods of profil.component.ts
@@ -32,8 +33,8 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule ],
-      providers: [ UserService, AlertService ],
+      imports: [ FormsModule, HttpClientModule, RouterTestingModule, SharedModule],
+      providers: [ UserService, AlertService, CommunicationService ],
     })
     .compileComponents();
 
@@ -42,7 +43,7 @@ describe('SearchComponent', () => {
     coursesService = fixture.debugElement.injector.get(CoursesService);
   }));
 
-  it('SearchComponent: should successfuly be able to create a ProfilComponent', () => {
+  it('SearchComponent: should successfuly be able to create a SearchComponent', () => {
     expect(fixture.componentInstance instanceof SearchComponent).toBe(true, "should create SearchComponent");
   });
 

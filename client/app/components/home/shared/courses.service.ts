@@ -28,7 +28,7 @@ export class CoursesService {
       map((res: Response) => {
         return res;
       }),
-      catchError((err: HttpErrorResponse) => {
+      catchError((err: HttpErrorResponse) => {        
         this.alertService.push(err);
         return of(err);
       })
