@@ -8,6 +8,8 @@ import { of } from 'rxjs';
 export class CommunicationService{
 
     public instruction_sub_comb = new Subject<any>();
+    public course_sub_comb = new Subject<any>();
+    public search_sub_comb = new Subject<any>();
     private color: string;
     private category: string;
 
@@ -16,6 +18,14 @@ export class CommunicationService{
 
     sendMessage(message: boolean) {        
         this.instruction_sub_comb.next(message);
+    }
+
+    sendCourseViewMessage(message: boolean) {        
+        this.course_sub_comb.next(message);
+    }
+
+    searchViewMessage(message: boolean) {        
+        this.search_sub_comb.next(message);
     }
 
     setInfo(color: string, category: string) {

@@ -1,12 +1,10 @@
 <div class="container fullscreenBackground">
-  <div class="circleBackground"></div>
+  <div class="circleBackground" #backgroundElement></div>
   <div class="columns is-mobile">
     <div class="column is-12 headline-position" style="padding-right: 3.5rem;" *ngIf="dataIsAvailable">
       <div class="headline-style">
         {{singleCourse.KURS_NAME}}
       </div>
-    </div>
-    <div class="columns is-mobile">
     </div>
   </div>
 
@@ -56,6 +54,7 @@
       </div>
       <div class="column is-12 info-padding">
         <div>
+          <p *ngIf="singleCourse.KURS_ID">Kurs ID: {{singleCourse.KURS_ID}}</p>
           <p *ngIf="singleCourse.KURS_TEIL_MAX">Teilnehmer: max. {{singleCourse.KURS_TEIL_MAX}} / min.
             {{singleCourse.KURS_TEIL_MIN}}</p>
           <p *ngIf="singleCourse.KURS_ANZAHLTERMINE">Termine: {{singleCourse.KURS_ANZAHLTERMINE}}</p>

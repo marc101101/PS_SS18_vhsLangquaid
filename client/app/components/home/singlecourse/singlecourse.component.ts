@@ -19,6 +19,7 @@ export class SingleCourseComponent implements OnInit {
   public moreInfo: boolean = false;
 
   @ViewChild('button') elButton: ElementRef;
+  @ViewChild('backgroundElement') backgroundElement: ElementRef;
 
   constructor(
     private router: Router, 
@@ -30,6 +31,8 @@ export class SingleCourseComponent implements OnInit {
     public courseService: CoursesService) { }
 
   ngOnInit() {
+    this.comService.sendCourseViewMessage(true);
+
     this.activatedRoute.params.subscribe((params: Params) => {     
       this.courseService.getCoursesByCourseId(params.id).subscribe(response =>{    
         if(response.name != "HttpResponseError"){
@@ -39,6 +42,11 @@ export class SingleCourseComponent implements OnInit {
         }
       });
     });
+    this.comService.getInfo().subscribe(response => { 
+      if(response.color != undefined){
+        this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
+      }
+    });   
   }
 
   checkLogin(){
