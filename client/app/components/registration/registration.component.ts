@@ -11,7 +11,7 @@ import { UserService } from '../../services/user.service';
 export class RegistrationComponent{
 
   public state: number = 0;
-  public user: RegisterUser = new RegisterUser("", "", "", "", this.parseDate(new Date(Date.now())), 0, this.parseDate(new Date(Date.now())), this.parseTime(new Date(Date.now())), "", "", "", "", "", "", 0);
+  public user: RegisterUser = new RegisterUser("", "", "", "", this.parseDate(new Date(Date.now())), 0, this.parseDate(new Date(Date.now())), this.parseTime(new Date(Date.now())), "", "", "", "", "", "", 0, "");
   public agb_state: boolean = false;
   public dse_state: boolean = false;
   public login: boolean = false;

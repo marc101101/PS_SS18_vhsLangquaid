@@ -5,7 +5,6 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { PageNotFoundComponent } from './components/not-found';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { InfoComponent } from './components/info/info.component';
 
 /**
  * All definied routes for top layer views.
@@ -24,10 +23,6 @@ const routes: Routes = [
     {
         path: 'registration',
         component: RegistrationComponent
-    },
-    {
-        path: 'info',
-        component: InfoComponent
     },
     {
         path: 'home',

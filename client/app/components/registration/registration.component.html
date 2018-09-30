@@ -88,6 +88,7 @@
       </div>
     </div>
     <input class="input is-medium" type="mail" placeholder="Email" [(ngModel)]="user.teil_email">
+    <input style="margin-top:0.5rem" class="input is-medium" type="password" placeholder="Passwort" [(ngModel)]="user.teil_passwort">
     <div class="columns is-mobile padding-1">
       <div class="column is-2">
         <div style="margin-top: 0.65rem;" (click)="state = state - 1">
@@ -170,8 +171,5 @@
 
   <div style="padding: 1rem">
     <alert></alert>
-  </div>
-  <div class="info-button" [routerLink]="['/info']">
-    <i class="fa fa-info" aria-hidden="true"></i>
   </div>
 </div>
