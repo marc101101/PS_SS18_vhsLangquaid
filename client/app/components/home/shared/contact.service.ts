@@ -14,6 +14,9 @@ export class ContactService {
 
   private url: string = environment.apiUrl;
 
+  /**
+   * Authorization header with in auth.serivce requested JWT token.
+   */
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

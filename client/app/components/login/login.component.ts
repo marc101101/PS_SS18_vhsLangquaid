@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private authSerive: AuthService, private router:Router) {}
 
+  /**
+   * Checks if user is already logged in and forwards him to the category overview.
+   */
   ngOnInit() {
     this.authSerive.isLoggedIn().subscribe(response => {
       if(response){
@@ -29,6 +32,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
+  /**
+   * On submition of the user data tries to forward the user to the category overview.
+   */
   onSubmit() {
     this.authSerive.login(this.model).subscribe(response => {
       // login successful if there's a jwt token in the response   

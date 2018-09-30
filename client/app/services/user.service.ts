@@ -16,6 +16,9 @@ export class UserService {
 
   private url: string = environment.apiUrl;
 
+  /**
+   * Authorization header with in auth.serivce requested JWT token.
+   */
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -25,6 +28,9 @@ export class UserService {
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
 
+  /**
+   * Get personal user data.
+   */
   getUserMe(): Observable<any>{
     return this.http.get(this.url + "/user/me", this.httpOptions).pipe(
       map((res: Response) => {
@@ -37,6 +43,9 @@ export class UserService {
     )
   } 
 
+  /**
+   * Update personal user data.
+   */
   updateUserMe(user:User): Observable<any>{
     return this.http.put(this.url + "/user/me", user, this.httpOptions).pipe(
       map((res: Response) => {
@@ -49,6 +58,9 @@ export class UserService {
     )
   }
 
+  /**
+   * Register new user.
+   */
   registerUser(user:RegisterUser): Observable<any>{   
     return this.http.post(this.url + "/user", user).pipe(
       map((res: Response) => {        
@@ -61,6 +73,9 @@ export class UserService {
     )
   }
 
+  /**
+   * Get user's applied to courses.
+   */
   getCoursesByUser(): Observable<any>{
     return this.http.get(this.url + "/user/me/courses", this.httpOptions).pipe(
       map((res: Response) => {

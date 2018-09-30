@@ -12,12 +12,13 @@ export class AppComponent  implements OnInit {
     public frameHeight: number;
     public frameWidth: number;
     public promptEvent;
-
     
-    constructor() {
-     
-    }
+    constructor() {}
 
+    /**
+     * Calculates sizes for Desktop View of application
+     * Cecks if current device is mobile phone or desktop device
+     */
     ngOnInit(){
       this.calcHeight = window.innerHeight * 0.958;
       this.frameHeight = window.innerHeight * 0.662;

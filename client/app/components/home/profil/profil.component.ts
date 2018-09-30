@@ -20,6 +20,9 @@ export class ProfilComponent implements OnInit {
     private _location: Location,
     private renderer: Renderer2) { }
 
+  /**
+   * Requests user's data to edit them.
+   */
   ngOnInit():void {
     this.userService.getUserMe().subscribe(response => {    
       this.user = response;
@@ -27,6 +30,9 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+  /**
+   * On submit sends updated data to server.
+   */
   onSubmit():void {
     this.userService.updateUserMe(this.user).subscribe(response => {
       if(response.name != "HttpResponseError"){
@@ -36,11 +42,17 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+  /**
+   * Reset button after successful submit.
+   */
   resetButton():void {
     this.renderer.removeClass(this.saveButton.nativeElement, 'is-primary-save');
     this.button_text = 'Speichern';
   }
 
+  /**
+   * Route back to last page.
+   */
   backClicked():void {
     this._location.back();
   }

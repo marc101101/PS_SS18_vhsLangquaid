@@ -9,6 +9,10 @@ import { SingleCourseComponent } from './singlecourse/singlecourse.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
 
+/**
+ * All definied routes home view.
+ * Auth guard is protecting each route.
+ */
 const routes: Routes = [
   {
     path: '',

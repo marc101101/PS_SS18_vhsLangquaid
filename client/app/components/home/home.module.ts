@@ -19,6 +19,10 @@ import { SingleCourseComponent } from './singlecourse/singlecourse.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
 
+/**
+ * Sub module, which is excluded because only this enables preloading strategy to work.
+ * Contains all necessary components and services.
+ */
 @NgModule({
   declarations: [
     CategoriesComponent,

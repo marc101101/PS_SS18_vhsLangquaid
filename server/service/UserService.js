@@ -34,6 +34,12 @@ exports.userMeGET = function (id) {
   });
 }
 
+/**
+ * get courses of one user
+ *
+ * data Object user id
+ * returns application of user to courses
+ **/
 exports.userMeCoursesGET = function (user_id) {
   return new Promise(function (resolve, reject) {
     Applications

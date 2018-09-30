@@ -22,10 +22,17 @@ export class SearchComponent implements OnInit {
     private _location: Location,
     private renderer: Renderer2) { }
 
+  /**
+   * Enables the search icon.
+   */
   ngOnInit(){
     this.comService.searchViewMessage(true);
   }
 
+  /**
+   * Submits search requests to backend.
+   * Displays found courses - result.
+   */
   onSubmit():void {
     this.coursesService.getSearchCourses(this.searchElement.nativeElement.value).subscribe(response => {
       if(response.name != "HttpResponseError"){

@@ -7,7 +7,11 @@ import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { InfoComponent } from './components/info/info.component';
 
- const routes: Routes = [
+/**
+ * All definied routes for top layer views.
+ * Sub routing anchor for /home sub components with preloading flag.
+ */
+const routes: Routes = [
     {
         path: '',
         redirectTo: '/login',
@@ -28,8 +32,9 @@ import { InfoComponent } from './components/info/info.component';
     {
         path: 'home',
         loadChildren: './components/home/home.module#HomeModule',
-        //canActivate: [AuthGuard],
-        data: {prelaod: true}
+        data: {
+            prelaod: true
+        }
     },
     {
         path: '**',
@@ -39,8 +44,14 @@ import { InfoComponent } from './components/info/info.component';
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
-    exports: [RouterModule],
-    providers: [SelectivePreloadingStrategy, { provide: LocationStrategy, useClass: HashLocationStrategy}]
+    imports: [RouterModule.forRoot(routes, { 
+        preloadingStrategy: SelectivePreloadingStrategy 
+    })],
+    exports: [ RouterModule ],
+    providers: [ SelectivePreloadingStrategy, { 
+        provide: LocationStrategy, 
+        useClass: HashLocationStrategy
+    }]
 })
+
 export class AppRoutingModule { }

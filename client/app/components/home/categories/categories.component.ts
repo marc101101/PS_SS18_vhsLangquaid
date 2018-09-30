@@ -16,6 +16,9 @@ export class CategoriesComponent implements OnInit {
 
   constructor(public categoryService: CategoryService, private router: Router, public comService: CommunicationService) { }
 
+  /**
+   * Requests all categories from backend.
+   */
   ngOnInit() {
     this.categoryService.getAllCategories().subscribe(response =>{    
       if(response.name != "HttpResponseError"){
@@ -25,6 +28,13 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param categoryId ID of category.
+   * @param color Color of category.
+   * @param category Category name itself.
+   * Routes user to category.
+   */
   routeToCourse(categoryId: number, color: string, category: string) {
     this.router.navigate(['/home/kurs-uebersicht/' + categoryId]);
     this.comService.setInfo(color, category);

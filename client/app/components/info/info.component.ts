@@ -10,9 +10,5 @@ import {
 export class InfoComponent {
 
   public state:number = 0;
-  
   constructor() {}
-
-
-
 }

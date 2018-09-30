@@ -5,6 +5,9 @@ import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs';
 
+/**
+ * Preloading strategy, used for /home sub component
+ */
 @Injectable()
 export class SelectivePreloadingStrategy implements PreloadingStrategy {
   preloadedModules: string[] = [];
