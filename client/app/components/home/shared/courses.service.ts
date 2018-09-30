@@ -22,6 +22,18 @@ export class CoursesService {
   };
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
+
+  getSearchCourses(search: String): Observable<any>{
+    return this.http.get(this.url + "/courses?search=" + search, this.httpOptions).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {        
+        this.alertService.push(err);
+        return of(err);
+      })
+    );
+  }
     
   getCoursesByCourseId(courseId: String): Observable<any>{
     return this.http.get(this.url + "/courses/" + courseId, this.httpOptions).pipe(

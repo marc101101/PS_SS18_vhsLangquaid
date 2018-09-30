@@ -10,8 +10,6 @@ import { environment } from './environments/environment';
 
 enableProdMode();
 
-console.log(isDevMode());
-
 document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic().bootstrapModule(AppModule);
 });

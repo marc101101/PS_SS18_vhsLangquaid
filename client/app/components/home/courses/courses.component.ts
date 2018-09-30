@@ -27,9 +27,7 @@ export class CoursesComponent implements OnInit {
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
   public renderer: Renderer2) { 
-    this.comService.getInfo().subscribe(color => {   
-      //this.renderer.addClass(this.backgroundElement.nativeElement, color);
-    });  
+     
   }
 
   ngOnInit(){
@@ -49,7 +47,12 @@ export class CoursesComponent implements OnInit {
             this.requestCoursesByCategory(params.id);
           }
         }
-      }    
+      } 
+      this.comService.getInfo().subscribe(response => { 
+        if(response.color != undefined){
+          this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
+        }
+      });    
     });
   }
 

@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
       this.alertService.setErrorMessage("clear");
         this.userService.registerUser(this.user).subscribe(response => {
           if(response.name != "HttpResponseError"){
-            this.login = true; 
+            this.login = true;             
           }
         });
     }    

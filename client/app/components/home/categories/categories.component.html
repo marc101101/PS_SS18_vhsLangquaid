@@ -1,18 +1,18 @@
-<div class="container fullScreenBackground">
+<div class="container fullscreenBackground">
   <div class="circleBackground"></div>   
   <div class="columns is-mobile">
-    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem; padding-bottom: 0rem;">
-      <div style="font-size: 1.5rem; color:white;">
+    <div class="column is-12 headline-position">
+      <div class="headline-style">
         Kurs Kategorien
       </div>
     </div>
   </div>
 
-  <div class="column" style="margin-top: -2rem;padding: 1.0rem;">
+  <div class="column alert-position">
     <alert></alert>
   </div>
 
-  <section style="padding: 1rem;" *ngIf="dataIsAvailable">
+  <section class="padding-1" *ngIf="dataIsAvailable">
     <div class="card" *ngFor="let category of categories; let i=index" (click)="routeToCourse(category.RUB_ID, colorArray[i], category.RUB_NAME)">
       <div class="color-marker" [ngClass]="colorArray[i]">
       </div>

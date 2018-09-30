@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/not-found';
-import { HomeComponent } from './components/home/home.component';
-import { CategoriesComponent } from './components/home/categories/categories.component';
-import { ProfilComponent } from './components/home/profil/profil.component';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { InfoComponent } from './components/info/info.component';
 
  const routes: Routes = [
     {
@@ -24,6 +20,10 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     {
         path: 'registration',
         component: RegistrationComponent
+    },
+    {
+        path: 'info',
+        component: InfoComponent
     },
     {
         path: 'home',

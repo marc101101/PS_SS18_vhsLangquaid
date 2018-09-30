@@ -6,7 +6,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { UserData } from '../../models/UserData';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { log } from 'util';
 
 @Component({
@@ -14,18 +14,27 @@ import { log } from 'util';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   public model: UserData = new UserData("", "");  
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private authSerive: AuthService, private router:Router) {}
 
+  ngOnInit() {
+    this.authSerive.isLoggedIn().subscribe(response => {
+      if(response){
+        this.router.navigate(['/home/kategorien']);
+      }
+    });
+  }
+
   onSubmit() {
     this.authSerive.login(this.model).subscribe(response => {
-      // login successful if there's a jwt token in the response      
+      // login successful if there's a jwt token in the response   
       if (response.token && !this.jwtHelper.isTokenExpired(response.token)) {
         // store jwt token in local storage to keep user logged in between page refreshes
+        
         localStorage.setItem('token', response.token);  
 
         this.router.navigate(['/home/kategorien']);

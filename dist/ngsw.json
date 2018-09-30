@@ -55,6 +55,7 @@
         "/assets/icons/ms-icon-70x70.png",
         "/assets/img/iphone_portrait_black.png",
         "/assets/img/loading.gif",
+        "/assets/img/tut_1.png",
         "/assets/js/idb.js"
       ],
       "patterns": []
@@ -115,9 +116,10 @@
     "/assets/icons/ms-icon-70x70.png": "cce37a578e972857002e7201904e576fe18af70b",
     "/assets/img/iphone_portrait_black.png": "35a2d3f9b4ac276ea84dd6ec3a081685e98fd0e8",
     "/assets/img/loading.gif": "cdc1627a1ff312a43d1700a3694da1050e0e026d",
+    "/assets/img/tut_1.png": "ae2f518e465616205ed96d072a882f67af620daf",
     "/assets/js/idb.js": "6f82cc3f3c743e77b6931a0129d7afddd6cfe3c4",
     "/favicon.ico": "4dcb5bccd0acfad546f6efa5b1e023a159f1e018",
-    "/index.html": "8af2ce856e9ffc18605459426122a3c37fb45eea"
+    "/index.html": "a44873149d7f79c6d09c97747bad80b9374c58e9"
   },
   "navigationUrls": [
     {

@@ -1,8 +1,8 @@
-<div class="container fullScreenBackground">
+<div class="container fullscreenBackground">
   <div class="circleBackground"></div>
   <div class="columns is-mobile">
-    <div class="column is-12" style="z-index: 0; padding: 2rem; padding-left: 5rem; padding-bottom: 0rem;">
-      <div style="font-size: 1.5rem; color:white;">
+    <div class="column is-12 headline-position">
+      <div class="headline-style">
         {{headerText}}
       </div>
     </div>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div style="padding:1rem">
+  <div class="padding-1">
     <textarea class="textarea" placeholder="Wir freuen uns über Ihr Feedback." [(ngModel)]="contactMessage.text" ></textarea>
   </div>
 
@@ -31,8 +31,8 @@
     <i *ngIf="contactMessage.bewertung>=5" class="fa fa-star" aria-hidden="true" (click)="contactMessage.bewertung = 5"></i>
   </div>
   
-  <div class="column is-12" style="padding: 1rem; padding-top:0rem">
-    <button #send class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [disabled]="contactMessage.text == ''" (click)="submit()">
+  <div class="column is-12 padding-button">
+    <button #send class="button is-primary is-medium is-fullwidth margin-15" [disabled]="contactMessage.text == ''" (click)="submit()">
       <div>{{button_text}}</div>            
     </button>
   </div>

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
-import { log } from 'util';
 import { of } from 'rxjs';
 
 
@@ -82,14 +81,14 @@ export class AlertService {
     } else if (response.status === 401) {
       return 'Email oder Password falsch.';
     } else if (response.status === 403) {
-      return 'User not allowed!';
+      return 'Benutzer nicht berechtig!';
     } else if (response.status === 405) {
-      return 'Method not allowed!';
+      return 'Aufruf nicht erlaubt!';
     } else if (response.status === 409) {
       return 'Sie sind bereits angemeldet!';
     } else if (response.status === 503) {
       this.keepAfterNavigationChange = true;
-      this.status_message = response.status + '\n' + 'Service Unavailable.';
+      this.status_message = response.status + '\n' + 'Service nicht erreichbar.';
       this.router.navigate(['/error']);
       return;
     } else if (response.status === 500) {
@@ -102,13 +101,8 @@ export class AlertService {
         return 'Verbindung unterbrochen.'
       }
       if (response === undefined || response === 0 || response.statusText === '') {
-        return 'Connection Error!';
+        return 'Verbindungsfehler!';
       }
-      /*
-       * This seems to be currently a bug in the angular library for http error response transition
-       * that the statusText is not set properly. Therefore currently only status-code is printed back.
-       */
-      // return message.status + ': ' + message.statusText;
       return 'HTTP Status ' + response.status + '.';
     }
   }

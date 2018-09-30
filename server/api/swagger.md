@@ -25,7 +25,7 @@ markus.guder@gmail.com
 |Name|Authorization|
 |In|header|
 
-### /user
+### /user/me
 ---
 ##### ***GET***
 **Summary:** get me
@@ -54,6 +54,63 @@ markus.guder@gmail.com
 | --- | --- |
 | JWT | |
 
+##### ***PUT***
+**Summary:** edit user details
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| data | body | user data | Yes | object |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | user has been edited | object |
+| 401 | Invalid authentication credentials. |  |
+| 403 | Permission 'xxx' denied on file 'yyy'. |  |
+| 404 | Permission 'xxx' denied on file 'yyy'. |  |
+| 409 | Resource 'xxx' already exists. |  |
+| 500 | Internal Server Error. |  |
+
+**Security**
+
+| Security Schema | Scopes |
+| --- | --- |
+| JWT | |
+
+### /user/me/courses
+---
+##### ***GET***
+**Summary:** get my courses
+
+**Description:** Get Users (me) courses
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | request successful | [ [Category](#category) ] |
+| 401 | Invalid authentication credentials. |  |
+| 403 | Permission 'xxx' denied on file 'yyy'. |  |
+| 404 | Permission 'xxx' denied on file 'yyy'. |  |
+| 409 | Resource 'xxx' already exists. |  |
+| 500 | Internal Server Error. |  |
+
+**Security**
+
+| Security Schema | Scopes |
+| --- | --- |
+| JWT | |
+
+### /user
+---
 ##### ***POST***
 **Summary:** register a new user
 
@@ -70,32 +127,6 @@ markus.guder@gmail.com
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
 | 201 | user created | object |
-| 401 | Invalid authentication credentials. |  |
-| 403 | Permission 'xxx' denied on file 'yyy'. |  |
-| 404 | Permission 'xxx' denied on file 'yyy'. |  |
-| 409 | Resource 'xxx' already exists. |  |
-| 500 | Internal Server Error. |  |
-
-**Security**
-
-| Security Schema | Scopes |
-| --- | --- |
-| JWT | |
-
-##### ***PUT***
-**Summary:** edit user details
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| data | body | user data | Yes | object |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | user has been edited | object |
 | 401 | Invalid authentication credentials. |  |
 | 403 | Permission 'xxx' denied on file 'yyy'. |  |
 | 404 | Permission 'xxx' denied on file 'yyy'. |  |
@@ -202,12 +233,13 @@ markus.guder@gmail.com
 ##### ***GET***
 **Summary:** get all courses
 
-**Description:** get all courses
+**Description:** get all courses, optional search
 
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
+| search | query |  | No | string |
 
 **Responses**
 
@@ -257,6 +289,35 @@ markus.guder@gmail.com
 **Summary:** get currated highlights
 
 **Description:** get currated highlights
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [Course](#course) ] |
+| 401 | Invalid authentication credentials. |  |
+| 403 | Permission 'xxx' denied on file 'yyy'. |  |
+| 404 | Permission 'xxx' denied on file 'yyy'. |  |
+| 409 | Resource 'xxx' already exists. |  |
+| 500 | Internal Server Error. |  |
+
+**Security**
+
+| Security Schema | Scopes |
+| --- | --- |
+| PublicKey | |
+
+### /courses/lastminute
+---
+##### ***GET***
+**Summary:** get last minute courses
+
+**Description:** get last minute courses
 
 **Parameters**
 

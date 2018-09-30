@@ -54,6 +54,7 @@
     "nodemon": "^1.11.0",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.0.0-rc.0",
+    "swagger-markdown": "^1.1.5",
     "swagger-tools": "0.10.1",
     "web-push": "^3.2.5",
     "zone.js": "^0.8.26"

@@ -28,7 +28,7 @@
     <input class="input is-medium" type="text" placeholder="Vorname" style="margin-top: 1.5rem" [(ngModel)]="user.teil_vorname">
     <input class="input is-medium" type="text" placeholder="Nachname" style="margin-top: 1.5rem" [(ngModel)]="user.teil_nachname">
 
-    <div class="columns is-mobile" style="padding:1rem">
+    <div class="columns is-mobile padding-1">
       <div class="column is-12" style="padding: 0rem;">
         <button class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem" (click)="state = state + 1">
           <div>Weiter</div>
@@ -41,7 +41,7 @@
     <input class="input is-medium" type="text" placeholder="Straße, Hausnummer" [(ngModel)]="user.teil_strasse1">
     <input class="input is-medium" type="text" placeholder="PLZ" style="margin-top: 1.5rem" [(ngModel)]="user.teil_plz">
     <input class="input is-medium" type="text" placeholder="Wohnort" style="margin-top: 1.5rem" [(ngModel)]="user.teil_ort">
-    <div class="columns is-mobile" style="padding:1rem">
+    <div class="columns is-mobile padding-1">
       <div class="column is-2">
         <div style="margin-top: 0.65rem;" (click)="state = state - 1">
           <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
@@ -88,7 +88,7 @@
       </div>
     </div>
     <input class="input is-medium" type="mail" placeholder="Email" [(ngModel)]="user.teil_email">
-    <div class="columns is-mobile" style="padding:1rem">
+    <div class="columns is-mobile padding-1">
       <div class="column is-2">
         <div style="margin-top: 0.65rem;" (click)="state = state - 1">
           <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
@@ -107,7 +107,7 @@
   <section class="registrieren-2" *ngIf="state == 3" style="padding: 1rem; padding-top: 2rem">
     <input class="input is-medium" type="text" placeholder="BLZ" maxlength="8" style="margin-top: 1.5rem" [(ngModel)]="user.teil_blz">
     <input class="input is-medium" type="text" placeholder="IBAN" maxlength="22" style="margin-top: 1.5rem" [(ngModel)]="user.teil_iban">
-    <div class="columns is-mobile" style="padding:1rem">
+    <div class="columns is-mobile padding-1">
       <div class="column is-2">
         <div style="margin-top: 0.65rem;" (click)="state = state - 1">
           <span class="icon" style="color: #209cee; padding: 1.5rem; padding-left: 1rem">
@@ -153,8 +153,8 @@
         <button *ngIf="!login" class="button is-info is-medium is-fullwidth" style="margin-top:1.5rem" (click)="onSubmit()">
           <div>Registieren</div>
         </button>
-        <button *ngIf="login" class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [(routerLink)]="categories">
-          <div>Erfolgreich angemeldet</div>
+        <button *ngIf="login" class="button is-primary is-medium is-fullwidth" style="margin-top:1.5rem" [routerLink]="['/login']">
+          <div>Einloggen</div>
         </button>
       </div>
     </div>
@@ -170,5 +170,8 @@
 
   <div style="padding: 1rem">
     <alert></alert>
+  </div>
+  <div class="info-button" [routerLink]="['/info']">
+    <i class="fa fa-info" aria-hidden="true"></i>
   </div>
 </div>

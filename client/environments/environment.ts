@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8080/v1'
+    apiUrl: 'https://prod-ps-ss18-vhslanquaid.herokuapp.com/v1'
   };
   

@@ -1,81 +1,85 @@
-.circleBackground {
-    height: 30rem;
-    width: 30rem;
-    z-index: -1;
-    background-color: #209cee;
-    border-radius: 15rem;
-    position: absolute;
-    margin-top: -13rem;
-    margin-left: -7rem;
-}
-
-.fullScreenBackground {
-    position: absolute;
-    width: 100%;
-    overflow: hidden;    
-    min-height: 100%;
-}
-
-.card {
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
-
-.title {
-    font-size: 1.25rem !important;
-    padding-left: 1rem;
-}
-
-.subtitle {
-    font-size: 0.9rem;
-    padding-left: 1rem;
-}
-
-.color-marker {
-    float: right;
-    height: 100%;
-    position: absolute;
-    width: 10px;
-    border-top-left-radius: 0.8rem;
-    border-bottom-left-radius: 0.8rem;
-}
-
-.primary{
-    background-color: #00d1b2;
-}
-
-.link{
-    background-color: #3273dc;
-}
-
-.info{
-    background-color: #23d160;
-}
-
-.success{
-    background-color: #ffdd57;
-}
-
-.warning{
-    background-color: #ffbc6b;
-}
-
-.danger{
-    background-color: #ff3860;
-}
-
-.info-icon{
-    float: left; 
-    color:white;
+.info-icon {
+    float: left;
+    color: white;
     margin-right: 0.7rem;
     margin-top: 0.2rem;
 }
 
-.nav-button{
+.nav-button {
     border-radius: 3rem;
     width: 2.5rem;
     height: 2.5rem;
     float: right;
     margin-top: -1.5rem;
     margin-right: 1rem;
+}
+
+.single-course-position {
+    padding: 1rem;
+    margin-top: 0rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+.single-course-card {
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+.color-black {
+    color: black;
+}
+
+.apply-button {
+    padding: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.info-style{
+    padding: 1rem;
+    margin-top: -2rem;
+}
+
+.sub-headline{
+    font-size: 1.2rem;
+    float: left;
+}
+
+.padding-05{
+    padding:0.5rem;
+}
+
+.info-padding{
+    padding-left: 0rem; 
+    padding-top: 1rem;
+}
+
+.less-info-padding{
+    padding: 1rem; 
+    margin-top: -2rem;
+}
+
+.less-info-card{
+    padding: 1rem; 
+    margin-top: 1rem;
+}
+
+.margin-bottom-2{
+    margin-bottom: 2rem;
+}
+
+.subheadline{
+    font-size: 1.4rem;
+}
+
+.headline-pos-long{
+    z-index: 0; 
+    padding-left: 4.5rem; 
+    padding-bottom: 0rem;
+    padding-top:1.2rem;
+}
+
+.card-height-4{
+    height: 4rem;
 }

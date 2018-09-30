@@ -1,4 +1,4 @@
-<i class="fa fa-times" aria-hidden="true" style="float: right; padding: 1rem; color: white; font-size: 1.5rem;" (click)="closeMenu()"></i>
+<i class="fa fa-times menu-burger" aria-hidden="true" (click)="closeMenu()"></i>
 
 <div class="circleBackground"></div>
 <div class="userProfil" (click)="routing('home/profil')">
@@ -8,7 +8,7 @@
     Profil
 </div>
 
-<div class="menuPoint" style="margin-top: 8rem" (click)="routing('home/kurs-uebersicht/me')">
+<div class="menuPoint" style="margin-top: 4rem" (click)="routing('home/kurs-uebersicht/me')">
     <span class="icon">
         <i class="fa fa-star"></i>
     </span>
@@ -43,9 +43,15 @@
     Kontakt
 </div>
 
-<div class="menuPoint" (click)="signOut()" style="color: #209cee;">
-    <span class="icon">
-        <i class="fa fa-sign-out"></i>
-    </span>
+<div class="menuPoint imprint">
+    <a class="color-black" href="https://www.vhslq.de/index.php?&session_name=bujmsuooupg5o8mhjij463tv34&sel_submodul_id=200705161039561630420394&formular=0&startnav=200705161039561630420394&reset=1&view_main=1">
+        Impressum
+    </a><br>
+    <a class="color-black" href="https://www.vhslq.de/index.php?&session_name=bujmsuooupg5o8mhjij463tv34&sel_submodul_id=201805241653121080370739&formular=0&startnav=201805241653121080370739&reset=1&view_main=1">
+        Datenschutz
+    </a>
+</div>
+
+<div class="menuPoint color-blue imprint" (click)="signOut()">
     Ausloggen
 </div>

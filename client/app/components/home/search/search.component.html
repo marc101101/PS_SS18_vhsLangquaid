@@ -1,11 +1,17 @@
 <div class="container fullscreenBackground">
-  <div class="circleBackground" #backgroundElement></div>   
+  <div class="circleBackground"></div>
   <div class="columns is-mobile">
-    <div class="column is-12 headline-position">
+    <div class="column is-12 headline-position padding-right-style">
       <div class="headline-style">
-        {{headerText}}
+        <input #searchElement class="input is-medium" type="text" placeholder="Suche nach Kursen">
       </div>
     </div>
+  </div>
+
+  <div class="padding-1">
+    <button class="button is-primary is-medium is-fullwidth" (click)="onSubmit()">
+      Suche
+    </button>
   </div>
 
   <div class="column alert-style">
@@ -16,7 +22,7 @@
     Keine Kurs gefunden.
   </section>
 
-  <section class="padding-1" *ngIf="dataIsAvailable">
+  <section class="padding-1"*ngIf="dataIsAvailable">
     <div class="card" *ngFor="let course of courses; let i=index" [(routerLink)]="'/home/kurs/' + course.KURS_ID">
       <div class="color-marker">
       </div>
@@ -33,5 +39,4 @@
       </div>
     </div>
   </section>
-  
 </div>
