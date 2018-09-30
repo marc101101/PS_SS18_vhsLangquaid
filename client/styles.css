@@ -76,31 +76,31 @@
 }
 
 .primary{
-    background-color: #00d1b2;
+    background-color: #00d1b2 !important;
 }
 
 .link{
-    background-color: #3273dc;
+    background-color: #3273dc !important;
 }
 
 .info{
-    background-color: #23d160;
+    background-color: #23d160 !important;
 }
 
 .success{
-    background-color: #ffdd57;
+    background-color: #ffdd57 !important;
 }
 
 .warning{
-    background-color: #ffbc6b;
+    background-color: #ffbc6b !important;
 }
 
 .danger{
-    background-color: #ff3860;
+    background-color: #ff3860 !important;
 }
 
 .is-primary-save {
-    background-color: #209cee !important;
+    background-color: #209cee;
 }
 
 .info-button{

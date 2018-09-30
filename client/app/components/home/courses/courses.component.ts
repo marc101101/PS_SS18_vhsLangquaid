@@ -19,6 +19,7 @@ export class CoursesComponent implements OnInit {
   public courses: Array<any> = [];
   public headerText: string = "";
   public category: string = "";
+  public current_color: string;
 
   constructor(
   public coursesService: CoursesService,
@@ -34,6 +35,7 @@ export class CoursesComponent implements OnInit {
    */
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {   
+      this.renderer.removeClass(this.backgroundElement.nativeElement, this.current_color);
       if(params.id == "me"){
         this.requestCoursesByUser();
       }
@@ -47,14 +49,15 @@ export class CoursesComponent implements OnInit {
           }
           else{
             this.requestCoursesByCategory(params.id);
+            this.comService.getInfo().subscribe(response => { 
+              if(response.color != undefined){
+                this.current_color = response.color;
+                this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
+              }
+            }); 
           }
         }
-      } 
-      this.comService.getInfo().subscribe(response => { 
-        if(response.color != undefined){
-          this.renderer.addClass(this.backgroundElement.nativeElement, response.color);
-        }
-      });    
+      }    
     });
   }
 
