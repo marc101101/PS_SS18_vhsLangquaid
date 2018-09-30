@@ -55,7 +55,6 @@ describe('SearchComponent', () => {
     //component.user = userModel;
     //call testing method
     component.onSubmit();
-    console.log(component);
     //check results
     fixture.detectChanges();
     //let debugUlElement = fixture.debugElement.query(By.css('button'));

@@ -26,10 +26,12 @@ export class CoursesComponent implements OnInit {
   public userService: UserService,
   private activatedRoute: ActivatedRoute,
   public comService: CommunicationService,
-  public renderer: Renderer2) { 
-     
-  }
+  public renderer: Renderer2) {}
 
+  /**
+   * Checks which kin of course view is required.
+   * Sends request depending on what is required.
+   */
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {   
       if(params.id == "me"){
@@ -56,6 +58,9 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  /**
+   * Request courses of user.
+   */
   requestCoursesByUser():void{
     this.headerText = "Meine";
     this.courses = [];
@@ -72,6 +77,9 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  /**
+   * Request courses of category.
+   */
   requestCoursesByCategory(courseId: string):void{
     this.headerText = "";
     this.categoryService.getAllCategories().subscribe(response => {
@@ -91,6 +99,9 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  /**
+   * Request highlighted courses.
+   */
   requestCoursesByHighlights():void{
     this.headerText = "Highlights";
     this.courses = [];
@@ -103,6 +114,9 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  /**
+   * Request lastminute courses.
+   */
   requestCoursesBylastMinute():void{
     this.headerText = "Last Minute";
     this.courses = [];

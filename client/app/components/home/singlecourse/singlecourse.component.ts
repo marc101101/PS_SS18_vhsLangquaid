@@ -30,9 +30,12 @@ export class SingleCourseComponent implements OnInit {
     public authService: AuthService,
     public courseService: CoursesService) { }
 
+  /**
+   * Reads the given route parameters to request course data.
+   * Checks category background color.
+   */
   ngOnInit() {
     this.comService.sendCourseViewMessage(true);
-
     this.activatedRoute.params.subscribe((params: Params) => {     
       this.courseService.getCoursesByCourseId(params.id).subscribe(response =>{    
         if(response.name != "HttpResponseError"){
@@ -49,6 +52,9 @@ export class SingleCourseComponent implements OnInit {
     });   
   }
 
+  /**
+   * Checks if user is logged in.
+   */
   checkLogin(){
     this.authService.isLoggedIn().subscribe(response =>{
       if(response){
@@ -58,6 +64,10 @@ export class SingleCourseComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks if user is already applied for course.
+   * Changes the apperance of apply button.
+   */
   checkAlreadyApplied(){
     this.userService.getCoursesByUser().subscribe(response =>{      
       response.forEach(element => {
@@ -69,6 +79,9 @@ export class SingleCourseComponent implements OnInit {
     });
   }
 
+  /**
+   * Applies the user to given course.
+   */
   apply(){
     this.courseService.applyToCourse(this.singleCourse.KURS_ID).subscribe(response =>{
       if(response.name != "HttpResponseError"){
@@ -78,6 +91,9 @@ export class SingleCourseComponent implements OnInit {
     });
   }
 
+  /**
+   * Signs off the user to given course.
+   */
   signOff(){
     this.courseService.signOffToCourse(this.singleCourse.KURS_ID).subscribe(response =>{
       if(response.name != "HttpResponseError"){

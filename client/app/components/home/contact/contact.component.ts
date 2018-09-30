@@ -25,8 +25,11 @@ export class ContactComponent implements OnInit{
     private renderer: Renderer2,
     private contactService: ContactService,
     private activatedRoute: ActivatedRoute,
-    private coursesService:CoursesService) { }
+    private coursesService:CoursesService) {}
 
+  /**
+   * Reads route parameter, when given and gets course data.
+   */
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {    
       if(params.id){
@@ -38,7 +41,10 @@ export class ContactComponent implements OnInit{
       }      
     });
   }
-
+  
+  /**
+   * Depending on feedback on course or general, feedback is sent to backend.
+   */
   submit():void{
     if(this.course_feedback){
       this.coursesService.postFeedbackByCourse(this.contactMessage, this.single_course.KURS_ID).subscribe(response => {

@@ -5,7 +5,6 @@ import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { of } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -70,6 +69,11 @@ export class AlertService {
     }
   }
 
+  /**
+   * 
+   * @param response Forwared error message from rest service.
+   * Maps reponse code to german error message.
+   */
   mapMessage(response): string {
     if (response.status === 400 && response.json().hasOwnProperty('message')) {
       const body = response.json();
@@ -107,6 +111,12 @@ export class AlertService {
     }
   }
 
+  /**
+   * 
+   * @param err Forwared error message from rest service.
+   * @param login_page Checks if message is published by login service.
+   * Publishes message to subject on which alert directive is subscribed on.
+   */
   push(err, login_page = false) {
     if (err instanceof Error) {
       // display error message for dev

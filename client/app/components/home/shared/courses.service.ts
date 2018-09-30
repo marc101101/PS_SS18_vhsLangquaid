@@ -9,11 +9,13 @@ import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class CoursesService {
 
   private url: string = environment.apiUrl;
 
+  /**
+   * Authorization header with in auth.serivce requested JWT token.
+   */
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -23,6 +25,11 @@ export class CoursesService {
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
 
+  /**
+   * 
+   * @param search Search request.
+   * Get courses by the provided search request.
+   */
   getSearchCourses(search: String): Observable<any>{
     return this.http.get(this.url + "/courses?search=" + search, this.httpOptions).pipe(
       map((res: Response) => {
@@ -34,7 +41,12 @@ export class CoursesService {
       })
     );
   }
-    
+  
+  /**
+   * 
+   * @param courseId ID of single course.
+   * Get single course by course ID.
+   */
   getCoursesByCourseId(courseId: String): Observable<any>{
     return this.http.get(this.url + "/courses/" + courseId, this.httpOptions).pipe(
       map((res: Response) => {
@@ -47,6 +59,9 @@ export class CoursesService {
     );
   }
 
+  /**
+   * Get highlighted flagged courses.
+   */
   getCoursesByHighlight(): Observable<any>{
     return this.http.get(this.url + "/courses/highlights", this.httpOptions).pipe(
       map((res: Response) => {
@@ -59,6 +74,9 @@ export class CoursesService {
     );
   }
 
+  /**
+   * Get lastminute flagged courses.
+   */
   getCoursesByLastMinute(): Observable<any>{
     return this.http.get(this.url + "/courses/lastminute", this.httpOptions).pipe(
       map((res: Response) => {
@@ -71,6 +89,11 @@ export class CoursesService {
     );
   }
 
+  /**
+   * 
+   * @param courseId ID of single course.
+   * Apply to course with given courseId.
+   */
   applyToCourse(courseId: String): Observable<any>{   
     return this.http.post(this.url + "/courses/" + courseId + "/apply", "" ,this.httpOptions).pipe(
       map((res: Response) => {
@@ -83,6 +106,11 @@ export class CoursesService {
     )
   }
 
+  /**
+   * 
+   * @param courseId ID of single course.
+   * Sign off course with given courseId.
+   */
   signOffToCourse(courseId: String): Observable<any>{
     return this.http.post(this.url + "/courses/" + courseId + "/signoff", "", this.httpOptions).pipe(
       map((res: Response) => {
@@ -95,6 +123,12 @@ export class CoursesService {
     )
   }
 
+  /**
+   * 
+   * @param feedback object that contains feedback.
+   * @param courseId ID of single course.
+   * Post feedback for given course to server. 
+   */
   postFeedbackByCourse(feedback: any, courseId:string): Observable<any>{   
     return this.http.post(this.url + "/courses/" + courseId + "/feedback" ,feedback, this.httpOptions).pipe(
       map((res: Response) => {

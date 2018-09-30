@@ -14,6 +14,9 @@ export class CategoryService {
 
   private url: string = environment.apiUrl;
 
+  /**
+   * Authorization header with in auth.serivce requested JWT token.
+   */
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -23,6 +26,9 @@ export class CategoryService {
 
   constructor(public http: HttpClient, public alertService: AlertService) { }
   
+  /**
+   * Get all categories from backend.
+   */
   getAllCategories(): Observable<any>{
     return this.http.get(this.url + "/categories", this.httpOptions).pipe(
       map((res: Response) => {
@@ -35,8 +41,13 @@ export class CategoryService {
     )
   }
   
-  getCoursesByCategoryId(courseId: String): Observable<any>{
-    return this.http.get(this.url + "/categories/" + courseId + "/courses", this.httpOptions).pipe(
+  /**
+   * 
+   * @param categoryId Category id of single category
+   * Get courses of category with requested id.
+   */
+  getCoursesByCategoryId(categoryId: String): Observable<any>{
+    return this.http.get(this.url + "/categories/" + categoryId + "/courses", this.httpOptions).pipe(
       map((res: Response) => {
         return res;
       }),

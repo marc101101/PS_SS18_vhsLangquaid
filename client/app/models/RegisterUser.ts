@@ -16,6 +16,7 @@ export class RegisterUser {
         teil_blz: string,
         teil_iban: string,
         teil_anrede: number,
+        teil_passwort: string
     ) {
         this.teil_vorname = teil_vorname;
         this.teil_nachname = teil_nachname;
@@ -32,6 +33,7 @@ export class RegisterUser {
         this.teil_blz = teil_blz;
         this.teil_iban = teil_iban;
         this.teil_anrede = teil_anrede;
+        this.teil_passwort = teil_passwort;
     }
 
     teil_vorname: string;
@@ -49,4 +51,5 @@ export class RegisterUser {
     teil_blz: string;
     teil_iban: string;
     teil_anrede: number;
+    teil_passwort: string;
 }

@@ -22,6 +22,11 @@ export class AuthService {
 
   constructor(public http: HttpClient, public alertService: AlertService, public router: Router) { }
 
+  /**
+   * Checks current login status.
+   * Checks if token is still available and not expired
+   * Uses by Auth Guard to check routing policies.
+   */
   isLoggedIn(): Observable<boolean>{   
     if(this.jwtHelper.isTokenExpired(localStorage.getItem('token'))){
       this.navToLogin();
@@ -37,6 +42,9 @@ export class AuthService {
     return of(this.authStatus);
   }
 
+  /**
+   * Routes in case of unauthorized site request back to login view.
+   */
   navToLogin():void{
     this.authStatus = false;
     this.router.navigate(['/login']).catch(error => {
@@ -44,8 +52,13 @@ export class AuthService {
     });    
   }
 
+  /**
+   * 
+   * @param user data entered on login scren (username / password)
+   * Requests / Checks login data and receives in good case a JWT Token from backend.
+   */
   login(user:UserData): Observable<any>{
-    return this.http.post(this.url+"/auth", {email: user.mail, password: user.password}).pipe(
+    return this.http.post(this.url + "/auth", {email: user.mail, password: user.password}).pipe(
       map((res: Response) => {
         this.authStatus = true;
         return res;
@@ -57,6 +70,9 @@ export class AuthService {
     )
   }
 
+  /**
+   * Removes token from local storage.
+   */
   logout(): void{
     localStorage.removeItem('token');
     this.authStatus = false;
