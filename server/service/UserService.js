@@ -75,8 +75,16 @@ exports.userMeCoursesGET = function (user_id) {
  * returns Object
  **/
 exports.userPOST = function (data) {
+  // if property of email is lowercase, we uppercase it, otherwise the requests will fail silently
+  // we do not need to distinguish at other times in the code cause bookshelf can usually handle it when saving objects
+  // here however a lowercased property would simply return undefined when looking for the uppercase variant
+  if(data.teil_email) {
+    data.TEIL_EMAIL = data.teil_email;
+    const {teil_email, ...cachedData} = data;
+    data = cachedData;
+  } 
   return new Promise(function (resolve, reject) {
-    User.where({TEIL_EMAIL  : data.TEIL_EMAIL})
+    User.where({TEIL_EMAIL: data.TEIL_EMAIL})
       .fetch()
       .then((model) => {
           if (!model) {
@@ -108,7 +116,6 @@ exports.userPOST = function (data) {
       })
   });
 }
-
 
 /**
  * edit user details
